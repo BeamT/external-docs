@@ -56,6 +56,10 @@ def render_include(name, args):
         src = f"{BASEURL}/assets/diagrams/{args.get('src','')}"
         cap = f'<figcaption>{html.escape(args["caption"])}</figcaption>' if args.get("caption") else ""
         return f'<figure class="diagram"><img src="{src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{{className:\'diagram-missing\',textContent:\'Diagram coming soon\'}}))">{cap}</figure>'
+    if name == "steplink.html":
+        return f'<a class="step step-link" href="/{args.get("slug","")}/"><div class="step-num">{html.escape(args.get("number",""))}</div><div class="step-body"><div class="step-title">{html.escape(args.get("title",""))} <span class="step-arrow">&#8594;</span></div><p>{html.escape(args.get("body",""))}</p></div></a>'
+    if name == "printlink.html":
+        return f'<a class="print-link" href="{args.get("url","")}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9V4h12v5M6 18H4v-6a2 2 0 012-2h12a2 2 0 012 2v6h-2M8 14h8v6H8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{html.escape(args.get("label",""))}</a>'
     if name == "checklist.html":
         items = [i.strip() for i in args.get("items", "").split("|") if i.strip()]
         lis = "".join(f"<li>{html.escape(i)}</li>" for i in items)
@@ -67,11 +71,24 @@ def expand_includes(body):
         return render_include(m.group(1), parse_include_args(m.group(2)))
     return re.sub(r"\{%\s*include\s+([\w.]+)\s+(.*?)%\}", repl, body, flags=re.S)
 
+
+import re as _re
+def slugify(t):
+    t=_re.sub(r"<[^>]+>","",t).strip().lower()
+    t=_re.sub(r"[^a-z0-9 -]","",t)
+    t=_re.sub(r"\s+","-",t)
+    return t
+def add_anchors(html):
+    def h(m):
+        lvl,txt=m.group(1),m.group(2)
+        return f'<h{lvl} id="{slugify(txt)}">{txt}</h{lvl}>'
+    return _re.sub(r"<h([23])>(.*?)</h\1>", h, html)
+
 def render_markdown_preserving_html(body):
     # Split into include-generated HTML blocks vs markdown; render markdown only.
     if md is None:
         return "<pre>(python-markdown not installed; run pip install markdown)</pre>"
-    return md(body)
+    return add_anchors(md(body))
 
 def apply_guide_layout(fm, content_html):
     badges = "".join(f'<span class="badge">{a.capitalize()}</span>' for a in fm.get("audience", []))
@@ -94,6 +111,27 @@ def page_shell(title, inner, is_home=False):
 <header class="topbar"><div class="topbar-inner"><a href="{BASEURL}/" class="brand">Focal<span class="dot">.</span></a>{search}</div></header>
 <main class="wrap">{inner}</main></body></html>'''
 
+
+def build_packet(out, guides_data):
+    import base64, os
+    # installer guides sorted by installer order, excluding start-here
+    ig=[g for g in guides_data if 'installer' in g.get('audience',[]) and g['_slug']!='start-here']
+    ig.sort(key=lambda g:int(g.get('_iorder',999)))
+    css=open(os.path.join(ROOT,"assets","style.css")).read()
+    qr_path=os.path.join(ROOT,"assets","diagrams","qr-installer.svg")
+    qr_data="data:image/svg+xml;base64,"+base64.b64encode(open(qr_path,'rb').read()).decode() if os.path.exists(qr_path) else ""
+    cover=f'''<section class="packet-cover"><div class="cover-brand">Focal<span class="dot">.</span></div>
+    <h1>Installer Packet</h1><p class="cover-sub">Everything you need to install Focal heaters, in order.</p>
+    <div class="cover-qr"><img src="{qr_data}" width="150" height="150"><div class="cover-qr-text"><strong>Scan for the live guides</strong><span>Always current, with search and full-size diagrams. Opens to the installer sequence.</span></div></div>
+    <ol class="cover-seq"><li><strong>Safety &amp; Clearances</strong></li><li><strong>Rail Installation</strong></li><li><strong>Network Setup</strong></li><li><strong>Install the Heaters</strong></li><li><strong>Register &amp; Assign Heaters</strong></li></ol>
+    <p class="cover-foot">Questions: hello@focalheat.co · 314-378-1131</p></section>'''
+    body=cover
+    for g in ig:
+        body+=f'<section class="packet-guide"><div class="packet-guide-head"><h1>{g["title"]}</h1><span class="packet-ver">v{g.get("version","")} · {g.get("updated","")}</span></div>{g["_html"]}</section>'
+    html=f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body><div class="packet">{body}</div></body></html>'
+    os.makedirs(os.path.join(out,"print","installer"),exist_ok=True)
+    open(os.path.join(out,"print","installer","index.html"),"w").write(html)
+
 def build():
     out = os.path.join(ROOT, "_preview")
     os.makedirs(out, exist_ok=True)
@@ -110,11 +148,16 @@ def build():
         fm["_slug"] = os.path.splitext(os.path.basename(path))[0]
         expanded = expand_includes(body)
         content_html = render_markdown_preserving_html(expanded)
+        fm["_html"] = content_html
+        m_io = re.search(r'installer:\s*(\d+)', open(path).read())
+        fm["_iorder"] = m_io.group(1) if m_io else "999"
         inner = apply_guide_layout(fm, content_html)
         gdir = os.path.join(out, fm["_slug"])
         os.makedirs(gdir, exist_ok=True)
         open(os.path.join(gdir, "index.html"), "w").write(page_shell(fm.get("title",""), inner))
         guides.append(fm)
+
+    build_packet(out, guides)
 
     guides.sort(key=lambda g: int(g.get("order", "99")))
     cards = ""
