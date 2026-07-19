@@ -1,0 +1,4 @@
+<figure class="diagram">
+  <img src="{{ site.baseurl }}/assets/diagrams/{{ include.src }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

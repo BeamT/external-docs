@@ -1,0 +1,4 @@
+<ul class="checklist">
+  {% assign items = include.items | split: "|" %}
+  {% for item in items %}<li>{{ item | strip }}</li>{% endfor %}
+</ul>

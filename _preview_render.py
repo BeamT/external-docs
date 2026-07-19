@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+"""Faithful-enough emulation of what GitHub Pages Jekyll does with this repo,
+so we can preview the output locally. Handles: frontmatter, the {% include %}
+tags used by these guides, kramdown-style markdown, and the two layouts."""
+import re, os, glob, sys, html
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+try:
+    import markdown as mdlib
+    def md(s): return mdlib.markdown(s, extensions=["tables"])
+except Exception:
+    md = None
+
+BASEURL = ""  # matches _config.yml default (root preview)
+
+def parse_frontmatter(text):
+    m = re.match(r"^---\n(.*?)\n---\n?(.*)$", text, re.S)
+    if not m:
+        return {}, text
+    fm_raw, body = m.group(1), m.group(2)
+    fm = {}
+    for line in fm_raw.split("\n"):
+        mm = re.match(r"^(\w+):\s*(.*)$", line)
+        if not mm:
+            continue
+        k, v = mm.group(1), mm.group(2).strip()
+        if v.startswith("[") and v.endswith("]"):
+            fm[k] = [x.strip() for x in v[1:-1].split(",") if x.strip()]
+        else:
+            fm[k] = v.strip('"')
+    return fm, body
+
+def parse_include_args(argstr):
+    # matches key="value" pairs, allowing escaped quotes inside
+    args = {}
+    for m in re.finditer(r'(\w+)="((?:[^"\\]|\\.)*)"', argstr):
+        args[m.group(1)] = m.group(2).replace('\\"', '"')
+    return args
+
+def render_include(name, args):
+    tpl = open(os.path.join(ROOT, "_includes", name)).read()
+    if name == "dodont.html":
+        return f'''<div class="dodont">
+  <div class="dd do"><span class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Do</span><p>{html.escape(args.get("do",""))}</p></div>
+  <div class="dd dont"><span class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Don&#39;t</span><p>{html.escape(args.get("dont",""))}</p></div>
+</div>'''
+    if name == "warn.html":
+        return f'''<div class="warn"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3l9-16z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v5M12 17v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><p>{html.escape(args.get("text",""))}</p></div>'''
+    if name == "step.html":
+        fig = ""
+        if args.get("diagram"):
+            src = f"{BASEURL}/assets/diagrams/{args['diagram']}"
+            fig = f'<div class="step-figure"><img src="{src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{{className:\'diagram-missing\',textContent:\'Diagram coming soon\'}}))"></div>'
+        return f'''<div class="step"><div class="step-num">{html.escape(args.get("number",""))}</div><div class="step-body"><div class="step-title">{html.escape(args.get("title",""))}</div><p>{html.escape(args.get("body",""))}</p></div>{fig}</div>'''
+    if name == "diagram.html":
+        src = f"{BASEURL}/assets/diagrams/{args.get('src','')}"
+        cap = f'<figcaption>{html.escape(args["caption"])}</figcaption>' if args.get("caption") else ""
+        return f'<figure class="diagram"><img src="{src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{{className:\'diagram-missing\',textContent:\'Diagram coming soon\'}}))">{cap}</figure>'
+    if name == "checklist.html":
+        items = [i.strip() for i in args.get("items", "").split("|") if i.strip()]
+        lis = "".join(f"<li>{html.escape(i)}</li>" for i in items)
+        return f'<ul class="checklist">{lis}</ul>'
+    return ""
+
+def expand_includes(body):
+    def repl(m):
+        return render_include(m.group(1), parse_include_args(m.group(2)))
+    return re.sub(r"\{%\s*include\s+([\w.]+)\s+(.*?)%\}", repl, body, flags=re.S)
+
+def render_markdown_preserving_html(body):
+    # Split into include-generated HTML blocks vs markdown; render markdown only.
+    if md is None:
+        return "<pre>(python-markdown not installed; run pip install markdown)</pre>"
+    return md(body)
+
+def apply_guide_layout(fm, content_html):
+    badges = "".join(f'<span class="badge">{a.capitalize()}</span>' for a in fm.get("audience", []))
+    return f'''<article class="doc">
+  <a href="{BASEURL}/" class="crumb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All guides</a>
+  <div class="doc-head"><h1>{html.escape(fm.get("title",""))}</h1>
+  <div class="doc-meta">{badges}<span>v{fm.get("version","")}</span><span>Updated {fm.get("updated","")}</span></div></div>
+  <div class="doc-body">{content_html}</div>
+  <div class="print-hint no-print"><button class="print-btn" onclick="window.print()">Print or save as PDF</button></div>
+</article>'''
+
+def page_shell(title, inner, is_home=False):
+    search = ""
+    if is_home:
+        search = '<div class="searchbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" id="search" placeholder="Search the guides…"></div>'
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{html.escape(title)} · Focal Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{BASEURL}/assets/style.css"></head><body>
+<header class="topbar"><div class="topbar-inner"><a href="{BASEURL}/" class="brand">Focal<span class="dot">.</span></a>{search}</div></header>
+<main class="wrap">{inner}</main></body></html>'''
+
+def build():
+    out = os.path.join(ROOT, "_preview")
+    os.makedirs(out, exist_ok=True)
+    os.makedirs(os.path.join(out, "assets", "diagrams"), exist_ok=True)
+    # copy assets
+    import shutil
+    shutil.copy(os.path.join(ROOT, "assets", "style.css"), os.path.join(out, "assets", "style.css"))
+    for f in glob.glob(os.path.join(ROOT, "assets", "diagrams", "*")):
+        shutil.copy(f, os.path.join(out, "assets", "diagrams", os.path.basename(f)))
+
+    guides = []
+    for path in glob.glob(os.path.join(ROOT, "_guides", "*.md")):
+        fm, body = parse_frontmatter(open(path).read())
+        fm["_slug"] = os.path.splitext(os.path.basename(path))[0]
+        expanded = expand_includes(body)
+        content_html = render_markdown_preserving_html(expanded)
+        inner = apply_guide_layout(fm, content_html)
+        gdir = os.path.join(out, fm["_slug"])
+        os.makedirs(gdir, exist_ok=True)
+        open(os.path.join(gdir, "index.html"), "w").write(page_shell(fm.get("title",""), inner))
+        guides.append(fm)
+
+    guides.sort(key=lambda g: int(g.get("order", "99")))
+    cards = ""
+    for g in guides:
+        badges = "".join(f'<span class="badge">{a.capitalize()}</span>' for a in g.get("audience", []))
+        cards += f'''<a class="card" href="{BASEURL}/{g["_slug"]}/" data-audience="{','.join(g.get("audience",[]))}" data-title="{html.escape(g.get("title","").lower())}" data-summary="{html.escape(g.get("summary","").lower())}"><h2>{html.escape(g.get("title",""))}</h2><p>{html.escape(g.get("summary",""))}</p><div class="badges">{badges}</div></a>'''
+    home_inner = open(os.path.join(ROOT, "index.html")).read()
+    home_inner = re.split(r"^---.*?---\s*", home_inner, maxsplit=1, flags=re.S)[-1]
+    # strip the liquid card loop, inject rendered cards
+    home_inner = re.sub(r'<div class="card-list" id="card-list">.*?</div>\s*<p class="empty"',
+                        f'<div class="card-list" id="card-list">{cards}</div>\n<p class="empty"', home_inner, flags=re.S)
+    open(os.path.join(out, "index.html"), "w").write(page_shell("Focal Duo guides", home_inner, is_home=True))
+    print("Preview built to", out)
+    print("Guides:", ", ".join(g["_slug"] for g in guides))
+
+if __name__ == "__main__":
+    build()

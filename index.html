@@ -1,0 +1,64 @@
+---
+layout: home
+title: null
+---
+<section class="hero">
+  <h1>Focal Duo guides</h1>
+  <p>Everything you need to install, wire, and run your Focal heaters. Built for the phone in your hand on site.</p>
+</section>
+
+<div class="filter-row" role="group" aria-label="Filter by audience">
+  <button class="chip" data-aud="all" aria-pressed="true">All</button>
+  <button class="chip" data-aud="installer" aria-pressed="false">Installer</button>
+  <button class="chip" data-aud="electrician" aria-pressed="false">Electrician</button>
+  <button class="chip" data-aud="customer" aria-pressed="false">Restaurant</button>
+</div>
+
+<div class="card-list" id="card-list">
+  {% assign guides = site.guides | sort: "order" %}
+  {% for g in guides %}
+  <a class="card" href="{{ g.url | prepend: site.baseurl }}"
+     data-audience="{{ g.audience | join: ',' }}"
+     data-title="{{ g.title | downcase }}"
+     data-summary="{{ g.summary | downcase }}">
+    <h2>{{ g.title }}</h2>
+    <p>{{ g.summary }}</p>
+    <div class="badges">
+      {% for a in g.audience %}<span class="badge">{{ a | capitalize }}</span>{% endfor %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+<p class="empty" id="empty" hidden>No guides match that.</p>
+
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var chips = document.querySelectorAll('.chip');
+  var search = document.getElementById('search');
+  var empty = document.getElementById('empty');
+  var aud = 'all';
+
+  function apply() {
+    var q = (search && search.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function (c) {
+      var okAud = aud === 'all' || c.dataset.audience.split(',').indexOf(aud) !== -1;
+      var hay = c.dataset.title + ' ' + c.dataset.summary;
+      var okQ = q.length < 2 || hay.indexOf(q) !== -1;
+      var show = okAud && okQ;
+      c.style.display = show ? '' : 'none';
+      if (show) shown++;
+    });
+    if (empty) empty.hidden = shown !== 0;
+  }
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      aud = chip.dataset.aud;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip); });
+      apply();
+    });
+  });
+  if (search) search.addEventListener('input', apply);
+})();
+</script>

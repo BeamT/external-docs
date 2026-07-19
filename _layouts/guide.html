@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<article class="doc">
+  <a href="{{ site.baseurl }}/" class="crumb">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    All guides
+  </a>
+
+  <div class="doc-head">
+    <h1>{{ page.title }}</h1>
+    <div class="doc-meta">
+      {% for a in page.audience %}<span class="badge">{{ a | capitalize }}</span>{% endfor %}
+      <span>v{{ page.version }}</span>
+      <span>Updated {{ page.updated }}</span>
+    </div>
+  </div>
+
+  <div class="doc-body">
+    {{ content }}
+  </div>
+
+  <div class="print-hint no-print">
+    <button class="print-btn" onclick="window.print()">Print or save as PDF</button>
+  </div>
+</article>
