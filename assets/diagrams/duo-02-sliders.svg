@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="120" y="150" width="400" height="24" rx="12" fill="#111"/>
+  <!-- slider being pulled out -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="300" y="148" width="26" height="28" rx="4"/></g>
+  <path d="M313 176 v34" stroke="#111" stroke-width="2" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M0 0l3 6 3-6z" fill="#111"/></marker></defs>
+  <text x="320" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Remove the sliders</text>
+  <text x="320" y="270" text-anchor="middle" font-size="12" fill="#55524d">Makes room to feed each Duo onto the rail</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="80" y="150" width="360" height="24" rx="12" fill="#111"/>
+  <text x="260" y="140" text-anchor="middle" font-size="13" fill="#55524d">Open the end opposite the switch</text>
+  <!-- bumper sliding away -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="360" y="146" width="30" height="32" rx="4"/></g>
+  <g fill="#ff7a00"><circle cx="375" cy="162" r="3"/></g>
+  <path d="M395 162 h34" stroke="#ff7a00" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="470" y="150" font-size="12" fill="#b5710a">Loosen set screw,</text>
+  <text x="470" y="167" font-size="12" fill="#b5710a">slide bumper away</text>
+  <!-- end cap -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="430" y="146" width="18" height="32" rx="3"/></g>
+  <path d="M452 200 h30" stroke="#111" stroke-width="2" marker-end="url(#a)"/>
+  <text x="470" y="210" font-size="12" fill="#55524d">Remove end cap</text>
+  <text x="470" y="227" font-size="12" fill="#55524d">and its screws</text>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0l6 3-6 3z" fill="#111"/></marker></defs>
+  <text x="320" y="320" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Bumper → end cap → open</text>
+</svg>

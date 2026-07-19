@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <!-- ceiling beam -->
+  <rect x="40" y="40" width="560" height="34" fill="#111"/>
+  <text x="320" y="30" text-anchor="middle" font-size="13" fill="#55524d">Ceiling member</text>
+
+  <!-- mount 1 -->
+  <g stroke="#111" stroke-width="2" fill="none">
+    <line x1="180" y1="74" x2="180" y2="96"/><line x1="200" y1="74" x2="200" y2="96"/>
+  </g>
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="160" y="96" width="60" height="30" rx="6"/></g>
+  <line x1="190" y1="126" x2="190" y2="250" stroke="#111" stroke-width="4"/>
+  <text x="150" y="150" font-size="12" fill="#55524d" text-anchor="end">#12 flathead</text>
+  <text x="150" y="166" font-size="12" fill="#55524d" text-anchor="end">screws (2"+)</text>
+
+  <!-- mount 2 -->
+  <g stroke="#111" stroke-width="2" fill="none">
+    <line x1="440" y1="74" x2="440" y2="96"/><line x1="460" y1="74" x2="460" y2="96"/>
+  </g>
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="420" y="96" width="60" height="30" rx="6"/></g>
+  <line x1="450" y1="126" x2="450" y2="250" stroke="#111" stroke-width="4"/>
+
+  <!-- perpendicular block + set screws on pipe -->
+  <g stroke="#ff7a00" stroke-width="2.5">
+    <circle cx="183" cy="140" r="3" fill="#ff7a00" stroke="none"/>
+    <circle cx="183" cy="152" r="3" fill="#ff7a00" stroke="none"/>
+    <circle cx="443" cy="140" r="3" fill="#ff7a00" stroke="none"/>
+    <circle cx="443" cy="152" r="3" fill="#ff7a00" stroke="none"/>
+  </g>
+
+  <rect x="250" y="150" width="140" height="52" rx="8" fill="#fff3e6" stroke="#ff7a00"/>
+  <text x="320" y="173" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">Tighten pipe set</text>
+  <text x="320" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">screws fully</text>
+
+  <text x="320" y="290" text-anchor="middle" font-size="14" font-weight="700" fill="#111">At least two mounts per rail</text>
+  <text x="320" y="312" text-anchor="middle" font-size="12" fill="#55524d">Spaced no more than 25% of rail length from each end</text>
+</svg>

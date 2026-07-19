@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="300" fill="#ffffff"/>
+  <g stroke="#111" stroke-width="2.5" fill="#f4f2ee"><rect x="240" y="80" width="160" height="90" rx="10"/></g>
+  <circle cx="360" cy="125" r="8" fill="#1d9e75"/>
+  <text x="360" y="150" text-anchor="middle" font-size="11" fill="#0f6e56" font-weight="700">power LED</text>
+  <path d="M320 170 v50" stroke="#111" stroke-width="3" fill="none"/>
+  <g fill="#111"><rect x="310" y="220" width="20" height="14" rx="2"/></g>
+  <text x="320" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Connect power, wait ~1 min to boot</text>
+</svg>

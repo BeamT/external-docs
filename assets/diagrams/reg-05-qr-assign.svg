@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="340" fill="#ffffff"/>
+  <g stroke="#111" stroke-width="2.5" fill="#faf8f4"><rect x="230" y="30" width="180" height="240" rx="14"/></g>
+  <text x="320" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#111">DUO...0043</text>
+  <rect x="255" y="90" width="130" height="38" rx="8" fill="#e6f1fb" stroke="#378add"/>
+  <text x="320" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#185fa5">Zone 1 · Slot 3</text>
+  <path d="M280 150l10 10 20-24" stroke="#1d9e75" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="320" y="315" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Assign zone + slot to match the layout</text>
+</svg>

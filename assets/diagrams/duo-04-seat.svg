@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="90" y="120" width="440" height="24" rx="12" fill="#111"/>
+  <!-- duo sliding to slot -->
+  <g transform="translate(300,150)">
+    <line x1="10" y1="0" x2="10" y2="18" stroke="#111" stroke-width="4"/>
+    <ellipse cx="-16" cy="46" rx="30" ry="30" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+    <ellipse cx="36" cy="46" rx="30" ry="30" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+  </g>
+  <path d="M250 132 h40" stroke="#ff7a00" stroke-width="3" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0l6 3-6 3z" fill="#ff7a00"/></marker></defs>
+  <rect x="360" y="95" width="180" height="52" rx="8" fill="#fff3e6" stroke="#ff7a00"/>
+  <text x="450" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">Push until the plug</text>
+  <text x="450" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">clicks into the slot</text>
+  <text x="320" y="300" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Seat, insert slider, repeat</text>
+  <text x="320" y="322" text-anchor="middle" font-size="12" fill="#55524d">Add spacers between units as needed</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <!-- legend -->
+  <g font-size="12">
+    <circle cx="70" cy="40" r="6" fill="#b4b2a9"/><text x="84" y="44" fill="#55524d">OFF 0</text>
+    <circle cx="180" cy="40" r="6" fill="#eda100"/><text x="194" y="44" fill="#55524d">LOW 1</text>
+    <circle cx="300" cy="40" r="6" fill="#ef9f27"/><text x="314" y="44" fill="#55524d">MED 2</text>
+    <circle cx="420" cy="40" r="6" fill="#d85a30"/><text x="434" y="44" fill="#55524d">HIGH 3</text>
+  </g>
+  <!-- Unoccupied -->
+  <text x="70" y="100" font-size="14" font-weight="700" fill="#111">Unoccupied Heat Level</text>
+  <text x="70" y="120" font-size="12" fill="#55524d">Held until a guest is detected</text>
+  <g font-size="14" font-weight="700">
+    <rect x="70" y="132" width="44" height="40" rx="8" fill="#e9e6df" stroke="#b4b2a9"/><text x="92" y="158" text-anchor="middle" fill="#5f5e5a">0</text>
+    <rect x="122" y="132" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="144" y="158" text-anchor="middle" fill="#111">1</text>
+    <rect x="174" y="132" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="196" y="158" text-anchor="middle" fill="#111">2</text>
+    <rect x="226" y="132" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="248" y="158" text-anchor="middle" fill="#111">3</text>
+  </g>
+  <!-- Occupied -->
+  <text x="70" y="225" font-size="14" font-weight="700" fill="#111">Occupied Heat Level</text>
+  <text x="70" y="245" font-size="12" fill="#55524d">Jumps to this when a guest sits down</text>
+  <g font-size="14" font-weight="700">
+    <rect x="70" y="257" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="92" y="283" text-anchor="middle" fill="#111">0</text>
+    <rect x="122" y="257" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="144" y="283" text-anchor="middle" fill="#111">1</text>
+    <rect x="174" y="257" width="44" height="40" rx="8" fill="#fff" stroke="#e5e2db"/><text x="196" y="283" text-anchor="middle" fill="#111">2</text>
+    <rect x="226" y="257" width="44" height="40" rx="8" fill="#d85a30"/><text x="248" y="283" text-anchor="middle" fill="#fff">3</text>
+  </g>
+  <text x="470" y="270" font-size="13" fill="#55524d" font-weight="700">Guest can</text>
+  <text x="470" y="288" font-size="13" fill="#55524d" font-weight="700">adjust from here</text>
+</svg>

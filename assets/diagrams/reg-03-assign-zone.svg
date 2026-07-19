@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="340" fill="#ffffff"/>
+  <g stroke="#111" stroke-width="2.5" fill="#faf8f4"><rect x="200" y="30" width="240" height="270" rx="14"/></g>
+  <text x="220" y="62" font-size="14" font-weight="700" fill="#111">Assign to zone</text>
+  <rect x="220" y="80" width="200" height="44" rx="8" fill="#e6f1fb" stroke="#378add"/>
+  <text x="236" y="107" font-size="13" font-weight="700" fill="#185fa5">Zone 1 — Patio</text>
+  <rect x="220" y="134" width="200" height="44" rx="8" fill="#fff" stroke="#e5e2db"/>
+  <text x="236" y="161" font-size="13" fill="#55524d">Zone 2 — Sidewalk</text>
+  <text x="320" y="325" text-anchor="middle" font-size="13" fill="#55524d">Zone map should mirror the real layout</text>
+</svg>

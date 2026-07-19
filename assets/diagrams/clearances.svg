@@ -35,7 +35,7 @@
     <path d="M555 226l5-6 5 6M555 386l5 6 5-6" fill="none"/>
   </g>
   <rect x="530" y="295" width="66" height="24" rx="6" fill="#fff3e6" stroke="#ff7a00"/>
-  <text x="563" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">78 in</text>
+  <text x="563" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">84 in</text>
 
   <!-- DIM B: wall to rail (20 in) -->
   <g stroke="#ff7a00" stroke-width="2">

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="340" fill="#ffffff"/>
+  <text x="320" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Tap the heater on the zone map</text>
+  <!-- grid of heater tiles -->
+  <g>
+    <rect x="200" y="70" width="60" height="60" rx="10" fill="#d85a30"/>
+    <rect x="270" y="70" width="60" height="60" rx="10" fill="#ef9f27"/>
+    <rect x="340" y="70" width="60" height="60" rx="10" fill="#e9e6df"/>
+    <rect x="200" y="140" width="60" height="60" rx="10" fill="#d85a30"/>
+    <rect x="270" y="140" width="60" height="60" rx="12" fill="#fff" stroke="#111" stroke-width="4"/>
+    <rect x="340" y="140" width="60" height="60" rx="10" fill="#eda100"/>
+  </g>
+  <text x="300" y="230" text-anchor="middle" font-size="12" fill="#55524d">Selected heater highlights</text>
+  <text x="320" y="300" text-anchor="middle" font-size="12" fill="#55524d">Opens that unit's individual controls</text>
+</svg>

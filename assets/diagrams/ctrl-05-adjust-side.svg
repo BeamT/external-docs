@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="340" fill="#ffffff"/>
+  <!-- two heater nodes with purple/orange sides -->
+  <g transform="translate(70,120)">
+    <ellipse cx="60" cy="50" rx="46" ry="46" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+    <ellipse cx="170" cy="50" rx="46" ry="46" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+    <circle cx="14" cy="50" r="7" fill="#7f77dd"/>
+    <circle cx="216" cy="50" r="7" fill="#ff7a00"/>
+  </g>
+  <!-- controllers -->
+  <g font-size="13" font-weight="700">
+    <circle cx="360" cy="120" r="7" fill="#7f77dd"/>
+    <rect x="376" y="106" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="393" y="126" text-anchor="middle" fill="#111">0</text>
+    <rect x="414" y="106" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="431" y="126" text-anchor="middle" fill="#111">1</text>
+    <rect x="452" y="106" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="469" y="126" text-anchor="middle" fill="#111">2</text>
+    <rect x="490" y="106" width="34" height="30" rx="6" fill="#d85a30"/><text x="507" y="126" text-anchor="middle" fill="#fff">3</text>
+
+    <circle cx="360" cy="170" r="7" fill="#ff7a00"/>
+    <rect x="376" y="156" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="393" y="176" text-anchor="middle" fill="#111">0</text>
+    <rect x="414" y="156" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="431" y="176" text-anchor="middle" fill="#111">1</text>
+    <rect x="452" y="156" width="34" height="30" rx="6" fill="#fff" stroke="#e5e2db"/><text x="469" y="176" text-anchor="middle" fill="#111">2</text>
+    <rect x="490" y="156" width="34" height="30" rx="6" fill="#d85a30"/><text x="507" y="176" text-anchor="middle" fill="#fff">3</text>
+  </g>
+  <text x="320" y="290" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Set the side the guest is on — purple or orange</text>
+</svg>

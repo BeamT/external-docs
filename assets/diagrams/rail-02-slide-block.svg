@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <!-- rail (perspective bar) -->
+  <g stroke="#111" stroke-width="2.5" fill="#f4f2ee">
+    <path d="M80 210 L520 175 L520 220 L80 255 Z"/>
+  </g>
+  <!-- top t-slot line -->
+  <path d="M92 205 L512 172" stroke="#111" stroke-width="1.5" fill="none"/>
+  <!-- power cord exiting left -->
+  <path d="M80 245 C55 255 55 285 78 292" stroke="#111" stroke-width="3" fill="none"/>
+  <g fill="#111"><rect x="66" y="288" width="18" height="10" rx="2"/></g>
+  <text x="40" y="315" font-size="13" fill="#55524d">Power cord exit</text>
+
+  <!-- block sitting on rail -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff">
+    <ellipse cx="330" cy="150" rx="52" ry="20"/>
+  </g>
+  <g fill="none" stroke="#111" stroke-width="2">
+    <circle cx="308" cy="150" r="6"/>
+    <circle cx="352" cy="150" r="6"/>
+  </g>
+  <!-- set screws marked, facing cord side (left) -->
+  <g stroke="#ff7a00" stroke-width="2.5">
+    <line x1="292" y1="150" x2="278" y2="150"/>
+    <circle cx="298" cy="145" r="3" fill="#ff7a00" stroke="none"/>
+    <circle cx="298" cy="156" r="3" fill="#ff7a00" stroke="none"/>
+  </g>
+
+  <!-- callout: set screws face same side as cord -->
+  <rect x="360" y="70" width="250" height="52" rx="8" fill="#fff3e6" stroke="#ff7a00"/>
+  <text x="374" y="93" font-size="13" font-weight="700" fill="#b5710a">Set screws face the same</text>
+  <text x="374" y="111" font-size="13" font-weight="700" fill="#b5710a">side as the power cord exit</text>
+  <line x1="360" y1="110" x2="305" y2="145" stroke="#ff7a00" stroke-width="1.5"/>
+
+  <text x="320" y="345" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Slide on loosely — don't tighten yet</text>
+</svg>

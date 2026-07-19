@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <!-- good orientation -->
+  <g transform="translate(70,60)">
+    <ellipse cx="70" cy="70" rx="46" ry="46" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+    <ellipse cx="70" cy="70" rx="26" ry="26" fill="none" stroke="#111" stroke-width="2"/>
+    <rect x="60" y="6" width="20" height="14" rx="3" fill="#111"/>
+    <path d="M40 150l14 14 24-28" stroke="#1d9e75" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="70" y="185" text-anchor="middle" font-size="13" font-weight="700" fill="#1d9e75">Correct — slides in</text>
+  </g>
+  <!-- wrong orientation -->
+  <g transform="translate(390,60)">
+    <ellipse cx="70" cy="70" rx="46" ry="46" fill="#f4f2ee" stroke="#111" stroke-width="2.5"/>
+    <ellipse cx="70" cy="70" rx="26" ry="26" fill="none" stroke="#111" stroke-width="2"/>
+    <rect x="60" y="120" width="20" height="14" rx="3" fill="#111"/>
+    <path d="M44 150l28 28M72 150l-28 28" stroke="#d64545" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <text x="70" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#d64545">Flipped — won't seat</text>
+  </g>
+  <text x="320" y="335" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Duos only slide on one way</text>
+</svg>

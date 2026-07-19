@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <!-- ceiling -->
+  <rect x="40" y="36" width="560" height="24" fill="#111"/>
+  <!-- two pipes down -->
+  <line x1="200" y1="60" x2="200" y2="150" stroke="#111" stroke-width="4"/>
+  <line x1="440" y1="60" x2="440" y2="150" stroke="#111" stroke-width="4"/>
+  <!-- blocks -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff">
+    <ellipse cx="200" cy="165" rx="40" ry="16"/>
+    <ellipse cx="440" cy="165" rx="40" ry="16"/>
+  </g>
+  <!-- rail -->
+  <rect x="120" y="182" width="400" height="22" rx="11" fill="#111"/>
+
+  <!-- set screws visible same side -->
+  <g fill="#ff7a00">
+    <circle cx="182" cy="162" r="3"/><circle cx="182" cy="170" r="3"/>
+    <circle cx="422" cy="162" r="3"/><circle cx="422" cy="170" r="3"/>
+  </g>
+
+  <!-- tighten order callout -->
+  <rect x="255" y="70" width="150" height="70" rx="8" fill="#fff3e6" stroke="#ff7a00"/>
+  <text x="330" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#b5710a">1. Pipe set screws</text>
+  <text x="330" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="#b5710a">2. T-nut screws</text>
+  <text x="330" y="131" text-anchor="middle" font-size="12" fill="#b5710a">on top of each block</text>
+
+  <!-- shake check -->
+  <g stroke="#111" stroke-width="1.5" fill="none">
+    <path d="M120 230 q10 -12 20 0" marker-end="url(#ar)"/>
+    <path d="M520 230 q-10 -12 -20 0" marker-end="url(#ar)"/>
+  </g>
+  <defs><marker id="ar" markerWidth="7" markerHeight="7" refX="3" refY="3" orient="auto"><path d="M0 0l6 3-6 3z" fill="#111"/></marker></defs>
+  <text x="320" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Shake to confirm it's solid</text>
+  <text x="320" y="300" text-anchor="middle" font-size="13" fill="#55524d">Needs a second person to raise and hold the rail</text>
+</svg>
