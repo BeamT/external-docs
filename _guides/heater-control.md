@@ -1,7 +1,7 @@
 ---
 title: Heater Control
 audience: [customer]
-order: 6
+order: 7
 summary: How to run your heaters day to day with Focal Control — modes, schedules, and the everyday tasks staff need.
 version: "1.0"
 updated: "2025-11-13"

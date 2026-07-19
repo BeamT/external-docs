@@ -1,7 +1,7 @@
 ---
 title: Warranty & Support
 audience: [customer, installer, electrician]
-order: 9
+order: 10
 summary: How to reach Focal for service, replacements, and questions, plus key product and safety references.
 version: "1.0"
 updated: "2025-11-13"

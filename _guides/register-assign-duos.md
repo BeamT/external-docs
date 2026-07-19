@@ -1,7 +1,7 @@
 ---
 title: Register & Assign Duos
 audience: [installer]
-order: 5
+order: 6
 summary: Register each new Duo and assign it to the correct zone so the app matches the physical layout.
 version: "1.0"
 updated: "2025-11-13"

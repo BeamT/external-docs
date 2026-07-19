@@ -22,7 +22,7 @@ Every install must meet these distances. Measurements are taken from the heater 
 | Ceiling, above rail | 0 in (0 cm) |
 | Wall, side of rail | 20 in (51 cm) |
 | Objects under the heater | 36 in (91 cm) |
-| Floor to bottom of heater | 78 in / 6.5 ft (198 cm) |
+| Floor to bottom of rail | 84 in / 7 ft minimum — use 90 in where people walk underneath |
 | Wall to side of heater facing down | 20 in (51 cm) |
 
 {% include diagram.html src="clearances.svg" caption="Side view of a ceiling-mounted rail showing all five clearance dimensions." %}

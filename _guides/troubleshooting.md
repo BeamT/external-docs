@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 audience: [customer, installer]
-order: 7
+order: 8
 summary: Quick fixes for the most common issues — offline heaters, no heat, no power, and units that won't move.
 version: "1.0"
 updated: "2025-11-13"
