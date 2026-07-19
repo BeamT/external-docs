@@ -150,3 +150,43 @@ a { color: inherit; }
 @media print {
   .toc-box { display: none !important; }
 }
+
+/* ---- printable installer packet ---- */
+.packet { max-width: var(--maxw); margin: 0 auto; }
+.packet-cover { padding: 40px 0 20px; }
+.cover-brand { font-family: var(--font-display); font-weight: 800; font-size: 26px; margin-bottom: 24px; }
+.cover-brand .dot { color: var(--focal); }
+.packet-cover h1 { font-family: var(--font-display); font-weight: 800; font-size: 40px; margin: 0 0 8px; letter-spacing: -0.02em; }
+.cover-sub { color: var(--ink-soft); margin: 0 0 28px; font-size: 17px; }
+.cover-qr {
+  display: flex; align-items: center; gap: 18px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 28px; background: var(--paper);
+}
+.cover-qr img { flex: none; }
+.cover-qr-text { display: flex; flex-direction: column; gap: 4px; }
+.cover-qr-text strong { font-size: 16px; }
+.cover-qr-text span { color: var(--ink-soft); font-size: 14px; }
+.cover-seq { padding-left: 22px; margin: 0 0 28px; }
+.cover-seq li { margin: 8px 0; font-size: 16px; }
+.cover-foot { color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+.packet-guide { padding: 20px 0; }
+.packet-guide-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 8px; }
+.packet-guide-head h1 { font-family: var(--font-display); font-weight: 800; font-size: 30px; margin: 0; }
+.packet-ver { color: var(--ink-soft); font-size: 13px; }
+.packet-guide .toc-box { display: none; }
+/* the "On this page" heading + its list, hidden in the packet to avoid dead links */
+.packet-guide h2#on-this-page,
+.packet-guide h2#on-this-page + ul { display: none; }
+.packet-end { margin: 30px 0 60px; color: var(--ink-soft); font-size: 14px; }
+
+@media print {
+  .packet-cover { page-break-after: always; padding-top: 0; }
+  .packet-guide { page-break-before: always; padding: 0; }
+  .packet-guide:first-of-type { page-break-before: avoid; }
+  .packet-end { display: none !important; }
+}
+
+.packet-link { color: var(--focal); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.packet-link:hover { text-decoration: underline; }
