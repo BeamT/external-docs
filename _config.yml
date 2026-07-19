@@ -1,0 +1,14 @@
+title: Focal Docs
+description: Installation and usage guides for Focal Duo patio heaters.
+baseurl: "/external-docs"
+collections:
+  guides:
+    output: true
+    permalink: /:name/
+defaults:
+  - scope:
+      path: ""
+      type: guides
+    values:
+      layout: guide
+markdown: kramdown
