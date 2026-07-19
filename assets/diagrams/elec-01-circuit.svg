@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="320" fill="#ffffff"/>
+  <!-- panel -->
+  <g stroke="#111" stroke-width="2.5" fill="#faf8f4"><rect x="40" y="90" width="90" height="140" rx="8"/></g>
+  <text x="85" y="80" text-anchor="middle" font-size="12" fill="#55524d">Panel</text>
+  <!-- breaker -->
+  <rect x="56" y="120" width="58" height="30" rx="4" fill="#fff" stroke="#111" stroke-width="2"/>
+  <text x="85" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#111">20A</text>
+  <text x="85" y="170" text-anchor="middle" font-size="11" fill="#55524d">dedicated</text>
+  <text x="85" y="184" text-anchor="middle" font-size="11" fill="#55524d">breaker</text>
+
+  <!-- dedicated run -->
+  <path d="M130 135 H240" stroke="#111" stroke-width="3" fill="none"/>
+  <text x="185" y="125" text-anchor="middle" font-size="11" fill="#55524d">own branch circuit</text>
+
+  <!-- GFCI outlet -->
+  <g stroke="#111" stroke-width="2.5" fill="#fff"><rect x="240" y="110" width="70" height="90" rx="8"/></g>
+  <circle cx="275" cy="140" r="4" fill="#111"/><circle cx="275" cy="165" r="4" fill="#111"/>
+  <rect x="262" y="178" width="26" height="10" rx="2" fill="#e6f5ef" stroke="#1d9e75"/>
+  <text x="275" y="186" text-anchor="middle" font-size="7" font-weight="700" fill="#0f6e56">GFCI</text>
+  <text x="275" y="218" text-anchor="middle" font-size="11" fill="#55524d">outdoor-rated,</text>
+  <text x="275" y="231" text-anchor="middle" font-size="11" fill="#55524d">weatherproof cover</text>
+
+  <!-- plug + rail -->
+  <path d="M310 155 H360" stroke="#111" stroke-width="3" fill="none"/>
+  <g fill="#111"><rect x="356" y="148" width="18" height="14" rx="2"/></g>
+  <text x="365" y="140" text-anchor="middle" font-size="11" fill="#b5710a" font-weight="700">NEMA 5-20P</text>
+  <rect x="380" y="120" width="220" height="24" rx="12" fill="#111"/>
+  <text x="490" y="112" text-anchor="middle" font-size="12" fill="#55524d">Rail (factory plug)</text>
+  <path d="M380 145 C368 152 368 158 380 160 L400 160" stroke="#111" stroke-width="3" fill="none"/>
+
+  <rect x="360" y="230" width="240" height="52" rx="8" fill="#fff3e6" stroke="#ff7a00"/>
+  <text x="480" y="253" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">Match outlet + breaker to</text>
+  <text x="480" y="271" text-anchor="middle" font-size="13" font-weight="700" fill="#b5710a">the rail's factory plug</text>
+</svg>

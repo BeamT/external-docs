@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="Archivo, Arial, sans-serif">
+  <rect width="640" height="420" fill="#ffffff"/>
+
+  <!-- Bag A -->
+  <rect x="20" y="30" width="600" height="150" rx="12" fill="#faf8f4" stroke="#e5e2db"/>
+  <circle cx="46" cy="56" r="13" fill="#ff7a00"/><text x="46" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">A</text>
+  <text x="68" y="61" font-size="14" font-weight="700" fill="#111">Bracket assembly</text>
+  <g font-size="12" fill="#111">
+    <!-- parallel bracket -->
+    <ellipse cx="90" cy="120" rx="34" ry="16" fill="#fff" stroke="#111" stroke-width="2"/><circle cx="76" cy="120" r="5" fill="none" stroke="#111"/><circle cx="104" cy="120" r="5" fill="none" stroke="#111"/>
+    <text x="90" y="152" text-anchor="middle" fill="#55524d">Parallel x4</text>
+    <!-- perpendicular bracket -->
+    <ellipse cx="200" cy="120" rx="28" ry="20" fill="#fff" stroke="#111" stroke-width="2"/><circle cx="200" cy="120" r="7" fill="none" stroke="#111"/>
+    <text x="200" y="152" text-anchor="middle" fill="#55524d">Perp. x2</text>
+    <!-- t-nut -->
+    <rect x="286" y="108" width="56" height="24" rx="4" fill="#fff" stroke="#111" stroke-width="2"/>
+    <text x="314" y="152" text-anchor="middle" fill="#55524d">T-nut x2</text>
+    <!-- set screws -->
+    <g stroke="#111" stroke-width="2"><line x1="392" y1="108" x2="392" y2="132"/><line x1="404" y1="108" x2="404" y2="132"/></g>
+    <text x="398" y="152" text-anchor="middle" fill="#55524d">Set x8</text>
+    <!-- 1.125 screws -->
+    <g stroke="#111" stroke-width="2"><line x1="452" y1="106" x2="452" y2="134"/></g><path d="M446 106h12l-3 6h-6z" fill="#111"/>
+    <text x="452" y="152" text-anchor="middle" fill="#55524d">1.125" x4</text>
+    <!-- wrenches -->
+    <path d="M520 110 l0 24 M516 110 h8" stroke="#111" stroke-width="2.5" fill="none"/>
+    <path d="M560 110 l0 24 M556 110 h8" stroke="#111" stroke-width="2.5" fill="none"/>
+    <text x="545" y="152" text-anchor="middle" fill="#55524d">Wrenches</text>
+  </g>
+
+  <!-- Bag B -->
+  <rect x="20" y="196" width="600" height="120" rx="12" fill="#faf8f4" stroke="#e5e2db"/>
+  <circle cx="46" cy="222" r="13" fill="#55524d"/><text x="46" y="227" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">B</text>
+  <text x="68" y="227" font-size="14" font-weight="700" fill="#111">Through-bolt hardware (wood beams)</text>
+  <g font-size="12" fill="#55524d">
+    <text x="110" y="275" text-anchor="middle">Screws 1.5/2.5/3.5"</text>
+    <text x="110" y="292" text-anchor="middle" fill="#111" font-weight="700">x4 each</text>
+    <text x="300" y="275" text-anchor="middle">Nylon lock nut</text>
+    <text x="300" y="292" text-anchor="middle" fill="#111" font-weight="700">x4</text>
+    <text x="470" y="275" text-anchor="middle">SAE washer</text>
+    <text x="470" y="292" text-anchor="middle" fill="#111" font-weight="700">x4</text>
+  </g>
+
+  <!-- Bag C -->
+  <rect x="20" y="332" width="600" height="70" rx="12" fill="#faf8f4" stroke="#e5e2db"/>
+  <circle cx="46" cy="358" r="13" fill="#1d9e75"/><text x="46" y="363" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">C</text>
+  <text x="68" y="363" font-size="14" font-weight="700" fill="#111">Wood-screw option</text>
+  <text x="360" y="363" font-size="12" fill="#55524d">Wood screws #12 (2" &amp; 3") x4 each · T25 bit</text>
+</svg>
