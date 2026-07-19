@@ -117,3 +117,36 @@ a { color: inherit; }
   a { text-decoration: none; color: #000; }
   .diagram, .step-figure, .card { border-color: #ccc; }
 }
+
+/* ---- table of contents (On this page) ---- */
+.doc-body h2:first-of-type { margin-top: 20px; }
+.doc-body > ul:first-of-type,
+.doc-body ul.toc { list-style: none; }
+.toc-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 4px 0 24px;
+}
+.toc-box .toc-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 8px; font-weight: 700; }
+.toc-box ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.toc-box a { color: var(--focal); text-decoration: none; font-size: 15px; }
+.toc-box a:hover { text-decoration: underline; }
+
+/* ---- numbered flow (installer sequence) ---- */
+.flow-note { color: var(--ink-soft); font-size: 14px; margin: 4px 0 0; }
+.step-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  width: 26px; height: 26px;
+  background: var(--focal); color: #fff;
+  border-radius: 50%;
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.card.is-step { position: relative; padding-left: 56px; }
+
+@media print {
+  .toc-box { display: none !important; }
+}
