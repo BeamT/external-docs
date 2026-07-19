@@ -1,7 +1,7 @@
 ---
 title: Electrical & Power Requirements
 audience: [electrician]
-order: 5
+order: 50
 summary: Circuit, outlet, and plug requirements for wiring a Focal Duo install. For the electrician.
 version: "1.0"
 updated: "2025-11-13"

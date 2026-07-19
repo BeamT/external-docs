@@ -1,7 +1,7 @@
 ---
 title: Safety & Clearances
 audience: [customer, installer, electrician]
-order: 1
+order: 10
 summary: Required clearances and safety rules for every Focal Duo install. Read before installing or operating.
 version: "1.0"
 updated: "2025-11-13"

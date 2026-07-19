@@ -1,7 +1,7 @@
 ---
 title: Maintenance & Care
 audience: [customer]
-order: 9
+order: 90
 summary: Simple routines to keep your Focal Duos running safely — daily checks and periodic cleaning.
 version: "1.0"
 updated: "2025-11-13"

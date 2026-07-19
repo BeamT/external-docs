@@ -1,7 +1,7 @@
 ---
 title: Rail Installation
 audience: [installer]
-order: 2
+order: 20
 summary: Mount the Focal rail to a ceiling or beam, then power it on. For installers using the Focal mounting kit.
 version: "1.0"
 updated: "2025-11-13"

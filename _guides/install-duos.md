@@ -1,7 +1,7 @@
 ---
 title: Install the Duos
 audience: [installer]
-order: 3
+order: 30
 summary: Slide Duo heaters onto a mounted, powered rail and seat them correctly.
 version: "1.0"
 updated: "2025-11-13"

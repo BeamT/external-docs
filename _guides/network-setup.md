@@ -1,7 +1,7 @@
 ---
 title: Network Setup
 audience: [installer]
-order: 4
+order: 40
 summary: Connect the Focal networking box and access point so heaters can come online.
 version: "1.0"
 updated: "2025-11-13"
