@@ -1,11 +1,21 @@
 ---
 title: Troubleshooting
 audience: [customer, installer]
+audience_order: {customer: 20, installer: 65}
 order: 80
 summary: Quick fixes for the most common issues — offline heaters, no heat, no power, and units that won't move.
 version: "1.0"
 updated: "2025-11-13"
 ---
+
+## On this page
+- [Heater shows offline](#heater-shows-offline)
+- [Heater not emitting heat](#heater-not-emitting-heat)
+- [No power or LEDs](#no-power-or-leds)
+- [Heater won't respond](#heater-wont-respond)
+- [Heater is hard to move](#heater-is-hard-to-move)
+- [Physical damage](#physical-damage)
+- [Still stuck?](#still-stuck)
 
 ## Heater shows offline
 
@@ -38,6 +48,8 @@ First tell apart "mechanically stuck" from "in move mode" — a long pull that w
 **Stuck up / won't seat:** the internal segment that pulls the plug in and out has come loose, leaving the plug sprung up. This is a service-kit fix — escalate to a trained tech.
 
 **Stuck down / won't release:** usually the unit binding under the pendant's weight. Resolved on-site by a trained tech cleaning and greasing the rail and mechanism.
+
+## Physical damage
 
 {% include warn.html text="If a grille or thermal engine is dislodged or the unit is physically damaged, move it off the plug point, secure any loose parts so nothing falls, and contact Focal for a loaner or replacement. Don't operate a damaged heater." %}
 

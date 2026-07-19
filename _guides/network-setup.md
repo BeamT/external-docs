@@ -1,15 +1,21 @@
 ---
 title: Network Setup
 audience: [installer]
-order: 40
+audience_order: {installer: 40}
+order: 45
 summary: Connect the Focal networking box and access point so heaters can come online.
 version: "1.0"
 updated: "2025-11-13"
 ---
 
+## On this page
+- [What's in the kit](#whats-in-the-kit)
+- [Steps](#steps)
+- [Confirm coverage](#confirm-coverage)
+
 ## What's in the kit
 
-The networking box provides internet to the heaters. You'll connect it to the site's internet, power it, and mount the access point where it can reach the rails.
+The networking box provides internet to the heaters over 2.4GHz Wi-Fi. You'll connect it to the site's internet, power it, and mount the access point where it can reach the rails.
 
 {% include dodont.html do="Place the access point with clear line of sight toward the rails." dont="Tuck it behind metal, ductwork, or thick walls that block the signal." %}
 
