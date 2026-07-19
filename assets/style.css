@@ -216,5 +216,6 @@ a.step-link .step-title { display: flex; align-items: center; justify-content: s
 .print-link svg { color: #fff; }
 
 /* ---- brand logo image ---- */
-.brand img { height: 22px; width: auto; display: block; }
-.cover-brand img { height: 30px; width: auto; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 24px; width: auto; display: block; }
+.cover-brand img { height: 34px; width: auto; display: block; }
