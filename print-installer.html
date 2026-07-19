@@ -1,0 +1,52 @@
+---
+layout: default
+title: Installer Packet — Print
+permalink: /print/installer/
+---
+<div class="packet">
+
+  <!-- Cover sheet -->
+  <section class="packet-cover">
+    <div class="cover-brand">Focal<span class="dot">.</span></div>
+    <h1>Installer Packet</h1>
+    <p class="cover-sub">Everything you need to install Focal heaters, in order. Follow the sequence below.</p>
+
+    <div class="cover-qr">
+      <img src="{{ site.baseurl }}/assets/diagrams/qr-installer.svg" alt="QR code to the installer guides" width="150" height="150">
+      <div class="cover-qr-text">
+        <strong>Scan for the live guides</strong>
+        <span>Always the current version, with search and full-size diagrams. Opens to the installer sequence.</span>
+      </div>
+    </div>
+
+    <ol class="cover-seq">
+      <li><strong>Safety &amp; Clearances</strong> — read before touching hardware</li>
+      <li><strong>Rail Installation</strong> — mount and plug in the rail</li>
+      <li><strong>Network Setup</strong> — connect the box and access point</li>
+      <li><strong>Install the Heaters</strong> — slide each heater onto the rail</li>
+      <li><strong>Register &amp; Assign Heaters</strong> — match the app to the layout</li>
+    </ol>
+
+    <p class="cover-foot">Questions: hello@focalheat.co · 314-378-1131</p>
+  </section>
+
+  <!-- Concatenated guides in installer order -->
+  {% assign installer_guides = site.guides | where_exp: "g", "g.audience contains 'installer'" %}
+  {% assign ordered = installer_guides | sort: "audience_order.installer" %}
+  {% for g in ordered %}
+    {% unless g.url contains 'start-here' %}
+    <section class="packet-guide">
+      <div class="packet-guide-head">
+        <h1>{{ g.title }}</h1>
+        <span class="packet-ver">v{{ g.version }} · {{ g.updated }}</span>
+      </div>
+      {{ g.content }}
+    </section>
+    {% endunless %}
+  {% endfor %}
+
+  <p class="packet-end no-print">
+    This is the print view. Use your browser's Print (or Save as PDF) to produce the packet.
+    <button class="print-btn" onclick="window.print()">Print or save as PDF</button>
+  </p>
+</div>
