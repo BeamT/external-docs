@@ -1,14 +1,21 @@
-title: Focal Docs
+title: Focal Guides
 description: Installation and usage guides for Focal Duo patio heaters.
+
+# GitHub Pages serves from a subpath like /repo-name/. This is set to your
+# repo name. If you rename the repo or use a custom domain, update this.
 baseurl: "/external-docs"
+
 collections:
   guides:
     output: true
     permalink: /:name/
+
 defaults:
   - scope:
       path: ""
       type: guides
     values:
       layout: guide
+
+# Only what GitHub Pages' Jekyll needs.
 markdown: kramdown

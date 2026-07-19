@@ -3,7 +3,7 @@ layout: home
 title: null
 ---
 <section class="hero">
-  <h1>Focal Duo guides</h1>
+  <h1>Focal Guides</h1>
   <p>Everything you need to install, wire, and run your Focal heaters. Built for the phone in your hand on site.</p>
 </section>
 
@@ -14,13 +14,20 @@ title: null
   <button class="chip" data-aud="customer" aria-pressed="false">Restaurant</button>
 </div>
 
+<p class="flow-note" id="flow-note" hidden></p>
+
 <div class="card-list" id="card-list">
   {% assign guides = site.guides | sort: "order" %}
   {% for g in guides %}
   <a class="card" href="{{ g.url | prepend: site.baseurl }}"
      data-audience="{{ g.audience | join: ',' }}"
+     data-order-default="{{ g.order }}"
+     data-order-installer="{{ g.audience_order.installer | default: 999 }}"
+     data-order-electrician="{{ g.audience_order.electrician | default: 999 }}"
+     data-order-customer="{{ g.audience_order.customer | default: 999 }}"
      data-title="{{ g.title | downcase }}"
      data-summary="{{ g.summary | downcase }}">
+    <span class="step-badge" hidden></span>
     <h2>{{ g.title }}</h2>
     <p>{{ g.summary }}</p>
     <div class="badges">
@@ -33,25 +40,50 @@ title: null
 
 <script>
 (function () {
+  var list = document.getElementById('card-list');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
   var chips = document.querySelectorAll('.chip');
   var search = document.getElementById('search');
   var empty = document.getElementById('empty');
+  var flowNote = document.getElementById('flow-note');
   var aud = 'all';
+
+  var SEQUENCED = { installer: 'Follow these in order for a full install:' };
+
+  function orderFor(card) {
+    var key = aud === 'all' ? 'default' : aud;
+    var dataKey = 'order' + key.charAt(0).toUpperCase() + key.slice(1);
+    return parseInt(card.dataset[dataKey] || card.dataset.orderDefault, 10);
+  }
 
   function apply() {
     var q = (search && search.value || '').trim().toLowerCase();
-    var shown = 0;
-    cards.forEach(function (c) {
+
+    var visible = cards.filter(function (c) {
       var okAud = aud === 'all' || c.dataset.audience.split(',').indexOf(aud) !== -1;
       var hay = c.dataset.title + ' ' + c.dataset.summary;
       var okQ = q.length < 2 || hay.indexOf(q) !== -1;
-      var show = okAud && okQ;
-      c.style.display = show ? '' : 'none';
-      if (show) shown++;
+      c.style.display = (okAud && okQ) ? '' : 'none';
+      return okAud && okQ;
     });
-    if (empty) empty.hidden = shown !== 0;
+
+    visible.sort(function (a, b) { return orderFor(a) - orderFor(b); });
+    visible.forEach(function (c) { list.appendChild(c); });
+
+    var sequenced = SEQUENCED[aud] && q.length < 2;
+    visible.forEach(function (c, i) {
+      var badge = c.querySelector('.step-badge');
+      if (sequenced) { badge.textContent = i + 1; badge.hidden = false; c.classList.add('is-step'); }
+      else { badge.hidden = true; c.classList.remove('is-step'); }
+    });
+    if (flowNote) {
+      if (sequenced) { flowNote.textContent = SEQUENCED[aud]; flowNote.hidden = false; }
+      else { flowNote.hidden = true; }
+    }
+
+    if (empty) empty.hidden = visible.length !== 0;
   }
+
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
       aud = chip.dataset.aud;
