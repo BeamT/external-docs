@@ -1,3 +1,27 @@
+/* ---- Elza (body) + Elza Condensed (display) ----
+   Commercial fonts. Drop the licensed .woff2 files into assets/fonts/ with the
+   names below. Until they're present, the site falls back to Archivo/system. */
+@font-face {
+  font-family: "Elza"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/external-docs/assets/fonts/Elza-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Elza"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("/external-docs/assets/fonts/Elza-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Elza"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/external-docs/assets/fonts/Elza-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Elza Condensed"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/external-docs/assets/fonts/ElzaCondensed-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Elza Condensed"; font-style: normal; font-weight: 800; font-display: swap;
+  src: url("/external-docs/assets/fonts/ElzaCondensed-ExtraBold.woff2") format("woff2");
+}
+
 :root {
   --ink: #111111;
   --ink-soft: #55524d;
@@ -15,8 +39,8 @@
   --warn-wash: #fdf3e0;
   --radius: 12px;
   --maxw: 720px;
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Elza Condensed", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Elza", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 a, button, .chip, .card { -webkit-tap-highlight-color: transparent; }
@@ -196,6 +220,7 @@ a { color: inherit; }
 
 /* ---- linked steps (Start Here) ---- */
 a.step-link {
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 16px;
   text-decoration: none; color: inherit;
   border: 1px solid var(--line); border-radius: var(--radius);
   padding: 16px 18px; margin: 10px 0;
@@ -203,7 +228,18 @@ a.step-link {
 }
 a.step-link:hover { border-color: var(--ink); }
 a.step-link:active { transform: scale(0.995); }
-a.step-link .step-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+a.step-link .step-num {
+  grid-row: 1 / 3;
+  font-family: var(--font-display); font-weight: 800; font-size: 30px;
+  line-height: 1; color: var(--focal); min-width: 34px;
+}
+a.step-link .step-body { display: block; }
+a.step-link .step-title {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 700; font-size: 19px;
+  margin-bottom: 4px;
+}
+a.step-link .step-desc { display: block; font-size: 15px; color: var(--ink-soft); }
 .step-arrow { color: var(--focal); font-weight: 800; }
 
 .print-link {
