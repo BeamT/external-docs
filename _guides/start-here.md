@@ -16,7 +16,7 @@ updated: "2025-11-13"
 
 ## Before you begin
 
-{% include checklist.html items="Site plan and this packet on hand | Mounting surface can hold 300 lb | Dedicated GFCI outlet on the cord-exit side of each rail | Correct rail + heater count for the config | Networking box and access point (if the site is connected)" %}
+{% include checklist.html items="Site plan and this packet on hand | Mounting surface can hold 300 lb | Dedicated GFCI outlet on the cord-exit side of each rail | Correct rail + heater count for the config | Networking box and access point" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 
