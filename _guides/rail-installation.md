@@ -46,22 +46,22 @@ Each rail's kit is split into bags. Bag A is the core bracket assembly, Bag B ca
 
 | Part | Qty | Bag |
 |---|---|---|
-| Parallel mounting bracket (FMT001) | 4 | A — 2 assembled, 2 loose |
-| T-nut, 1/4-20 (FMT002) | 2 | A — assembled with parallel brackets |
-| Perpendicular mounting bracket (FMT003) | 2 | A |
-| Set screw, 1/4-20 x 5/16" (FMT005) | 8 | A — assembled with parallel brackets |
-| Flat-head screw, 1/4-20 x 1.125" (FMT006) | 4 | A — assembled with parallel brackets |
-| 1/8" L-wrench | 1 | A |
-| T30 L-wrench (machine screws) | 1 | A |
-| Flat-head screw, 1/4-20 x 1.5" (FMT007) | 4 | B |
-| Flat-head screw, 1/4-20 x 2.5" (FMT008) | 4 | B |
-| Flat-head screw, 1/4-20 x 3.5" (FMT009) | 4 | B |
-| Nylon lock nut, 1/4-20 (FMT010) | 4 | B |
-| SAE washer, 1/4" ID (FMT011) | 4 | B |
-| Wood screw, #12 x 2" (FMT012) | 4 | C |
-| Wood screw, #12 x 3" (FMT013) | 4 | C |
-| T25 screwdriver bit (wood screws) | 1 | C |
-| Dropdown pipe, 6 ft (FMT004) | as needed | with rail |
+| Parallel mounting bracket| 4 | A — 2 assembled, 2 loose |
+| T-nut, 1/4-20| 2 | A — assembled with parallel brackets |
+| Perpendicular mounting bracket| 2 | A |
+| Set screw, 1/4-20 x 5/16"| 8 | A — assembled with parallel brackets |
+| Flat-head screw, 1/4-20 x 1.125"| 4 | A — assembled with parallel brackets |
+| 1/8" L-wrench| 1 | A |
+| T30 L-wrench| 1 | A |
+| Flat-head screw, 1/4-20 x 1.5"| 4 | B |
+| Flat-head screw, 1/4-20 x 2.5"| 4 | B |
+| Flat-head screw, 1/4-20 x 3.5"| 4 | B |
+| Nylon lock nut, 1/4-20| 4 | B |
+| SAE washer, 1/4" ID| 4 | B |
+| Wood screw, #12 x 2"| 4 | C |
+| Wood screw, #12 x 3"| 4 | C |
+| T25 screwdriver bit| 1 | C |
+| Dropdown pipe, 6 ft| as needed | with rail |
 
 {% include diagram.html src="rail-00-kit.svg" caption="Kit contents grouped by bag: A (bracket assembly), B (through-bolt hardware), C (wood-screw option)." %}
 
