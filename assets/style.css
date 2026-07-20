@@ -255,3 +255,14 @@ a.step-link .step-desc { display: block; font-size: 15px; color: var(--ink-soft)
 .brand { display: inline-flex; align-items: center; }
 .brand img { height: 24px; width: auto; display: block; }
 .cover-brand img { height: 34px; width: auto; display: block; }
+
+/* ---- packet cover checklists ---- */
+.cover-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 4px 0 28px; }
+.cover-check-col h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: 16px;
+  margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink-soft);
+}
+.cover-check-col .checklist { gap: 6px; }
+.cover-check-col .checklist li { font-size: 14px; padding: 8px 12px; }
+@media (max-width: 560px) { .cover-checks { grid-template-columns: 1fr; } }
+@media print { .cover-checks { grid-template-columns: 1fr 1fr; } }
