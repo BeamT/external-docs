@@ -12,7 +12,7 @@ updated: "2026-07-27"
 
 **Connectivity**
 
-The heater still heats, but you can't reach it from Focal Heater Control or a guest's QR code scan.
+The heater still heats, but you can't reach it from the Focal Control page or a guest's QR code scan.
 
 - [Heater shows offline](#heater-shows-offline)
 - [Heater won't respond to remote commands](#heater-wont-respond-remotely)
@@ -50,13 +50,13 @@ If the LEDs aren't lit, the heater isn't getting power and can't come online —
 
 If every heater has power and the networking box is online but heaters still show offline, [contact Focal Support](#still-stuck).
 
-## Heater won't respond to remote commands (QR code or Focal Heater Control) {#heater-wont-respond-remotely}
+## Heater won't respond to remote commands (QR code or the Focal Control page) {#heater-wont-respond-remotely}
 
-A heater that ignores commands from a guest's QR code scan or from Focal Heater Control has lost its connection to the network. The fix is the same as [Heater shows offline](#heater-shows-offline) above — start there, then confirm the two things below.
+A heater that ignores commands from a guest's QR code scan or from the Focal Control page has lost its connection to the network. The fix is the same as [Heater shows offline](#heater-shows-offline) above — start there, then confirm the two things below.
 
 {% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heating side is working and the problem is on the connectivity side." %}
 
-{% include step.html number="2" title="Rule out Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, by Focal Heater Control, or by the pull string. The heater shows as disabled and its lights flash green when the pull string is pulled." %}
+{% include step.html number="2" title="Rule out Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, by the Focal Control page, or by the pull string. The heater shows as disabled and its lights flash green when the pull string is pulled." %}
 
 Schedule Mode and Manual Mode are covered in [Heater Control]({{ site.baseurl }}/heater-control/). If the heater is online, in Manual Mode, and responds to the pull string but still ignores remote commands, [contact Focal Support](#still-stuck).
 
