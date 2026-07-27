@@ -8,38 +8,73 @@ version: "1.0"
 updated: "2025-11-13"
 ---
 
+Two very different problems can look the same from the app. Sort out which one you have before you start:
+
+- **Connectivity issue** — the heater can't be reached remotely, but it still heats. The pull string works independently of the network, so a short pull will still change the heat level.
+- **Local hardware issue** — the heater has no power or won't produce heat, whether or not it's online.
+
+If a short pull on the pull string changes the heat, the heater itself is fine and you're troubleshooting connectivity.
+
 ## On this page
+
+**Connectivity**
 - [Heater shows offline](#heater-shows-offline)
+- [Heater won't respond to remote commands](#heater-wont-respond-remotely)
+
+**Local hardware**
 - [Heater not emitting heat](#heater-not-emitting-heat)
 - [No power or LEDs](#no-power-or-leds)
-- [Heater won't respond](#heater-wont-respond)
 - [Heater is hard to move](#heater-is-hard-to-move)
 - [Physical damage](#physical-damage)
 - [Still stuck?](#still-stuck)
 
 ## Heater shows offline
 
-{% include step.html number="1" title="Check power and seating" body="Confirm the rail switch is on and the heater is fully seated in a plug point. Check the LEDs are lit." diagram="ts-01-offline-power.svg" %}
+Troubleshooting steps differ depending on whether all heaters are offline or only some of them are.
 
-{% include step.html number="2" title="Re-seat and confirm Wi-Fi" body="Re-seat the plug and give it a moment to reconnect. The heater should come back online in the app." diagram="ts-02-offline-wifi.svg" %}
+**All heaters offline:**
+
+{% include step.html number="1" title="Check the Focal Point networking box power" body="Confirm the Focal Point networking box is plugged into power." %}
+
+{% include step.html number="2" title="Check the Focal Point networking box internet connection" body="Confirm the Focal Point networking box is getting internet access — the cable from the customer's router should be connected to the WAN port." %}
+
+**Only some heaters offline:**
+
+{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs. If the LEDs aren't lit, see Heater not emitting heat below to re-seat it." %}
 
 {% include warn.html text="Don't unplug heaters overnight — that's the most common cause of false offline reports the next morning." %}
 
+## Heater won't respond to remote commands (QR code or Focal Control page) {#heater-wont-respond-remotely}
+
+A heater that ignores commands from a guest's QR code scan or from the Focal Control page is almost always a connectivity problem, not a fault with the heater. Confirm the heat still works locally, then work through the offline steps.
+
+{% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heater is working and the problem is connectivity — continue with the steps below." %}
+
+{% include step.html number="2" title="Work through the offline steps" body="Follow Heater shows offline above: if all heaters are affected, check the Focal Point networking box. If only some are affected, check that heater's power and re-seat it." %}
+
+{% include step.html number="3" title="Check for Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, the app, or the pull string. The heater will show as disabled and its lights flash green when the pull string is pulled. Adjust the schedule or switch to Manual Mode." %}
+
+If the heater is online and in Manual Mode but still ignores remote commands, contact Focal.
+
 ## Heater not emitting heat
 
-First confirm the heater shows online and its LEDs are lit, and that it's fully seated. Then power-cycle it with a full pull of the string. If it's in Schedule Mode outside scheduled hours, it won't heat until the schedule is active or you switch to Manual Mode.
+{% include step.html number="1" title="Try a short pull on the pull string" body="A short pull adjusts the heat level and works whether or not the heater is online. If the heat changes, the heater is fine — this is a connectivity issue, not a heating fault." %}
+
+{% include step.html number="2" title="Check for power" body="Confirm the heater's LEDs are lit. If they aren't, re-seat the heater in the plug point: pull down on the pull string, move the heater away from the plug point, then back, and let go of the pull string." %}
+
+{% include step.html number="3" title="Check the whole rail" body="If all heaters on the rail have no power, check the rail switch and/or the circuit breaker before assuming a single heater is at fault." %}
+
+{% include step.html number="4" title="Rule out Schedule Mode" body="If the lights flash green on a pull, the heater is in Schedule Mode outside its scheduled hours. It won't heat until the schedule is active or you switch to Manual Mode." %}
+
+If the heater has power, is fully seated, and is in Manual Mode but still produces no heat, contact Focal.
 
 ## No power or LEDs
 
-{% include step.html number="1" title="Check the circuit, not just the heater" body="Test the rail on a known-good neighboring circuit with a non-contact outlet tester before assuming the heater is at fault." diagram="ts-03-no-power.svg" %}
+{% include step.html number="1" title="Check the circuit, not just the heater" body="Test the rail on a known-good neighboring circuit with a non-contact outlet tester before assuming the heater is at fault." %}
 
 {% include dodont.html do="Give each rail its own dedicated, GFCI-protected circuit." dont="Run heaters on extension cords or shared circuits — the most common root cause of tripping." %}
 
 If a breaker or GFCI keeps tripping, isolate whether it's the GFCI or the breaker, then escalate to the customer's electrician or Focal.
-
-## Heater won't respond
-
-Confirm it's online and seated, then power-cycle with a full pull-string pull. If it's still unresponsive after re-seating, contact Focal.
 
 ## Heater is hard to move
 
