@@ -3,70 +3,74 @@ title: Troubleshooting
 audience: [customer, installer]
 audience_order: {customer: 20, installer: 65}
 order: 80
-summary: Quick fixes for the most common issues — offline heaters, no heat, no power, and units that won't move.
-version: "1.0"
-updated: "2025-11-13"
+summary: Quick fixes for the most common issues — offline heaters, unresponsive remote controls, no heat, no power, and units that won't move.
+version: "1.1"
+updated: "2026-07-27"
 ---
 
 ## On this page
 
-Two very different problems can look the same from the app. Sort out which one you have before you start.
+**Connectivity**
 
-**Connectivity** 
-The heater still heats, but you can't reach it from the app, the Focal Control page, or a guest's QR code scan. 
+The heater still heats, but you can't reach it from Focal Heater Control or a guest's QR code scan.
 
 - [Heater shows offline](#heater-shows-offline)
 - [Heater won't respond to remote commands](#heater-wont-respond-remotely)
 
-**At the heater** 
-No power, no heat, or something physically wrong with the unit. 
+**At the heater**
+
+No power, no heat, or something physically wrong with the unit.
 
 - [Heater not emitting heat](#heater-not-emitting-heat)
 - [No power or LEDs](#no-power-or-leds)
 - [Heater is hard to move](#heater-is-hard-to-move)
 - [Physical damage](#physical-damage)
 
-If neither group fits or the steps don't resolve it, see [Still stuck?](#still-stuck)
+If neither group fits, or the steps don't resolve it, see [Still stuck?](#still-stuck)
 
 ## Heater shows offline
 
 Troubleshooting steps differ depending on whether all heaters are offline or only some of them are.
 
-**All heaters offline:**
+### All heaters offline
 
 {% include step.html number="1" title="Check the Focal Point networking box power" body="Confirm the Focal Point networking box is plugged into power." %}
 
 {% include step.html number="2" title="Check the Focal Point networking box internet connection" body="Confirm the Focal Point networking box is getting internet access — the cable from the customer's router should be connected to the Focal Point networking box's WAN port." %}
 
-**Only some heaters offline:**
+For how the networking box and access point should be wired, see [Network Setup]({{ site.baseurl }}/network-setup/).
 
-{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs. If the LEDs aren't lit, see No power or LEDs below." %}
+### Only some heaters offline
+
+{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs." %}
+
+If the LEDs aren't lit, the heater isn't getting power and can't come online — work through [No power or LEDs](#no-power-or-leds) first.
 
 {% include warn.html text="Don't unplug heaters overnight — that's the most common cause of false offline reports the next morning." %}
 
-## Heater won't respond to remote commands (QR code or Focal Control page) {#heater-wont-respond-remotely}
+If every heater has power and the networking box is online but heaters still show offline, [contact Focal Support](#still-stuck).
 
-A heater that ignores commands from a guest's QR code scan or from the Focal Control page has lost its connection to the network. Confirm the heat still works locally, then work through the offline steps.
+## Heater won't respond to remote commands (QR code or Focal Heater Control) {#heater-wont-respond-remotely}
 
-{% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heating side is working and the problem is on the connectivity side — continue with the steps below." %}
+A heater that ignores commands from a guest's QR code scan or from Focal Heater Control has lost its connection to the network. The fix is the same as [Heater shows offline](#heater-shows-offline) above — start there, then confirm the two things below.
 
-{% include step.html number="2" title="Work through the offline steps" body="Follow Heater shows offline above: if all heaters are affected, check the Focal Point networking box. If only some are affected, check that heater's power and re-seat it." %}
+{% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heating side is working and the problem is on the connectivity side." %}
 
-{% include step.html number="3" title="Check for Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, the app, or the pull string. The heater will show as disabled and its lights flash green when the pull string is pulled. Adjust the schedule or switch to Manual Mode." %}
+{% include step.html number="2" title="Rule out Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, by Focal Heater Control, or by the pull string. The heater shows as disabled and its lights flash green when the pull string is pulled." %}
 
-If the heater is online and in Manual Mode but still ignores remote commands, contact Focal.
+Schedule Mode and Manual Mode are covered in [Heater Control]({{ site.baseurl }}/heater-control/). If the heater is online, in Manual Mode, and responds to the pull string but still ignores remote commands, [contact Focal Support](#still-stuck).
 
 ## Heater not emitting heat
 
+Work these in order. If the LEDs aren't lit at step 1, the heater isn't getting power — jump to [No power or LEDs](#no-power-or-leds), then come back.
+
 {% include step.html number="1" title="Confirm the heater has power" body="Check that the heater's LEDs are lit. No LEDs means no power, and no power means no heat." %}
 
-{% include step.html number="2" title="If the LEDs aren't lit" body="The heater isn't getting power. Go to No power or LEDs below and work through those steps before coming back here." %}
+{% include step.html number="2" title="Try a short pull on the pull string" body="With power confirmed, give the pull string a short pull to adjust the heat level. If the heat changes, heating is working." %}
 
-{% include step.html number="3" title="Try a short pull on the pull string" body="With power confirmed, give the pull string a short pull to adjust the heat level. If the heat changes, heating is working." %}
+{% include step.html number="3" title="Rule out Schedule Mode" body="If the lights flash green on a pull, the heater is in Schedule Mode outside its scheduled hours. It won't heat until the schedule is active or you switch to Manual Mode." %}
 
-{% include step.html number="4" title="Rule out Schedule Mode" body="If the lights flash green on a pull, the heater is in Schedule Mode outside its scheduled hours. It won't heat until the schedule is active or you switch to Manual Mode." %}
-
-If the heater still produces no heat, contact Focal.
+Switching between modes is covered in [Heater Control]({{ site.baseurl }}/heater-control/). If the heater has power and is in Manual Mode but still produces no heat, [contact Focal Support](#still-stuck).
 
 ## No power or LEDs
 
@@ -78,18 +82,20 @@ If the heater still produces no heat, contact Focal.
 
 {% include dodont.html do="Give each rail its own dedicated, GFCI-protected circuit." dont="Run heaters on extension cords or shared circuits — the most common root cause of tripping." %}
 
-If a breaker or GFCI keeps tripping, isolate whether it's the GFCI or the breaker, then escalate to the customer's electrician or Focal.
+If a breaker or GFCI keeps tripping, isolate whether it's the GFCI or the breaker, then escalate to the site's electrician or [contact Focal Support](#still-stuck).
 
 ## Heater is hard to move
 
 Make sure you're pulling down fully on the pull string before attempting to move the heater. A partial pull won't release the unit from the rail.
 
-If the heater is still hard to move after a full pull, contact Focal.
+If the heater is still hard to move after a full pull, [contact Focal Support](#still-stuck).
 
 ## Physical damage
 
-{% include warn.html text="If a grille or thermal engine is dislodged or the unit is physically damaged, move it off the plug point, secure any loose parts so nothing falls, and contact Focal for a loaner or replacement. Don't operate a damaged heater." %}
+{% include warn.html text="If a grille or thermal engine is dislodged or the unit is physically damaged, move it off the plug point and secure any loose parts so nothing falls. Don't operate a damaged heater." %}
+
+Once the area is safe, [contact Focal Support](#still-stuck) for a loaner or replacement.
 
 ## Still stuck?
 
-If these steps don't resolve it, contact Focal Support with the heater's serial number and what you've already tried.
+If these steps don't resolve it, contact Focal Support at [hello@focalheat.co](mailto:hello@focalheat.co) with the heater's serial number and what you've already tried.
