@@ -8,25 +8,23 @@ version: "1.0"
 updated: "2025-11-13"
 ---
 
-Two very different problems can look the same from the app. Sort out which one you have before you start:
-
-- **Connectivity issue** — the heater can't be reached remotely, but it still heats. The pull string works independently of the network, so a short pull will still change the heat level.
-- **Local hardware issue** — the heater has no power or won't produce heat, whether or not it's online.
-
-If a short pull on the pull string changes the heat, the heater itself is fine and you're troubleshooting connectivity.
-
 ## On this page
 
-**Connectivity**
+Two very different problems can look the same from the app. Sort out which one you have before you start.
+
+**Connectivity** — the heater still heats, but you can't reach it from the app, the Focal Control page, or a guest's QR code scan. The pull string works independently of the network, so if a short pull changes the heat level, start here.
+
 - [Heater shows offline](#heater-shows-offline)
 - [Heater won't respond to remote commands](#heater-wont-respond-remotely)
 
-**Local hardware**
+**At the heater** — no power, no heat, or something physically wrong with the unit. These symptoms show up whether or not the heater is online, and no amount of network troubleshooting will clear them.
+
 - [Heater not emitting heat](#heater-not-emitting-heat)
 - [No power or LEDs](#no-power-or-leds)
 - [Heater is hard to move](#heater-is-hard-to-move)
 - [Physical damage](#physical-damage)
-- [Still stuck?](#still-stuck)
+
+If neither group fits or the steps don't resolve it, see [Still stuck?](#still-stuck)
 
 ## Heater shows offline
 
@@ -40,15 +38,15 @@ Troubleshooting steps differ depending on whether all heaters are offline or onl
 
 **Only some heaters offline:**
 
-{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs. If the LEDs aren't lit, see Heater not emitting heat below to re-seat it." %}
+{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs. If the LEDs aren't lit, see No power or LEDs below." %}
 
 {% include warn.html text="Don't unplug heaters overnight — that's the most common cause of false offline reports the next morning." %}
 
 ## Heater won't respond to remote commands (QR code or Focal Control page) {#heater-wont-respond-remotely}
 
-A heater that ignores commands from a guest's QR code scan or from the Focal Control page is almost always a connectivity problem, not a fault with the heater. Confirm the heat still works locally, then work through the offline steps.
+A heater that ignores commands from a guest's QR code scan or from the Focal Control page has lost its connection to the network. Confirm the heat still works locally, then work through the offline steps.
 
-{% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heater is working and the problem is connectivity — continue with the steps below." %}
+{% include step.html number="1" title="Confirm the heater still heats locally" body="Give the pull string a short pull. If the heat level changes, the heating side is working and the problem is on the connectivity side — continue with the steps below." %}
 
 {% include step.html number="2" title="Work through the offline steps" body="Follow Heater shows offline above: if all heaters are affected, check the Focal Point networking box. If only some are affected, check that heater's power and re-seat it." %}
 
@@ -58,11 +56,11 @@ If the heater is online and in Manual Mode but still ignores remote commands, co
 
 ## Heater not emitting heat
 
-{% include step.html number="1" title="Try a short pull on the pull string" body="A short pull adjusts the heat level and works whether or not the heater is online. If the heat changes, the heater is fine — this is a connectivity issue, not a heating fault." %}
+{% include step.html number="1" title="Confirm the heater has power" body="Check that the heater's LEDs are lit. No LEDs means no power, and no amount of control troubleshooting will help until that's fixed." %}
 
-{% include step.html number="2" title="Check for power" body="Confirm the heater's LEDs are lit. If they aren't, re-seat the heater in the plug point: pull down on the pull string, move the heater away from the plug point, then back, and let go of the pull string." %}
+{% include step.html number="2" title="If the LEDs aren't lit" body="The heater isn't getting power. Go to No power or LEDs below and work through those steps before coming back here." %}
 
-{% include step.html number="3" title="Check the whole rail" body="If all heaters on the rail have no power, check the rail switch and/or the circuit breaker before assuming a single heater is at fault." %}
+{% include step.html number="3" title="Try a short pull on the pull string" body="With power confirmed, give the pull string a short pull to adjust the heat level. This works whether or not the heater is online. If the heat changes, the heating side is working and you're looking at a connectivity problem instead." %}
 
 {% include step.html number="4" title="Rule out Schedule Mode" body="If the lights flash green on a pull, the heater is in Schedule Mode outside its scheduled hours. It won't heat until the schedule is active or you switch to Manual Mode." %}
 
@@ -70,7 +68,11 @@ If the heater has power, is fully seated, and is in Manual Mode but still produc
 
 ## No power or LEDs
 
-{% include step.html number="1" title="Check the circuit, not just the heater" body="Test the rail on a known-good neighboring circuit with a non-contact outlet tester before assuming the heater is at fault." %}
+{% include step.html number="1" title="Re-seat the heater" body="Re-seat the heater in the plug point: pull down on the pull string, move the heater away from the plug point, then back, and let go of the pull string." %}
+
+{% include step.html number="2" title="Check the whole rail" body="If all heaters on the rail have no power, check the rail switch and/or the circuit breaker before treating it as a single-heater problem." %}
+
+{% include step.html number="3" title="Check the circuit, not just the heater" body="Test the rail on a known-good neighboring circuit with a non-contact outlet tester before assuming the heater is at fault." %}
 
 {% include dodont.html do="Give each rail its own dedicated, GFCI-protected circuit." dont="Run heaters on extension cords or shared circuits — the most common root cause of tripping." %}
 
@@ -78,11 +80,9 @@ If a breaker or GFCI keeps tripping, isolate whether it's the GFCI or the breake
 
 ## Heater is hard to move
 
-First tell apart "mechanically stuck" from "in move mode" — a long pull that wasn't fully released leaves the unit in move mode.
+Make sure you're pulling down fully on the pull string before attempting to move the heater. A partial pull won't release the unit from the rail.
 
-**Stuck up / won't seat:** the internal segment that pulls the plug in and out has come loose, leaving the plug sprung up. This is a service-kit fix — escalate to a trained tech.
-
-**Stuck down / won't release:** usually the unit binding under the pendant's weight. Resolved on-site by a trained tech cleaning and greasing the rail and mechanism.
+If the heater is still hard to move after a full pull, contact Focal.
 
 ## Physical damage
 
