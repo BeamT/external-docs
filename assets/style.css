@@ -268,24 +268,19 @@ a.step-link .step-desc { display: block; font-size: 15px; color: var(--ink-soft)
 @media print { .cover-checks { grid-template-columns: 1fr 1fr; } }
 
 
-/* Screenshots: native size, flush left, no outer frame */
-main .step img[src$=".png"],
-main .step img[src$=".jpg"] {
+main img[src$=".png"] {
   display: block;
   width: auto;
   max-width: 420px;
   height: auto;
-  margin: 0.75rem 0 0;          /* was margin-inline:auto — that centered it */
+  margin: 0.75rem 0 0;
   border: 1px solid #e4e4e7;
   border-radius: 6px;
 }
 
-/* Strip the white box around them (leaves SVG diagram frames
-   and the "coming soon" placeholder alone) */
-main .step div:has(> img[src$=".png"]),
-main .step div:has(> img[src$=".jpg"]),
-main .step figure:has(> img[src$=".png"]),
-main .step figure:has(> img[src$=".jpg"]) {
+main span:has(> img[src$=".png"]),
+main div:has(> img[src$=".png"]),
+main figure:has(> img[src$=".png"]) {
   background: none;
   border: 0;
   padding: 0;
