@@ -123,8 +123,15 @@ a { color: inherit; }
 
 .diagram-missing { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg, var(--wash), var(--wash) 12px, var(--line-soft) 12px, var(--line-soft) 24px); color: var(--ink-soft); font-size: 13px; text-align: center; padding: 20px; }
 
-.print-hint { margin: 30px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 14px; }
-.print-btn { font-family: inherit; font-size: 14px; cursor: pointer; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; color: var(--ink); }
+.print-hint { margin: 34px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); color: var(--ink-soft); font-size: 13px; }
+.print-btn {
+  font-family: inherit; font-size: 13px; cursor: pointer;
+  background: none; border: 0; border-radius: 4px; padding: 2px 0;
+  color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line);
+  text-underline-offset: 3px; transition: color 0.15s, text-decoration-color 0.15s;
+}
+.print-btn:hover { color: var(--ink); text-decoration-color: var(--ink-soft); }
+.print-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .results { padding: 8px 0 60px; display: grid; gap: 10px; }
 .empty { color: var(--ink-soft); padding: 24px 0; }
@@ -264,24 +271,34 @@ a.step-link .step-desc { display: block; font-size: 15px; color: var(--ink-soft)
 
 /* ---- next-guide chaining (installer sequence) ---- */
 a.next-link {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none; color: inherit;
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--wash);
-  padding: 16px 18px; margin: 32px 0 0;
-  transition: border-color 0.15s, transform 0.1s;
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; color: #fff;
+  border: 1px solid var(--focal); border-radius: var(--radius);
+  background: var(--focal);
+  padding: 20px 22px; margin: 40px 0 0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.05), 0 10px 22px -14px rgba(255,122,0,0.75);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.1s;
 }
-a.next-link:hover { border-color: var(--ink); background: var(--paper); }
-a.next-link:active { transform: scale(0.995); }
+a.next-link:hover {
+  background: #ea6f00; border-color: #ea6f00;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 14px 28px -14px rgba(255,122,0,0.9);
+}
+a.next-link:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+a.next-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 a.next-link .next-label {
-  font-family: var(--font-display); font-weight: 700; font-size: 13px;
-  text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--ink-soft); white-space: nowrap;
+  font-family: var(--font-display); font-weight: 700; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: rgba(255,255,255,0.78); white-space: nowrap;
 }
 a.next-link .next-title {
-  font-family: var(--font-display); font-weight: 700; font-size: 19px;
+  font-family: var(--font-display); font-weight: 800; font-size: 21px;
+  color: #fff; line-height: 1.15;
 }
-a.next-link .next-arrow { margin-left: auto; color: var(--focal); font-weight: 800; }
+a.next-link .next-arrow {
+  margin-left: auto; color: #fff; font-weight: 800; font-size: 20px;
+  transition: transform 0.15s;
+}
+a.next-link:hover .next-arrow { transform: translateX(4px); }
 
 .print-link {
   display: inline-flex; align-items: center; gap: 8px;
