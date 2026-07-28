@@ -1,11 +1,11 @@
 ---
 title: Rail Installation
 audience: [installer]
-audience_order: {installer: 30}
-order: 20
+audience_order: {installer: 40}
+order: 30
 summary: Mount the Focal rail to a ceiling or beam, then power it on. For installers using the Focal mounting kit.
-version: "1.0"
-updated: "2025-11-13"
+version: "1.1"
+updated: "2026-07-28"
 ---
 
 ## On this page
@@ -113,3 +113,5 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 ## Cable management
 
 Route cables along the rail, up mounting hardware, or along structural features so they stay out of view from diners and the street. All cabling should be 12AWG rated for 20A. Zip ties, screw or nail cable clamps, and similar systems are all fine to use.
+
+{% include nextlink.html slug="install-heaters" title="Install the Heaters" %}

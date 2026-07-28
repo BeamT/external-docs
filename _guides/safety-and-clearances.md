@@ -4,8 +4,8 @@ audience: [customer, installer, electrician]
 audience_order: {installer: 10, electrician: 20, customer: 40}
 order: 10
 summary: Required clearances and the full safety rules for every Focal heater install. Read before installing or operating.
-version: "1.0"
-updated: "2025-11-13"
+version: "1.1"
+updated: "2026-07-28"
 ---
 
 ## On this page
@@ -93,3 +93,5 @@ Discontinue use immediately and contact Focal Support if you notice any of these
 {% include checklist.html items="Physical damage to the housing or grille | Burned, frayed, or damaged power cord or plug | Unusual odors or sounds during operation | Heater won't turn on or respond to controls | Any other visible or suspected electrical or heating damage" %}
 
 The heater contains no user-serviceable parts. All service beyond basic cleaning must be done by Focal-authorized personnel.
+
+{% include nextlink.html label="Next for installers" slug="network-setup" title="Network Setup" %}

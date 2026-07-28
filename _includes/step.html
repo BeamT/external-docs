@@ -3,10 +3,10 @@
   <div class="step-body">
     <div class="step-title">{{ include.title }}</div>
     <p>{{ include.body }}</p>
+    {% if include.diagram %}
+    <div class="step-figure">
+      <img src="{{ site.baseurl }}/assets/diagrams/{{ include.diagram }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
+    </div>
+    {% endif %}
   </div>
-  {% if include.diagram %}
-  <div class="step-figure">
-    <img src="{{ site.baseurl }}/assets/diagrams/{{ include.diagram }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
-  </div>
-  {% endif %}
 </div>
