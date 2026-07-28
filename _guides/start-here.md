@@ -36,4 +36,4 @@ Here's the whole job in order, so you know what's ahead. Each guide ends with a 
 
 {% include stepitem.html number="5" title="Register & Assign Heaters" body="Register each heater and assign it to the right zone so the app matches the layout. Ends with the sign-off checks before you leave site." %}
 
-{% include nextlink.html label="Start with" slug="safety-and-clearances" title="Safety & Clearances" %}
+{% include nextlink.html label="Next" slug="safety-and-clearances" title="Safety & Clearances" %}
