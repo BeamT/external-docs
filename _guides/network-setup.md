@@ -38,7 +38,7 @@ The networking box provides internet to the heaters over 2.4GHz Wi-Fi. You'll co
 
 ## Confirm the network is live
 
-{% include checklist.html items="Networking box powered and connected to the internet | Access point mounted with a clear path to the planned rail positions | Access point status light shows online" %}
+{% include checklist.html items="Networking box powered and connected to the internet | Access point mounted with a clear path to the planned rail positions | Beam_Wifi network is being broadcasted" %}
 
 You can't confirm heater coverage yet — there are no heaters on the rails at this point. That check happens later, in [Register & Assign Heaters]({{ site.baseurl }}/register-assign-heaters/).
 
