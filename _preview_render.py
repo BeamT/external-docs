@@ -58,6 +58,9 @@ def render_include(name, args):
         return f'<figure class="diagram"><img src="{src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{{className:\'diagram-missing\',textContent:\'Diagram coming soon\'}}))">{cap}</figure>'
     if name == "steplink.html":
         return f'<a class="step step-link" href="/{args.get("slug","")}/"><div class="step-num">{html.escape(args.get("number",""))}</div><div class="step-body"><div class="step-title">{html.escape(args.get("title",""))} <span class="step-arrow">&#8594;</span></div><p>{html.escape(args.get("body",""))}</p></div></a>'
+    if name == "nextlink.html":
+        label = html.escape(args.get("label", "Next"))
+        return f'<a class="next-link no-print" href="/{args.get("slug","")}/"><span class="next-label">{label}</span><span class="next-title">{html.escape(args.get("title",""))}</span><span class="next-arrow">&#8594;</span></a>'
     if name == "printlink.html":
         return f'<a class="print-link" href="{args.get("url","")}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9V4h12v5M6 18H4v-6a2 2 0 012-2h12a2 2 0 012 2v6h-2M8 14h8v6H8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{html.escape(args.get("label",""))}</a>'
     if name == "checklist.html":
