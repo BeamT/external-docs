@@ -27,7 +27,6 @@ title: null
      data-order-customer="{{ g.audience_order.customer | default: 999 }}"
      data-title="{{ g.title | downcase }}"
      data-summary="{{ g.summary | downcase }}">
-    <span class="step-badge" hidden></span>
     <h2>{{ g.title }}</h2>
     <p>{{ g.summary }}</p>
     <div class="badges">
@@ -49,14 +48,14 @@ title: null
   var aud = 'all';
 
   // Deep-link support: ?a=installer (used by the printed packet's QR) opens
-  // straight to that audience's ordered/numbered view.
+  // straight to that audience's ordered view.
   var params = new URLSearchParams(window.location.search);
   var initial = params.get('a');
   if (initial && ['installer','electrician','customer'].indexOf(initial) !== -1) {
     aud = initial;
   }
 
-  var SEQUENCED = { installer: 'Follow these in order for a full install:' };
+  var SEQUENCED = { installer: 'Follow these in order for a full install.' };
 
   function orderFor(card) {
     var key = aud === 'all' ? 'default' : aud;
@@ -79,20 +78,9 @@ title: null
     visible.forEach(function (c) { list.appendChild(c); });
 
     var sequenced = SEQUENCED[aud] && q.length < 2;
-    var stepN = 0;
-    visible.forEach(function (c) {
-      var badge = c.querySelector('.step-badge');
-      var isIndex = c.dataset.title.indexOf('start here') !== -1;
-      if (sequenced && !isIndex) {
-        stepN++; badge.textContent = stepN; badge.hidden = false; c.classList.add('is-step');
-      } else {
-        badge.hidden = true; c.classList.remove('is-step');
-      }
-    });
     if (flowNote) {
       if (sequenced) {
-        flowNote.innerHTML = SEQUENCED[aud] +
-          ' &nbsp;<a class="packet-link" href="' + (window.__baseurl || '') + '/print/installer/">Print the full packet →</a>';
+        flowNote.textContent = SEQUENCED[aud];
         flowNote.hidden = false;
       } else {
         flowNote.hidden = true;

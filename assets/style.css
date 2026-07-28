@@ -168,22 +168,7 @@ a { color: inherit; }
 .toc-box a { color: var(--focal); text-decoration: none; font-size: 15px; }
 .toc-box a:hover { text-decoration: underline; }
 
-/* ---- numbered flow (installer sequence) ---- */
-.flow-note { color: var(--ink-soft); font-size: 14px; margin: 4px 0 0; }
-.step-badge {
-  position: absolute;
-  top: 16px; left: 16px;
-  width: 26px; height: 26px;
-  background: var(--focal); color: #fff;
-  border-radius: 50%;
-  font-family: var(--font-display); font-weight: 800; font-size: 14px;
-  display: flex; align-items: center; justify-content: center;
-}
-.card.is-step { position: relative; padding-left: 56px; }
 
-@media print {
-  .toc-box { display: none !important; }
-}
 
 /* ---- printable installer packet ---- */
 .packet { max-width: var(--maxw); margin: 0 auto; }
