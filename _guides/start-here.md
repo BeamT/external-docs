@@ -16,9 +16,9 @@ Working off a ladder, or somewhere with no signal? The printable packet gathers 
 
 {% include printlink.html url="/print/installer/" label="Open the printable installer packet" %}
 
-## Before you begin
+## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet on hand | Mounting surface can hold 300 lb | Dedicated GFCI outlet on the cord-exit side of each rail | Correct rail + heater count for the config | Networking box and access point" %}
+{% include checklist.html items="Site plan and this packet are on hand | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed on the cord-exit side of each rail | Rail and heater counts match the configuration | Networking box and access point are ready" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 
