@@ -3,15 +3,14 @@ title: Start Here — Installer
 audience: [installer]
 audience_order: {installer: 5}
 order: 5
-summary: The full install sequence at a glance, plus what to check before you begin. Start here on every job.
-version: "1.2"
+summary: What to check before you begin, plus the full install sequence at a glance. Start here on every job.
+version: "1.3"
 updated: "2026-07-28"
 ---
 
 ## On this page
 - [Before you begin](#before-you-begin)
 - [The install sequence](#the-install-sequence)
-- [Leaving site](#leaving-site)
 
 Working off a ladder, or somewhere with no signal? The printable packet gathers the cover sheet and every installer guide into one document.
 
@@ -25,24 +24,16 @@ Working off a ladder, or somewhere with no signal? The printable packet gathers 
 
 ## The install sequence
 
-Work these in order. Tap any step to open its full guide.
+Here's the whole job in order, so you know what's ahead. Each guide ends with a link to the next one — start with Safety & Clearances below and work straight through.
 
-{% include steplink.html number="1" slug="safety-and-clearances" title="Safety & Clearances" body="Confirm every clearance and safety rule before touching hardware. Read this first on every job." %}
+{% include stepitem.html number="1" title="Safety & Clearances" body="Confirm every clearance and safety rule before touching hardware. Read this first on every job." %}
 
-{% include steplink.html number="2" slug="network-setup" title="Network Setup" body="Get the networking box and access point online first, so heaters connect as soon as they're seated." %}
+{% include stepitem.html number="2" title="Network Setup" body="Get the networking box and access point online first, so heaters connect as soon as they're seated." %}
 
-{% include steplink.html number="3" slug="rail-installation" title="Rail Installation" body="Mount the rail with the Focal kit, then plug it in on the cord-exit side." %}
+{% include stepitem.html number="3" title="Rail Installation" body="Mount the rail with the Focal kit, then plug it in on the cord-exit side." %}
 
-{% include steplink.html number="4" slug="install-heaters" title="Install the Heaters" body="Slide each heater onto the powered rail until it clicks, then close up the rail." %}
+{% include stepitem.html number="4" title="Install the Heaters" body="Slide each heater onto the powered rail until it clicks, then close up the rail." %}
 
-{% include steplink.html number="5" slug="register-assign-heaters" title="Register & Assign Heaters" body="Register each heater and assign it to the right zone so the app matches the layout." %}
-
-## Leaving site
-
-Before you leave, confirm the whole system is live and matches the layout:
-
-{% include checklist.html items="All rails plumb, level, and swing under 1/4\" | Every heater clicked in and powering on with LEDs lit | Cables routed and hidden, nothing below the rail | Every heater online in the Focal admin app | Zone map matches the physical layout | Customer walked through Heater Control basics" %}
-
-If anything won't come online or behaves oddly, see the [Troubleshooting]({{ site.baseurl }}/troubleshooting/) guide before escalating to Focal.
+{% include stepitem.html number="5" title="Register & Assign Heaters" body="Register each heater and assign it to the right zone so the app matches the layout. Ends with the sign-off checks before you leave site." %}
 
 {% include nextlink.html label="Start with" slug="safety-and-clearances" title="Safety & Clearances" %}

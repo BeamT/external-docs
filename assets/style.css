@@ -242,6 +242,26 @@ a.step-link .step-title {
 a.step-link .step-desc { display: block; font-size: 15px; color: var(--ink-soft); }
 .step-arrow { color: var(--focal); font-weight: 800; }
 
+/* ---- sequence preview, non-clickable (Start Here) ---- */
+.step-item {
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 16px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper);
+  padding: 16px 18px; margin: 10px 0;
+}
+.step-item .step-num {
+  grid-row: 1 / 3;
+  font-family: var(--font-display); font-weight: 800; font-size: 30px;
+  line-height: 1; color: var(--focal); min-width: 34px;
+}
+.step-item .step-body { display: block; }
+.step-item .step-title {
+  display: block;
+  font-family: var(--font-display); font-weight: 700; font-size: 19px;
+  margin: 0 0 4px;
+}
+.step-item .step-desc { display: block; font-size: 15px; color: var(--ink-soft); }
+
 /* ---- next-guide chaining (installer sequence) ---- */
 a.next-link {
   display: flex; align-items: center; gap: 12px;

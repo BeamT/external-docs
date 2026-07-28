@@ -4,7 +4,7 @@ audience: [installer]
 audience_order: {installer: 60}
 order: 60
 summary: Scan each Focal heater into its slot so the app layout matches the physical rail, then confirm every heater responds.
-version: "1.1"
+version: "1.2"
 updated: "2026-07-28"
 ---
 
@@ -14,6 +14,7 @@ updated: "2026-07-28"
 * [Assign each heater to its slot](#assign-each-heater-to-its-slot)
 * [Confirm every assignment](#confirm-every-assignment)
 * [Final checks](#final-checks)
+* [Install complete](#install-complete)
 
 ## Before you start
 
@@ -56,4 +57,10 @@ After assigning every heater, it's critical to confirm each heater was assigned 
 
 ## Final checks
 
-{% include checklist.html items="No slot in any zone still shows an X | Each heater is assigned to the slot it physically sits in | Every heater responded at a non-zero level with LEDs matching | Every heater set back to 0 before leaving site" %}
+{% include checklist.html items="No slot in any zone still shows an X | Each heater is assigned to the slot it physically sits in | Every heater responded at a non-zero level with LEDs matching | Every heater set back to 0 before leaving site | Restaurant staff walked through Heater Control basics" %}
+
+## Install complete
+
+That's the last step of the install. Walk the restaurant through [Heater Control]({{ site.baseurl }}/heater-control/) before you go, so staff can run the system themselves.
+
+If anything won't come online or behaves oddly, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/). For service, replacements, or full specifications, see [Warranty & Support]({{ site.baseurl }}/warranty-support/).

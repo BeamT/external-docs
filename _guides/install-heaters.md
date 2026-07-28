@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Slide Focal heaters onto a mounted, powered rail and seat them correctly.
-version: "1.0"
-updated: "2025-11-13"
+version: "1.1"
+updated: "2026-07-28"
 ---
 
 ## On this page
@@ -45,6 +45,8 @@ The rail should already be mounted, plugged in, and switched on. Heaters slide o
 
 ## Final checks
 
-{% include checklist.html items="Every heater clicked into a plug point | Sliders and spacers in place between units | End cap screwed on, bumper snug (not overtightened) | All heaters power on with LEDs lit | Cables routed and hidden | Each heater appears in the Focal admin app before leaving site" %}
+{% include checklist.html items="Every heater clicked into a plug point | Sliders and spacers in place between units | End cap screwed on, bumper snug (not overtightened) | All heaters power on with LEDs lit | Cables routed and hidden, nothing below the bottom of the rail | Each heater appears in the Focal admin app before leaving site" %}
 
 The AC cord and plug must be routed so no part of the cable sits lower than the bottom of the rail.
+
+{% include nextlink.html slug="register-assign-heaters" title="Register & Assign Heaters" %}

@@ -58,6 +58,8 @@ def render_include(name, args):
         return f'<figure class="diagram"><img src="{src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{{className:\'diagram-missing\',textContent:\'Diagram coming soon\'}}))">{cap}</figure>'
     if name == "steplink.html":
         return f'<a class="step step-link" href="/{args.get("slug","")}/"><div class="step-num">{html.escape(args.get("number",""))}</div><div class="step-body"><div class="step-title">{html.escape(args.get("title",""))} <span class="step-arrow">&#8594;</span></div><p>{html.escape(args.get("body",""))}</p></div></a>'
+    if name == "stepitem.html":
+        return f'<span class="step-item"><span class="step-num">{html.escape(args.get("number",""))}</span><span class="step-body"><span class="step-title">{html.escape(args.get("title",""))}</span><span class="step-desc">{html.escape(args.get("body",""))}</span></span></span>'
     if name == "nextlink.html":
         label = html.escape(args.get("label", "Next"))
         return f'<a class="next-link no-print" href="/{args.get("slug","")}/"><span class="next-label">{label}</span><span class="next-title">{html.escape(args.get("title",""))}</span><span class="next-arrow">&#8594;</span></a>'
