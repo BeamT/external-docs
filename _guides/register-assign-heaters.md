@@ -23,7 +23,7 @@ rail anyway to see which heater sits in which slot.
 
 You need:
 
-* The restaurant's Focal Control page and password — both provided by Focal opened on your phone.
+* The restaurant's Focal Control page opened on your phone (URL and password provided by Focal).
 * Every heater already seated in its rail slot and powered on.
 
 {% include warn.html text="The software layout must match reality. If a heater is assigned to the wrong slot, staff will turn on the wrong heater and think the system is broken." %}
