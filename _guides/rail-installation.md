@@ -13,7 +13,6 @@ updated: "2026-07-28"
 - [About the rails](#about-the-rails)
 - [What's in the mounting kit](#whats-in-the-mounting-kit)
 - [Rail placement over the table](#rail-placement-over-the-table)
-- [Outlet placement](#outlet-placement)
 - [Mount the rail](#mount-the-rail)
 - [Different mounting methods](#different-mounting-methods)
 - [Post-mount checks](#post-mount-checks)
@@ -98,27 +97,19 @@ For fastening a block into solid wood where you can't reach the far side to thro
 
 Ideally the rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the rail has to be off-center, angle the heaters toward the guests — but not so far that they only warm the guest's head.
 
-{% include diagram.html src="rail-placement.svg" caption="Center the rail over the table; angle heaters toward guests when off-center." %}
-
-## Outlet placement
-
-Minimize or eliminate extension cords — the rail's 8-foot built-in cable should reach. Align the outlet with the **left side** of the rail, where the cable exits. Account for parklet features like vertical pillars when siting outlets. Cables must be 12AWG rated for 20A.
-
-{% include diagram.html src="outlet-placement.svg" caption="Top view: outlets sit toward the left (cord-exit) side of each rail, clear of pillars." %}
+{% include diagram.html src="rail-placement.png" caption="Center the rail over the table; angle heaters toward guests when off-center." %}
 
 ## Mount the rail
 
-{% include step.html number="1" title="Prepare the attachment piece" body="Loosely attach the double T-nut to the parallel standoff block with the 1/4-20 x 1.125\" screws. Loosely fit the two 1/4-20 x 5/16\" set screws. Leave everything loose for final alignment." diagram="rail-01-attach-piece.svg" %}
+{% include step.html number="1" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-01-slide-block.png" %}
 
-{% include step.html number="2" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-02-slide-block.svg" %}
+{% include step.html number="2" title="Prepare the mount" body="Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
 
-Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts.
+{% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
 
-{% include step.html number="3A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
+{% include step.html number="2B" title="Prepare a beam or joist mount" body="Use this where the only solid surface is a vertical face, such as the side of a beam or joist. Drill a clearance hole in the face for the perpendicular bracket's shaft, seat the shaft, and fasten the bracket flat to the surface. Slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03b-beam-mount.svg" %}
 
-{% include step.html number="3B" title="Prepare a beam or joist mount" body="Use this where the only solid surface is a vertical face, such as the side of a beam or joist. Drill a clearance hole in the face for the perpendicular bracket's shaft, seat the shaft, and fasten the bracket flat to the surface. Slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03b-beam-mount.svg" %}
-
-{% include step.html number="4" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws, then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-04-attach-rail.svg" %}
+{% include step.html number="3" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws, then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-03-attach-rail.png" %}
 
 ## Different mounting methods
 
@@ -139,8 +130,6 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 {% include dodont.html do="Plug directly into a dedicated, GFCI-protected outdoor outlet on its own circuit." dont="Use an extension cord, power strip, or a circuit shared with other loads." %}
 
-{% include step.html number="1" title="Route and connect the cable" body="Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. All rail cabling should be 12AWG rated for 20A. Then plug into the outlet." diagram="rail-05-plug-in.svg" %}
-
-{% include step.html number="2" title="Power on and tidy up" body="Flip the rail switch on. Secure any slack cable so nothing hangs below the bottom of the rail — zip ties, screw or nail cable clamps, and similar systems are all fine. Keep the finished run out of view from diners and the street." diagram="rail-06-power-on.svg" %}
+Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. All rail cabling should be 12AWG rated for 20A. Plug into the outlet, then flip the rail switch on. Secure any slack so nothing hangs below the bottom of the rail — zip ties, screw or nail cable clamps, and similar systems all work.
 
 {% include nextlink.html slug="install-heaters" title="Install Heaters" %}
