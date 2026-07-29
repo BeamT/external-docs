@@ -1,5 +1,5 @@
 ---
-title: Installer: Start Here
+title: "Installer: Start Here"
 audience: [installer]
 audience_order: {installer: 5}
 order: 5
