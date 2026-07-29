@@ -70,11 +70,9 @@ Note: a round heater node is 8" in diameter on either side of the rail. Two rail
 
 {% include dodont.html do="Mount above the table surface, out of the way of normal use." dont="Mount where people brush against the heater or its hot parts." %}
 
-{% include dodont.html do="Keep awnings, umbrellas, and fabric at least 20 in from the heater." dont="Hang or drape anything on or near the rail or heaters." %}
-
 - Never install heaters or place objects near them without meeting the required clearances.
 - Never block or obstruct the front of the heater.
-- Ensure curtains, awnings, umbrellas, and fabric roofs keep the specified clearances and aren't directly exposed to radiant heat.
+- Keep curtains, awnings, umbrellas, and fabric roofs at least 20 in from the heater, and never hang or drape anything on the rail or heaters.
 
 ## Installation & use
 
