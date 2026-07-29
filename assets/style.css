@@ -127,7 +127,9 @@ a { color: inherit; }
 
 .diagram-missing { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg, var(--wash), var(--wash) 12px, var(--line-soft) 12px, var(--line-soft) 24px); color: var(--ink-soft); font-size: 13px; text-align: center; padding: 20px; }
 
-.print-hint { margin: 34px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); color: var(--ink-soft); font-size: 13px; }
+/* Footer utility band: feedback line + print button. Sets the type size and
+   colour once so both children match by inheritance. */
+.doc-footer { margin: 52px 0 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; }
 .print-btn {
   font-family: inherit; font-size: 13px; cursor: pointer;
   background: none; border: 0; border-radius: 4px; padding: 2px 0;
@@ -146,7 +148,7 @@ a { color: inherit; }
 @media print {
   :root { --wash: #fff; }
   body { background: #fff; font-size: 12pt; }
-  .topbar, .filter-row, .print-hint, .crumb, .no-print { display: none !important; }
+  .topbar, .filter-row, .doc-footer, .crumb, .no-print { display: none !important; }
   .wrap { max-width: none; padding: 0; }
   .doc { padding: 0; }
   .card { break-inside: avoid; }
@@ -378,7 +380,9 @@ h2[id], h3[id] {
   scroll-margin-top: 64px; /* 49px header + ~15px breathing room */
 }
 
-.feedback { margin: 0 0 6px; }
+/* No font-size or colour here on purpose: both are inherited from .doc-footer,
+   which keeps this line and the print button identical. */
+.feedback { margin: 0 0 7px; }
 .feedback a {
   color: var(--ink-soft);
   text-decoration: underline;
