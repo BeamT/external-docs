@@ -103,7 +103,7 @@ Ideally the rail runs down the center of the table, so heat hits the middle of e
 
 {% include step.html number="1" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-01-slide-block.png" %}
 
-{% include step.html number="2" title="Prepare the mount" body="Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
+{% include step.html number="2" title="Prepare the mount" body="Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
 
 {% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
 
