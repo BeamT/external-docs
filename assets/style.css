@@ -315,6 +315,8 @@ a.next-link:hover .next-arrow { transform: translateX(4px); }
 @media print { .cover-checks { grid-template-columns: 1fr 1fr; } }
 
 
+/* Inline PNG screenshots (phone captures) — capped so they don't dominate the
+   page. Framed diagrams in .diagram / .step-figure are excluded below. */
 main img[src$=".png"] {
   display: block;
   width: auto;
@@ -326,11 +328,21 @@ main img[src$=".png"] {
 }
 
 main span:has(> img[src$=".png"]),
-main div:has(> img[src$=".png"]),
-main figure:has(> img[src$=".png"]) {
+main div:not(.step-figure):has(> img[src$=".png"]),
+main figure:not(.diagram):has(> img[src$=".png"]) {
   background: none;
   border: 0;
   padding: 0;
+}
+
+/* PNG diagrams fill the column; the container supplies the frame. */
+main .diagram img[src$=".png"],
+main .step-figure img[src$=".png"] {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 
