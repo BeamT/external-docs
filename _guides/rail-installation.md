@@ -20,7 +20,7 @@ updated: "2026-07-28"
 
 ## Before you start
 
-Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) before you begin — it covers the minimum clearances this install has to meet.
+Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) before you begin. It covers the minimum clearances this install has to meet.
 
 The site plan specifies where each rail goes and how long it is. Confirm the exact location against the plan before you mount anything.
 
@@ -46,7 +46,7 @@ Every rail ships with the same kit: two pre-built attachment assemblies, plus fa
 
 ### Rail attachment assemblies
 
-Two per rail, pre-built — these slide into the T-slot and are what the rail hangs from.
+Two per rail, pre-built. These slide into the T-slot and are what the rail hangs from.
 
 | Part | Qty |
 |---|---|
@@ -57,18 +57,18 @@ Two per rail, pre-built — these slide into the T-slot and are what the rail ha
 
 ### Overhead mounting blocks
 
-Pick one per install — see [Mount the rail](#mount-the-rail).
+Pick one per install. See [Mount the rail](#mount-the-rail).
 
 | Part | Qty | Use |
 |---|---|---|
-| Parallel mounting bracket | 2 | Ceiling mount — underside of a member |
-| Perpendicular mounting bracket | 2 | Beam/joist mount — vertical face |
+| Parallel mounting bracket | 2 | Ceiling mount, underside of a member |
+| Perpendicular mounting bracket | 2 | Beam/joist mount, vertical face |
 | Set screw, 1/4-20 x 5/16" | 4 | Clamps pipe into block |
 | Dropdown pipe, 6 ft | as needed | Cut to drop length |
 
 ### Through-mount fasteners
 
-Nut on the far side — pick the screw length for your material thickness.
+Nut on the far side. Pick the screw length for your material thickness.
 
 | Part | Qty |
 |---|---|
@@ -97,7 +97,7 @@ One of each.
 
 ## Rail placement over the table
 
-Ideally the rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the rail has to be off-center, angle the heaters toward the guests — but not so far that they only warm the guest's head.
+Ideally the rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the rail has to be off-center, angle the heaters toward the guests, but not so far that they only warm the guest's head.
 
 {% include diagram.html src="rail-placement.png" caption="Center the rail over the table; angle heaters toward guests when off-center." %}
 
@@ -105,7 +105,7 @@ Ideally the rail runs down the center of the table, so heat hits the middle of e
 
 {% include step.html number="1" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-01-slide-block.png" %}
 
-{% include step.html number="2" title="Prepare the mount" body="Step 2 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
+{% include step.html number="2" title="Prepare the mount" body="Step 2 has two variants. Use the one that matches the structure you're fastening to. You only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
 
 {% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
 
