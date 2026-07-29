@@ -52,7 +52,7 @@ After assigning every heater, it's critical to confirm each heater was assigned 
 
 {% include step.html number="3" title="Set a non-zero heat level" body="Tap 1, 2, or 3. Look up at the heater in that slot: its LEDs should change to match the level you picked, and it should start putting out heat. If a different heater responds, the wrong heater was assigned to the slot. Go back to Assign Devices and correct the assignment." diagram="reg-07-heater-hot.png" %}
 
-{% include step.html number="4" title="Work through every heater, then shut them off" body="Repeat for each slot in each zone. Tap "Turn off all heaters" to set every heater level back to 0 before you leave." %}
+{% include step.html number="4" title="Work through every heater, then shut them off" body="Repeat for each slot in each zone. Tap 'Turn off all heaters' to set every heater level back to 0 before you leave." %}
 
 ## Final checks
 
