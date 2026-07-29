@@ -18,11 +18,10 @@ layout: default
 
   <div class="doc-body">
     {{ content }}
-{% include feedback.html %}
-    
   </div>
 
-  <div class="print-hint no-print">
+  <div class="doc-footer no-print">
+    {% include feedback.html %}
     <button class="print-btn" onclick="window.print()">Print or save as PDF</button>
   </div>
 </article>

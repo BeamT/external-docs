@@ -378,47 +378,13 @@ h2[id], h3[id] {
   scroll-margin-top: 64px; /* 49px header + ~15px breathing room */
 }
 
-.feedback {
-  margin: 4rem 0 0;
-  padding: 1.5rem;
-  border: 1px solid #e2e2e2;
-  border-radius: 4px;
-  background: #fafafa;
+.feedback { margin: 0 0 6px; }
+.feedback a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: color 0.15s, text-decoration-color 0.15s;
 }
-
-.feedback-lede {
-  margin: 0 0 0.85rem;
-  font-family: "Elza", "Archivo", sans-serif;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-.feedback-btn {
-  display: inline-block;
-  padding: 0.55rem 1.1rem;
-  border: 1px solid #111;
-  border-radius: 3px;
-  font-family: "Elza Condensed", "Archivo", sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #111;
-  background: transparent;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.feedback-btn:hover {
-  background: #111;
-  color: #fff;
-}
-
-.feedback-note {
-  margin: 0.75rem 0 0;
-  font-size: 0.8rem;
-  color: #777;
-}
-
-@media print {
-  .feedback { display: none; }
-}
+.feedback a:hover { color: var(--ink); text-decoration-color: var(--ink-soft); }
+.feedback a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
