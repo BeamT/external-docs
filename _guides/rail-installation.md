@@ -60,7 +60,7 @@ Pick one per install. See [Mount the rail](#mount-the-rail).
 | Parallel mounting bracket | 2 | Ceiling mount, underside of a member |
 | Perpendicular mounting bracket | 2 | Beam/joist mount, vertical face |
 | Set screw, 1/4-20 x 5/16" | 4 | Clamps pipe into block |
-| Dropdown pipe, 6 ft | as needed | Cut to drop length |
+| Dropdown pipe, 6 ft | 1 | Cut to to drop length (up to 3 ft) |
 
 ### Through-mount fasteners
 
