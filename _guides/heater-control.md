@@ -98,3 +98,5 @@ Guests can scan the QR code on the heater pendant to open a simple page on their
 Outside your scheduled hours, heaters can't be controlled by the app or the pull-string until you adjust the schedule or switch to Manual Mode. During those times a heater shows as disabled, its purple and orange lights are off, and it flashes green if someone pulls the string.
 
 Inside your hours, heaters adjust based on guest presence and the outdoor temperature. When a guest leaves, the heater returns to its unoccupied level after about five minutes. Staff and guest changes always take precedence over the automatic level.
+
+If a heater isn't responding the way you expect, see the [Troubleshooting]({{ site.baseurl }}/guides/troubleshooting/) guide.
