@@ -97,7 +97,7 @@ a { color: inherit; }
 
 .warn { display: flex; gap: 12px; background: var(--warn-wash); border: 1px solid #f2dcb0; border-radius: var(--radius); padding: 14px 16px; margin: 18px 0; }
 .warn .ico { color: var(--warn); flex: none; margin-top: 2px; }
-.warn p { margin: 0; }
+.warn p { margin: 0; font-size: 15px; }
 .warn p strong { color: var(--warn); }
 
 .diagram { margin: 20px 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
