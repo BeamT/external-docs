@@ -4,13 +4,13 @@ audience: [customer, installer, electrician]
 audience_order: {customer: 50, electrician: 30, installer: 70}
 order: 100
 summary: How to reach Focal for service, plus specs and safety references.
-version: "1.0"
-updated: "2025-11-13"
+version: "1.1"
+updated: "2026-07-29"
 ---
 
 ## On this page
 - [Contact Focal](#contact-focal)
-- [Heater Duo specifications](#heater-duo-specifications)
+- [Duo specifications](#duo-specifications)
 - [Service and repairs](#service-and-repairs)
 - [Warranty](#warranty)
 - [Disposal](#disposal)
@@ -20,13 +20,9 @@ updated: "2025-11-13"
 
 For service, malfunctions, replacements, or questions, reach Focal Support.
 
-Focal  
-375 Alabama St Suite 220, San Francisco, CA 94110  
-Phone: 314-378-1131  
-Email: hello@focalheat.co  
-Web: www.focalheat.co
+{% include contact.html %}
 
-## Heater Duo specifications
+## Duo specifications
 
 | Spec | Value |
 |---|---|
@@ -41,7 +37,7 @@ Web: www.focalheat.co
 
 ## Service and repairs
 
-{% include warn.html text="The heater has no user-serviceable parts. All service and repairs beyond basic cleaning must be done by Focal-authorized personnel." %}
+{% include service.html style="warn" %}
 
 If a unit is damaged or malfunctioning, discontinue use, secure any loose parts, and contact Focal for a loaner or replacement rather than attempting a repair.
 
@@ -49,9 +45,11 @@ If a unit is damaged or malfunctioning, discontinue use, secure any loose parts,
 
 Focal heaters carry a 3-year warranty. For a warranty claim, contact Focal Support with the heater's serial number and a description of the issue.
 
+{% include serial.html %}
+
 ## Disposal
 
-The product contains recyclable materials. Don't dispose of it with household waste — contact Focal for returns and disposal.
+The product contains recyclable materials. Don't dispose of it with household waste. Contact Focal for returns and disposal.
 
 ## California Prop 65
 

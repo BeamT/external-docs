@@ -70,7 +70,30 @@ def render_include(name, args):
         items = [i.strip() for i in args.get("items", "").split("|") if i.strip()]
         lis = "".join(f"<li>{html.escape(i)}</li>" for i in items)
         return f'<ul class="checklist">{lis}</ul>'
-    return ""
+    if name == "contact.html":
+        if args.get("style") == "compact":
+            return ('Questions: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a>'
+                    ' &middot; <a href="tel:+13143781131">314-378-1131</a>')
+        return ('<div class="contact"><p class="contact-name">Focal</p>'
+                '<p>375 Alabama St Suite 220<br>San Francisco, CA 94110</p>'
+                '<p>Phone: <a href="tel:+13143781131">314-378-1131</a>'
+                '<br>Email: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a>'
+                '<br>Web: <a href="https://www.focalheat.co">www.focalheat.co</a></p></div>')
+    if name == "service.html":
+        txt = ("The heater has no user-serviceable parts. All service beyond basic "
+               "cleaning must be done by Focal-authorized personnel.")
+        if args.get("style") == "warn":
+            return render_include("warn.html", {"text": txt})
+        return f"<p>{txt}</p>"
+    if name == "serial.html":
+        return ("<p>The serial number is printed on the top of each heater, where it "
+                "mounts to the rail. It also appears on the Heater Control page when "
+                "you tap a slot.</p>")
+    # Fall through to the raw template rather than dropping the include silently.
+    # Static includes such as railtable.html render correctly this way, and any
+    # future include with Liquid in it will show up visibly broken instead of
+    # disappearing without a trace.
+    return tpl
 
 def expand_includes(body):
     def repl(m):

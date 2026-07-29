@@ -4,8 +4,8 @@ audience: [customer]
 audience_order: {customer: 30}
 order: 90
 summary: Daily checks, cleaning schedule, and when to call for service.
-version: "1.0"
-updated: "2025-11-13"
+version: "1.1"
+updated: "2026-07-29"
 ---
 
 ## On this page
@@ -19,9 +19,9 @@ updated: "2025-11-13"
 
 A quick routine each shift keeps false offline reports down:
 
-{% include checklist.html items="Rail switch is on | Each heaters power LEDs are lit" %}
+{% include checklist.html items="Rail switch is on | Each heater's power LEDs are lit" %}
 
-{% include dodont.html do="Leave heaters seated overnight so they stay online." dont="Unplug heaters overnight — it causes false offline reports the next day." %}
+{% include dodont.html do="Leave heaters seated overnight so they stay online." dont="Unplug heaters overnight. It causes false offline reports the next day." %}
 
 ## How often to clean
 
@@ -35,18 +35,26 @@ Perform basic cleaning and inspection every 2 to 3 months, or more often in dust
 
 {% include step.html number="2" title="Clear the grille" body="If dust or debris is visible inside the grille or on the reflector, gently blow it out with canned compressed air." %}
 
-{% include dodont.html do="Use canned compressed air for dust inside the grille." dont="Spray water or use a pressure washer or air compressor — it damages sensitive parts." %}
+{% include dodont.html do="Use canned compressed air for dust inside the grille." dont="Spray water or use a pressure washer or air compressor. Both damage sensitive parts." %}
 
 Do not open or disassemble the heater beyond what's described here, and never spray water or cleaning liquid into the grille or onto heating components.
 
 ## Damage & malfunction
 
-Immediately discontinue use and contact Focal Support if the heater shows any of these:
+Stop using the heater and contact Focal Support right away if you see any of these:
 
-{% include checklist.html items="Physical damage to the housing or grille | Burned, frayed, or damaged power cord or plug | Unusual odors or sounds during operation | Heater won't turn on or respond to controls | Any other visible or suspected electrical or heating damage" %}
+{% include checklist.html items="Physical damage to the housing or grille | Burned, frayed, or damaged power cord or plug | Unusual odors or sounds during operation | Any other visible or suspected electrical or heating damage" %}
 
 {% include warn.html text="Do not operate a heater that shows any sign of damage. Doing so may result in electrical hazards or fire." %}
 
+If a heater won't turn on or won't respond to the app but shows none of the damage above, start with [Troubleshooting]({{ site.baseurl }}/troubleshooting/). Most cases come down to a heater that needs re-seating.
+
 ## Service & support
 
-The heater has no user-serviceable parts. All service beyond basic cleaning must be done by Focal-authorized personnel. To report a malfunction, contact Focal Support at hello@focalheat.co.
+{% include service.html %}
+
+To report a malfunction, contact Focal Support with the heater's serial number and a description of the problem.
+
+{% include serial.html %}
+
+{% include contact.html %}

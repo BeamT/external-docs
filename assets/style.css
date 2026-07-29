@@ -350,3 +350,10 @@ h2[id], h3[id] {
 }
 .feedback a:hover { color: var(--ink); text-decoration-color: var(--ink-soft); }
 .feedback a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+/* ---- contact block (_includes/contact.html) ---- */
+.contact { margin: 14px 0 20px; }
+.contact p { margin: 0 0 10px; }
+.contact p:last-child { margin-bottom: 0; }
+.contact .contact-name { font-family: var(--font-display); font-weight: 700; font-size: 17px; }
+.contact a { color: var(--focal); text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
