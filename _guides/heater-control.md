@@ -50,7 +50,7 @@ From the menu, tap **Scheduling**, then check **Enable Schedule** to turn on Sch
 
 Heat runs from OFF (0) to HIGH (3).
 
-In Schedule Mode, heat is adjusted for you during your hours, based on how cold it is outside and whether a guest is seated. Focal manages this for your site today — heaters step up as the outdoor temperature drops and stay off when it's mild:
+In Schedule Mode, heat is adjusted for you during your hours, based on how cold it is outside and whether a guest is seated. Heaters step up as the outdoor temperature drops and stay off when it's mild:
 
 - Below 55°F — Level 3 (HIGH)
 - 55–60°F — Level 2

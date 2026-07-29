@@ -1,0 +1,12 @@
+{%- comment -%}
+Single source of truth for the service restriction. Was previously written three
+different ways across Safety, Maintenance and Warranty.
+  {% include service.html %}               plain paragraph
+  {% include service.html style="warn" %}  inside the standard warning box
+{%- endcomment -%}
+{%- assign service_text = "The heater has no user-serviceable parts. All service beyond basic cleaning must be done by Focal-authorized personnel." -%}
+{%- if include.style == "warn" -%}
+{% include warn.html text=service_text %}
+{%- else -%}
+<p>{{ service_text }}</p>
+{%- endif -%}

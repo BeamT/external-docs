@@ -1,0 +1,10 @@
+{%- comment -%}
+Single source of truth for Focal contact details.
+  {% include contact.html %}                  full block, for guide pages
+  {% include contact.html style="compact" %}  inline one-liner, for the packet cover
+{%- endcomment -%}
+{%- if include.style == "compact" -%}
+Questions: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a> &middot; <a href="tel:+13143781131">314-378-1131</a>
+{%- else -%}
+<div class="contact"><p class="contact-name">Focal</p><p>375 Alabama St Suite 220<br>San Francisco, CA 94110</p><p>Phone: <a href="tel:+13143781131">314-378-1131</a><br>Email: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a><br>Web: <a href="https://www.focalheat.co">www.focalheat.co</a></p></div>
+{%- endif -%}
