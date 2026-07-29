@@ -40,7 +40,7 @@ There's no separate app to download for Focal Control. If you'd like it to open 
 
 {% include step.html number="1" title="Open this page in Chrome" body="Make sure you're using Chrome, not another browser." %}
 {% include step.html number="2" title="Tap the three-dot menu" body="It's next to the address bar." %}
-{% include step.html number="3" title="Tap Add to Home Screen" body="On newer versions of Chrome this may say Install app instead." %}
+{% include step.html number="3" title="Tap Install and Create Shortcut" body="On newer versions of Chrome this may say Install app instead." %}
 {% include step.html number="4" title="Tap Add or Install" body="The icon shows up on your Home Screen and opens straight to this page from now on." %}
 
 ## Accessing the menu
