@@ -38,13 +38,13 @@ Each rail has a T-slot running its length for T-nuts, and an 8-foot built-in pow
 
 ## What's in the mounting kit
 
-Every rail ships with the same kit. Two rail attachment assemblies arrive pre-built. The rest of the kit is fastener options, so you can choose the mount and the fastening method that suit the structure.
+Every rail ships with the same kit: two pre-built attachment assemblies, plus fastener options for whichever mount and fastening method suit your structure.
 
 ### Rail attachment assemblies
 
-Two per rail, shipped assembled. These slide into the rail's T-slot and are what the rail hangs from.
+Two per rail, pre-built — these slide into the T-slot and are what the rail hangs from.
 
-| Part | Qty per assembly |
+| Part | Qty |
 |---|---|
 | Parallel mounting bracket | 1 |
 | T-nut, 1/4-20 | 1 |
@@ -53,43 +53,42 @@ Two per rail, shipped assembled. These slide into the rail's T-slot and are what
 
 ### Overhead mounting blocks
 
-Use one type per install, depending on the structure you're fastening to. See [Mount the rail](#mount-the-rail).
+Pick one per install — see [Mount the rail](#mount-the-rail).
 
-| Part | Qty | Used for |
+| Part | Qty | Use |
 |---|---|---|
-| Parallel mounting bracket | 2 | Ceiling mount — fastens to the underside of a member |
-| Perpendicular mounting bracket | 2 | Beam or joist mount — fastens to a vertical face |
-| Set screw, 1/4-20 x 5/16" | 4 | Clamping the pipe into either block |
-| Dropdown pipe, 6 ft | as needed | Ships with the rail; cut to the drop you need |
+| Parallel mounting bracket | 2 | Ceiling mount — underside of a member |
+| Perpendicular mounting bracket | 2 | Beam/joist mount — vertical face |
+| Set screw, 1/4-20 x 5/16" | 4 | Clamps pipe into block |
+| Dropdown pipe, 6 ft | as needed | Cut to drop length |
 
 ### Through-mount fasteners
 
-For fastening a block through a beam or other structure, with the nut on the far side. Pick the screw length that matches the thickness of the material.
+Nut on the far side — pick the screw length for your material thickness.
 
 | Part | Qty |
 |---|---|
-| Flat-head screw, 1/4-20 x 1.5" | 4 |
-| Flat-head screw, 1/4-20 x 2.5" | 4 |
-| Flat-head screw, 1/4-20 x 3.5" | 4 |
+| Flat-head screw, 1/4-20 x 1.5"/2.5"/3.5" | 4 each |
 | SAE washer, 1/4" ID | 4 |
 | Nylon lock nut, 1/4-20 | 4 |
 
 ### Wood screws
 
-For fastening a block into solid wood where you can't reach the far side to through-mount.
+For solid wood where you can't reach the far side.
 
 | Part | Qty |
 |---|---|
-| Wood screw, #12 x 2" | 4 |
-| Wood screw, #12 x 3" | 4 |
+| Wood screw, #12 x 2"/3" | 4 each |
 
 ### Tools
 
-| Tool | Qty | Drives |
-|---|---|---|
-| 1/8" L-wrench | 1 | Set screws |
-| T30 L-wrench | 1 | Machine screws (1/4-20 flat-head) |
-| T25 screwdriver bit | 1 | Wood screws |
+One of each.
+
+| Tool | Drives |
+|---|---|
+| 1/8" L-wrench | Set screws |
+| T30 L-wrench | Machine screws (1/4-20 flat-head) |
+| T25 screwdriver bit | Wood screws |
 
 
 ## Rail placement over the table
