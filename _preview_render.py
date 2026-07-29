@@ -3,6 +3,7 @@
 so we can preview the output locally. Handles: frontmatter, the {% include %}
 tags used by these guides, kramdown-style markdown, and the two layouts."""
 import re, os, glob, sys, html
+from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 try:
@@ -95,14 +96,21 @@ def render_markdown_preserving_html(body):
         return "<pre>(python-markdown not installed; run pip install markdown)</pre>"
     return add_anchors(md(body))
 
+FEEDBACK_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSeRpO6MOve96TcSFl6TOZL383j3cJ6oyqnPy2VG5joxngoFhg/viewform?usp=pp_url"
+
 def apply_guide_layout(fm, content_html):
-    badges = "".join(f'<span class="badge">{a.capitalize()}</span>' for a in fm.get("audience", []))
+    badges = "".join(
+        f'<span class="badge">{"Restaurant" if a == "customer" else a.capitalize()}</span>'
+        for a in fm.get("audience", [])
+    )
+    fb = (f'{FEEDBACK_FORM}&amp;entry.262754240={quote(fm.get("title",""))}'
+          f'&amp;entry.130157017={quote("/" + fm.get("_slug","") + "/")}')
     return f'''<article class="doc">
   <a href="{BASEURL}/" class="crumb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All guides</a>
   <div class="doc-head"><h1>{html.escape(fm.get("title",""))}</h1>
   <div class="doc-meta">{badges}<span>v{fm.get("version","")}</span><span>Updated {fm.get("updated","")}</span></div></div>
   <div class="doc-body">{content_html}</div>
-  <div class="print-hint no-print"><button class="print-btn" onclick="window.print()">Print or save as PDF</button></div>
+  <div class="doc-footer no-print"><p class="feedback">Something wrong, unclear or missing on this page? <a href="{fb}" target="_blank" rel="noopener">Provide feedback</a></p><button class="print-btn" onclick="window.print()">Print or save as PDF</button></div>
 </article>'''
 
 def page_shell(title, inner, is_home=False):

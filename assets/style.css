@@ -139,7 +139,6 @@ a { color: inherit; }
 .print-btn:hover { color: var(--ink); text-decoration-color: var(--ink-soft); }
 .print-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-.results { padding: 8px 0 60px; display: grid; gap: 10px; }
 .empty { color: var(--ink-soft); padding: 24px 0; }
 
 @media (min-width: 640px) { .brand { font-size: 22px; } }
@@ -158,21 +157,9 @@ a { color: inherit; }
   .diagram, .step-figure, .card { border-color: #ccc; }
 }
 
-/* ---- table of contents (On this page) ---- */
+/* ---- "On this page" list (plain markdown list, bullets stripped) ---- */
 .doc-body h2:first-of-type { margin-top: 20px; }
-.doc-body > ul:first-of-type,
-.doc-body ul.toc { list-style: none; }
-.toc-box {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  margin: 4px 0 24px;
-}
-.toc-box .toc-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 8px; font-weight: 700; }
-.toc-box ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
-.toc-box a { color: var(--focal); text-decoration: none; font-size: 15px; }
-.toc-box a:hover { text-decoration: underline; }
+.doc-body > ul:first-of-type { list-style: none; }
 
 
 
@@ -200,7 +187,6 @@ a { color: inherit; }
 .packet-guide-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 8px; }
 .packet-guide-head h1 { font-family: var(--font-display); font-weight: 800; font-size: 30px; margin: 0; }
 .packet-ver { color: var(--ink-soft); font-size: 13px; }
-.packet-guide .toc-box { display: none; }
 /* the "On this page" heading + its list, hidden in the packet to avoid dead links */
 .packet-guide h2#on-this-page,
 .packet-guide h2#on-this-page + ul { display: none; }
@@ -213,8 +199,6 @@ a { color: inherit; }
   .packet-end { display: none !important; }
 }
 
-.packet-link { color: var(--focal); font-weight: 700; text-decoration: none; white-space: nowrap; }
-.packet-link:hover { text-decoration: underline; }
 
 /* ---- linked steps (Start Here) ---- */
 a.step-link {
@@ -348,32 +332,6 @@ main .step-figure img[src$=".png"] {
 }
 
 
-/* Next-guide chaining (installer sequence) */
-.nextlink {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid #d8d8d8;
-  border-radius: 8px;
-  background: #fafafa;
-  color: inherit;
-  text-decoration: none;
-}
-.nextlink:hover { border-color: #111; background: #fff; }
-.nextlink-label {
-  font-family: "Elza Condensed", Archivo, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.75rem;
-  color: #6b6b6b;
-  white-space: nowrap;
-}
-.nextlink-title { font-weight: 600; font-size: 1.0625rem; }
-.nextlink-arrow { margin-left: auto; font-size: 1.25rem; color: #6b6b6b; }
-.nextlink:hover .nextlink-arrow { color: #111; }
-@media print { .nextlink { display: none; } }
 
 /* Offset anchor scroll position so the sticky topbar doesn't cover headings */
 h2[id], h3[id] {
