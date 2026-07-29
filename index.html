@@ -43,12 +43,21 @@ title: null
   var empty = document.getElementById('empty');
   var aud = 'all';
 
-  // Deep-link support: ?a=installer (used by the printed packet's QR) opens
-  // straight to that audience's ordered view.
+  // Deep-link support: ?a=installer (used by the printed packet's QR and by
+  // the /installer/, /electrician/, /restaurant/ share links) opens straight
+  // to that audience's ordered view.
   var params = new URLSearchParams(window.location.search);
   var initial = params.get('a');
   if (initial && ['installer','electrician','customer'].indexOf(initial) !== -1) {
     aud = initial;
+  }
+
+  // Keep the address bar in sync with the visible filter, so copying the URL
+  // out of the browser shares the filtered view rather than the full list.
+  function syncUrl() {
+    if (!window.history || !history.replaceState) return;
+    history.replaceState(null, '',
+      aud === 'all' ? window.location.pathname : window.location.pathname + '?a=' + aud);
   }
 
   function orderFor(card) {
@@ -86,12 +95,14 @@ title: null
     chip.addEventListener('click', function () {
       aud = chip.dataset.aud;
       chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip); });
+      syncUrl();
       apply();
     });
   });
   // reflect any deep-linked audience in the pressed chip before first render
   chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.aud === aud); });
   if (search) search.addEventListener('input', apply);
+  syncUrl();
   apply();
 })();
 </script>
