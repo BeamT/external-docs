@@ -36,7 +36,7 @@ Focal Control runs your heaters one of two ways. You pick the mode from the Sche
 
 **Schedule Mode** sets the hours your heaters are allowed to run. At your start time nothing switches on by itself — heat simply becomes *available*, for staff in the app, for guests scanning the QR code, and for automatic adjustment based on guest presence. At your end time every heater turns off. Outside your hours, heaters can't be turned on at all.
 
-**Manual Mode** hands full control to staff. Heaters stay exactly where you set them until someone changes them, and nothing shuts off at the end of the night. It's useful when you need to run outside your normal hours: switch to it, run the heaters, then switch back to Schedule Mode without touching your saved hours.
+**Manual Mode** hands full control to staff and guets via the QR code. Heaters stay exactly where set them until someone changes them, and nothing shuts off at the end of the night. It's useful when you need to run outside your normal hours: switch to it, run the heaters, then switch back to Schedule Mode without touching your saved hours.
 
 ## Set your schedule
 
@@ -57,9 +57,9 @@ In Schedule Mode, heat is adjusted for you during your hours, based on how cold 
 - 60–65°F — Level 1
 - 65°F and above — no heat
 
-Because a person on our team is in the loop right now, these changes aren't instant. Allow a few minutes for heaters to catch up after a guest sits down or the weather turns.
+These changes aren't always instant. Allow a few minutes for heaters to catch up after a guest sits down or the weather turns.
 
-The Settings page also shows **Unoccupied Heat Level** and **Occupied Heat Level** selectors. Focal's temperature-based monitoring currently takes precedence over these, so changing them may not change what your heaters do. If you want a warmer or cooler baseline for your patio, tell your Focal contact and we'll set it for you.
+The Settings page also shows **Unoccupied Heat Level** and **Occupied Heat Level** selectors. Focal's temperature-based monitoring currently takes precedence over these, so changing them may not change what your heaters do.
 
 Anyone can override the automatic level at any time — staff from the Heater Control page, guests from the QR code on the pendant. A manual change always wins.
 
@@ -69,7 +69,7 @@ Open it from the menu. This is where you'll spend most of your time. It has a fe
 
 The **Dashboard** shows the mode your heaters are in. In Schedule Mode it shows whether the schedule is active and what time heaters shut down, plus a button to switch to Manual Mode. **System Status** shows how many heaters are online and active. The **power button** turns all heaters on or off at once.
 
-The **Restaurant Map** shows where your heaters sit. If you have multiple parklets or areas, Focal can set these up as separate **zones** you control as a group.
+The **Restaurant Map** shows the location of your zone(s). If you have multiple parklets or areas, Focal will set these up as separate **zones** you control as a group. If you'd like to make adjustments, let us know. 
 
 **All Heaters and Zone controls** push a heat level to every heater, or to every heater in one zone at once — handy for warming the whole space quickly.
 
