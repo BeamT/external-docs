@@ -91,7 +91,6 @@ For fastening a block into solid wood where you can't reach the far side to thro
 | T30 L-wrench | 1 | Machine screws (1/4-20 flat-head) |
 | T25 screwdriver bit | 1 | Wood screws |
 
-{% include diagram.html src="rail-00-kit.svg" caption="Kit contents grouped by assembly: rail attachment assemblies, overhead mounting blocks, through-mount fasteners, wood screws, and tools." %}
 
 ## Rail placement over the table
 
@@ -103,7 +102,7 @@ Ideally the rail runs down the center of the table, so heat hits the middle of e
 
 {% include step.html number="1" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-01-slide-block.png" %}
 
-{% include step.html number="2" title="Prepare the mount" body="Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
+{% include step.html number="2" title="Prepare the mount" body="Step 2 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
 
 {% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
 
@@ -122,7 +121,7 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 ## Post-mount checks
 
-{% include checklist.html items="All set screws tightened on every pipe | T-nut screws tightened on every mounting block | All set screws facing the power-cord-exit side | Rail plumb and level to the floor | Rail height above the patio is correct | Rail swings no more than 1/4\" from rest in either direction" %}
+{% include checklist.html items="All fasteners fully tightened | Rail plumb and level to the floor | Rail height above the patio is correct | Rail swings no more than 1/4\" from rest in either direction" %}
 
 {% include warn.html text="If the rail swings more than 1/4\", add aircraft cable or bracketing to stiffen the assembly before loading heaters." %}
 
@@ -130,6 +129,6 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 {% include dodont.html do="Plug directly into a dedicated, GFCI-protected outdoor outlet on its own circuit." dont="Use an extension cord, power strip, or a circuit shared with other loads." %}
 
-Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. All rail cabling should be 12AWG rated for 20A. Plug into the outlet, then flip the rail switch on. Secure any slack so nothing hangs below the bottom of the rail — zip ties, screw or nail cable clamps, and similar systems all work.
+Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. Plug into the outlet, then flip the rail switch on. Secure any slack so nothing hangs below the bottom of the rail.
 
 {% include nextlink.html slug="install-heaters" title="Install Heaters" %}
