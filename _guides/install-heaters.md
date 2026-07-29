@@ -46,4 +46,4 @@ The rail should already be mounted, plugged in, and switched on. Heaters slide o
 {% include checklist.html items="Every heater is seated in a plug point and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
 
 
-{% include nextlink.html slug="register-assign-heaters" title="Register & Assign Heaters" %}
+{% include nextlink.html slug="register-assign-heaters" title="Assign Heaters" %}

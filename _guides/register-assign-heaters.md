@@ -1,5 +1,5 @@
 ---
-title: Register & Assign Heaters
+title: Assign Heaters
 audience: [installer]
 audience_order: {installer: 60}
 order: 60
@@ -18,7 +18,7 @@ updated: "2026-07-28"
 
 ## Before you start
 
-Registering and assigning heaters allows staff to control heaters individually from the Focal Control page. 
+Assigning heaters allows staff to control heaters individually from the Focal Control page. 
 
 You need:
 
