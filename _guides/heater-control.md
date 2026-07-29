@@ -26,7 +26,7 @@ You'll get a unique login link and password from Focal by email. Open the link, 
 
 ## Accessing the menu
 
-Tap the three lines in the upper right corner, next to the Focal logo, to open the menu. You'll see three options: **Heater Control**, **Scheduling**, and **Settings**. Scheduling and Settings are where you set things up; Heater Control is where you run day to day.
+Tap the menu icon in the upper left corner, next to the Focal logo, to open the menu. You'll see three options: **Heater Control**, **Scheduling**, and **Settings**. Scheduling and Settings are where you set things up; Heater Control is where you run day to day.
 
 ## The two modes
 

@@ -19,7 +19,7 @@ updated: "2025-11-13"
 
 A quick routine each shift keeps false offline reports down:
 
-{% include checklist.html items="Rail switch is on | Each unit is seated in a plug point | Pull the string down once and release" %}
+{% include checklist.html items="Rail switch is on | Each heaters power LEDs are lit" %}
 
 {% include dodont.html do="Leave heaters seated overnight so they stay online." dont="Unplug heaters overnight — it causes false offline reports the next day." %}
 
