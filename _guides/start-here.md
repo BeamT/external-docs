@@ -3,8 +3,9 @@ title: Start Here — Installer
 audience: [installer]
 audience_order: {installer: 5}
 order: 5
-summary: What to check before you begin, plus the full install sequence at a glance. Start here on every job.
-version: "1.3"
+summary: What to check before you begin, plus the full install sequence at a glance. Read this on every job.
+lead: true
+version: "1.4"
 updated: "2026-07-28"
 ---
 

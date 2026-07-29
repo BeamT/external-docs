@@ -31,6 +31,7 @@
   --wash: #faf8f4;
   --focal: #ff7a00;
   --focal-wash: #fff3e6;
+  --focal-ink: #b35500;
   --do: #1d9e75;
   --do-wash: #e6f5ef;
   --dont: #d64545;
@@ -79,6 +80,11 @@ a { color: inherit; }
 .card p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15px; }
 .badges { display: flex; gap: 6px; flex-wrap: wrap; }
 .badge { font-size: 12px; border-radius: 999px; padding: 3px 10px; background: var(--wash); color: var(--ink-soft); border: 1px solid var(--line); }
+
+/* ---- lead card: entry point for a filtered audience ---- */
+.lead-eyebrow { display: none; }
+.card--lead .lead-eyebrow { display: block; font-size: 13px; font-weight: 600; color: var(--focal-ink); margin-bottom: 6px; }
+/* one notch louder, if wanted: .card--lead { background: var(--focal-wash); } */
 
 .doc { padding: 28px 0 90px; }
 .crumb { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-soft); text-decoration: none; font-size: 15px; margin-bottom: 18px; }

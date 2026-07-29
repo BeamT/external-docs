@@ -4,7 +4,7 @@ title: null
 ---
 <section class="hero">
   <h1>Focal Guides</h1>
-  <p>Guides to prepare for, install and use Focal heaters.</p>
+  <p>How to prepare for, install, and use Focal heaters.</p>
 </section>
 
 <div class="filter-row" role="group" aria-label="Filter by audience">
@@ -13,8 +13,6 @@ title: null
   <button class="chip" data-aud="customer" aria-pressed="false">Restaurant</button>
   <button class="chip" data-aud="all" aria-pressed="true">All</button>
 </div>
-
-<p class="flow-note" id="flow-note" hidden></p>
 
 <div class="card-list" id="card-list">
   {% assign guides = site.guides | sort: "order" %}
@@ -26,7 +24,9 @@ title: null
      data-order-electrician="{{ g.audience_order.electrician | default: 999 }}"
      data-order-customer="{{ g.audience_order.customer | default: 999 }}"
      data-title="{{ g.title | downcase }}"
-     data-summary="{{ g.summary | downcase }}">
+     data-summary="{{ g.summary | downcase }}"
+     data-lead="{% if g.lead %}true{% else %}false{% endif %}">
+    {% if g.lead %}<div class="lead-eyebrow">Start here</div>{% endif %}
     <h2>{{ g.title }}</h2>
     <p>{{ g.summary }}</p>
     <div class="badges">
@@ -44,7 +44,6 @@ title: null
   var chips = document.querySelectorAll('.chip');
   var search = document.getElementById('search');
   var empty = document.getElementById('empty');
-  var flowNote = document.getElementById('flow-note');
   var aud = 'all';
 
   // Deep-link support: ?a=installer (used by the printed packet's QR) opens
@@ -54,8 +53,6 @@ title: null
   if (initial && ['installer','electrician','customer'].indexOf(initial) !== -1) {
     aud = initial;
   }
-
-  var SEQUENCED = { installer: 'Follow these in order for a full install.' };
 
   function orderFor(card) {
     var key = aud === 'all' ? 'default' : aud;
@@ -77,14 +74,12 @@ title: null
     visible.sort(function (a, b) { return orderFor(a) - orderFor(b); });
     visible.forEach(function (c) { list.appendChild(c); });
 
-    var sequenced = SEQUENCED[aud] && q.length < 2;
-    if (flowNote) {
-      if (sequenced) {
-        flowNote.textContent = SEQUENCED[aud];
-        flowNote.hidden = false;
-      } else {
-        flowNote.hidden = true;
-      }
+    // Promote the audience's entry-point guide to a lead card. Only in a
+    // filtered, unsearched view, where "first" actually means "start here".
+    cards.forEach(function (c) { c.classList.remove('card--lead'); });
+    if (aud !== 'all' && q.length < 2 && visible.length &&
+        visible[0].dataset.lead === 'true') {
+      visible[0].classList.add('card--lead');
     }
 
     if (empty) empty.hidden = visible.length !== 0;
