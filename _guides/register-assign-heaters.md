@@ -44,7 +44,7 @@ You need:
 
 ## Confirm every assignment
 
-After assigning every heater, it's critical to confirm each heater was assigned to the correct slot so that right heater turns on when commanded.
+After assigning every heater, it's critical to confirm each heater was assigned to the correct slot so that the right heater turns on when commanded.
 
 {% include step.html number="1" title="Go to Heater Control" body="Open the menu in the top left and choose Heater Control." %}
 

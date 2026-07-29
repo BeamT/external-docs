@@ -36,7 +36,7 @@ Focal Control runs your heaters one of two ways. You pick the mode from the Sche
 
 **Schedule Mode** sets the hours your heaters are allowed to run. At your start time nothing switches on by itself — heat simply becomes *available*, for staff in the app, for guests scanning the QR code, and for automatic adjustment based on guest presence. At your end time every heater turns off. Outside your hours, heaters can't be turned on at all.
 
-**Manual Mode** hands full control to staff and guets via the QR code. Heaters stay exactly where set them until someone changes them, and nothing shuts off at the end of the night. It's useful when you need to run outside your normal hours: switch to it, run the heaters, then switch back to Schedule Mode without touching your saved hours.
+**Manual Mode** hands full control to staff and guests via the QR code. Heaters stay exactly where you set them until someone changes them, and nothing shuts off at the end of the night. It's useful when you need to run outside your normal hours: switch to it, run the heaters, then switch back to Schedule Mode without touching your saved hours.
 
 ## Set your schedule
 
@@ -99,4 +99,4 @@ Outside your scheduled hours, heaters can't be controlled by the app or the pull
 
 Inside your hours, heaters adjust based on guest presence and the outdoor temperature. When a guest leaves, the heater returns to its unoccupied level after about five minutes. Staff and guest changes always take precedence over the automatic level.
 
-If a heater isn't responding the way you expect, see the [Troubleshooting]({{ site.baseurl }}/guides/troubleshooting/) guide.
+If a heater isn't responding the way you expect, see the [Troubleshooting]({{ site.baseurl }}/troubleshooting/) guide.

@@ -35,7 +35,7 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 ## Heat & burn hazards
 
 - Do not tamper with or open the interior of the heater.
-- Do not keep combustible materials (eg. furniture, awnings, fabric, paper, decorations) near the heaters.
+- Do not keep combustible materials (e.g. furniture, awnings, fabric, paper, decorations) near the heaters.
 - Do not hang any objects from the heater or its mounting brackets.
 - Do not operate near flammable vapors or liquids such as gasoline or solvents.
 

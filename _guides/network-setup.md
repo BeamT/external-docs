@@ -36,7 +36,7 @@ The Focal Point networking box connects to the customer's existing router and th
 
 {% include step.html number="2" title="Power the Focal Point networking box" body="Plug the Focal Point networking box into a nearby outlet, using the supplied power extension cord if the outlet is out of reach." %}
 
-{% include step.html number="3" title="Mount the access point mount" body="The site plan specifies where the access point goes and should be primary location. Mount the wall mount there and only deviate if the planned spot is physically unworkable, and note the change on the plan." %}
+{% include step.html number="3" title="Mount the access point mount" body="The site plan specifies where the access point goes and should be the primary location. Mount the wall mount there and only deviate if the planned spot is physically unworkable, and note the change on the plan." %}
 
 {% include step.html number="4" title="Attach the access point" body="Connect the second network cable to the wireless access point and the Focal Point networking box. Slide the access point onto its mount." %}
 

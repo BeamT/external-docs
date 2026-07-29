@@ -23,7 +23,7 @@ The rail should already be mounted, plugged in, and switched on. Heaters slide o
 
 ## Open the rail end
 
-{% include step.html number="1" title="Loosen and move the bumper" body="Loosen the bumper screw and slide the bumper toward the center of the rail to access the two scews beneath." diagram="duo-01-open-end.svg" %}
+{% include step.html number="1" title="Loosen and move the bumper" body="Loosen the bumper screw and slide the bumper toward the center of the rail to access the two screws beneath." diagram="duo-01-open-end.svg" %}
 
 {% include step.html number="2" title="Remove the end cap" body="Remove the end cap screws and take off the end cap to open the end of the rail. Keep one hand on the end cap while removing the screws to ensure it doesn't fall." diagram="duo-01-open-end.svg" %}
 
