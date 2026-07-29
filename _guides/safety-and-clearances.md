@@ -64,7 +64,7 @@ Every install must meet these distances, measured from the heater and rail to th
 
 Note: a round heater node is 8" in diameter on either side of the rail. Two rails mounted end to end must keep at least 4" of space between them.
 
-{% include diagram.html src="clearances.svg" caption="Side view of a ceiling-mounted rail showing all five clearance dimensions." %}
+{% include diagram.html src="clearances.png" caption="Side view of a ceiling-mounted rail showing all five clearance dimensions." %}
 
 ## Clearance rules
 
