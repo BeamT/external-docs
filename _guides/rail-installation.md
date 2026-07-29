@@ -20,6 +20,10 @@ updated: "2026-07-28"
 
 ## Before you start
 
+Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) before you begin — it covers the minimum clearances this install has to meet.
+
+The site plan specifies where each rail goes and how long it is. Confirm the exact location against the plan before you mount anything.
+
 {% include dodont.html do="Confirm the mounting surface is solid and can hold 300 lb" dont="Mount to anything that flexes or isn't rated for the load." %}
 
 {% include warn.html text="Do not power on the rail until mounting is complete and clearances are verified." %}
@@ -120,7 +124,7 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 ## Post-mount checks
 
-{% include checklist.html items="All fasteners fully tightened | Rail plumb and level to the floor | Rail height above the patio is correct | Rail swings no more than 1/4\" from rest in either direction" %}
+{% include checklist.html items="All fasteners fully tightened | Rail plumb and level to the floor | Rail height and location match the site plan | Rail swings no more than 1/4\" from rest in either direction" %}
 
 {% include warn.html text="If the rail swings more than 1/4\", add aircraft cable or bracketing to stiffen the assembly before loading heaters." %}
 
