@@ -24,7 +24,7 @@ Each Focal rail ships with a factory-installed plug — either 15A or 20A depend
 
 ## System basics
 
-Each Focal heater is rated 600W (two 300W nodes) at 120V, 60Hz. A rail's total load depends on how many heaters it carries, which also determines whether the rail comes with a 15A or 20A plug.
+Each Focal heater is rated 600W (two 300W nodes) at 120V, 60Hz. A rail's total load depends on how many heaters it carries.
 
 Focal heaters conform to UL 2021 and are certified by TÜV Rheinland.
 
@@ -38,7 +38,7 @@ Each rail is limited to a maximum number of heaters. The rail model determines t
 | DRL-06 | 6 ft | 80.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
 | DRL-08 | 8 ft | 98.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
 
-{% include warn.html text="Never load a rail with more heaters than its row allows — it can cause overheating, electrical overload, or fire. If more heat is needed, add another rail on its own circuit." %}
+{% include warn.html text="Never load a rail with more heaters than its row allows. If more heat is needed, add another rail on its own circuit." %}
 
 ## Outlet and circuit by plug type
 
@@ -48,8 +48,6 @@ Match the outlet and circuit to whichever plug the rail arrived with.
 |---|---|---|
 | NEMA 5-15P | NEMA 5-15R, outdoor-rated, GFCI protected | Dedicated 15A circuit, appropriately sized breaker |
 | NEMA 5-20P | NEMA 5-20R, outdoor-rated, GFCI protected | Dedicated 20A circuit, appropriately sized breaker |
-
-{% include diagram.html src="elec-01-circuit.svg" caption="Each rail: factory plug to a matching GFCI outlet on its own dedicated breaker." %}
 
 ## Notes for electricians
 
@@ -67,4 +65,4 @@ Position outlets in line with the left side of each rail, where the rail's 8-foo
 
 {% include warn.html text="Do not energize the outlet or operate a heater until mounting and clearance checks are complete." %}
 
-For anything not covered here, contact Focal at hello@focalheat.co.
+For anything not covered here, contact Focal.
