@@ -44,8 +44,9 @@ The Focal Point networking box connects to the customer's existing router and it
 
 ## Confirm the network is live
 
-{% include checklist.html items="Focal Point networking box powered and connected to the customer's router | Access point mounted at the location specified on the site plan | Both network cables seated and secured | Wi-Fi network `Beam_Wifi` is being broadcasted" %}
+{% include checklist.html items="Focal Point networking box is powered and connected to the customer's router | Access point is mounted at the location specified on the site plan and connected to the Focal Point networking box | Wi-Fi network <code>Beam_Wifi</code> is being broadcasted" %}
 
-{% include warn.html text="If heaters won't come online once they're installed, come back and reposition the access point closer to the rails or clear obstructions before assuming a hardware fault. If that doesn't resolve it, contact Focal." %}
+{% include warn.html text="If heaters won't come online once they're installed, see the [Troubleshooting]({{ site.baseurl }}/guides/troubleshooting/) guide. If you're still unable to resolve the issue, contact Focal." %}
 
 {% include nextlink.html slug="rail-installation" title="Rail Installation" %}
+
