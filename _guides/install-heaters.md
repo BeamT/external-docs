@@ -17,36 +17,33 @@ updated: "2026-07-28"
 
 ## Before you start
 
-The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the switch. Each Focal heater (Duo) has two heating nodes and slides onto the same rail slot the cable powers.
+The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and slides onto the same rail slot the cable powers.
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set the unit down on the grille or reflector." %}
 
-{% include warn.html text="Hold the end plate with one hand while driving screws. A dropped end plate has nearly struck someone on site." %}
-
 ## Open the rail end
 
-{% include step.html number="1" title="Remove the bumper" body="Loosen the bumper set screw and slide the bumper out of the way toward the open end." diagram="duo-01-open-end.svg" %}
+{% include step.html number="1" title="Loosen and move the bumper" body="Loosen the bumper screw and slide the bumper toward the center of the rail to access the two scews beneath." diagram="duo-01-open-end.svg" %}
 
-{% include step.html number="2" title="Remove the end cap" body="Remove the end cap screws and take off the end cap to open the end of the rail." diagram="duo-01-open-end.svg" %}
+{% include step.html number="2" title="Remove the end cap" body="Remove the end cap screws and take off the end cap to open the end of the rail. Keep one hand on the end cap while removing the screws to ensure it doesn't fall." diagram="duo-01-open-end.svg" %}
 
-{% include step.html number="3" title="Remove the sliders" body="Take out the sliders so there's room to feed each heater onto the rail." diagram="duo-02-sliders.svg" %}
+{% include step.html number="3" title="Remove the spacers" body="Remove the spacers. They will be re-inserted as you install the heaters." diagram="duo-02-sliders.svg" %}
 
-## Load each heater
+## Install each heater
 
 {% include step.html number="4" title="Unbox and orient the heater" body="Take the heater out of its box. It only slides on in one orientation, so line it up before pushing it onto the rail. Remove the rest of the packaging once it's started onto the rail." diagram="duo-03-orient.svg" %}
 
-{% include step.html number="5" title="Slide in until it clicks" body="Slide the heater along the rail to its slot and push until the plug clicks into the plug point." diagram="duo-04-seat.svg" %}
+{% include step.html number="5" title="Slide in until it seats" body="Slide the heater along the rail to its slot and push until the plug seats into the plug point." diagram="duo-04-seat.svg" %}
 
-{% include step.html number="6" title="Insert a slider and repeat" body="Insert a slider behind the heater. Repeat for each unit, adding spacers between heaters as needed." diagram="duo-04-seat.svg" %}
+{% include step.html number="6" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." diagram="duo-04-seat.svg" %}
 
 ## Close up the rail
 
-{% include step.html number="7" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its set screw. Do not overtighten the bumper set screw." diagram="duo-05-close-up.svg" %}
+{% include step.html number="7" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its screw. Do not overtighten the bumper screw." diagram="duo-05-close-up.svg" %}
 
 ## Final checks
 
-{% include checklist.html items="Every heater clicked into a plug point | Sliders and spacers in place between units | End cap screwed on, bumper snug (not overtightened) | All heaters power on with LEDs lit | Cables routed and hidden, nothing below the bottom of the rail | Each heater appears in the Focal admin app before leaving site" %}
+{% include checklist.html items="Every heater is seated in a plug point and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
 
-The AC cord and plug must be routed so no part of the cable sits lower than the bottom of the rail.
 
 {% include nextlink.html slug="register-assign-heaters" title="Register & Assign Heaters" %}
