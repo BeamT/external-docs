@@ -29,9 +29,6 @@ title: null
     {% if g.lead %}<div class="lead-eyebrow">Start here</div>{% endif %}
     <h2>{{ g.title }}</h2>
     <p>{{ g.summary }}</p>
-    <div class="badges">
-      {% for a in g.audience %}<span class="badge">{% if a == 'customer' %}Restaurant{% else %}{{ a | capitalize }}{% endif %}</span>{% endfor %}
-    </div>
   </a>
   {% endfor %}
 </div>

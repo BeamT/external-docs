@@ -78,8 +78,6 @@ a { color: inherit; }
 .card:active { transform: scale(0.995); }
 .card h2 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0 0 6px; }
 .card p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15px; }
-.badges { display: flex; gap: 6px; flex-wrap: wrap; }
-.badge { font-size: 12px; border-radius: 999px; padding: 3px 10px; background: var(--wash); color: var(--ink-soft); border: 1px solid var(--line); }
 
 /* ---- lead card: entry point for a filtered audience ---- */
 .lead-eyebrow { display: none; }
