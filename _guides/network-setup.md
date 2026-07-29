@@ -50,5 +50,5 @@ The Focal Point networking box connects to the customer's existing router and th
 
 If that doesn't resolve it, see the [Troubleshooting]({{ site.baseurl }}/troubleshooting/) guide. If you're still stuck, contact Focal.
 
-{% include nextlink.html slug="rail-installation" title="Rail Installation" %}
+{% include nextlink.html slug="rail-installation" title="Install Rails" %}
 

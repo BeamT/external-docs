@@ -114,4 +114,4 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 Route cables along the rail, up mounting hardware, or along structural features so they stay out of view from diners and the street. All cabling should be 12AWG rated for 20A. Zip ties, screw or nail cable clamps, and similar systems are all fine to use.
 
-{% include nextlink.html slug="install-heaters" title="Install the Heaters" %}
+{% include nextlink.html slug="install-heaters" title="Install Heaters" %}

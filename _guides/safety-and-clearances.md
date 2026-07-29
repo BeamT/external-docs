@@ -90,4 +90,4 @@ Discontinue use immediately and contact Focal Support if you notice any of these
 
 The heater contains no user-serviceable parts. All service beyond basic cleaning must be done by Focal-authorized personnel.
 
-{% include nextlink.html label="Next" slug="network-setup" title="Network Setup" %}
+{% include nextlink.html label="Next" slug="network-setup" title="Set Up Network" %}
