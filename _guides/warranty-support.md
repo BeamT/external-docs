@@ -33,7 +33,7 @@ Web: www.focalheat.co
 | Max output | 600W (300W each x 2 nodes) |
 | Voltage | 120V, 60Hz |
 | Materials | Anodized aluminum in Black (custom colors available on request) |
-| Mounting height | 6.5–8 ft from floor, mounting hardware included |
+| Mounting height | 7–8 ft from floor, mounting hardware included |
 | Wi-Fi | 2.4GHz |
 | Warranty | 3 years |
 | Operating temperature | -40°F to 140°F |
