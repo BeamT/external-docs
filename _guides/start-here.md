@@ -9,7 +9,7 @@ updated: "2026-07-28"
 ---
 
 ## On this page
-- [Before you begin](#before-you-begin)
+- [Confirm before you start](#confirm-before-yous-start)
 - [The install sequence](#the-install-sequence)
 
 Prefer a hard copy? The printable packet contains everything you need in one place.

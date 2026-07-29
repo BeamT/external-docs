@@ -11,7 +11,7 @@ updated: "2026-07-28"
 ## On this page
 - [Before you start](#before-you-start)
 - [Open the rail end](#open-the-rail-end)
-- [Load each heater](#load-each-heater)
+- [Install each heater](#install-each-heater)
 - [Close up the rail](#close-up-the-rail)
 - [Final checks](#final-checks)
 

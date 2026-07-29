@@ -20,9 +20,9 @@ updated: "2026-07-28"
 
 ## Read this first
 
-Save these instructions and keep them with the heater. Read carefully before installing or operating. Improper installation, use, or maintenance may result in serious injury or property damage — use only as directed.
+Read these instructions carefully before installing or operating. Improper installation, use, or maintenance may result in serious injury or property damage — use only as directed.
 
-Focal heaters are for **covered outdoor areas only**, protected from direct rain, water spray, and standing water. They also carry an indoor rating, but must never be where water can reach the unit.
+Focal heaters are for covered outdoor areas only, protected from direct rain, water spray, and standing water. They also carry an indoor rating, but must never be where water can reach the unit.
 
 {% include warn.html text="Failure to follow these instructions could result in fire, electric shock, injury, or death." %}
 
@@ -30,23 +30,20 @@ Focal heaters are for **covered outdoor areas only**, protected from direct rain
 
 - Read all instructions before installing or operating.
 - Use the heater only as described in this documentation. Any other use may cause fire, electric shock, or injury.
-- Keep children and pets supervised whenever the heater is in use. Don't let children play with it.
-- Focal heaters and rails must **only** be used in the allowable configurations Focal specifies. Never exceed the maximum number of heaters per rail.
+- Focal heaters and rails must only be used in the allowable configurations Focal specifies. Never exceed the maximum number of heaters per rail.
 
 ## Heat & burn hazards
 
-{% include warn.html text="The exterior surface can exceed 70°C (158°F) during operation. The only part anyone should ever touch is the pull-cord." %}
-
-{% include dodont.html do="Keep at least 20 in of clearance from the front, sides, and rear, away from anything combustible." dont="Touch external surfaces while the unit is operating." %}
-
 - Do not tamper with or open the interior of the heater.
-- Do not keep combustible materials — furniture, awnings, fabric, paper, decorations — near the heaters.
+- Do not keep combustible materials (eg. furniture, awnings, fabric, paper, decorations) near the heaters.
 - Do not hang any objects from the heater or its mounting brackets.
 - Do not operate near flammable vapors or liquids such as gasoline or solvents.
 
+{% include warn.html text="The exterior surface can exceed 70°C (158°F) during operation. The only part anyone should ever touch is the pull-cord." %}
+
 ## Electrical safety
 
-- The heater runs on **120VAC, 60 Hz**. Connect only to a properly installed, dedicated outlet.
+- The heater runs on 120VAC, 60 Hz. Connect only to a properly installed, GFCI-protected, dedicated outlet.
 - Do not use the heater if the power cord or plug is damaged.
 - Do not use an extension cord or power strip. Plug directly into a dedicated outdoor outlet.
 - Do not run the cord under flooring, decking, or coverings where it can be pinched or damaged.
@@ -81,8 +78,7 @@ Note: a round heater node is 8" in diameter on either side of the rail. Two rail
 
 ## Installation & use
 
-- Install only on solid surfaces — metal, concrete, brick, or treated wood — capable of holding 300 lb.
-- Mount in accordance with the clearance guidelines above.
+- Install only on solid surfaces capable of holding 300 lb.
 - Keep the power cord away from hot surfaces and the heated air from the front of the heater.
 - Do not power on the heater until installation is complete, clearances are verified, and mounting is secure.
 

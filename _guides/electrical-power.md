@@ -9,22 +9,22 @@ updated: "2025-11-13"
 ---
 
 ## On this page
-- [The short version](#the-short-version)
+- [Overview](#overview)
 - [System basics](#system-basics)
 - [Rail configurations](#rail-configurations)
 - [Outlet and circuit by plug type](#outlet-and-circuit-by-plug-type)
 - [Notes for electricians](#notes-for-electricians)
 - [Placement](#placement)
 
-## The short version
+## Overview
 
-Each Focal rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. Your job is to provide a matching outdoor-rated, GFCI-protected outlet on its own dedicated circuit.
+Each Focal rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet on its own dedicated circuit.
 
-{% include dodont.html do="Give every rail its own dedicated branch circuit with a correctly sized breaker." dont="Share a circuit with other appliances or lighting loads." %}
+{% include dodont.html do="Give every rail its own dedicated branch circuit with a correctly sized breaker." dont="Share a circuit with other appliances or loads." %}
 
 ## System basics
 
-Each Focal heater draws up to 600W (two 300W nodes) at 120V, 60Hz. A rail's total draw depends on how many heaters it carries, which sets whether the rail comes with a 15A or 20A plug.
+Each Focal heater draws up to 600W (two 300W nodes) at 120V, 60Hz. A rail's total draw depends on how many heaters it carries, which also determines whether the rail comes with a 15A or 20A plug.
 
 ## Rail configurations
 
