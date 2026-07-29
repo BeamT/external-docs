@@ -34,7 +34,7 @@ The Focal Point networking box connects to the customer's existing router and th
 
 {% include step.html number="1" title="Connect the Focal Point networking box to the internet" body="Ask the customer to identify their router and confirm which port to use. Run one of the supplied network cables from that port to the WAN port on the Focal Point networking box." %}
 
-{% include step.html number="2" title="Power the box" body="Plug the Focal Point networking box into a nearby outlet, using the supplied power extension cord if the outlet is out of reach." %}
+{% include step.html number="2" title="Power the Focal Point networking box" body="Plug the Focal Point networking box into a nearby outlet, using the supplied power extension cord if the outlet is out of reach." %}
 
 {% include step.html number="3" title="Mount the access point mount" body="The site plan specifies where the access point goes and should be primary location. Mount the wall mount there and only deviate if the planned spot is physically unworkable, and note the change on the plan." %}
 

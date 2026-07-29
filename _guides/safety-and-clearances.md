@@ -22,9 +22,9 @@ updated: "2026-07-28"
 
 Save these instructions and keep them with the heater. Read carefully before installing or operating. Improper installation, use, or maintenance may result in serious injury or property damage — use only as directed.
 
-{% include warn.html text="Failure to follow these instructions could result in fire, electric shock, injury, or death." %}
-
 Focal heaters are for **covered outdoor areas only**, protected from direct rain, water spray, and standing water. They also carry an indoor rating, but must never be where water can reach the unit.
+
+{% include warn.html text="Failure to follow these instructions could result in fire, electric shock, injury, or death." %}
 
 ## General warnings
 
