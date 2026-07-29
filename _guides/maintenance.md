@@ -3,7 +3,7 @@ title: Maintenance & Care
 audience: [customer]
 audience_order: {customer: 30}
 order: 90
-summary: Keep your Focal heaters running safely — daily checks, periodic cleaning, and when to call for service.
+summary: Daily checks, cleaning schedule, and when to call for service.
 version: "1.0"
 updated: "2025-11-13"
 ---

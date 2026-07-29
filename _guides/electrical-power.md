@@ -3,7 +3,7 @@ title: Electrical & Power Requirements
 audience: [electrician]
 audience_order: {electrician: 10}
 order: 50
-summary: Circuit, outlet, and plug requirements for wiring a Focal heater install. For the electrician.
+summary: Circuit, outlet, and plug requirements for the electrician.
 version: "1.1"
 updated: "2026-07-28"
 ---

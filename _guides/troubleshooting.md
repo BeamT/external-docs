@@ -3,7 +3,7 @@ title: Troubleshooting
 audience: [customer, installer]
 audience_order: {customer: 20, installer: 65}
 order: 80
-summary: Quick fixes for the most common issues — offline heaters, unresponsive remote controls, no heat, no power, and units that won't move.
+summary: Quick fixes for offline heaters, no heat, no power, and stuck units.
 version: "1.1"
 updated: "2026-07-27"
 ---

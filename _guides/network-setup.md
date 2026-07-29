@@ -1,9 +1,9 @@
 ---
-title: Network Setup
+title: Set Up Network
 audience: [installer]
 audience_order: {installer: 30}
 order: 20
-summary: Connect the Focal Point networking box and mount the wireless access point — ideally before the rails go up.
+summary: Connect the networking box and mount the access point.
 version: "1.3"
 updated: "2026-07-28"
 ---

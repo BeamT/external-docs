@@ -3,7 +3,7 @@ title: Safety & Clearances
 audience: [customer, installer, electrician]
 audience_order: {installer: 10, electrician: 20, customer: 40}
 order: 10
-summary: Required clearances and the full safety rules for every Focal heater install. Read before installing or operating.
+summary: Required clearances and safety guidelines for every install.
 version: "1.1"
 updated: "2026-07-28"
 ---

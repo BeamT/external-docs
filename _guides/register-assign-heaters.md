@@ -3,7 +3,7 @@ title: Register & Assign Heaters
 audience: [installer]
 audience_order: {installer: 60}
 order: 60
-summary: Scan each Focal heater into its slot so the app layout matches the physical rail, then confirm every heater responds.
+summary: Scan and assign each heater to its slot.
 version: "1.2"
 updated: "2026-07-28"
 ---

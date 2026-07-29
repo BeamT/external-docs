@@ -1,9 +1,9 @@
 ---
-title: Install the Heaters
+title: Install Heaters
 audience: [installer]
 audience_order: {installer: 50}
 order: 40
-summary: Slide Focal heaters onto a mounted, powered rail and seat them correctly.
+summary: Install heaters onto the rail.
 version: "1.1"
 updated: "2026-07-28"
 ---

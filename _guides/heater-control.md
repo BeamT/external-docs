@@ -3,7 +3,7 @@ title: Heater Control
 audience: [customer]
 audience_order: {customer: 10}
 order: 70
-summary: How to run your heaters day to day with Focal Control — your schedule, how heat levels get set, and the everyday tasks staff need.
+summary: Daily schedule, heat levels, and everyday tasks for staff.
 version: "1.1"
 updated: "2026-07-28"
 ---

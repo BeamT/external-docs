@@ -1,9 +1,9 @@
 ---
-title: Rail Installation
+title: Install Rails
 audience: [installer]
 audience_order: {installer: 40}
 order: 30
-summary: Mount the Focal rail to a ceiling or beam, then power it on. For installers using the Focal mounting kit.
+summary: Mount the rails and power them on.
 version: "1.1"
 updated: "2026-07-28"
 ---

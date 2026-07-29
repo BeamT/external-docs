@@ -3,7 +3,7 @@ title: Warranty & Support
 audience: [customer, installer, electrician]
 audience_order: {customer: 50, electrician: 30, installer: 70}
 order: 100
-summary: How to reach Focal for service and replacements, plus full heater specifications and safety references.
+summary: How to reach Focal for service, plus specs and safety references.
 version: "1.0"
 updated: "2025-11-13"
 ---
