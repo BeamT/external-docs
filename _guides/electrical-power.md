@@ -32,11 +32,7 @@ Focal heaters conform to UL 2021 and are certified by TÜV Rheinland.
 
 Each rail is limited to a maximum number of heaters. The rail model determines the plug and the circuit you need to provide.
 
-| Rail | Nominal | Actual | Max heaters | Max current | Plug | Receptacle |
-|---|---|---|---|---|---|---|
-| DRL-04 | 4 ft | 53.5" | 2 | 15A | NEMA 5-15P | NEMA 5-15R |
-| DRL-06 | 6 ft | 80.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
-| DRL-08 | 8 ft | 98.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
+{% include railtable.html %}
 
 {% include warn.html text="Never load a rail with more heaters than its row allows. If more heat is needed, add another rail on its own circuit." %}
 

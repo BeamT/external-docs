@@ -32,11 +32,7 @@ The site plan specifies where each rail goes and how long it is. Confirm the exa
 
 The rail holds the individual Focal heaters, which can be installed after the rail is up. Rails come in three lengths:
 
-| Rail | Nominal | Actual | Max heaters | Max current | Plug | Receptacle |
-|---|---|---|---|---|---|---|
-| DRL-04 | 4 ft | 53.5" | 2 | 15A | NEMA 5-15P | NEMA 5-15R |
-| DRL-06 | 6 ft | 80.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
-| DRL-08 | 8 ft | 98.5" | 3 | 20A | NEMA 5-20P | NEMA 5-20R |
+{% include railtable.html %}
 
 Each rail has a T-slot running its length for T-nuts, and an 8-foot built-in power cable. Focal offers mounting hardware but off-the-shelf hardware also works utilizing the T-slot.
 

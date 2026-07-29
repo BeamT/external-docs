@@ -31,9 +31,9 @@ Perform basic cleaning and inspection every 2 to 3 months, or more often in dust
 
 ## Cleaning procedure
 
-{% include step.html number="1" title="Wipe the exterior" body="Use a soft, dry cloth on the outside surfaces. Don't use harsh chemicals, abrasives, solvents, or water on any part of the exterior." diagram="maint-01-exterior.svg" %}
+{% include step.html number="1" title="Wipe the exterior" body="Use a soft, dry cloth on the outside surfaces. Don't use harsh chemicals, abrasives, solvents, or water on any part of the exterior." %}
 
-{% include step.html number="2" title="Clear the grille" body="If dust or debris is visible inside the grille or on the reflector, gently blow it out with canned compressed air." diagram="maint-02-grille.svg" %}
+{% include step.html number="2" title="Clear the grille" body="If dust or debris is visible inside the grille or on the reflector, gently blow it out with canned compressed air." %}
 
 {% include dodont.html do="Use canned compressed air for dust inside the grille." dont="Spray water or use a pressure washer or air compressor — it damages sensitive parts." %}
 

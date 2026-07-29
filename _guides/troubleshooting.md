@@ -98,4 +98,4 @@ Once the area is safe, [contact Focal Support](#still-stuck) for a loaner or rep
 
 ## Still stuck?
 
-If these steps don't resolve it, contact Focal Support at [hello@focalheat.co](mailto:hello@focalheat.co) with the heater's serial number and what you've already tried.
+If these steps don't resolve it, contact Focal Support at [hello@focalheat.co](mailto:hello@focalheat.co) with the heater's serial number and what you've already tried. The serial number is printed on the top side of the heater, where it mounts to the rail. It also appears on the Heater Control page when you tap that heater.

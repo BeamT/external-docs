@@ -21,7 +21,7 @@ updated: "2025-11-13"
 For service, malfunctions, replacements, or questions, reach Focal Support.
 
 Focal
-568 Brannan St, San Francisco, CA 94107
+375 Alabama St Suite 220, San Francisco, CA 94110
 Phone: 314-378-1131
 Email: hello@focalheat.co
 Web: www.focalheat.co

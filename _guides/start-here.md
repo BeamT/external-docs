@@ -19,7 +19,7 @@ Prefer a hard copy? The printable packet contains everything you need in one pla
 
 ## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet are on hand | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed on the cord-exit side of each rail | The number of rails and heaters on hand match the site plan | Focal Point networking box and access point are on hand" %}
+{% include checklist.html items="Site plan and this packet are on hand | The number of rails and heaters on hand match the site plan | Focal Point networking box and access point are on hand | Focal Control link and password from Focal | A phone with a camera and internet | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed on the cord-exit side of each rail" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 

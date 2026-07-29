@@ -54,13 +54,13 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 
 Every install must meet these distances, measured from the heater and rail to the nearest surface.
 
-| Reference | Label | Minimum distance |
+| Reference | Dimension | Minimum distance |
 |---|---|---|
-| Ceiling, above rail | DIM A | 0 in (0 cm) |
-| Wall, side of rail | DIM B | 20 in (51 cm) |
-| Objects under the heater | DIM C | 36 in (91 cm) |
-| Floor to bottom of rail | DIM D | 84 in / 7 ft — use 90 in where people walk under |
-| Wall to side of heater facing down | DIM E | 20 in (51 cm) |
+| Ceiling, above rail | A | 0 in (0 cm) |
+| Wall, side of rail | B | 20 in (51 cm) |
+| Objects under the heater | C | 36 in (91 cm) |
+| Floor to bottom of rail | D | 84 in / 7 ft — use 90 in where people walk under |
+| Wall to side of heater facing down | E | 20 in (51 cm) |
 
 Note: a round heater node is 8" in diameter on either side of the rail. Two rails mounted end to end must keep at least 4" of space between them.
 
