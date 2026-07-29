@@ -12,19 +12,19 @@ updated: "2026-07-28"
 - [Before you begin](#before-you-begin)
 - [The install sequence](#the-install-sequence)
 
-Working off a ladder, or somewhere with no signal? The printable packet gathers the cover sheet and every installer guide into one document.
+Prefer a hard copy? The printable packet contains everything you need in one place.
 
 {% include printlink.html url="/print/installer/" label="Open the printable installer packet" %}
 
 ## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet are on hand | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed on the cord-exit side of each rail | Rail and heater counts match the configuration | Networking box and access point are ready" %}
+{% include checklist.html items="Site plan and this packet are on hand | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed on the cord-exit side of each rail | The number of rails and heaters on hand match the site plan | Focal Point networking box and access point are on hand" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 
 ## The install sequence
 
-Here's the whole job in order, so you know what's ahead. Each guide ends with a link to the next one — start with Safety & Clearances below and work straight through.
+Here's the whole job in order. Each guide ends with a link to the next one. Start with Safety & Clearances below and work straight through.
 
 {% include stepitem.html number="1" title="Safety & Clearances" body="Confirm every clearance and safety rule before touching hardware. Read this first on every job." %}
 

@@ -16,7 +16,7 @@ updated: "2026-07-28"
 
 ## Before you start
 
-- **Get the customer on site briefly** — the Focal Point networking box connects to the internet via their existing router, so they need to point you to it and confirm which port to use
+- **Consult the customer** — the Focal Point networking box connects to the internet via their existing router, so they need to point you to it and confirm which port to use
 - **Reference the site plan** — it specifies the access point location
 
 {% include dodont.html do="Place the access point where the site plan calls for it, with a clear path to where the rails will be mounted." dont="Tuck it behind metal, ductwork, or thick walls that block the signal." %}
@@ -36,7 +36,7 @@ The Focal Point networking box connects to the customer's existing router and it
 
 {% include step.html number="2" title="Power the box" body="Plug the Focal Point networking box into a nearby outlet, using the supplied power extension cord if the outlet is out of reach. Give it a minute to boot and establish a connection." %}
 
-{% include step.html number="3" title="Secure the access point mount" body="The site plan specifies where the access point goes — treat that as the primary location. Fasten the wall mount there and only deviate if the planned spot is physically unworkable, and note the change on the plan." %}
+{% include step.html number="3" title="Secure the access point mount" body="The site plan specifies where the access point goes and should be primary location. Fasten the wall mount there and only deviate if the planned spot is physically unworkable, and note the change on the plan." %}
 
 {% include step.html number="4" title="Attach the access point" body="Connect the second network cable to wireless access point and the Focal Point networking box. Slide the access point onto its mount." %}
 
