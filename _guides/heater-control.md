@@ -27,21 +27,21 @@ You'll get a unique login link and password from Focal by email. Open the link, 
 
 ## Add it to your Home Screen
 
-There's no separate app to download for Focal Control. If you'd like it to open like one, save this page as an icon on your device's home screen instead of digging up the link every shift.
+There's no separate app to download for Focal Control. If you'd like it to open like one, save the page as an icon on your device's home screen instead of digging up the link every shift.
 
 **iPad/iPhone (Safari)**
 
-{% include step.html number="1" title="Open this page in Safari" body="Make sure you're using Safari, not another browser like Chrome." %}
+{% include step.html number="1" title="Open the Focal Control page in Safari" body="Make sure you're using Safari, not another browser like Chrome." %}
 {% include step.html number="2" title="Tap the Share icon" body="It looks like a square with an arrow pointing up, usually at the bottom of the screen." %}
 {% include step.html number="3" title="Tap Add to Home Screen" body="If you don't see it right away, scroll down through the list of options." %}
-{% include step.html number="4" title="Tap Add" body="The icon shows up on your Home Screen and opens straight to this page from now on." %}
+{% include step.html number="4" title="Tap Add" body="The icon shows up on your Home Screen and opens straight to the page from now on." %}
 
 **Android (Chrome)**
 
-{% include step.html number="1" title="Open this page in Chrome" body="Make sure you're using Chrome, not another browser." %}
+{% include step.html number="1" title="Open the Focal Control page in Chrome" body="Make sure you're using Chrome, not another browser." %}
 {% include step.html number="2" title="Tap the three-dot menu" body="It's next to the address bar." %}
 {% include step.html number="3" title="Tap Install and Create Shortcut" body="On newer versions of Chrome this may say Install app instead." %}
-{% include step.html number="4" title="Tap Add or Install" body="The icon shows up on your Home Screen and opens straight to this page from now on." %}
+{% include step.html number="4" title="Tap Add or Install" body="The icon shows up on your Home Screen and opens straight to the page from now on." %}
 
 ## Accessing the menu
 
