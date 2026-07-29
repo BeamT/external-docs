@@ -356,3 +356,8 @@ main figure:has(> img[src$=".png"]) {
 .nextlink-arrow { margin-left: auto; font-size: 1.25rem; color: #6b6b6b; }
 .nextlink:hover .nextlink-arrow { color: #111; }
 @media print { .nextlink { display: none; } }
+
+/* Offset anchor scroll position so the sticky topbar doesn't cover headings */
+h2[id], h3[id] {
+  scroll-margin-top: 64px; /* 49px header + ~15px breathing room */
+}
