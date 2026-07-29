@@ -4,27 +4,24 @@ audience: [installer]
 audience_order: {installer: 40}
 order: 30
 summary: Mount the rails and power them on.
-version: "1.1"
+version: "1.2"
 updated: "2026-07-28"
 ---
 
 ## On this page
 - [Before you start](#before-you-start)
 - [About the rails](#about-the-rails)
-- [What's in the mounting kit](#whats-in-the-mounting-kit-per-rail)
+- [What's in the mounting kit](#whats-in-the-mounting-kit)
 - [Rail placement over the table](#rail-placement-over-the-table)
 - [Outlet placement](#outlet-placement)
 - [Mount the rail](#mount-the-rail)
 - [Different mounting methods](#different-mounting-methods)
 - [Post-mount checks](#post-mount-checks)
 - [Plug in the rail](#plug-in-the-rail)
-- [Cable management](#cable-management)
 
 ## Before you start
 
-{% include dodont.html do="Confirm the mounting surface can hold 300 lb (metal, concrete, brick, or treated wood)." dont="Mount to anything that flexes or isn't rated for the load." %}
-
-Prepare at least two mounting blocks per rail, spaced evenly and no more than 25% of the rail length from each end.
+{% include dodont.html do="Confirm the mounting surface is solid and can hold 300 lb" dont="Mount to anything that flexes or isn't rated for the load." %}
 
 {% include warn.html text="Do not power on the rail until mounting is complete and clearances are verified." %}
 
@@ -38,32 +35,64 @@ The rail holds the individual Focal heaters, which can be installed after the ra
 | DRL-06 | 6 ft | 80.5" | 3 | 20A (NEMA 5-20P) |
 | DRL-08 | 8 ft | 98.5" | 3 | 20A (NEMA 5-20P) |
 
-Each rail has a slot running its length for T-nuts, and an 8-foot built-in power cable. Focal offers custom mounting hardware; standard off-the-shelf hardware also works, as long as it connects through T-nuts.
+Each rail has a T-slot running its length for T-nuts, and an 8-foot built-in power cable. Focal offers mounting hardware but off-the-shelf hardware also works utilizing the T-slot.
 
-## What's in the mounting kit (per rail)
+## What's in the mounting kit
 
-Each rail's kit is split into bags. Bag A is the core bracket assembly, Bag B carries longer through-bolt hardware for wood-beam mounts, and Bag C has the wood-screw option and its driver.
+Every rail ships with the same kit. Two rail attachment assemblies arrive pre-built. The rest of the kit is fastener options, so you can choose the mount and the fastening method that suit the structure.
 
-| Part | Qty | Bag |
+### Rail attachment assemblies
+
+Two per rail, shipped assembled. These slide into the rail's T-slot and are what the rail hangs from.
+
+| Part | Qty per assembly |
+|---|---|
+| Parallel mounting bracket | 1 |
+| T-nut, 1/4-20 | 1 |
+| Set screw, 1/4-20 x 5/16" | 2 |
+| Flat-head screw, 1/4-20 x 1.125" | 2 |
+
+### Overhead mounting blocks
+
+Use one type per install, depending on the structure you're fastening to. See [Mount the rail](#mount-the-rail).
+
+| Part | Qty | Used for |
 |---|---|---|
-| Parallel mounting bracket| 4 | A — 2 assembled, 2 loose |
-| T-nut, 1/4-20| 2 | A — assembled with parallel brackets |
-| Perpendicular mounting bracket| 2 | A |
-| Set screw, 1/4-20 x 5/16"| 8 | A — assembled with parallel brackets |
-| Flat-head screw, 1/4-20 x 1.125"| 4 | A — assembled with parallel brackets |
-| 1/8" L-wrench| 1 | A |
-| T30 L-wrench| 1 | A |
-| Flat-head screw, 1/4-20 x 1.5"| 4 | B |
-| Flat-head screw, 1/4-20 x 2.5"| 4 | B |
-| Flat-head screw, 1/4-20 x 3.5"| 4 | B |
-| Nylon lock nut, 1/4-20| 4 | B |
-| SAE washer, 1/4" ID| 4 | B |
-| Wood screw, #12 x 2"| 4 | C |
-| Wood screw, #12 x 3"| 4 | C |
-| T25 screwdriver bit| 1 | C |
-| Dropdown pipe, 6 ft| as needed | with rail |
+| Parallel mounting bracket | 2 | Ceiling mount — fastens to the underside of a member |
+| Perpendicular mounting bracket | 2 | Beam or joist mount — fastens to a vertical face |
+| Set screw, 1/4-20 x 5/16" | 4 | Clamping the pipe into either block |
+| Dropdown pipe, 6 ft | as needed | Ships with the rail; cut to the drop you need |
 
-{% include diagram.html src="rail-00-kit.svg" caption="Kit contents grouped by bag: A (bracket assembly), B (through-bolt hardware), C (wood-screw option)." %}
+### Through-mount fasteners
+
+For fastening a block through a beam or other structure, with the nut on the far side. Pick the screw length that matches the thickness of the material.
+
+| Part | Qty |
+|---|---|
+| Flat-head screw, 1/4-20 x 1.5" | 4 |
+| Flat-head screw, 1/4-20 x 2.5" | 4 |
+| Flat-head screw, 1/4-20 x 3.5" | 4 |
+| SAE washer, 1/4" ID | 4 |
+| Nylon lock nut, 1/4-20 | 4 |
+
+### Wood screws
+
+For fastening a block into solid wood where you can't reach the far side to through-mount.
+
+| Part | Qty |
+|---|---|
+| Wood screw, #12 x 2" | 4 |
+| Wood screw, #12 x 3" | 4 |
+
+### Tools
+
+| Tool | Qty | Drives |
+|---|---|---|
+| 1/8" L-wrench | 1 | Set screws |
+| T30 L-wrench | 1 | Machine screws (1/4-20 flat-head) |
+| T25 screwdriver bit | 1 | Wood screws |
+
+{% include diagram.html src="rail-00-kit.svg" caption="Kit contents grouped by assembly: rail attachment assemblies, overhead mounting blocks, through-mount fasteners, wood screws, and tools." %}
 
 ## Rail placement over the table
 
@@ -81,9 +110,13 @@ Minimize or eliminate extension cords — the rail's 8-foot built-in cable shoul
 
 {% include step.html number="1" title="Prepare the attachment piece" body="Loosely attach the double T-nut to the parallel standoff block with the 1/4-20 x 1.125\" screws. Loosely fit the two 1/4-20 x 5/16\" set screws. Leave everything loose for final alignment." diagram="rail-01-attach-piece.svg" %}
 
-{% include step.html number="2" title="Slide the block onto the rail" body="Slide the block onto the rail without tightening. Set screws must face the same side as the power cord exit. Prepare at least two blocks per rail." diagram="rail-02-slide-block.svg" %}
+{% include step.html number="2" title="Slide the block onto the rail" body="Slide mounting blocks onto the rail without tightening. Set screws should face the same side as the power cord exit. Prepare at least two mounting blocks per rail, each approximately 12\" from the rail end." diagram="rail-02-slide-block.svg" %}
 
-{% include step.html number="3" title="Prepare the ceiling mount" body="Fix a parallel standoff mount to the ceiling member with #12 flathead screws, 2\" or longer. Attach the correct length of pipe to the perpendicular block and tighten those set screws fully. Repeat at least twice per rail." diagram="rail-03-ceiling-mount.svg" %}
+Step 3 has two variants. Use the one that matches the structure you're fastening to — you only need one. Either way, fasten the block with #12 wood screws (2" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts.
+
+{% include step.html number="3A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03-ceiling-mount.svg" %}
+
+{% include step.html number="3B" title="Prepare a beam or joist mount" body="Use this where the only solid surface is a vertical face, such as the side of a beam or joist. Drill a clearance hole in the face for the perpendicular bracket's shaft, seat the shaft, and fasten the bracket flat to the surface. Slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." diagram="rail-03b-beam-mount.svg" %}
 
 {% include step.html number="4" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws, then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-04-attach-rail.svg" %}
 
@@ -93,7 +126,7 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 - A threaded rod as a drop-down
 - A U-bolt to attach unistrut to a pipe
-- Mounting directly through a wood beam without a drop-down (use the longer FMT007–009 screws with washers and lock nuts from Bag B)
+- Mounting directly through a wood beam without a drop-down, using the longer 1/4-20 flat-head screws with SAE washers and nylon lock nuts
 - An L-bracket to unistrut when rails run perpendicular to a wall
 
 ## Post-mount checks
@@ -108,10 +141,6 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 {% include step.html number="1" title="Route and connect the cable" body="Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. All rail cabling should be 12AWG rated for 20A. Then plug into the outlet." diagram="rail-05-plug-in.svg" %}
 
-{% include step.html number="2" title="Power on and tidy up" body="Flip the rail switch on. Secure any slack cable with zip ties or clamps so nothing hangs below the bottom of the rail." diagram="rail-06-power-on.svg" %}
-
-## Cable management
-
-Route cables along the rail, up mounting hardware, or along structural features so they stay out of view from diners and the street. All cabling should be 12AWG rated for 20A. Zip ties, screw or nail cable clamps, and similar systems are all fine to use.
+{% include step.html number="2" title="Power on and tidy up" body="Flip the rail switch on. Secure any slack cable so nothing hangs below the bottom of the rail — zip ties, screw or nail cable clamps, and similar systems are all fine. Keep the finished run out of view from diners and the street." diagram="rail-06-power-on.svg" %}
 
 {% include nextlink.html slug="install-heaters" title="Install Heaters" %}
