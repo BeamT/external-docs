@@ -4,11 +4,12 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Install heaters onto the rail.
-version: "1.1"
-updated: "2026-07-28"
+version: "1.3"
+updated: "2026-08-04"
 ---
 
 ## On this page
+
 - [Before you start](#before-you-start)
 - [Open the rail end](#open-the-rail-end)
 - [Install each heater](#install-each-heater)
@@ -31,19 +32,22 @@ The rail should already be mounted, plugged in, and switched on. Heaters slide o
 
 ## Install each heater
 
-{% include step.html number="4" title="Unbox and orient the heater" body="Take the heater out of its box. It only slides on in one orientation, so line it up before pushing it onto the rail. Remove the rest of the packaging once it's started onto the rail." diagram="duo-03-orient.svg" %}
+{% include step.html number="1" title="Unbox and orient the heater" body="Take the heater out of its box. It only slides on in one orientation, so line it up before pushing it onto the rail. Remove the rest of the packaging once it's started onto the rail." diagram="duo-03-orient.svg" %}
 
-{% include step.html number="5" title="Slide in until it seats" body="Slide the heater along the rail to its slot and push until the plug seats into the plug point." diagram="duo-04-seat.svg" %}
+{% include step.html number="2" title="Slide in until it seats" body="Slide the heater along the rail to its slot and push until it seats." diagram="duo-04-seat.svg" %}
 
-{% include step.html number="6" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." diagram="duo-04-seat.svg" %}
+{% include step.html number="3" title="Untie the pull string and remove the clip" body="Each heater ships with its pull string tied off and a shipping clip in place. Untie the string and remove the clip. Do this for every heater as you install it." diagram="duo-06-untie-clip.svg" %}
+
+{% include step.html number="4" title="Move the heater to the desired slot" body="Pull the pull string down firmly until it releases, then slide the heater to the desired slot, moving any other heaters on the rail as needed to make room. Let go of the string once it's in position and it will lock in place." diagram="duo-07-reposition.svg" %}
+
+{% include step.html number="5" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." diagram="duo-04-seat.svg" %}
 
 ## Close up the rail
 
-{% include step.html number="7" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its screw. Do not overtighten the bumper screw." diagram="duo-05-close-up.svg" %}
+{% include step.html number="1" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its screw. Do not overtighten the bumper screw." diagram="duo-05-close-up.svg" %}
 
 ## Final checks
 
-{% include checklist.html items="Every heater is seated in a plug point and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
-
+{% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
 
 {% include nextlink.html slug="register-assign-heaters" title="Assign Heaters" %}

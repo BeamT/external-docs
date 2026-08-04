@@ -74,7 +74,7 @@ Switching between modes is covered in [Heater Control]({{ site.baseurl }}/heater
 
 ## No power or LEDs
 
-{% include step.html number="1" title="Re-seat the heater" body="Re-seat the heater in the plug point: pull down on the pull string, move the heater away from the plug point, then back, and let go of the pull string." %}
+{% include step.html number="1" title="Re-seat the heater" body="Re-seat the heater in the slot: pull down on the pull string, move the heater away from the slot, then back, and let go of the pull string." %}
 
 {% include step.html number="2" title="Check the whole rail" body="If all heaters on the rail have no power, check the rail switch and/or the circuit breaker before treating it as a single-heater problem." %}
 
@@ -92,7 +92,7 @@ If the heater is still hard to move after a full pull, [contact Focal Support](#
 
 ## Physical damage
 
-{% include warn.html text="If a grille or thermal engine is dislodged or the unit is physically damaged, move it off the plug point and secure any loose parts so nothing falls. Don't operate a damaged heater." %}
+{% include warn.html text="If a grille or thermal engine is dislodged or the unit is physically damaged, move it off the slot and secure any loose parts so nothing falls. Don't operate a damaged heater." %}
 
 Once the area is safe, [contact Focal Support](#still-stuck) for a loaner or replacement.
 
