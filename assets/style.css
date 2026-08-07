@@ -342,7 +342,7 @@ main .diagram img[src$=".png"],
 main .step-figure img[src$=".png"] {
   width: auto;
   max-width: 100%;
-  max-height: 520px;   /* the scroll knob for screenshots */
+  max-height: 450px;   /* the scroll knob for screenshots */
   margin: 0;
   border: 0;
   border-radius: 0;
