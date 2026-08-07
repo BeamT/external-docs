@@ -100,7 +100,13 @@ a { color: inherit; }
 .warn p { margin: 0; font-size: 15px; }
 .warn p strong { color: var(--warn); }
 
-.diagram img { display: block; width: 100%; height: auto; }
+/* ---- framed diagrams (SVG) ----
+   The frame hugs the diagram and sits in the text column so its left edge
+   lines up with the step copy. Height is capped so tall art doesn't force
+   scrolling; object-fit keeps the aspect ratio and object-position pins the
+   drawing left so any slack falls on the right rather than as two side bars. */
+.diagram { margin: 20px 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+.diagram img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; object-fit: contain; object-position: left; margin: 0; }
 .diagram figcaption { font-size: 13px; color: var(--ink-soft); padding: 10px 14px; border-top: 1px solid var(--line-soft); }
 
 .dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
@@ -117,19 +123,9 @@ a { color: inherit; }
 .step-num { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; color: var(--focal); min-width: 40px; }
 .step-title { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin: 2px 0 6px; }
 .step-body p { margin: 0 0 8px; font-size: 16px; }
-.step-figure { grid-column: 1 / -1; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
-.step-figure img { display: block; width: 100%; height: auto; }
-
-.diagram img,
-.step-figure img {
-  display: block;
-  max-width: 100%;
-  max-height: 360px;
-  width: auto;
-  height: auto;
-  object-fit: contain;   /* preserves aspect ratio, no stretching */
-  margin: 0 auto;
-}
+/* grid-column: 2 / -1 aligns the diagram with the step text, not the number. */
+.step-figure { grid-column: 2 / -1; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+.step-figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; object-fit: contain; object-position: left; margin: 0; }
 
 .checklist { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 8px; }
 .checklist li { display: flex; gap: 12px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 15px; }
@@ -165,6 +161,8 @@ a { color: inherit; }
   .doc-body h2 { break-after: avoid; }
   a { text-decoration: none; color: #000; }
   .diagram, .step-figure, .card { border-color: #ccc; }
+  /* diagrams print at full size, not the on-screen height cap */
+  .diagram img, .step-figure img { max-height: none; }
 }
 
 /* ---- "On this page" list (plain markdown list, bullets stripped) ---- */
@@ -312,7 +310,7 @@ a.next-link:hover .next-arrow { transform: translateX(4px); }
 
 
 /* Inline PNG screenshots (phone captures) — capped so they don't dominate the
-   page. Framed diagrams in .diagram / .step-figure are excluded below. */
+   page. Framed diagrams in .diagram / .step-figure are handled separately below. */
 main img[src$=".png"] {
   display: block;
   width: auto;
@@ -331,22 +329,25 @@ main figure:not(.diagram):has(> img[src$=".png"]) {
   padding: 0;
 }
 
-/* PNG screenshots in a frame: the frame hugs the image, height-capped, ratio kept */
+/* PNG screenshots inside a frame: the frame hugs the image and left-aligns to
+   the text column, height-capped so tall phone captures don't force scrolling.
+   Raster images carry a true intrinsic size, so fit-content is safe here. */
 main .diagram:has(> img[src$=".png"]),
 main .step-figure:has(> img[src$=".png"]) {
   width: fit-content;
   max-width: 100%;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 main .diagram img[src$=".png"],
 main .step-figure img[src$=".png"] {
   width: auto;
   max-width: 100%;
-  max-height: 450px;   /* the scroll knob for screenshots */
+  max-height: 520px;
   margin: 0;
   border: 0;
   border-radius: 0;
 }
+
 
 
 /* Offset anchor scroll position so the sticky topbar doesn't cover headings */
