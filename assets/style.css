@@ -123,11 +123,12 @@ a { color: inherit; }
 .diagram img,
 .step-figure img {
   display: block;
-  width: auto;
   max-width: 100%;
-  max-height: 360px;   /* the scroll knob: lower = shorter diagrams */
+  max-height: 360px;
+  width: auto;
   height: auto;
-  margin: 0 auto;      /* centers it in the frame when it's narrower */
+  object-fit: contain;   /* preserves aspect ratio, no stretching */
+  margin: 0 auto;
 }
 
 .checklist { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 8px; }
