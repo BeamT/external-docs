@@ -10,7 +10,7 @@ updated: "2026-08-07"
 
 Everything here controls one heater at a time. If you're setting up the app, building your schedule, or running the whole space at once, start with [System Setup & Control]({{ site.baseurl }}/system-setup-control/).
 
-A quick reminder before you dive in: the system runs in either Schedule Mode or Manual Mode. In Schedule Mode the heaters only come on inside your open hours, so some of the controls below won't turn on heat outside those hours. See [the two modes](system-setup-control#the-two-modes) for the full picture.
+A quick reminder before you dive in: the system runs in either Schedule Mode or Manual Mode. In Schedule Mode the heaters only come on inside your open hours, so some of the controls below won't turn on heat outside those hours. 
 
 ## On this page
 
@@ -22,7 +22,7 @@ A quick reminder before you dive in: the system runs in either Schedule Mode or 
 
 ## Two sides, two guests
 
-Each Focal heater (the Duo) covers two guests, one on each side. In the app and on the zone map these show up as a purple side and an orange side, and you can set them independently. So a single heater can run warm for one guest and off for the other.
+Each Focal heater covers two guests, one on each side. In the app and on the zone map these show up as a purple side and an orange side, and you can set them independently. So a single heater can run warm for one guest and off for the other.
 
 ## Reading the lights on the heater
 
@@ -32,11 +32,11 @@ The other three LEDs are white and show the heat level for that side: three lit 
 
 ## Adjust one guest's heat from the app
 
-{% include step.html number="1" title="Open the zone map" body="On the Heater Control page, find the heater on the zone map. Its two sides are marked in purple and orange." diagram="heater-01-zone-map.png" %}
+{% include step.html number="1" title="Open the zone map" body="On the Heater Control page, find the heater on the zone map. Its two sides are marked in purple and orange." %}
 
-{% include step.html number="2" title="Tap the heater" body="Tap the heater to open its controls." diagram="heater-02-tap-heater.png" %}
+{% include step.html number="2" title="Tap the heater" body="Tap the heater to open its controls." %}
 
-{% include step.html number="3" title="Set the level for the right side" body="Choose the heat level for the correct guest's side, purple or orange. The change takes effect right away and overrides the automatic level for that side until the next cycle." diagram="heater-03-set-level.png" %}
+{% include step.html number="3" title="Set the level for the right side" body="Choose the heat level for the correct guest's side, purple or orange. The change takes effect right away and overrides the automatic level for that side until the next cycle." %}
 
 ## At the heater: the pull string
 

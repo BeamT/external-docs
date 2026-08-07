@@ -29,9 +29,9 @@ Focal emails you a unique login link and a password. Open the link, enter your p
 
 Focal Control runs in your browser, but you can save it to your home screen so it opens like an app.
 
-{% include step.html number="1" title="On iPhone or iPad" body="Open Focal Control in Safari, tap the Share icon, choose Add to Home Screen, then confirm." diagram="control-01-ios-home-screen.png" %}
+{% include step.html number="1" title="On iPhone or iPad" body="Open Focal Control in Safari, tap the Share icon, choose Add to Home Screen, then confirm." %}
 
-{% include step.html number="2" title="On Android" body="Open Focal Control in Chrome, tap the three-dot menu, choose Install and Create Shortcut, then confirm." diagram="control-02-android-home-screen.png" %}
+{% include step.html number="2" title="On Android" body="Open Focal Control in Chrome, tap the three-dot menu, choose Install and Create Shortcut, then confirm." %}
 
 ## Accessing the menu
 
@@ -47,9 +47,9 @@ Focal Control always runs in one of two modes, and knowing which one you're in e
 
 ## Set your schedule
 
-{% include step.html number="1" title="Open Scheduling" body="From the menu, tap Scheduling and turn on Schedule Mode." diagram="control-03-scheduling.png" %}
+{% include step.html number="1" title="Open Scheduling" body="From the menu, tap Scheduling and turn on Schedule Mode." %}
 
-{% include step.html number="2" title="Pick your days and hours" body="Select the days you're open, then set a start and end time for each. Tap Save Settings when you're done." diagram="control-03-scheduling.png" %}
+{% include step.html number="2" title="Pick your days and hours" body="Select the days you're open, then set a start and end time for each. Tap Save Settings when you're done." %}
 
 ### Skip an upcoming holiday
 
