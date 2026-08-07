@@ -58,7 +58,7 @@ A heater that ignores commands from a guest's QR code scan or from the Focal Con
 
 {% include step.html number="2" title="Rule out Schedule Mode" body="Outside scheduled hours, heaters aren't controllable by the QR code, by the Focal Control page, or by the pull string. The heater shows as disabled and its lights flash yellow when the pull string is pulled." %}
 
-Schedule Mode and Manual Mode are covered in [Heater Control]({{ site.baseurl }}/heater-control/). If the heater is online, in Manual Mode, and responds to the pull string but still ignores remote commands, [contact Focal Support](#still-stuck).
+Schedule Mode and Manual Mode are covered in [System Setup & Control]({{ site.baseurl }}/system-setup-control/). If the heater is online, in Manual Mode, and responds to the pull string but still ignores remote commands, [contact Focal Support](#still-stuck).
 
 ## Heater not emitting heat
 
@@ -70,7 +70,7 @@ Work these in order. If the LEDs aren't lit at step 1, the heater isn't getting 
 
 {% include step.html number="3" title="Rule out Schedule Mode" body="If the lights flash yellow on a pull, the heater is in Schedule Mode outside its scheduled hours. It won't heat until the schedule is active or you switch to Manual Mode." %}
 
-Switching between modes is covered in [Heater Control]({{ site.baseurl }}/heater-control/). If the heater has power and is in Manual Mode but still produces no heat, [contact Focal Support](#still-stuck).
+Switching between modes is covered in [System Setup & Control]({{ site.baseurl }}/system-setup-control/). If the heater has power and is in Manual Mode but still produces no heat, [contact Focal Support](#still-stuck).
 
 ## No power or LEDs
 
