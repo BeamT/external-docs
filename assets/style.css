@@ -89,6 +89,7 @@ a { color: inherit; }
 .doc-head h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 7vw, 40px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 10px; }
 .doc-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; color: var(--ink-soft); font-size: 13px; margin-bottom: 8px; }
 .doc-body { margin-top: 22px; }
+.doc-body > ul:first-of-type { list-style: none; padding-left: 0; }
 .doc-body h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 34px 0 12px; padding-top: 10px; }
 .doc-body p { margin: 0 0 14px; }
 .doc-body table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 15px; }
