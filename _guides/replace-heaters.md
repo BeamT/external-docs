@@ -26,11 +26,15 @@ The software map has to keep matching the rail layout. Before you move anything,
 
 You need:
 
-{% include checklist.html items="The replacement heater | A phone with a camera and internet | The restaurant's Focal Control URL and password from Focal | A 2mm hex wrench for the rail end cap (depending on rail generation)" %}
+{% include checklist.html items="The replacement heater | A phone with a camera and internet | The restaurant's Focal Control URL and password from Focal | A 2mm hex wrench for the rail end cap" %}
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set a unit down on the grille or reflector." %}
 
-{% include warn.html text="Switch the rail off at its switch and let the old heater cool before you touch it." %}
+{% include warn.html text="Let the old heater cool before you touch it." %}
+
+Watch the swap once before you start. Everything below is the same job written out step by step.
+ 
+{% include video.html id="swap-video" src="replace-heater.mp4" poster="replace-heater-poster.jpg" caption="Swapping a heater, start to finish" %}
 
 ## Remove the old heater
 

@@ -89,6 +89,20 @@ def render_include(name, args):
         return ("<p>The serial number is printed on the top of each heater, where it "
                 "mounts to the rail. It also appears on the Heater Control page when "
                 "you tap a slot.</p>")
+    if name == "video.html":
+        vid = f"{BASEURL}/assets/video/{args.get('src','')}"
+        vid_id = args.get("id", "video")
+        poster = f' poster="{BASEURL}/assets/video/{args["poster"]}"' if args.get("poster") else ""
+        track = (f'<track kind="captions" src="{BASEURL}/assets/video/{args["captions"]}"'
+                 ' srclang="en" label="English" default>') if args.get("captions") else ""
+        cap = f'<figcaption>{html.escape(args["caption"])}</figcaption>' if args.get("caption") else ""
+        qr = f'<img src="{BASEURL}/assets/video/{args["qr"]}" alt="">' if args.get("qr") else ""
+        return (f'<figure class="video" id="{vid_id}">'
+                f'<video controls preload="none" playsinline{poster}>'
+                f'<source src="{vid}" type="video/mp4">{track}'
+                f'<a href="{vid}">Download the video</a></video>{cap}'
+                f'<div class="video-print">{qr}<span>Watch this step at '
+                f'{vid_id}</span></div></figure>')
     # Fall through to the raw template rather than dropping the include silently.
     # Static includes such as railtable.html render correctly this way, and any
     # future include with Liquid in it will show up visibly broken instead of

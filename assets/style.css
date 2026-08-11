@@ -375,3 +375,50 @@ h2[id], h3[id] {
 .contact .contact-name { font-family: var(--font-display); font-weight: 700; font-size: 17px; }
 .contact a { color: var(--focal); text-decoration: none; }
 .contact a:hover { text-decoration: underline; }
+/* ---- Video (_includes/video.html) ----
+   Portrait 9:16 clips. Capped narrow so a vertical video doesn't run the whole
+   height of the screen on a laptop. On phones it fills the column. The player
+   is dropped for print and replaced by .video-print, a QR code plus the URL. */
+.video {
+  margin: 20px 0;
+  max-width: 300px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+}
+.video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #000;
+}
+.video figcaption {
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 10px 14px;
+  border-top: 1px solid var(--line-soft);
+}
+.video-print { display: none; }
+
+@media print {
+  .video { max-width: none; break-inside: avoid; border-color: #ccc; }
+  .video video, .video figcaption { display: none; }
+  .video-print {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  /* Overrides the generic inline-PNG rule so the QR sits flush in the row. */
+  .video-print img {
+    width: 88px;
+    height: 88px;
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}
