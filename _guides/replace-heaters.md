@@ -3,7 +3,7 @@ title: Replace a Heater
 audience: [customer]
 audience_order: {customer: 25}
 order: 70
-summary: Swap a failed heater and point its slot at the new unit.
+summary: Swap a failed heater and assign the new heater to its slot.
 version: "1.0"
 updated: "2026-08-11"
 ---
