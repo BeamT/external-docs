@@ -20,13 +20,13 @@ updated: "2026-08-11"
 
 ## Before you start
 
-This covers swapping one failed or damaged heater for a replacement on a rail that is already installed and running. Every other heater stays where it is. The job is close to a normal install, with two differences. You take the old heater out first, and afterward you point its slot at the new heater in Focal Control.
+This covers swapping a failed or damaged heater for a replacement on a rail that is already installed and running. You remove the old heater, install the new one and then assign the new heater to the slot on the Focal Control page.
 
-The software map has to keep matching the rail. Before you move anything, note which slot the failed heater sits in and the order of the heaters between it and the open end of the rail. Any heater you slide off has to go back to the same slot, or its controls will point at the wrong unit. A quick photo of the rail is the easiest record.
+The software map has to keep matching the rail layout. Before you move anything, note which slot the failed heater sits in and the order of the heaters between it and the open end of the rail. Any heater you slide off has to go back to the same slot, or its controls will point at the wrong unit. 
 
 You need:
 
-{% include checklist.html items="The replacement heater | A phone with a camera and internet | The restaurant's Focal Control URL and password from Focal | A screwdriver for the rail end cap" %}
+{% include checklist.html items="The replacement heater | A phone with a camera and internet | The restaurant's Focal Control URL and password from Focal | A 2mm screwdriver for the rail end cap (depending on rail generation)" %}
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set a unit down on the grille or reflector." %}
 
@@ -36,9 +36,7 @@ You need:
 
 {% include step.html number="1" title="Open the rail end" body="Loosen the bumper screw and slide the bumper toward the center of the rail. Remove the end cap screws and take off the end cap, keeping one hand on it so it doesn't fall. Remove the spacers and set them aside." %}
 
-{% include step.html number="2" title="Slide off any heaters in front of the old one" body="If other heaters sit between the open end and the failed unit, slide them off first. Lay them out in the order they came off so each one goes back to the same slot. Keep the spacers with them." %}
-
-{% include step.html number="3" title="Release and remove the old heater" body="Pull the failed heater's string down firmly until it releases, then slide it off the rail. Set it aside to return to Focal." %}
+{% include step.html number="2" title="Remove any heaters and slider in the way" body="If other heaters and sliders sit between the open end and the failed heater, remove them off first. To remove the heater, pull down firmly on the pullstring and slide the heater off the rail. Lay the heaters in the order they came off so each one goes back in the same order." %}
 
 ## Install the new heater
 
@@ -55,8 +53,6 @@ You need:
 ## Close up the rail
 
 {% include step.html number="1" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its screw. Do not overtighten the bumper screw." %}
-
-{% include step.html number="2" title="Switch the rail back on" body="Turn the rail back on. Every heater should light up, including the new one." %}
 
 ## Reassign the slot
 
@@ -82,8 +78,7 @@ The old heater's slot in Focal Control still points at the unit you just removed
 
 ## Final checks
 
-{% include checklist.html items="The new heater sits in the same slot the old one came out of | Every other heater is back in its original slot with a spacer between each pair | The reassigned slot commands the new heater and no other | End cap screwed on and bumper in place | Every heater set back to 0 before leaving site" %}
+{% include checklist.html items="The new heater sits in the same slot the old one came out of | Every other heater is back in its original slot with a spacer between each pair | The reassigned slot commands the new heater and no other | End cap screwed on and bumper in place " %}
 
 Send the old heater back to Focal using the return steps in [Warranty & Support]({{ site.baseurl }}/warranty-support/). If the new heater won't come online or the wrong unit responds, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/).
 
-{% include serial.html %}
