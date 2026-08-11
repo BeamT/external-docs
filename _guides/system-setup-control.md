@@ -1,7 +1,7 @@
 ---
 title: System Setup & Control
 audience: [customer]
-audience_order: {customer: 150}
+audience_order: {customer: 10}
 order: 10
 summary: Set up Focal Control, build your schedule, and run the whole space from one screen.
 version: "1.0"
