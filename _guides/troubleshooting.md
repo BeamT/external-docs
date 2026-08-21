@@ -32,6 +32,11 @@ If neither group fits, or the steps don't resolve it, see [Still stuck?](#still-
 
 Troubleshooting steps differ depending on whether all heaters are offline or only some of them are.
 
+### Only some heaters offline
+
+{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs. If the LEDs aren't lit, the heater isn't getting power and can't come online. Follow [No power or LEDs](#no-power-or-leds) steps first." %}
+
+
 ### All heaters offline
 
 {% include step.html number="1" title="Check the Focal Point networking box power" body="Confirm the Focal Point networking box is plugged into power." %}
@@ -40,15 +45,6 @@ Troubleshooting steps differ depending on whether all heaters are offline or onl
 
 For how the networking box and access point should be wired, see [Network Setup]({{ site.baseurl }}/network-setup/).
 
-### Only some heaters offline
-
-{% include step.html number="1" title="Check power" body="Confirm the affected heater has power via its LEDs." %}
-
-If the LEDs aren't lit, the heater isn't getting power and can't come online — work through [No power or LEDs](#no-power-or-leds) first.
-
-{% include warn.html text="Don't unplug heaters overnight — that's the most common cause of false offline reports the next morning." %}
-
-If every heater has power and the networking box is online but heaters still show offline, [contact Focal Support](#still-stuck).
 
 ## Heater won't respond to remote commands (QR code or the Focal Control page) {#heater-wont-respond-remotely}
 
@@ -80,9 +76,6 @@ Switching between modes is covered in [System Setup & Control]({{ site.baseurl }
 
 {% include step.html number="3" title="Check the circuit, not just the heater" body="Test the rail on a known-good neighboring circuit with a non-contact outlet tester before assuming the heater is at fault." %}
 
-{% include dodont.html do="Give each rail its own dedicated, GFCI-protected circuit." dont="Run heaters on extension cords or shared circuits — the most common root cause of tripping." %}
-
-If a breaker or GFCI keeps tripping, isolate whether it's the GFCI or the breaker, then escalate to the site's electrician or [contact Focal Support](#still-stuck).
 
 ## Heater is hard to move
 
