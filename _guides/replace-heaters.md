@@ -84,5 +84,4 @@ The old heater's slot in Focal Control still points at the unit you just removed
 
 {% include checklist.html items="The new heater sits in the same slot the old one came out of | Every other heater is back in its original slot with a spacer between each pair | The reassigned slot commands the new heater and no other | End cap screwed on and bumper in place" %}
 
-Send the old heater back to Focal using the return steps in [Warranty & Support]({{ site.baseurl }}/warranty-support/). If the new heater won't come online or the wrong unit responds, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/).
-
+Send the old heater back to Focal using the return steps in [Warranty and Service]({{ site.baseurl }}/warranty-service/). If the new heater won't come online or the wrong unit responds, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/).

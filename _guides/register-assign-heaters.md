@@ -62,4 +62,4 @@ After assigning every heater, it's critical to confirm each heater was assigned 
 
 That's the last step of the install. Walk the restaurant through [System Setup & Control]({{ site.baseurl }}/system-setup-control/) before you go, so staff can run the system themselves.
 
-If anything won't come online or behaves oddly, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/). For service, replacements, or full specifications, see [Warranty & Support]({{ site.baseurl }}/warranty-support/).
+If anything won't come online or behaves oddly, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/). For service, replacements, or full specifications, see [Warranty and Service]({{ site.baseurl }}/warranty-service/).
