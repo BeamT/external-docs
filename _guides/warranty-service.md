@@ -39,7 +39,7 @@ For service, malfunctions, replacements, or questions, reach Focal Support.
 
 {% include service.html style="warn" %}
 
-If a unit is damaged or malfunctioning, discontinue use, secure any loose parts, and contact Focal for a loaner or replacement rather than attempting a repair.
+If a unit is damaged or malfunctioning, discontinue use, secure any loose parts, and contact Focal for a replacement rather than attempting a repair.
 
 ## Warranty
 
