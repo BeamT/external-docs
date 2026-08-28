@@ -18,7 +18,7 @@ updated: "2026-07-29"
 
 ## Contact Focal
 
-For service, malfunctions, replacements, or questions, reach Focal Support.
+For service, questions, issues, or replacements, reach Focal Support.
 
 {% include contact.html %}
 
