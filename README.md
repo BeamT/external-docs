@@ -158,19 +158,14 @@ Agreed but not yet done, in roughly the order they unblock each other:
 2. **Once #1 happens:** shrink `_guides/troubleshooting.md` into a short stub
    that forwards to `/fixit/`, instead of keeping the full step-by-step
    content duplicated in two places.
-3. **"Help" vs. "Guides" naming** — once there's a shared nav/domain to label,
-   decide whether the umbrella term for this part of the site is "Help"
-   (covers both the wizard and the reference guides) or "Guides" (the term
-   `_guides/` already uses).
-4. **Move to a custom domain**, `support.focalheat.co`, for the whole site
-   (guides + wizard together) — not a separate `help.` subdomain just for the
-   wizard. No `CNAME` file exists yet. When this happens, update `url` and
+3. **Move to a custom domain**, `support.focalheat.co`, for the whole site
+   (guides + wizard together).When this happens, update `url` and
    `baseurl` in `_config.yml` together (see the comments already in that
    file).
-5. **Add page analytics** (Google Analytics or similar) to the homepage —
+4. **Add page analytics** (Google Analytics or similar) to the homepage —
    nothing is wired up yet. Tool choice (GA4 vs. a lighter option like
    Plausible/Fathom) hasn't been decided.
-6. **Update the support email address to `support@focalheat.co`**,
+5. **Update the support email address to `support@focalheat.co`**,
    replacing `hello@focalheat.co`, across `fixit.html`, `_includes/
    contact.html`, and `_guides/troubleshooting.md` (grep for the old address
    before changing it — this list can drift). Confirm the new address is
