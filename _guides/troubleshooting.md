@@ -10,13 +10,7 @@ updated: "2026-08-20"
 
 ## What's wrong?
 
-<a class="fixit-banner fixit-banner--compact" href="{{ site.baseurl }}/fixit/">
-  <div class="fixit-banner-text">
-    <div class="fixit-banner-eyebrow">Need help now?</div>
-    <h2>Troubleshoot now</h2>
-  </div>
-  <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
-</a>
+{% include fixitbanner.html %}
 
 Or pick the symptom that matches what you're seeing.
 

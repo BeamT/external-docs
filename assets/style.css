@@ -83,14 +83,16 @@ a { color: inherit; }
   transition: border-color 0.15s, transform 0.15s;
 }
 .fixit-banner:hover { transform: scale(0.995); }
-.fixit-banner-eyebrow { font-size: 13px; font-weight: 600; color: var(--focal-ink); margin-bottom: 4px; }
+.fixit-banner-eyebrow { display: block; font-size: 13px; font-weight: 600; color: var(--focal-ink); margin-bottom: 4px; }
 .fixit-banner-text h2 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0 0 6px; }
 .fixit-banner-text p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 40em; }
+.fixit-banner-title { display: block; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
 .fixit-banner-arrow { flex: none; font-size: 24px; color: var(--focal-ink); transition: transform 0.15s; }
 .fixit-banner:hover .fixit-banner-arrow { transform: translateX(4px); }
 
 .fixit-banner--compact { padding: 14px 18px; margin: 18px 0; }
-.fixit-banner--compact .fixit-banner-text h2 { font-size: 17px; margin: 0; }
+.fixit-banner--compact .fixit-banner-text h2,
+.fixit-banner--compact .fixit-banner-title { font-size: 17px; }
 .fixit-banner--compact .fixit-banner-eyebrow { margin-bottom: 2px; }
 .fixit-banner--compact .fixit-banner-arrow { font-size: 20px; }
 
