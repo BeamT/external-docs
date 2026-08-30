@@ -50,7 +50,9 @@ body {
 }
 
 .logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -60,7 +62,15 @@ body {
   margin-bottom: 4px;
 }
 
-.logo:hover { text-decoration: underline; }
+.logo-text { text-decoration: none; }
+.logo:hover .logo-text { text-decoration: underline; }
+
+.logo-arrow {
+  display: inline-block;
+  transition: transform 0.15s;
+}
+
+.logo:hover .logo-arrow { transform: translateX(-3px); }
 
 h1 {
   font-size: 22px;
@@ -485,7 +495,7 @@ h1 {
 <body>
 
 <div class="wrap">
-  <a class="logo" href="{{ site.baseurl }}/">Focal Support</a>
+  <a class="logo" href="{{ site.baseurl }}/"><span class="logo-arrow" aria-hidden="true">&larr;</span> <span class="logo-text">Focal Support</span></a>
   <h1>Troubleshooting</h1>
   <p class="subtitle">We'll walk you through it.</p>
   <div id="app"></div>

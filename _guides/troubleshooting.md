@@ -10,9 +10,15 @@ updated: "2026-08-20"
 
 ## What's wrong?
 
-Prefer to be walked through it step by step? Try the [troubleshooting tool]({{ site.baseurl }}/fixit/).
+<a class="fixit-banner fixit-banner--compact" href="{{ site.baseurl }}/fixit/">
+  <div class="fixit-banner-text">
+    <div class="fixit-banner-eyebrow">Troubleshoot now</div>
+    <h2>Use our troubleshooting tool</h2>
+  </div>
+  <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
+</a>
 
-Pick the symptom that matches what you're seeing.
+Or pick the symptom that matches what you're seeing.
 
 - [I can't control the heater (offline, app, or QR code)](#cant-control)
 - [No power or lights](#no-power-or-lights)
