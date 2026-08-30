@@ -645,6 +645,7 @@ const TREE = {
     type: 'support',
     code: 'control_all_app_networking_checked',
     heading: "Let's get you some help",
+    noUnitPhoto: true,
   },
 
   end_support_pull_dead: {
@@ -826,15 +827,14 @@ function currentEndNode() {
 
 function buildEmailBody() {
   const endNode = currentEndNode();
-  const attachAsk = endNode && endNode.code === 'damaged'
-    ? "Please attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page before sending."
-    : 'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.';
-  let lines = [
-    attachAsk,
-    '',
-    'Issue description:',
-    ''
-  ];
+  let lines = [];
+  if (!endNode || !endNode.noUnitPhoto) {
+    const attachAsk = endNode && endNode.code === 'damaged'
+      ? "Please attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page before sending."
+      : 'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.';
+    lines.push(attachAsk, '');
+  }
+  lines.push('Issue description:', '');
   for (let i = 0; i < path.length; i++) {
     const step = path[i];
     if (step.optionIndex === null) continue;
@@ -916,7 +916,7 @@ function render() {
 
       if (requiresDescription) {
         html += '<div class="textarea-label">Describe what\'s going on</div>';
-        html += '<textarea class="issue-textarea" placeholder="e.g. Heater won\'t turn on at all" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
+        html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
       }
 
       html += '<div class="send-card">';
@@ -924,7 +924,9 @@ function render() {
       if (node.safetyStep) {
         html += '<li>' + esc(node.safetyStep) + '</li>';
       }
-      html += '<li>' + esc(attachAsk) + '</li>';
+      if (!node.noUnitPhoto) {
+        html += '<li>' + esc(attachAsk) + '</li>';
+      }
       html += '<li>CC others you want in the loop.</li>';
       html += '</ul>';
       const disabledClass = (requiresDescription && !filled) ? ' disabled' : '';
