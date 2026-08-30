@@ -153,11 +153,10 @@ Agreed but not yet done, in roughly the order they unblock each other:
 
 1. **Bring `fixit.html` into the site's shared layout/chrome** (header/nav/
    footer via `_layouts/default.html` or similar), instead of it staying a
-   bare standalone page. This is the central blocking item — the two below
-   depend on it.
-2. **Once #1 happens:** shrink `_guides/troubleshooting.md` into a short stub
-   that forwards to `/fixit/`, instead of keeping the full step-by-step
-   content duplicated in two places.
+   bare standalone page. This is the central blocking item — the item below
+   depends on it.
+2. ~~Shrink `_guides/troubleshooting.md` into a short stub that forwards to
+   `/fixit/`~~ — done; it's now a 29-line stub.
 3. **Move to a custom domain**, `support.focalheat.co`, for the whole site
    (guides + wizard together).When this happens, update `url` and
    `baseurl` in `_config.yml` together (see the comments already in that
