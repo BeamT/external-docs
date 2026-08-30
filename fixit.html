@@ -322,7 +322,9 @@ h1 {
 .email-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  width: 100%;
   padding: 12px 24px;
   background: var(--focal);
   color: #FFF;
@@ -338,17 +340,94 @@ h1 {
 
 .email-btn:hover { opacity: 0.9; }
 
-.attach-hint {
-  background: var(--amber-bg);
-  border: 1px solid var(--amber-border);
-  color: var(--amber);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  line-height: 1.5;
-  max-width: 360px;
-  margin: 0 auto 14px;
+.email-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
+
+.safety-step {
+  font-size: 14px;
+  color: var(--ink);
+  max-width: 360px;
+  margin: 0 auto 16px;
+}
+
+.textarea-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  max-width: 360px;
+  margin: 0 auto 8px;
+  text-align: left;
+}
+
+.issue-textarea {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  min-height: 72px;
+  margin: 0 auto 16px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  resize: vertical;
+}
+
+.issue-textarea:focus {
+  outline: none;
+  border-color: var(--focal);
+}
+
+.send-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.send-reminders {
+  list-style: none;
+  text-align: left;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.send-reminders li {
+  position: relative;
+  padding: 4px 0 4px 16px;
+  line-height: 1.5;
+}
+
+.send-reminders li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 13px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.fallback-link {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.fallback-link a {
+  color: var(--focal);
+  text-decoration: none;
+}
+
+.fallback-link a:hover { text-decoration: underline; }
 
 .start-over-btn {
   display: inline-block;
@@ -381,37 +460,6 @@ h1 {
 }
 
 .another-link a:hover { text-decoration: underline; }
-
-/* Summary in email */
-.path-summary {
-  text-align: left;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  margin: 20px 0;
-  font-size: 13px;
-}
-
-.path-summary .ps-title {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  color: var(--ink-faint);
-  margin-bottom: 10px;
-}
-
-.path-summary .ps-item {
-  padding: 3px 0;
-  line-height: 1.5;
-}
-
-.path-summary .ps-item + .ps-item {
-  border-top: 1px solid var(--border);
-  margin-top: 3px;
-  padding-top: 6px;
-}
 
 /* Fade in animation */
 @keyframes fadeUp {
@@ -571,7 +619,7 @@ const TREE = {
     type: 'support',
     code: 'damaged',
     heading: "Secure the heater and contact support",
-    message: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
+    safetyStep: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
   },
 
   // === ENDPOINTS ===
@@ -585,56 +633,48 @@ const TREE = {
     type: 'support',
     code: 'control_some_app',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_networking: {
     type: 'support',
     code: 'control_all_app_networking_checked',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_pull_dead: {
     type: 'support',
     code: 'control_pull_no_response',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_pull_schedule: {
     type: 'support',
     code: 'control_pull_schedule_checked',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_rail_isolated: {
     type: 'support',
     code: 'no_power_rail_isolated',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_no_power: {
     type: 'support',
     code: 'no_power_outlet_ok',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_cant_move: {
     type: 'support',
     code: 'cant_move',
     heading: "Let's get you some help",
-    message: "The issue description below will be included in your email."
   },
 
   end_support_generic: {
     type: 'support',
     code: 'generic',
     heading: "Let's get you some help",
-    message: "Tell us what's going on and we'll figure it out together."
   },
 
   end_electrician: {
@@ -716,6 +756,7 @@ function getSummary(nodeId, optionIndex) {
 
 // State
 let path = []; // [{ nodeId, optionIndex }]
+let issueDescription = '';
 
 function currentNodeId() {
   if (path.length === 0) return 'start';
@@ -751,8 +792,21 @@ function goBack(stepIndex) {
 
 function startOver() {
   path = [];
+  issueDescription = '';
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateIssueDescription(value) {
+  issueDescription = value;
+  const btn = document.getElementById('email-btn');
+  if (!btn) return;
+  const filled = issueDescription.trim().length > 0;
+  btn.classList.toggle('disabled', !filled);
+  btn.setAttribute('aria-disabled', String(!filled));
+  const subject = encodeURIComponent(buildSubject());
+  const body = encodeURIComponent(buildEmailBody());
+  btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
 function currentEndNode() {
@@ -765,8 +819,12 @@ function currentEndNode() {
 }
 
 function buildEmailBody() {
+  const endNode = currentEndNode();
+  const attachAsk = endNode && endNode.code === 'damaged'
+    ? "Please attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page before sending."
+    : 'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.';
   let lines = [
-    'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.',
+    attachAsk,
     '',
     'Issue description:',
     ''
@@ -776,7 +834,9 @@ function buildEmailBody() {
     if (step.optionIndex === null) continue;
     lines.push('- ' + getSummary(step.nodeId, step.optionIndex));
   }
-  const endNode = currentEndNode();
+  if (issueDescription.trim()) {
+    lines.push('- ' + issueDescription.trim());
+  }
   if (endNode && endNode.code) {
     lines.push('');
     lines.push('Issue code: ' + endNode.code);
@@ -836,28 +896,39 @@ function render() {
       html += '<p>' + esc(node.message) + '</p>';
       html += '<button class="start-over-btn" onclick="startOver()">Start over</button>';
     } else if (node.type === 'support') {
-      html += '<div class="endpoint-icon support">&#9993;</div>';
-      html += '<h2>' + esc(node.heading) + '</h2>';
-      html += '<p>' + esc(node.message) + '</p>';
-
-      // Path summary as natural sentences
-      if (path.length > 0) {
-        html += '<div class="path-summary">';
-        html += '<div class="ps-title">Issue description</div>';
-        for (let i = 0; i < path.length; i++) {
-          const s = path[i];
-          if (s.optionIndex === null) continue;
-          html += '<div class="ps-item">' + esc(getSummary(s.nodeId, s.optionIndex)) + '</div>';
-        }
-        html += '</div>';
-      }
-
+      const requiresDescription = node.code === 'generic';
+      const filled = issueDescription.trim().length > 0;
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
-      html += '<p class="attach-hint">Please attach a photo of the QR tag or serial number from the Focal Control page. CC others you want in the loop.</p>';
-      html += '<a class="email-btn" href="mailto:hello@focalheat.co?subject=' + subject + '&body=' + body + '">';
+      const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
+      const attachAsk = node.code === 'damaged'
+        ? "Attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page."
+        : 'Attach a photo of the QR tag or serial number from the Focal Control page.';
+
+      html += '<div class="endpoint-icon support">&#9993;</div>';
+      html += '<h2>' + esc(node.heading) + '</h2>';
+
+      if (node.safetyStep) {
+        html += '<p class="safety-step">' + esc(node.safetyStep) + '</p>';
+      }
+      if (requiresDescription) {
+        html += '<div class="textarea-label">Describe what\'s going on</div>';
+        html += '<textarea class="issue-textarea" placeholder="e.g. Heater won\'t turn on at all" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
+      }
+
+      html += '<div class="send-card">';
+      const disabledClass = (requiresDescription && !filled) ? ' disabled' : '';
+      html += '<a id="email-btn" class="email-btn' + disabledClass + '" href="' + mailtoHref + '" aria-disabled="' + (requiresDescription && !filled) + '" onclick="' + (requiresDescription ? 'if(!issueDescription.trim()){return false;}' : '') + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
+      html += '<ul class="send-reminders">';
+      html += '<li>' + esc(attachAsk) + '</li>';
+      html += '<li>CC others you want in the loop.</li>';
+      html += '</ul>';
+      html += '</div>';
+      if (requiresDescription) {
+        html += '<p class="fallback-link">Having trouble? <a href="' + mailtoHref + '">Email us directly</a>.</p>';
+      }
       html += '<p class="another-link">If needed, <a href="#" onclick="startOver(); return false;">report another issue after</a>.</p>';
     } else if (node.type === 'electrician') {
       html += '<div class="endpoint-icon support">&#9889;</div>';
