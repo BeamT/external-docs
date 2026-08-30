@@ -369,6 +369,19 @@ h1 {
   color: var(--ink);
 }
 
+.another-link {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.another-link a {
+  color: var(--focal);
+  text-decoration: none;
+}
+
+.another-link a:hover { text-decoration: underline; }
+
 /* Summary in email */
 .path-summary {
   text-align: left;
@@ -763,11 +776,7 @@ function buildEmailBody() {
     if (step.optionIndex === null) continue;
     lines.push('- ' + getSummary(step.nodeId, step.optionIndex));
   }
-  lines.push('');
   const endNode = currentEndNode();
-  if (endNode && endNode.heading) {
-    lines.push('Result: ' + endNode.heading);
-  }
   if (endNode && endNode.code) {
     lines.push('');
     lines.push('Issue code: ' + endNode.code);
@@ -845,11 +854,11 @@ function render() {
 
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
-      html += '<p class="attach-hint">Before sending, please attach a photo of the QR tag or serial number from the Focal Control page. CC others you want in the loop.</p>';
+      html += '<p class="attach-hint">Please attach a photo of the QR tag or serial number from the Focal Control page. CC others you want in the loop.</p>';
       html += '<a class="email-btn" href="mailto:hello@focalheat.co?subject=' + subject + '&body=' + body + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
-      html += '<br><button class="start-over-btn" onclick="startOver()">Start over</button>';
+      html += '<p class="another-link">If needed, <a href="#" onclick="startOver(); return false;">report another issue after</a>.</p>';
     } else if (node.type === 'electrician') {
       html += '<div class="endpoint-icon support">&#9889;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
