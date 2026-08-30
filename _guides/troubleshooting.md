@@ -12,8 +12,8 @@ updated: "2026-08-20"
 
 <a class="fixit-banner fixit-banner--compact" href="{{ site.baseurl }}/fixit/">
   <div class="fixit-banner-text">
-    <div class="fixit-banner-eyebrow">Troubleshoot now</div>
-    <h2>Use our troubleshooting tool</h2>
+    <div class="fixit-banner-eyebrow">Need help now?</div>
+    <h2>Troubleshoot now</h2>
   </div>
   <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
 </a>
