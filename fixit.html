@@ -50,13 +50,17 @@ body {
 }
 
 .logo {
+  display: inline-block;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--focal);
+  text-decoration: none;
   margin-bottom: 4px;
 }
+
+.logo:hover { text-decoration: underline; }
 
 h1 {
   font-size: 22px;
@@ -481,7 +485,7 @@ h1 {
 <body>
 
 <div class="wrap">
-  <div class="logo">Focal Support</div>
+  <a class="logo" href="{{ site.baseurl }}/">Focal Support</a>
   <h1>Troubleshooting</h1>
   <p class="subtitle">We'll walk you through it.</p>
   <div id="app"></div>

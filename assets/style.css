@@ -68,6 +68,26 @@ a { color: inherit; }
 .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 8vw, 46px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 12px; }
 .hero p { color: var(--ink-soft); margin: 0; max-width: 34em; }
 
+.fixit-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: var(--focal-wash);
+  border: 1px solid var(--focal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 8px 0 0;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.fixit-banner:hover { transform: scale(0.995); }
+.fixit-banner-eyebrow { font-size: 13px; font-weight: 600; color: var(--focal-ink); margin-bottom: 4px; }
+.fixit-banner-text h2 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0 0 6px; }
+.fixit-banner-text p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 40em; }
+.fixit-banner-arrow { flex: none; font-size: 24px; color: var(--focal-ink); }
+
 .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 8px; }
 .chip { border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); border-radius: 999px; padding: 7px 15px; font-size: 14px; cursor: pointer; font-family: inherit; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }

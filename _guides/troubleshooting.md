@@ -10,6 +10,8 @@ updated: "2026-08-20"
 
 ## What's wrong?
 
+Prefer to be walked through it step by step? Try the [troubleshooting tool]({{ site.baseurl }}/fixit/).
+
 Pick the symptom that matches what you're seeing.
 
 - [I can't control the heater (offline, app, or QR code)](#cant-control)
@@ -90,6 +92,6 @@ Once the area is safe, [contact Focal Support](#still-stuck) for a loaner or rep
 
 ## Still stuck?
 
-If these steps don't fix it, contact Focal Support at [hello@focalheat.co](mailto:hello@focalheat.co) with the heater's serial number and what you've already tried.
+Run through the [troubleshooting tool]({{ site.baseurl }}/fixit/) to send Focal Support a full report, or email [hello@focalheat.co](mailto:hello@focalheat.co) directly with the heater's serial number and what you've already tried.
 
 {% include serial.html %}
