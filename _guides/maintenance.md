@@ -55,6 +55,6 @@ If a heater won't turn on or won't respond to the app but shows none of the dama
 
 To report a malfunction, contact Focal Support with a photo of the heater's QR tag or serial number and a description of the problem.
 
-{%- comment -%} {% include serial.html %} {%- endcomment -%}
+{% comment %}{% include serial.html %}{% endcomment %}
 
 {% include contact.html %}

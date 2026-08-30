@@ -27,4 +27,4 @@ Prefer to read instead? Jump straight to a symptom:
 
 Run through the [troubleshooting tool]({{ site.baseurl }}/fixit/) to send Focal Support a full report, or email [hello@focalheat.co](mailto:hello@focalheat.co) directly with a photo of the heater's QR tag or serial number and what you've already tried.
 
-{%- comment -%} {% include serial.html %} {%- endcomment -%}
+{% comment %}{% include serial.html %}{% endcomment %}
