@@ -325,12 +325,12 @@ h1 {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: var(--focal);
   color: #FFF;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   font-family: inherit;
@@ -344,13 +344,6 @@ h1 {
   opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
-}
-
-.safety-step {
-  font-size: 14px;
-  color: var(--ink);
-  max-width: 360px;
-  margin: 0 auto 16px;
 }
 
 .textarea-label {
@@ -394,26 +387,39 @@ h1 {
 .send-reminders {
   list-style: none;
   text-align: left;
-  margin-top: 14px;
-  font-size: 13px;
-  color: var(--ink-soft);
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--ink);
 }
 
 .send-reminders li {
   position: relative;
-  padding: 4px 0 4px 16px;
-  line-height: 1.5;
+  padding: 6px 0 6px 26px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.send-reminders li + li {
+  border-top: 1px solid var(--border);
+  margin-top: 2px;
 }
 
 .send-reminders li::before {
-  content: '';
+  content: '\2713';
   position: absolute;
-  left: 2px;
-  top: 13px;
-  width: 4px;
-  height: 4px;
+  left: 0;
+  top: 6px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: var(--ink-faint);
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fallback-link {
@@ -908,23 +914,23 @@ function render() {
       html += '<div class="endpoint-icon support">&#9993;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
 
-      if (node.safetyStep) {
-        html += '<p class="safety-step">' + esc(node.safetyStep) + '</p>';
-      }
       if (requiresDescription) {
         html += '<div class="textarea-label">Describe what\'s going on</div>';
         html += '<textarea class="issue-textarea" placeholder="e.g. Heater won\'t turn on at all" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
       }
 
       html += '<div class="send-card">';
+      html += '<ul class="send-reminders">';
+      if (node.safetyStep) {
+        html += '<li>' + esc(node.safetyStep) + '</li>';
+      }
+      html += '<li>' + esc(attachAsk) + '</li>';
+      html += '<li>CC others you want in the loop.</li>';
+      html += '</ul>';
       const disabledClass = (requiresDescription && !filled) ? ' disabled' : '';
       html += '<a id="email-btn" class="email-btn' + disabledClass + '" href="' + mailtoHref + '" aria-disabled="' + (requiresDescription && !filled) + '" onclick="' + (requiresDescription ? 'if(!issueDescription.trim()){return false;}' : '') + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
-      html += '<ul class="send-reminders">';
-      html += '<li>' + esc(attachAsk) + '</li>';
-      html += '<li>CC others you want in the loop.</li>';
-      html += '</ul>';
       html += '</div>';
       if (requiresDescription) {
         html += '<p class="fallback-link">Having trouble? <a href="' + mailtoHref + '">Email us directly</a>.</p>';
