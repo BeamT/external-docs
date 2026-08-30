@@ -1,0 +1,909 @@
+---
+permalink: /fixit/
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Focal Troubleshooting</title>
+<style>
+:root {
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --border: #E2E0D8;
+  --ink: #2C2C2A;
+  --ink-soft: #73726C;
+  --ink-faint: #B4B2A9;
+  --focal: #E8653A;
+  --focal-light: #FEF3EF;
+  --green: #0F6E56;
+  --green-bg: #E1F5EE;
+  --green-border: #9FE1CB;
+  --amber: #854F0B;
+  --amber-bg: #FAEEDA;
+  --amber-border: #FAC775;
+  --blue: #185FA5;
+  --blue-bg: #E6F1FB;
+  --blue-border: #85B7EB;
+  --purple: #534AB7;
+  --purple-bg: #F4F3FF;
+  --purple-border: #CECBF6;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 100px;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--focal);
+  margin-bottom: 4px;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+}
+
+/* Completed steps */
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.history-step {
+  position: relative;
+  padding: 12px 44px 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.04);
+}
+
+.history-step:first-child {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.history-step:hover {
+  background: #F5F4F0;
+}
+
+.history-step:active {
+  background: #EEEDEA;
+}
+
+.history-step .step-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 2px;
+}
+
+.history-step .step-q {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.history-step .step-a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.history-step .step-a::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--focal);
+  flex-shrink: 0;
+}
+
+.history-step .change-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.history-step:hover .change-icon,
+.history-step:active .change-icon {
+  border-color: var(--focal);
+  color: var(--focal);
+}
+
+/* Active question */
+.active-step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.history + .active-step,
+.history-step + .active-step-wrap .active-step {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.has-history .active-step {
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.active-step .step-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--focal);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.active-step .instruction {
+  background: #FEF7F4;
+  border-left: 3px solid var(--focal);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.active-step .instruction .inst-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--focal);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #F0DDD5;
+}
+
+.active-step .instruction .inst-link:hover { text-decoration: underline; }
+
+.active-step .instruction .inst-link svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.active-step .question-text {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 1.35;
+}
+
+.active-step .options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  font-family: inherit;
+  line-height: 1.4;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.04);
+  min-height: 52px;
+}
+
+.opt-btn:hover {
+  border-color: var(--focal);
+  background: var(--focal-light);
+}
+
+.opt-btn:active {
+  border-color: var(--focal);
+  background: #FDEAE2;
+}
+
+.opt-btn::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.opt-btn:hover::before {
+  border-color: var(--focal);
+}
+
+/* Endpoints */
+.endpoint {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.has-history .endpoint {
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.endpoint-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 22px;
+}
+
+.endpoint-icon.resolved { background: var(--green-bg); }
+.endpoint-icon.support { background: var(--amber-bg); }
+
+.endpoint h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.endpoint p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--focal);
+  color: #FFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+  text-decoration: none;
+}
+
+.email-btn:hover { opacity: 0.9; }
+
+.attach-hint {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 360px;
+  margin: 0 auto 14px;
+}
+
+.start-over-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.start-over-btn:hover {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+}
+
+/* Summary in email */
+.path-summary {
+  text-align: left;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.path-summary .ps-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.path-summary .ps-item {
+  padding: 3px 0;
+  line-height: 1.5;
+}
+
+.path-summary .ps-item + .ps-item {
+  border-top: 1px solid var(--border);
+  margin-top: 3px;
+  padding-top: 6px;
+}
+
+/* Fade in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeUp 0.25s ease-out;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="logo">Focal Support</div>
+  <h1>Troubleshooting</h1>
+  <p class="subtitle">We'll walk you through it.</p>
+  <div id="app"></div>
+</div>
+
+<script>
+const TREE = {
+  start: {
+    question: "What's going on?",
+    options: [
+      { label: "Can't control the heater", next: 'lights_check' },
+      { label: "Can't move the heater", next: 'move_action' },
+      { label: "Heater is damaged", next: 'damaged_end' },
+      { label: "Something else", next: 'end_support_generic' },
+    ]
+  },
+
+  // === CAN'T CONTROL ===
+  lights_check: {
+    question: "Are the heater's orange and purple LEDs on?",
+    options: [
+      { label: "Yes", next: 'control_method' },
+      { label: "No", next: 'reseat' },
+    ]
+  },
+
+  control_method: {
+    question: "How are you trying to control it?",
+    options: [
+      { label: "App or QR code", next: 'how_many' },
+      { label: "Pull string", next: 'pull_test' },
+    ]
+  },
+
+  // -- App / QR path --
+  how_many: {
+    question: "Are all heaters affected or only some?",
+    options: [
+      { label: "Only some heaters", next: 'end_support_some_app' },
+      { label: "All heaters", next: 'schedule_check_app' },
+    ]
+  },
+
+  schedule_check_app: {
+    instruction: "Check to see if Schedule Mode is active. Heaters won't respond outside of scheduled hours.",
+    link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
+    question: "Did that help?",
+    options: [
+      { label: "I'm all set", next: 'end_resolved' },
+      { label: "I still need help", next: 'networking' },
+    ]
+  },
+
+  networking: {
+    instruction: "Check the Focal networking box is plugged into power. If it's located near your restaurant's router, check that it's plugged into your router and the internet is working.",
+    link: { label: "Network Setup Guide", url: "https://loren-focal.github.io/external-docs/network-setup/" },
+    question: "Can you control the heaters now?",
+    options: [
+      { label: "Yes", next: 'end_resolved' },
+      { label: "No", next: 'end_support_networking' },
+    ]
+  },
+
+  // -- Pull string path --
+  pull_test: {
+    instruction: "Give the pull string a short pull and watch the LEDs.",
+    link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
+    question: "What happens?",
+    options: [
+      { label: "The yellow LEDs are flashing", next: 'schedule_check_pull' },
+      { label: "The white LEDs changed", next: 'end_pull_working' },
+      { label: "Nothing happened", next: 'end_support_pull_dead' },
+    ]
+  },
+
+  schedule_check_pull: {
+    instruction: "Schedule Mode is active and heaters won't respond outside of scheduled hours.",
+    link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
+    question: "Did that help?",
+    options: [
+      { label: "I'm all set", next: 'end_resolved' },
+      { label: "I still need help", next: 'end_support_pull_schedule' },
+    ]
+  },
+
+  end_pull_working: {
+    type: 'resolved',
+    heading: "The pull string is working",
+    message: "The white LEDs show the current heat level. Each pull cycles to the next level."
+  },
+
+  // === NO POWER (A2) ===
+  reseat: {
+    instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, slide it back on and let go.",
+    question: "Did the orange and purple LEDs come on?",
+    options: [
+      { label: "Yes", next: 'end_resolved' },
+      { label: "No", next: 'check_rail' },
+    ]
+  },
+
+  check_rail: {
+    question: "Look at other heaters on the same rail. Are their orange and purple LEDs on?",
+    options: [
+      { label: "Yes, the others are on", next: 'end_support_rail_isolated' },
+      { label: "No, others are dark too", next: 'check_breaker' },
+    ]
+  },
+
+  check_breaker: {
+    instruction: "Check the rail's power switch and circuit breaker.",
+    question: "Did the orange and purple LEDs come back on?",
+    options: [
+      { label: "Yes", next: 'end_resolved' },
+      { label: "No", next: 'test_outlet' },
+    ]
+  },
+
+  test_outlet: {
+    instruction: "Test the outlet with another electrical device.",
+    question: "Does the outlet provide power?",
+    options: [
+      { label: "Yes", next: 'end_support_no_power' },
+      { label: "No", next: 'end_electrician' },
+    ]
+  },
+
+  // === CAN'T MOVE ===
+  move_action: {
+    instruction: "Pull the string all the way down before trying to slide the heater.",
+    link: { label: "How to move a heater", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
+    question: "Can you move it now?",
+    options: [
+      { label: "Yes", next: 'end_resolved' },
+      { label: "No", next: 'end_support_cant_move' },
+    ]
+  },
+
+  // === DAMAGED ===
+  damaged_end: {
+    type: 'support',
+    code: 'damaged',
+    heading: "Secure the heater and contact support",
+    message: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
+  },
+
+  // === ENDPOINTS ===
+  end_resolved: {
+    type: 'resolved',
+    heading: "Issue resolved!",
+    message: "If the problem comes back, run through these steps again."
+  },
+
+  end_support_some_app: {
+    type: 'support',
+    code: 'control_some_app',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_networking: {
+    type: 'support',
+    code: 'control_all_app_networking_checked',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_pull_dead: {
+    type: 'support',
+    code: 'control_pull_no_response',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_pull_schedule: {
+    type: 'support',
+    code: 'control_pull_schedule_checked',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_rail_isolated: {
+    type: 'support',
+    code: 'no_power_rail_isolated',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_no_power: {
+    type: 'support',
+    code: 'no_power_outlet_ok',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_cant_move: {
+    type: 'support',
+    code: 'cant_move',
+    heading: "Let's get you some help",
+    message: "The issue description below will be included in your email."
+  },
+
+  end_support_generic: {
+    type: 'support',
+    code: 'generic',
+    heading: "Let's get you some help",
+    message: "Tell us what's going on and we'll figure it out together."
+  },
+
+  end_electrician: {
+    type: 'electrician',
+    heading: "The outlet or circuit needs repair",
+    message: "The heater and rail are fine, but the outlet isn't providing power. Contact an electrician to fix the outlet and/or circuit. Once power is restored, your heaters should come back online."
+  },
+};
+
+// Natural-language summaries keyed by nodeId -> optionIndex
+const SUMMARIES = {
+  start: {
+    0: "Can't control the heater.",
+    1: "Can't move the heater.",
+    2: "Heater is damaged.",
+    3: "Something else is wrong.",
+  },
+  lights_check: {
+    0: "The orange and purple LEDs are on.",
+    1: "The orange and purple LEDs are not on.",
+  },
+  control_method: {
+    0: "Trying to control it from the app or QR code.",
+    1: "Trying to control it from the pull string.",
+  },
+  how_many: {
+    0: "Only some heaters are affected.",
+    1: "All heaters are affected.",
+  },
+  schedule_check_app: {
+    0: "Schedule Mode check resolved the issue.",
+    1: "Schedule Mode is not the issue.",
+  },
+  networking: {
+    0: "Checking the networking box fixed it.",
+    1: "Still can't control the heaters after checking the networking box and router.",
+  },
+  pull_test: {
+    0: "The yellow LEDs are flashing when pulling the string.",
+    1: "The white LEDs changed when pulling the string.",
+    2: "Nothing happened when pulling the string.",
+  },
+  schedule_check_pull: {
+    0: "Schedule Mode check resolved the issue.",
+    1: "Schedule Mode is not the issue.",
+  },
+  reseat: {
+    0: "Re-seating the heater restored the LEDs.",
+    1: "Re-seating the heater did not restore the LEDs.",
+  },
+  check_rail: {
+    0: "Other heaters on the same rail are on.",
+    1: "Other heaters on the same rail are also dark.",
+  },
+  check_breaker: {
+    0: "Checking the rail switch and breaker restored the LEDs.",
+    1: "Checking the rail switch and breaker did not restore the LEDs.",
+  },
+  test_outlet: {
+    0: "The outlet provides power when tested with another device.",
+    1: "The outlet does not provide power.",
+  },
+  move_action: {
+    0: "Full pull down released the heater.",
+    1: "Full pull down did not release the heater.",
+  },
+};
+
+function getSummary(nodeId, optionIndex) {
+  if (SUMMARIES[nodeId] && SUMMARIES[nodeId][optionIndex] !== undefined) {
+    return SUMMARIES[nodeId][optionIndex];
+  }
+  const node = TREE[nodeId];
+  if (node && node.options && node.options[optionIndex]) {
+    return node.options[optionIndex].label;
+  }
+  return '';
+}
+
+// State
+let path = []; // [{ nodeId, optionIndex }]
+
+function currentNodeId() {
+  if (path.length === 0) return 'start';
+  const last = path[path.length - 1];
+  const node = TREE[last.nodeId];
+  if (last.optionIndex !== null && last.optionIndex !== undefined) {
+    return node.options[last.optionIndex].next;
+  }
+  return last.nodeId;
+}
+
+function selectOption(optionIndex) {
+  const nodeId = currentNodeId();
+  if (path.length > 0 && path[path.length - 1].optionIndex === null) {
+    path[path.length - 1].optionIndex = optionIndex;
+  } else {
+    path.push({ nodeId, optionIndex });
+  }
+  const node = TREE[nodeId];
+  const nextId = node.options[optionIndex].next;
+  const nextNode = TREE[nextId];
+  if (!nextNode.type) {
+    path.push({ nodeId: nextId, optionIndex: null });
+  }
+  render();
+}
+
+function goBack(stepIndex) {
+  path = path.slice(0, stepIndex + 1);
+  path[stepIndex].optionIndex = null;
+  render();
+}
+
+function startOver() {
+  path = [];
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function currentEndNode() {
+  if (path.length === 0) return null;
+  const lastStep = path[path.length - 1];
+  const lastNode = TREE[lastStep.nodeId];
+  if (lastStep.optionIndex === null) return null;
+  const endId = lastNode.options[lastStep.optionIndex].next;
+  return TREE[endId];
+}
+
+function buildEmailBody() {
+  let lines = [
+    'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.',
+    '',
+    'Issue description:',
+    ''
+  ];
+  for (let i = 0; i < path.length; i++) {
+    const step = path[i];
+    if (step.optionIndex === null) continue;
+    lines.push('- ' + getSummary(step.nodeId, step.optionIndex));
+  }
+  lines.push('');
+  const endNode = currentEndNode();
+  if (endNode && endNode.heading) {
+    lines.push('Result: ' + endNode.heading);
+  }
+  if (endNode && endNode.code) {
+    lines.push('');
+    lines.push('Issue code: ' + endNode.code);
+  }
+  return lines.join('\n');
+}
+
+function buildSubject() {
+  const endNode = currentEndNode();
+  const code = endNode && endNode.code ? ' [' + endNode.code + ']' : '';
+  if (path.length > 0) {
+    const first = path[0];
+    const node = TREE[first.nodeId];
+    if (first.optionIndex !== null) {
+      return 'Troubleshooting: ' + node.options[first.optionIndex].label + code;
+    }
+  }
+  return 'Troubleshooting help' + code;
+}
+
+function render() {
+  const app = document.getElementById('app');
+  let html = '';
+  const hasHistory = path.length > 0 && (path[0].optionIndex !== null);
+
+  // Render completed steps
+  if (hasHistory) {
+    html += '<div class="history">';
+    for (let i = 0; i < path.length; i++) {
+      const step = path[i];
+      const node = TREE[step.nodeId];
+      if (step.optionIndex === null) continue;
+      const answer = node.options[step.optionIndex].label;
+      const qText = node.question || '';
+      html += '<div class="history-step" onclick="goBack(' + i + ')">';
+      html += '<div class="step-num">Step ' + (i + 1) + '</div>';
+      html += '<div class="step-q">' + esc(qText) + '</div>';
+      html += '<div class="step-a">' + esc(answer) + '</div>';
+      html += '<div class="change-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></div>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  // Current node
+  const nodeId = currentNodeId();
+  const node = TREE[nodeId];
+  const wrapClass = hasHistory ? ' has-history' : '';
+
+  if (node.type) {
+    // Endpoint
+    html += '<div class="endpoint fade-in' + wrapClass + '">';
+
+    if (node.type === 'resolved') {
+      html += '<div class="endpoint-icon resolved">&#10003;</div>';
+      html += '<h2>' + esc(node.heading) + '</h2>';
+      html += '<p>' + esc(node.message) + '</p>';
+      html += '<button class="start-over-btn" onclick="startOver()">Start over</button>';
+    } else if (node.type === 'support') {
+      html += '<div class="endpoint-icon support">&#9993;</div>';
+      html += '<h2>' + esc(node.heading) + '</h2>';
+      html += '<p>' + esc(node.message) + '</p>';
+
+      // Path summary as natural sentences
+      if (path.length > 0) {
+        html += '<div class="path-summary">';
+        html += '<div class="ps-title">Issue description</div>';
+        for (let i = 0; i < path.length; i++) {
+          const s = path[i];
+          if (s.optionIndex === null) continue;
+          html += '<div class="ps-item">' + esc(getSummary(s.nodeId, s.optionIndex)) + '</div>';
+        }
+        html += '</div>';
+      }
+
+      const subject = encodeURIComponent(buildSubject());
+      const body = encodeURIComponent(buildEmailBody());
+      html += '<p class="attach-hint">Before sending, please attach a photo of the QR tag or serial number from the Focal Control page. CC others you want in the loop.</p>';
+      html += '<a class="email-btn" href="mailto:hello@focalheat.co?subject=' + subject + '&body=' + body + '">';
+      html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
+      html += 'Email Focal Support</a>';
+      html += '<br><button class="start-over-btn" onclick="startOver()">Start over</button>';
+    } else if (node.type === 'electrician') {
+      html += '<div class="endpoint-icon support">&#9889;</div>';
+      html += '<h2>' + esc(node.heading) + '</h2>';
+      html += '<p>' + esc(node.message) + '</p>';
+      html += '<button class="start-over-btn" onclick="startOver()">Start over</button>';
+    }
+
+    html += '</div>';
+
+  } else {
+    // Active question
+    const stepNum = path.filter(s => s.optionIndex !== null).length + 1;
+    html += '<div class="active-step fade-in' + wrapClass + '">';
+    html += '<div class="step-num">Step ' + stepNum + '</div>';
+
+    if (node.instruction) {
+      html += '<div class="instruction">' + esc(node.instruction);
+      if (node.link) {
+        html += '<br><a class="inst-link" href="' + node.link.url + '" target="_blank">';
+        html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+        html += esc(node.link.label) + '</a>';
+      }
+      html += '</div>';
+    }
+
+    html += '<div class="question-text">' + esc(node.question) + '</div>';
+    html += '<div class="options">';
+    for (let i = 0; i < node.options.length; i++) {
+      html += '<button class="opt-btn" onclick="selectOption(' + i + ')">' + esc(node.options[i].label) + '</button>';
+    }
+    html += '</div>';
+    html += '</div>';
+  }
+
+  app.innerHTML = html;
+
+  // Scroll to active step
+  setTimeout(() => {
+    const active = app.querySelector('.active-step, .endpoint');
+    if (active) {
+      active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, 50);
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// Init
+render();
+</script>
+
+</body>
+</html>
