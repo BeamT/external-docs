@@ -844,8 +844,8 @@ function buildEmailBody() {
   let lines = [];
   if (!endNode || !endNode.noUnitPhoto) {
     const attachAsk = endNode && endNode.code === 'damaged'
-      ? "Please attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page before sending."
-      : 'Please attach a photo of the QR tag or serial number from the Focal Control page before sending.';
+      ? "Please attach a photo of the heater's damage and a photo of its QR tag or serial number before sending."
+      : "Please attach a photo of the heater's QR tag or serial number before sending.";
     lines.push(attachAsk, '');
   }
   lines.push('Issue description:', '');
@@ -922,8 +922,8 @@ function render() {
       const body = encodeURIComponent(buildEmailBody());
       const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
       const attachAsk = node.code === 'damaged'
-        ? "Attach a photo of the heater's damage, its QR tag or serial number from the Focal Control page."
-        : 'Attach a photo of the QR tag or serial number from the Focal Control page.';
+        ? "Attach a photo of the heater's damage and a photo of its QR tag or serial number."
+        : "Attach a photo of the heater's QR tag or serial number.";
 
       html += '<div class="endpoint-icon support">&#9993;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';

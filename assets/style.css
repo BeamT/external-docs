@@ -121,6 +121,8 @@ a { color: inherit; }
 .doc-body h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 34px 0 12px; padding-top: 10px; }
 .doc-body p { margin: 0 0 14px; }
 .doc-body table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: 15px; }
+.doc-body ul.symptom-list li { margin-bottom: 14px; }
+.doc-body ul.symptom-list li:last-child { margin-bottom: 0; }
 .doc-body th, .doc-body td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
 .doc-body th { background: var(--wash); font-weight: 600; }
 

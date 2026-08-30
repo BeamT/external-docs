@@ -19,11 +19,12 @@ Prefer to read instead? Jump straight to a symptom:
 - **Heater isn't heating** — confirm it has power and isn't in Schedule Mode (see above), then try a short pull to change the heat level.
 - **Heater is hard to move** — pull the string all the way down before sliding it; a partial pull won't release it.
 - **Heater is physically damaged** — move it off the slot and secure any loose parts so nothing falls.
+{: .symptom-list }
 
 {% include warn.html text="Don't operate a damaged heater." %}
 
 ## Still stuck?
 
-Run through the [troubleshooting tool]({{ site.baseurl }}/fixit/) to send Focal Support a full report, or email [hello@focalheat.co](mailto:hello@focalheat.co) directly with the heater's serial number and what you've already tried.
+Run through the [troubleshooting tool]({{ site.baseurl }}/fixit/) to send Focal Support a full report, or email [hello@focalheat.co](mailto:hello@focalheat.co) directly with a photo of the heater's QR tag or serial number and what you've already tried.
 
-{% include serial.html %}
+{%- comment -%} {% include serial.html %} {%- endcomment -%}

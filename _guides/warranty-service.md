@@ -43,9 +43,9 @@ If a unit is damaged or malfunctioning, discontinue use, secure any loose parts,
 
 ## Warranty
 
-Focal heaters carry a 3-year warranty. For a warranty claim, contact Focal Support with the heater's serial number and a description of the issue.
+Focal heaters carry a 3-year warranty. For a warranty claim, contact Focal Support with a photo of the heater's QR tag or serial number and a description of the issue.
 
-{% include serial.html %}
+{%- comment -%} {% include serial.html %} {%- endcomment -%}
 
 ## Disposal
 
