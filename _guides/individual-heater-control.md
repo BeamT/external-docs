@@ -3,7 +3,7 @@ title: Individual Heater Control
 audience: [customer, staff, guest]
 audience_order: {customer: 20}
 order: 20
-summary: Adjust a single heater, from the app, at the unit with the pull string, or with the guest QR code.
+summary: Control heaters from the app, with the QR code or its pull string.
 version: "0.9"
 updated: "2026-08-07"
 ---

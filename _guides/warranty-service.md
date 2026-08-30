@@ -3,7 +3,7 @@ title: Warranty and Service
 audience: [customer, installer, electrician]
 audience_order: {customer: 50, electrician: 30, installer: 70}
 order: 100
-summary: How to reach Focal for service, plus specs and safety references.
+summary: How to reach Focal for service and warranty help.
 version: "1.1"
 updated: "2026-07-29"
 ---

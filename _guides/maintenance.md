@@ -3,7 +3,7 @@ title: Maintenance & Care
 audience: [customer]
 audience_order: {customer: 30}
 order: 90
-summary: Daily checks, cleaning schedule, and when to call for service.
+summary: Maintenance and care for your Focal system.
 version: "1.1"
 updated: "2026-07-29"
 ---

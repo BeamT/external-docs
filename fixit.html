@@ -565,8 +565,8 @@ const TREE = {
     link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "What happens?",
     options: [
-      { label: "The yellow LEDs are flashing", next: 'schedule_check_pull' },
-      { label: "The white LEDs changed", next: 'end_pull_working' },
+      { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
+      { label: "White LEDs changed", next: 'end_pull_working' },
       { label: "Nothing happened", next: 'end_support_pull_dead' },
     ]
   },
@@ -701,7 +701,7 @@ const TREE = {
   end_electrician: {
     type: 'electrician',
     heading: "The outlet or circuit needs repair",
-    message: "The heater and rail are fine, but the outlet isn't providing power. Contact an electrician to fix the outlet and/or circuit. Once power is restored, your heaters should come back online."
+    message: "The outlet isn't providing power. Contact an electrician to fix the outlet or circuit."
   },
 };
 

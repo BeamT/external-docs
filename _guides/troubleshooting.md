@@ -3,7 +3,7 @@ title: Troubleshooting
 audience: [customer, installer]
 audience_order: {customer: 20, installer: 65}
 order: 80
-summary: Use the troubleshooting tool for guided help, or jump straight to a symptom below.
+summary: Get help with issues.
 version: "1.4"
 updated: "2026-08-30"
 ---
