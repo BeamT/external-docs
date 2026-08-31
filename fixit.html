@@ -550,8 +550,8 @@ const TREE = {
   },
 
   networking: {
-    instruction: "Check the Focal networking box is plugged into power. If it's located near your restaurant's router, check that it's plugged into your router and the internet is working.",
-    link: { label: "Network Setup Guide", url: "https://loren-focal.github.io/external-docs/network-setup/" },
+    instruction: "Locate the Focal networking box, unplug it from power then plug it back in. If it's located next to your restaurant's router, confirm that it's plugged into your router and the internet is working.",
+
     question: "Can you control the heaters now?",
     options: [
       { label: "Yes", next: 'end_resolved' },
@@ -589,7 +589,7 @@ const TREE = {
 
   // === NO POWER (A2) ===
   reseat: {
-    instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, slide it back on and let go.",
+    instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, let go of the string and slide it back until it locks.",
     question: "Did the orange and purple LEDs come on?",
     options: [
       { label: "Yes", next: 'end_resolved' },
