@@ -394,7 +394,54 @@ h1 {
   flex-direction: column;
   gap: 8px;
   max-width: 360px;
-  margin: 0 auto 16px;
+  margin: 0 auto 10px;
+  position: relative;
+}
+
+.remove-heater-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.remove-heater-btn:hover {
+  border-color: var(--focal);
+  color: var(--focal);
+}
+
+.add-heater-btn {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 4px auto 16px;
+  padding: 10px;
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-heater-btn:hover {
+  border-color: var(--focal);
+  color: var(--focal);
 }
 
 .heater-id-input {
@@ -669,10 +716,10 @@ const TREE = {
 
   // === CAN'T CONTROL ===
   scope: {
-    question: "Are all heaters affected, or just one?",
+    question: "Are all heaters affected, or some?",
     options: [
       { label: "All heaters", next: 'lights_check' },
-      { label: "Just one heater", next: 'lights_check' },
+      { label: "Some heaters", next: 'lights_check' },
     ]
   },
 
@@ -801,7 +848,7 @@ const TREE = {
   // skips the heat-fallback question entirely (see END_SUPPORT_TARGETS note).
   damaged_end: {
     type: 'support',
-    code: 'oneHeater_damaged',
+    code: 'damaged',
     heading: "Secure the heater and contact support",
     safetyStep: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
   },
@@ -858,15 +905,22 @@ const TREE = {
 // entries. `code` still drives real behavior elsewhere (buildEmailBody,
 // render's requiresDescription/attachAsk checks), so it's preserved exactly
 // per endpoint, just generated instead of hand-duplicated.
+// `code` here is the detail portion only — no scope prefix. The scope
+// segment (`All`, or a count like `1`/`3`) is prepended at send time by
+// withScopeAndHeatState(), derived from how many heater QR/serial fields
+// are actually populated (see populatedHeaterIds()). The two noUnitPhoto
+// endpoints below never collect a count, so their code is scope-prefixed
+// here directly: `networking`/`no_power` are inherently "all heaters"
+// situations, and `generic` intentionally carries no scope segment at all.
 const END_SUPPORT = {
-  some_app: { code: 'oneHeater_noAppControl_reseatDidNotFix' },
-  networking: { code: 'allHeaters_noAppControl_networkingDidNotFix', noUnitPhoto: true },
-  pull_dead: { code: 'oneHeater_noPullControl_pullNoResponse' },
-  pull_other: { code: 'oneHeater_pullOther' },
-  pull_schedule: { code: 'oneHeater_noPullControl_pullScheduleDidNotFix' },
-  rail_isolated: { code: 'oneHeater_isolatedUnit' },
-  no_power: { code: 'allHeaters_noHeat_outletHasPower', noUnitPhoto: true },
-  cant_move: { code: 'oneHeater_cantMove' },
+  some_app: { code: 'noAppControl_reseatDidNotFix' },
+  networking: { code: 'All_noAppControl_networkingDidNotFix', noUnitPhoto: true },
+  pull_dead: { code: 'noPullControl_pullNoResponse' },
+  pull_other: { code: 'pullOther' },
+  pull_schedule: { code: 'noPullControl_pullScheduleDidNotFix' },
+  rail_isolated: { code: 'isolatedUnit' },
+  no_power: { code: 'All_noHeat_outletHasPower', noUnitPhoto: true },
+  cant_move: { code: 'cantMove' },
   generic: { code: 'generic', noUnitPhoto: true },
 };
 
@@ -894,7 +948,7 @@ const SUMMARIES = {
   },
   scope: {
     0: "All heaters are affected.",
-    1: "Just one heater is affected.",
+    1: "Some heaters are affected.",
   },
   lights_check: {
     0: "The orange and purple LEDs are on.",
@@ -971,7 +1025,14 @@ const SHORT_ANSWERS = {
 // State
 let path = []; // [{ nodeId, optionIndex }]
 let issueDescription = '';
-let heaterId = '';
+let heaterIds = ['']; // one input row per entry; empty rows are never sent or counted
+
+// Only rows the customer actually typed/scanned something into count as
+// "a heater was reported" — clicking "add another heater" and leaving it
+// blank must not inflate the count or show up in the email.
+function populatedHeaterIds() {
+  return heaterIds.map(id => id.trim()).filter(id => id.length > 0);
+}
 
 // getScope() / getFallbackKind() recover a piece of context from earlier in
 // the conversation by scanning `path` for the step that set it. This is how
@@ -1080,7 +1141,7 @@ function toggleResolvedHelp(link) {
 function startOver() {
   path = [];
   issueDescription = '';
-  heaterId = '';
+  heaterIds = [''];
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1090,9 +1151,22 @@ function updateIssueDescription(value, btnId, codeOverride) {
   refreshEmailHref(btnId, codeOverride);
 }
 
-function updateHeaterId(value) {
-  heaterId = value;
+function updateHeaterId(index, value) {
+  heaterIds[index] = value;
   refreshEmailHref('email-btn');
+}
+
+function addHeaterRow() {
+  heaterIds.push('');
+  render();
+}
+
+// Removing a row always leaves at least one input on screen — dropping to
+// zero rows would leave no way to enter a heater at all.
+function removeHeaterRow(index) {
+  heaterIds.splice(index, 1);
+  if (heaterIds.length === 0) heaterIds.push('');
+  render();
 }
 
 // Re-derives the mailto link (and, where the button can be disabled, whether
@@ -1108,7 +1182,7 @@ function refreshEmailHref(btnId, codeOverride) {
   const requiresDescription = btn.dataset.requiresDescription === 'true';
   const requiresHeaterId = btn.dataset.requiresHeaterId === 'true';
   const descriptionFilled = issueDescription.trim().length > 0;
-  const heaterIdFilled = heaterId.trim().length > 0;
+  const heaterIdFilled = populatedHeaterIds().length > 0;
   const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
   btn.classList.toggle('disabled', !canSend);
   btn.setAttribute('aria-disabled', String(!canSend));
@@ -1117,7 +1191,7 @@ function refreshEmailHref(btnId, codeOverride) {
   btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
-function openQrScanner() {
+function openQrScanner(index) {
   const dialog = document.getElementById('qr-scanner-dialog');
   const video = document.getElementById('qr-scanner-video');
   const status = document.getElementById('qr-scanner-status');
@@ -1157,10 +1231,10 @@ function openQrScanner() {
       if (stopped) return;
       if (codes.length > 0) {
         const value = codes[0].rawValue;
-        const input = document.getElementById('heater-id-input');
+        const input = document.getElementById('heater-id-input-' + index);
         if (input) {
           input.value = value;
-          updateHeaterId(value);
+          updateHeaterId(index, value);
         }
         closeQrScanner();
         return;
@@ -1222,20 +1296,25 @@ function isNoHeat() {
   return false;
 }
 
-// Issue codes are shaped {scope}_[noHeat_]{detail}. Codes whose base
-// already bakes in noHeat (e.g. allHeaters_noHeat_outletHasPower, which
-// never reaches heat_fallback) are left untouched — only insert the
-// segment for codes that pass through the shared heat_fallback checkpoint.
-function withHeatState(code) {
-  if (!code || !isNoHeat() || code.includes('_noHeat_')) return code;
-  return code.replace(/^(allHeaters|oneHeater)_/, '$1_noHeat_');
+// Issue codes are shaped {scope}_[noHeat_]{detail}, where scope is either
+// `All` or a bare count of heaters reported (see populatedHeaterIds()).
+// END_SUPPORT stores only the detail portion for per-unit endpoints (their
+// scope depends on how many QR/serial fields got filled in, unknowable
+// until send time) — `All_...` endpoints and `generic` already carry
+// whatever scope prefix they need baked in, since neither has a count to
+// derive, and are passed through unchanged.
+function withScopeAndHeatState(code) {
+  if (!code || code === 'generic' || code.startsWith('All_')) return code;
+  const count = populatedHeaterIds().length || 1;
+  const heatSegment = isNoHeat() ? 'noHeat_' : '';
+  return count + '_' + heatSegment + code;
 }
 
 function buildEmailBody(codeOverride) {
   const endNode = currentEndNode();
-  const code = codeOverride || (endNode && endNode.code ? withHeatState(endNode.code) : null);
+  const code = codeOverride || (endNode && endNode.code ? withScopeAndHeatState(endNode.code) : null);
   let lines = [];
-  if (endNode && endNode.code === 'oneHeater_damaged') {
+  if (endNode && endNode.code === 'damaged') {
     lines.push("Please attach a photo of the heater's damage before sending.", '');
   }
   lines.push('Issue description:', '');
@@ -1247,9 +1326,13 @@ function buildEmailBody(codeOverride) {
   if (issueDescription.trim()) {
     lines.push('- ' + issueDescription.trim());
   }
-  if (heaterId.trim()) {
+  const ids = populatedHeaterIds();
+  if (ids.length > 0) {
     lines.push('');
-    lines.push('Heater QR/Serial: ' + heaterId.trim());
+    lines.push(ids.length === 1 ? 'Heater QR/Serial: ' + ids[0] : 'Heater QR/Serials:');
+    if (ids.length > 1) {
+      for (const id of ids) lines.push('- ' + id);
+    }
   }
   if (code) {
     lines.push('');
@@ -1260,7 +1343,7 @@ function buildEmailBody(codeOverride) {
 
 function buildSubject(codeOverride) {
   const endNode = currentEndNode();
-  const codeValue = codeOverride || (endNode && endNode.code ? withHeatState(endNode.code) : null);
+  const codeValue = codeOverride || (endNode && endNode.code ? withScopeAndHeatState(endNode.code) : null);
   const code = codeValue ? ' [' + codeValue + ']' : '';
   if (path.length > 0) {
     const first = path[0];
@@ -1326,15 +1409,15 @@ function render() {
       html += 'Email Focal Support</a>';
       html += '</div>';
     } else if (node.type === 'support') {
-      const requiresDescription = node.code === 'generic' || node.code === 'oneHeater_pullOther';
+      const requiresDescription = node.code === 'generic' || node.code === 'pullOther';
       const requiresHeaterId = wantsUnitPhoto();
       const descriptionFilled = issueDescription.trim().length > 0;
-      const heaterIdFilled = heaterId.trim().length > 0;
+      const heaterIdFilled = populatedHeaterIds().length > 0;
       const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
       const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
-      const attachAsk = node.code === 'oneHeater_damaged'
+      const attachAsk = node.code === 'damaged'
         ? "Attach a photo of the heater's damage."
         : null;
 
@@ -1347,13 +1430,22 @@ function render() {
       }
 
       if (wantsUnitPhoto()) {
-        html += '<div class="textarea-label">Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app</div>';
-        html += '<div class="heater-id-row">';
-        html += '<input type="text" id="heater-id-input" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterId) + '" oninput="updateHeaterId(this.value)">';
-        html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner()" title="Scan QR Code">';
-        html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>';
-        html += 'Scan QR</button>';
-        html += '</div>';
+        const label = heaterIds.length > 1
+          ? 'Scan each heater\'s QR code or copy/paste its serial number from the Focal Control app'
+          : 'Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app';
+        html += '<div class="textarea-label">' + label + '</div>';
+        for (let i = 0; i < heaterIds.length; i++) {
+          html += '<div class="heater-id-row">';
+          html += '<input type="text" id="heater-id-input-' + i + '" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterIds[i]) + '" oninput="updateHeaterId(' + i + ', this.value)">';
+          html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner(' + i + ')" title="Scan QR Code">';
+          html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>';
+          html += 'Scan QR</button>';
+          if (heaterIds.length > 1) {
+            html += '<button type="button" class="remove-heater-btn" onclick="removeHeaterRow(' + i + ')" title="Remove this heater" aria-label="Remove this heater">&times;</button>';
+          }
+          html += '</div>';
+        }
+        html += '<button type="button" class="add-heater-btn" onclick="addHeaterRow()">+ Add another heater</button>';
       }
 
       html += '<div class="send-plain">';
