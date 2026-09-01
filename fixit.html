@@ -1085,18 +1085,25 @@ function startOver() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function updateIssueDescription(value) {
+function updateIssueDescription(value, btnId, codeOverride) {
   issueDescription = value;
-  refreshEmailHref();
+  refreshEmailHref(btnId, codeOverride);
 }
 
 function updateHeaterId(value) {
   heaterId = value;
-  refreshEmailHref();
+  refreshEmailHref('email-btn');
 }
 
-function refreshEmailHref() {
-  const btn = document.getElementById('email-btn');
+// Re-derives the mailto link (and, where the button can be disabled, whether
+// it's allowed to send yet) whenever the user types into a description or
+// heater-ID field. Shared by both endpoint types that show a live-updating
+// email button: the required-field "support" endpoints (id="email-btn") and
+// the optional-field "issue resolved, but..." follow-up card
+// (id="resolved-email-btn"). `codeOverride` lets the latter keep stamping
+// its email as a resolved-followup instead of a fresh support code.
+function refreshEmailHref(btnId, codeOverride) {
+  const btn = document.getElementById(btnId);
   if (!btn) return;
   const requiresDescription = btn.dataset.requiresDescription === 'true';
   const requiresHeaterId = btn.dataset.requiresHeaterId === 'true';
@@ -1105,8 +1112,8 @@ function refreshEmailHref() {
   const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
   btn.classList.toggle('disabled', !canSend);
   btn.setAttribute('aria-disabled', String(!canSend));
-  const subject = encodeURIComponent(buildSubject());
-  const body = encodeURIComponent(buildEmailBody());
+  const subject = encodeURIComponent(buildSubject(codeOverride));
+  const body = encodeURIComponent(buildEmailBody(codeOverride));
   btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
@@ -1298,10 +1305,12 @@ function render() {
 
       html += '<p class="another-link">Still need help? <a href="#" onclick="toggleResolvedHelp(this); return false;">Contact support</a>.</p>';
       html += '<div class="send-card resolved-help" hidden>';
+      html += '<div class="textarea-label">Anything you want support to know? (optional)</div>';
+      html += '<textarea class="issue-textarea" placeholder="e.g. it worked, but only for a few minutes" oninput="updateIssueDescription(this.value, \'resolved-email-btn\', \'resolved_followup\')">' + esc(issueDescription) + '</textarea>';
       html += '<ul class="send-reminders">';
       html += '<li>CC others you want in the loop.</li>';
       html += '</ul>';
-      html += '<a class="email-btn" href="' + mailtoHref + '">';
+      html += '<a id="resolved-email-btn" class="email-btn" href="' + mailtoHref + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
       html += '</div>';
@@ -1323,7 +1332,7 @@ function render() {
 
       if (requiresDescription) {
         html += '<div class="textarea-label">Describe what\'s going on</div>';
-        html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
+        html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value, \'email-btn\')">' + esc(issueDescription) + '</textarea>';
       }
 
       if (wantsUnitPhoto()) {
