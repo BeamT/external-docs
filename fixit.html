@@ -544,7 +544,7 @@ const TREE = {
     question: "Did that resolve the issue?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "I still need help", next: 'end_support_some_app' },
+      { label: "No, I still need help", next: 'end_support_some_app' },
     ]
   },
 
@@ -554,7 +554,7 @@ const TREE = {
     question: "Did that help?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "I still need help", next: 'networking' },
+      { label: "No, I still need help", next: 'networking' },
     ]
   },
 
@@ -586,7 +586,7 @@ const TREE = {
     question: "Did that help?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "I still need help", next: 'end_support_pull_schedule' },
+      { label: "No, I still need help", next: 'end_support_pull_schedule' },
     ]
   },
 
