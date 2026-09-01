@@ -389,11 +389,133 @@ h1 {
   border-color: var(--focal);
 }
 
+.heater-id-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 360px;
+  margin: 0 auto 16px;
+}
+
+.heater-id-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.heater-id-input:focus {
+  outline: none;
+  border-color: var(--focal);
+}
+
+.scan-qr-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.scan-qr-btn:hover {
+  border-color: var(--focal);
+  color: var(--focal);
+}
+
+.qr-scanner-dialog {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0;
+  max-width: 420px;
+  width: calc(100% - 40px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.qr-scanner-dialog::backdrop {
+  background: rgba(0,0,0,0.4);
+}
+
+.qr-scanner-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+}
+
+.qr-scanner-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-scanner-head h3 {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.qr-scanner-close {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.qr-scanner-close:hover {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.qr-scanner-video {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #000;
+}
+
+.qr-scanner-status {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
 .send-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 20px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.send-plain {
   max-width: 360px;
   margin: 0 auto;
 }
@@ -481,6 +603,10 @@ h1 {
 
 .another-link a:hover { text-decoration: underline; }
 
+.resolved-help {
+  margin-top: 14px;
+}
+
 /* Fade in animation */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
@@ -501,73 +627,100 @@ h1 {
   <div id="app"></div>
 </div>
 
+<dialog id="qr-scanner-dialog" class="qr-scanner-dialog">
+  <div class="qr-scanner-box">
+    <div class="qr-scanner-head">
+      <h3>Scan QR Code</h3>
+      <button type="button" class="qr-scanner-close" onclick="document.getElementById('qr-scanner-dialog').close()" aria-label="Close">&times;</button>
+    </div>
+    <video id="qr-scanner-video" class="qr-scanner-video" playsinline muted></video>
+    <p id="qr-scanner-status" class="qr-scanner-status">Point the camera at the QR code.</p>
+  </div>
+</dialog>
+
 <script>
+// ============================================================================
+// TREE: the troubleshooting decision graph.
+//
+// Each key is a "node" the user can be standing on. A node is either:
+//   - a question node: { question, options: [{ label, next, ... }] }
+//     `next` is either a nodeId string, or a function (ctx) => nodeId when
+//     the destination depends on context recovered from earlier answers —
+//     ctx.scope (all vs. some heaters, see getScope()) or ctx.fallbackKind
+//     (see heat_fallback below and getFallbackKind()).
+//   - an endpoint node: { type: 'resolved' | 'support' | 'electrician', ... }
+//     endpoints render a final screen instead of another question.
+//
+// A few nodes are shared "checkpoint" questions reused from multiple places
+// in the tree (see HEAT_FALLBACK and END_SUPPORT below) — they're written
+// once and parameterized via a value stashed on the path, the same pattern
+// getScope() uses for the all-vs-some answer.
+// ============================================================================
 const TREE = {
   start: {
     question: "What's going on?",
     options: [
-      { label: "Can't control the heater", next: 'lights_check' },
-      { label: "Can't move the heater", next: 'move_action' },
+      { label: "Heaters offline or not responding", next: 'scope' },
+      { label: "Heater won't move", next: 'move_action' },
       { label: "Heater is damaged", next: 'damaged_end' },
       { label: "Something else", next: 'end_support_generic' },
     ]
   },
 
   // === CAN'T CONTROL ===
+  scope: {
+    question: "Are all heaters affected, or only some?",
+    options: [
+      { label: "All heaters", next: 'lights_check' },
+      { label: "Only some heaters", next: 'lights_check' },
+    ]
+  },
+
   lights_check: {
     question: "Are the heater's orange and purple LEDs on?",
     options: [
-      { label: "Yes", next: 'control_method' },
-      { label: "No", next: 'reseat' },
+      { label: "Yes, the LEDs are on", next: 'control_method' },
+      { label: "No, the LEDs are off", next: (ctx) => ctx.scope === 'all' ? 'check_breaker' : 'reseat' },
     ]
   },
 
   control_method: {
     question: "How are you trying to control it?",
     options: [
-      { label: "App or QR code", next: 'how_many' },
+      { label: "App or QR code", next: (ctx) => ctx.scope === 'all' ? 'networking' : 'pull_string_check_some_app' },
       { label: "Pull string", next: 'pull_test' },
     ]
   },
 
-  // -- App / QR path --
-  how_many: {
-    question: "Are all heaters affected or only some?",
+  pull_string_check_some_app: {
+    instruction: "Pull the string on the affected heater(s) all the way down until the orange and purple LEDs turn off then release it. Wait 30 seconds.",
+    question: "Did that resolve the issue?",
     options: [
-      { label: "Only some heaters", next: 'end_support_some_app' },
-      { label: "All heaters", next: 'schedule_check_app' },
-    ]
-  },
-
-  schedule_check_app: {
-    instruction: "Check to see if Schedule Mode is active. Heaters won't respond outside of scheduled hours.",
-    link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
-    question: "Did that help?",
-    options: [
-      { label: "I'm all set", next: 'end_resolved' },
-      { label: "I still need help", next: 'networking' },
+      { label: "Yes, I'm all set", next: 'end_resolved' },
+      { label: "No, I still need help", next: 'heat_fallback', fallbackKind: 'some_app' },
     ]
   },
 
   networking: {
-    instruction: "Check the Focal networking box is plugged into power. If it's located near your restaurant's router, check that it's plugged into your router and the internet is working.",
-    link: { label: "Network Setup Guide", url: "https://loren-focal.github.io/external-docs/network-setup/" },
+    instruction: "Locate the Focal networking box, unplug it from power then plug it back in. If it's located next to your restaurant's router, confirm that it's plugged into your router and the internet is working.",
+
     question: "Can you control the heaters now?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'end_support_networking' },
+      { label: "Yes, I can control them", next: 'end_resolved', resolvedNoUnitPhoto: true },
+      { label: "No, I still can't control them", next: 'end_support_networking' },
     ]
   },
 
   // -- Pull string path --
   pull_test: {
-    instruction: "Give the pull string a short pull and watch the LEDs.",
+    instruction: "Give the pull string a **short** pull and watch the LEDs.",
     link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "What happens?",
     options: [
       { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
       { label: "White LEDs changed", next: 'end_pull_working' },
-      { label: "Nothing happened", next: 'end_support_pull_dead' },
+      { label: "Nothing happened", next: 'heat_fallback', fallbackKind: 'pull_dead' },
+      { label: "Something else / not sure", next: 'heat_fallback', fallbackKind: 'pull_other' },
     ]
   },
 
@@ -576,8 +729,8 @@ const TREE = {
     link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
     question: "Did that help?",
     options: [
-      { label: "I'm all set", next: 'end_resolved' },
-      { label: "I still need help", next: 'end_support_pull_schedule' },
+      { label: "Yes, I'm all set", next: 'end_resolved' },
+      { label: "No, I still need help", next: 'heat_fallback', fallbackKind: 'pull_schedule' },
     ]
   },
 
@@ -589,19 +742,19 @@ const TREE = {
 
   // === NO POWER (A2) ===
   reseat: {
-    instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, slide it back on and let go.",
+    instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, let go of the string and slide it back until it locks.",
     question: "Did the orange and purple LEDs come on?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'check_rail' },
+      { label: "Yes, the LEDs came on", next: 'power_restored_control_check' },
+      { label: "No, the LEDs are still off", next: 'check_rail' },
     ]
   },
 
   check_rail: {
     question: "Look at other heaters on the same rail. Are their orange and purple LEDs on?",
     options: [
-      { label: "Yes, the others are on", next: 'end_support_rail_isolated' },
-      { label: "No, others are dark too", next: 'check_breaker' },
+      { label: "Yes, the others are on", next: 'heat_fallback', fallbackKind: 'rail_isolated' },
+      { label: "No, the others are off too", next: 'check_breaker' },
     ]
   },
 
@@ -609,8 +762,16 @@ const TREE = {
     instruction: "Check the rail's power switch and circuit breaker.",
     question: "Did the orange and purple LEDs come back on?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'test_outlet' },
+      { label: "Yes, the LEDs came back on", next: 'power_restored_control_check' },
+      { label: "No, the LEDs are still off", next: 'test_outlet' },
+    ]
+  },
+
+  power_restored_control_check: {
+    question: "Now that the LEDs are on, can you control the heaters?",
+    options: [
+      { label: "Yes, I can control them", next: 'end_resolved' },
+      { label: "No, I still can't control them", next: 'control_method' },
     ]
   },
 
@@ -618,23 +779,26 @@ const TREE = {
     instruction: "Test the outlet with another electrical device.",
     question: "Does the outlet provide power?",
     options: [
-      { label: "Yes", next: 'end_support_no_power' },
-      { label: "No", next: 'end_electrician' },
+      { label: "Yes, the outlet provides power", next: 'end_support_no_power' },
+      { label: "No, the outlet has no power", next: 'end_electrician' },
     ]
   },
 
   // === CAN'T MOVE ===
   move_action: {
-    instruction: "Pull the string all the way down before trying to slide the heater.",
+    instruction: "Pull the string all the way down before trying to slide the heater. If it's still difficult to move, use your other hand to grip the middle of the heater for extra leverage.",
     link: { label: "How to move a heater", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "Can you move it now?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'end_support_cant_move' },
+      { label: "Yes, I can move it", next: 'end_resolved' },
+      { label: "No, I still can't move it", next: 'heat_fallback_cant_move' },
     ]
   },
 
   // === DAMAGED ===
+  // Distinct from the shared support endpoints below: this is the one path
+  // with a safety instruction (don't keep running a damaged heater), and it
+  // skips the heat-fallback question entirely (see END_SUPPORT_TARGETS note).
   damaged_end: {
     type: 'support',
     code: 'damaged',
@@ -642,60 +806,40 @@ const TREE = {
     safetyStep: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
   },
 
+  // --- Shared "heat fallback" checkpoint ---
+  // Five different single-unit trouble paths (app/QR failed, pull string
+  // dead, pull string did something unexpected, schedule-mode ruled out,
+  // one heater isolated on an otherwise-fine rail) all used to ask this
+  // exact question as five copy-pasted nodes differing only in where they
+  // went next. They're unified into one node here; the *caller's* option
+  // stamps a `fallbackKind` (see e.g. pull_test above) recording which of
+  // those five situations we're in, and heat_fallback's `next` looks that
+  // kind up in END_SUPPORT_TARGETS via getFallbackKind() (scans `path` the
+  // same way getScope() recovers the earlier all-vs-some answer).
+  // Both answers currently lead to the same support endpoint either way —
+  // this only affects the "_has_heat"/"_no_heat" suffix on the issue code
+  // (see getHeatFallbackSuffix()), which support uses for triage urgency.
+  heat_fallback: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: (ctx) => END_SUPPORT_TARGETS[ctx.fallbackKind] },
+      { label: "No, it won't heat at all", next: (ctx) => END_SUPPORT_TARGETS[ctx.fallbackKind] },
+    ]
+  },
+
+  heat_fallback_cant_move: {
+    question: "Does it still provide heat?",
+    options: [
+      { label: "Yes, it still provides heat", next: 'end_support_cant_move' },
+      { label: "No, it won't heat at all", next: 'end_support_cant_move' },
+    ]
+  },
+
   // === ENDPOINTS ===
   end_resolved: {
     type: 'resolved',
     heading: "Issue resolved!",
-    message: "If the problem comes back, run through these steps again."
-  },
-
-  end_support_some_app: {
-    type: 'support',
-    code: 'control_some_app',
-    heading: "Let's get you some help",
-  },
-
-  end_support_networking: {
-    type: 'support',
-    code: 'control_all_app_networking_checked',
-    heading: "Let's get you some help",
-    noUnitPhoto: true,
-  },
-
-  end_support_pull_dead: {
-    type: 'support',
-    code: 'control_pull_no_response',
-    heading: "Let's get you some help",
-  },
-
-  end_support_pull_schedule: {
-    type: 'support',
-    code: 'control_pull_schedule_checked',
-    heading: "Let's get you some help",
-  },
-
-  end_support_rail_isolated: {
-    type: 'support',
-    code: 'no_power_rail_isolated',
-    heading: "Let's get you some help",
-  },
-
-  end_support_no_power: {
-    type: 'support',
-    code: 'no_power_outlet_ok',
-    heading: "Let's get you some help",
-  },
-
-  end_support_cant_move: {
-    type: 'support',
-    code: 'cant_move',
-    heading: "Let's get you some help",
-  },
-
-  end_support_generic: {
-    type: 'support',
-    code: 'generic',
-    heading: "Let's get you some help",
+    message: "If the issue returns, do these steps again."
   },
 
   end_electrician: {
@@ -705,13 +849,52 @@ const TREE = {
   },
 };
 
+// --- Shared "contact support" endpoints ---
+// These all render identically (same heading, same "Email Focal Support"
+// card) and only differ in the issue `code` they report and whether they
+// skip the heater QR/serial prompt (`noUnitPhoto`) — e.g. because the whole
+// networking box was already identified, not one specific unit. Kept as
+// one table + one END_SUPPORT node instead of ~8 near-identical TREE
+// entries. `code` still drives real behavior elsewhere (buildEmailBody,
+// render's requiresDescription/attachAsk checks), so it's preserved exactly
+// per endpoint, just generated instead of hand-duplicated.
+const END_SUPPORT = {
+  some_app: { code: 'some_heaters_app_reseat_failed' },
+  networking: { code: 'all_heaters_networking_checked', noUnitPhoto: true },
+  pull_dead: { code: 'pull_no_response' },
+  pull_other: { code: 'pull_other' },
+  pull_schedule: { code: 'pull_schedule_checked' },
+  rail_isolated: { code: 'some_heaters_isolated_unit' },
+  no_power: { code: 'no_power_outlet_ok' },
+  cant_move: { code: 'cant_move' },
+  generic: { code: 'generic', noUnitPhoto: true },
+};
+
+// Maps a heat_fallback caller's `fallbackKind` to the support endpoint it
+// resolves to once answered. Only used by the heat_fallback node above.
+const END_SUPPORT_TARGETS = {
+  some_app: 'end_support_some_app',
+  pull_dead: 'end_support_pull_dead',
+  pull_other: 'end_support_pull_other',
+  pull_schedule: 'end_support_pull_schedule',
+  rail_isolated: 'end_support_rail_isolated',
+};
+
+for (const [key, def] of Object.entries(END_SUPPORT)) {
+  TREE['end_support_' + key] = { type: 'support', heading: "Let's get you some help", ...def };
+}
+
 // Natural-language summaries keyed by nodeId -> optionIndex
 const SUMMARIES = {
   start: {
-    0: "Can't control the heater.",
-    1: "Can't move the heater.",
+    0: "Heaters offline or not responding.",
+    1: "Heater won't move.",
     2: "Heater is damaged.",
     3: "Something else is wrong.",
+  },
+  scope: {
+    0: "All heaters are affected.",
+    1: "Only some heaters are affected.",
   },
   lights_check: {
     0: "The orange and purple LEDs are on.",
@@ -721,13 +904,9 @@ const SUMMARIES = {
     0: "Trying to control it from the app or QR code.",
     1: "Trying to control it from the pull string.",
   },
-  how_many: {
-    0: "Only some heaters are affected.",
-    1: "All heaters are affected.",
-  },
-  schedule_check_app: {
-    0: "Schedule Mode check resolved the issue.",
-    1: "Schedule Mode is not the issue.",
+  pull_string_check_some_app: {
+    0: "Pulling the string on the affected heater(s) resolved the issue.",
+    1: "Pulling the string on the affected heater(s) did not resolve the issue.",
   },
   networking: {
     0: "Checking the networking box fixed it.",
@@ -737,6 +916,7 @@ const SUMMARIES = {
     0: "The yellow LEDs are flashing when pulling the string.",
     1: "The white LEDs changed when pulling the string.",
     2: "Nothing happened when pulling the string.",
+    3: "Something unexpected happened when pulling the string, or unsure what happened.",
   },
   schedule_check_pull: {
     0: "Schedule Mode check resolved the issue.",
@@ -762,29 +942,107 @@ const SUMMARIES = {
     0: "Full pull down released the heater.",
     1: "Full pull down did not release the heater.",
   },
+  power_restored_control_check: {
+    0: "Now that the LEDs are on, the heater can be controlled.",
+    1: "The LEDs are on, but the heater still can't be controlled.",
+  },
+  heat_fallback: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_cant_move: {
+    0: "The heater still provides heat.",
+    1: "The heater produces no heat at all right now.",
+  },
 };
+
+// Short recap labels for the history list (question is already shown above it there)
+const SHORT_ANSWERS = {
+  lights_check: { 0: "Yes", 1: "No" },
+  networking: { 0: "Yes", 1: "No" },
+  reseat: { 0: "Yes", 1: "No" },
+  check_breaker: { 0: "Yes", 1: "No" },
+  power_restored_control_check: { 0: "Yes", 1: "No" },
+  test_outlet: { 0: "Yes", 1: "No" },
+  move_action: { 0: "Yes", 1: "No" },
+  heat_fallback_cant_move: { 0: "Yes", 1: "No" },
+};
+
+// State
+let path = []; // [{ nodeId, optionIndex }]
+let issueDescription = '';
+let heaterId = '';
+
+// getScope() / getFallbackKind() recover a piece of context from earlier in
+// the conversation by scanning `path` for the step that set it. This is how
+// a later node's `next` function (see resolveNext) can branch on an answer
+// given several questions ago without every intermediate node having to
+// thread it through explicitly.
+
+// Recovers the "all heaters" vs. "only some heaters" answer from the start
+// of the "can't control" branch (see TREE.scope). Several later nodes
+// (lights_check, control_method) route differently depending on this.
+function getScope() {
+  for (const step of path) {
+    if (step.nodeId === 'scope' && step.optionIndex !== null) {
+      return step.optionIndex === 0 ? 'all' : 'some';
+    }
+  }
+  return null;
+}
+
+// Recovers which single-unit trouble path led into the shared heat_fallback
+// checkpoint (see TREE.heat_fallback), so it knows which support endpoint
+// to resolve to. Set via `fallbackKind` on the option that pointed here.
+function getFallbackKind() {
+  for (const step of path) {
+    const node = TREE[step.nodeId];
+    if (step.optionIndex === null || !node || !node.options) continue;
+    const option = node.options[step.optionIndex];
+    if (option && option.fallbackKind) return option.fallbackKind;
+  }
+  return null;
+}
+
+function resolveNext(option) {
+  if (typeof option.next !== 'function') return option.next;
+  return option.next({ scope: getScope(), fallbackKind: getFallbackKind() });
+}
+
+function getOptions(node) {
+  return node.options;
+}
 
 function getSummary(nodeId, optionIndex) {
   if (SUMMARIES[nodeId] && SUMMARIES[nodeId][optionIndex] !== undefined) {
     return SUMMARIES[nodeId][optionIndex];
   }
   const node = TREE[nodeId];
-  if (node && node.options && node.options[optionIndex]) {
-    return node.options[optionIndex].label;
+  const options = node && getOptions(node);
+  if (options && options[optionIndex]) {
+    return options[optionIndex].label;
   }
   return '';
 }
 
-// State
-let path = []; // [{ nodeId, optionIndex }]
-let issueDescription = '';
+function getShortAnswer(nodeId, optionIndex) {
+  if (SHORT_ANSWERS[nodeId] && SHORT_ANSWERS[nodeId][optionIndex] !== undefined) {
+    return SHORT_ANSWERS[nodeId][optionIndex];
+  }
+  const node = TREE[nodeId];
+  const options = node && getOptions(node);
+  if (options && options[optionIndex]) {
+    return options[optionIndex].label;
+  }
+  return '';
+}
 
 function currentNodeId() {
   if (path.length === 0) return 'start';
   const last = path[path.length - 1];
   const node = TREE[last.nodeId];
   if (last.optionIndex !== null && last.optionIndex !== undefined) {
-    return node.options[last.optionIndex].next;
+    return resolveNext(getOptions(node)[last.optionIndex]);
   }
   return last.nodeId;
 }
@@ -797,7 +1055,7 @@ function selectOption(optionIndex) {
     path.push({ nodeId, optionIndex });
   }
   const node = TREE[nodeId];
-  const nextId = node.options[optionIndex].next;
+  const nextId = resolveNext(getOptions(node)[optionIndex]);
   const nextNode = TREE[nextId];
   if (!nextNode.type) {
     path.push({ nodeId: nextId, optionIndex: null });
@@ -811,23 +1069,112 @@ function goBack(stepIndex) {
   render();
 }
 
+function toggleResolvedHelp(link) {
+  const card = link.closest('.endpoint').querySelector('.resolved-help');
+  card.hidden = !card.hidden;
+  if (!card.hidden) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
 function startOver() {
   path = [];
   issueDescription = '';
+  heaterId = '';
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateIssueDescription(value) {
   issueDescription = value;
+  refreshEmailHref();
+}
+
+function updateHeaterId(value) {
+  heaterId = value;
+  refreshEmailHref();
+}
+
+function refreshEmailHref() {
   const btn = document.getElementById('email-btn');
   if (!btn) return;
-  const filled = issueDescription.trim().length > 0;
-  btn.classList.toggle('disabled', !filled);
-  btn.setAttribute('aria-disabled', String(!filled));
+  const requiresDescription = btn.dataset.requiresDescription === 'true';
+  const requiresHeaterId = btn.dataset.requiresHeaterId === 'true';
+  const descriptionFilled = issueDescription.trim().length > 0;
+  const heaterIdFilled = heaterId.trim().length > 0;
+  const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
+  btn.classList.toggle('disabled', !canSend);
+  btn.setAttribute('aria-disabled', String(!canSend));
   const subject = encodeURIComponent(buildSubject());
   const body = encodeURIComponent(buildEmailBody());
   btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
+}
+
+function openQrScanner() {
+  const dialog = document.getElementById('qr-scanner-dialog');
+  const video = document.getElementById('qr-scanner-video');
+  const status = document.getElementById('qr-scanner-status');
+  if (!dialog || !video) return;
+
+  if (!('BarcodeDetector' in window)) {
+    status.textContent = "Scanning isn't supported in this browser. Please type the code or serial number instead.";
+    dialog.showModal();
+    return;
+  }
+
+  status.textContent = 'Point the camera at the QR code.';
+  dialog.showModal();
+
+  let stream = null;
+  let stopped = false;
+  const detector = new BarcodeDetector({ formats: ['qr_code'] });
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } })
+    .catch(() => navigator.mediaDevices.getUserMedia({ video: true }))
+    .then((s) => {
+      stream = s;
+      video.srcObject = stream;
+      return video.play();
+    })
+    .then(scanLoop)
+    .catch((err) => {
+      const reason = err && err.name === 'NotAllowedError'
+        ? 'Camera access was blocked. Allow camera access in your browser settings, or type the code or serial number instead.'
+        : "Couldn't access the camera. Please type the code or serial number instead.";
+      status.textContent = reason;
+    });
+
+  function scanLoop() {
+    if (stopped) return;
+    detector.detect(video).then((codes) => {
+      if (stopped) return;
+      if (codes.length > 0) {
+        const value = codes[0].rawValue;
+        const input = document.getElementById('heater-id-input');
+        if (input) {
+          input.value = value;
+          updateHeaterId(value);
+        }
+        closeQrScanner();
+        return;
+      }
+      requestAnimationFrame(scanLoop);
+    }).catch(() => {
+      requestAnimationFrame(scanLoop);
+    });
+  }
+
+  dialog.onclose = closeQrScanner;
+
+  function closeQrScanner() {
+    stopped = true;
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      stream = null;
+    }
+    video.srcObject = null;
+    if (dialog.open) dialog.close();
+  }
 }
 
 function currentEndNode() {
@@ -835,18 +1182,43 @@ function currentEndNode() {
   const lastStep = path[path.length - 1];
   const lastNode = TREE[lastStep.nodeId];
   if (lastStep.optionIndex === null) return null;
-  const endId = lastNode.options[lastStep.optionIndex].next;
+  const endId = resolveNext(getOptions(lastNode)[lastStep.optionIndex]);
   return TREE[endId];
 }
 
-function buildEmailBody() {
+function currentEndOption() {
+  if (path.length === 0) return null;
+  const lastStep = path[path.length - 1];
+  const lastNode = TREE[lastStep.nodeId];
+  if (lastStep.optionIndex === null) return null;
+  return getOptions(lastNode)[lastStep.optionIndex];
+}
+
+function wantsUnitPhoto() {
   const endNode = currentEndNode();
+  const endOption = currentEndOption();
+  if (endNode && endNode.noUnitPhoto) return false;
+  if (endOption && endOption.resolvedNoUnitPhoto) return false;
+  return true;
+}
+
+function getHeatFallbackSuffix() {
+  for (let i = path.length - 1; i >= 0; i--) {
+    const step = path[i];
+    const isFallbackNode = step.nodeId === 'heat_fallback' || step.nodeId === 'heat_fallback_cant_move';
+    if (isFallbackNode && step.optionIndex !== null) {
+      return step.optionIndex === 0 ? '_has_heat' : '_no_heat';
+    }
+  }
+  return '';
+}
+
+function buildEmailBody(codeOverride) {
+  const endNode = currentEndNode();
+  const code = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
   let lines = [];
-  if (!endNode || !endNode.noUnitPhoto) {
-    const attachAsk = endNode && endNode.code === 'damaged'
-      ? "Please attach a photo of the heater's damage and a photo of its QR tag or serial number before sending."
-      : "Please attach a photo of the heater's QR tag or serial number before sending.";
-    lines.push(attachAsk, '');
+  if (endNode && endNode.code === 'damaged') {
+    lines.push("Please attach a photo of the heater's damage before sending.", '');
   }
   lines.push('Issue description:', '');
   for (let i = 0; i < path.length; i++) {
@@ -857,21 +1229,26 @@ function buildEmailBody() {
   if (issueDescription.trim()) {
     lines.push('- ' + issueDescription.trim());
   }
-  if (endNode && endNode.code) {
+  if (heaterId.trim()) {
     lines.push('');
-    lines.push('Issue code: ' + endNode.code);
+    lines.push('Heater QR/Serial: ' + heaterId.trim());
+  }
+  if (code) {
+    lines.push('');
+    lines.push('Issue code: ' + code);
   }
   return lines.join('\n');
 }
 
-function buildSubject() {
+function buildSubject(codeOverride) {
   const endNode = currentEndNode();
-  const code = endNode && endNode.code ? ' [' + endNode.code + ']' : '';
+  const codeValue = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
+  const code = codeValue ? ' [' + codeValue + ']' : '';
   if (path.length > 0) {
     const first = path[0];
     const node = TREE[first.nodeId];
     if (first.optionIndex !== null) {
-      return 'Troubleshooting: ' + node.options[first.optionIndex].label + code;
+      return 'Troubleshooting: ' + getOptions(node)[first.optionIndex].label + code;
     }
   }
   return 'Troubleshooting help' + code;
@@ -889,7 +1266,7 @@ function render() {
       const step = path[i];
       const node = TREE[step.nodeId];
       if (step.optionIndex === null) continue;
-      const answer = node.options[step.optionIndex].label;
+      const answer = getShortAnswer(step.nodeId, step.optionIndex);
       const qText = node.question || '';
       html += '<div class="history-step" onclick="goBack(' + i + ')">';
       html += '<div class="step-num">Step ' + (i + 1) + '</div>';
@@ -911,19 +1288,35 @@ function render() {
     html += '<div class="endpoint fade-in' + wrapClass + '">';
 
     if (node.type === 'resolved') {
+      const subject = encodeURIComponent(buildSubject('resolved_followup'));
+      const body = encodeURIComponent(buildEmailBody('resolved_followup'));
+      const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
       html += '<div class="endpoint-icon resolved">&#10003;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
       html += '<p>' + esc(node.message) + '</p>';
       html += '<button class="start-over-btn" onclick="startOver()">Start over</button>';
+
+      html += '<p class="another-link">Still need help? <a href="#" onclick="toggleResolvedHelp(this); return false;">Contact support</a>.</p>';
+      html += '<div class="send-card resolved-help" hidden>';
+      html += '<ul class="send-reminders">';
+      html += '<li>CC others you want in the loop.</li>';
+      html += '</ul>';
+      html += '<a class="email-btn" href="' + mailtoHref + '">';
+      html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
+      html += 'Email Focal Support</a>';
+      html += '</div>';
     } else if (node.type === 'support') {
-      const requiresDescription = node.code === 'generic';
-      const filled = issueDescription.trim().length > 0;
+      const requiresDescription = node.code === 'generic' || node.code === 'pull_other';
+      const requiresHeaterId = wantsUnitPhoto();
+      const descriptionFilled = issueDescription.trim().length > 0;
+      const heaterIdFilled = heaterId.trim().length > 0;
+      const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
       const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
       const attachAsk = node.code === 'damaged'
-        ? "Attach a photo of the heater's damage and a photo of its QR tag or serial number."
-        : "Attach a photo of the heater's QR tag or serial number.";
+        ? "Attach a photo of the heater's damage."
+        : null;
 
       html += '<div class="endpoint-icon support">&#9993;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
@@ -933,24 +1326,31 @@ function render() {
         html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
       }
 
-      html += '<div class="send-card">';
+      if (wantsUnitPhoto()) {
+        html += '<div class="textarea-label">Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app</div>';
+        html += '<div class="heater-id-row">';
+        html += '<input type="text" id="heater-id-input" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterId) + '" oninput="updateHeaterId(this.value)">';
+        html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner()" title="Scan QR Code">';
+        html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>';
+        html += 'Scan QR</button>';
+        html += '</div>';
+      }
+
+      html += '<div class="send-plain">';
       html += '<ul class="send-reminders">';
       if (node.safetyStep) {
         html += '<li>' + esc(node.safetyStep) + '</li>';
       }
-      if (!node.noUnitPhoto) {
+      if (attachAsk) {
         html += '<li>' + esc(attachAsk) + '</li>';
       }
       html += '<li>CC others you want in the loop.</li>';
       html += '</ul>';
-      const disabledClass = (requiresDescription && !filled) ? ' disabled' : '';
-      html += '<a id="email-btn" class="email-btn' + disabledClass + '" href="' + mailtoHref + '" aria-disabled="' + (requiresDescription && !filled) + '" onclick="' + (requiresDescription ? 'if(!issueDescription.trim()){return false;}' : '') + '">';
+      const disabledClass = canSend ? '' : ' disabled';
+      html += '<a id="email-btn" class="email-btn' + disabledClass + '" href="' + mailtoHref + '" data-requires-description="' + requiresDescription + '" data-requires-heater-id="' + requiresHeaterId + '" aria-disabled="' + !canSend + '" onclick="' + (canSend ? '' : 'return false;') + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
       html += '</div>';
-      if (requiresDescription) {
-        html += '<p class="fallback-link">Having trouble? <a href="' + mailtoHref + '">Email us directly</a>.</p>';
-      }
       html += '<p class="another-link">If needed, <a href="#" onclick="startOver(); return false;">report another issue after</a>.</p>';
     } else if (node.type === 'electrician') {
       html += '<div class="endpoint-icon support">&#9889;</div>';
@@ -968,7 +1368,7 @@ function render() {
     html += '<div class="step-num">Step ' + stepNum + '</div>';
 
     if (node.instruction) {
-      html += '<div class="instruction">' + esc(node.instruction);
+      html += '<div class="instruction">' + escBold(node.instruction);
       if (node.link) {
         html += '<br><a class="inst-link" href="' + node.link.url + '" target="_blank">';
         html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
@@ -979,8 +1379,9 @@ function render() {
 
     html += '<div class="question-text">' + esc(node.question) + '</div>';
     html += '<div class="options">';
-    for (let i = 0; i < node.options.length; i++) {
-      html += '<button class="opt-btn" onclick="selectOption(' + i + ')">' + esc(node.options[i].label) + '</button>';
+    const options = getOptions(node);
+    for (let i = 0; i < options.length; i++) {
+      html += '<button class="opt-btn" onclick="selectOption(' + i + ')">' + esc(options[i].label) + '</button>';
     }
     html += '</div>';
     html += '</div>';
@@ -995,6 +1396,10 @@ function render() {
       active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, 50);
+}
+
+function escBold(s) {
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
 function esc(s) {
