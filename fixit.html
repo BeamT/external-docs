@@ -645,7 +645,7 @@ const TREE = {
     options: [
       { label: "Heaters offline or not responding", next: 'scope' },
       { label: "Heater won't move", next: 'move_action' },
-      { label: "Heater is damaged", next: 'heat_fallback_damaged' },
+      { label: "Heater is damaged", next: 'damaged_end' },
       { label: "Something else", next: 'end_support_generic' },
     ]
   },
@@ -662,8 +662,8 @@ const TREE = {
   lights_check: {
     question: "Are the heater's orange and purple LEDs on?",
     options: [
-      { label: "Yes", next: 'control_method' },
-      { label: "No", next: (scope) => scope === 'all' ? 'check_breaker' : 'reseat' },
+      { label: "Yes, the LEDs are on", next: 'control_method' },
+      { label: "No, the LEDs are off", next: (scope) => scope === 'all' ? 'check_breaker' : 'reseat' },
     ]
   },
 
@@ -689,8 +689,8 @@ const TREE = {
 
     question: "Can you control the heaters now?",
     options: [
-      { label: "Yes", next: 'end_resolved', resolvedNoUnitPhoto: true },
-      { label: "No", next: 'end_support_networking' },
+      { label: "Yes, I can control them", next: 'end_resolved', resolvedNoUnitPhoto: true },
+      { label: "No, I still can't control them", next: 'end_support_networking' },
     ]
   },
 
@@ -728,8 +728,8 @@ const TREE = {
     instruction: "Re-seat the heater: pull the string all the way down, slide the heater off the slot, let go of the string and slide it back until it locks.",
     question: "Did the orange and purple LEDs come on?",
     options: [
-      { label: "Yes", next: 'power_restored_control_check' },
-      { label: "No", next: 'check_rail' },
+      { label: "Yes, the LEDs came on", next: 'power_restored_control_check' },
+      { label: "No, the LEDs are still off", next: 'check_rail' },
     ]
   },
 
@@ -745,16 +745,16 @@ const TREE = {
     instruction: "Check the rail's power switch and circuit breaker.",
     question: "Did the orange and purple LEDs come back on?",
     options: [
-      { label: "Yes", next: 'power_restored_control_check' },
-      { label: "No", next: 'test_outlet' },
+      { label: "Yes, the LEDs came back on", next: 'power_restored_control_check' },
+      { label: "No, the LEDs are still off", next: 'test_outlet' },
     ]
   },
 
   power_restored_control_check: {
     question: "Now that the LEDs are on, can you control the heaters?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'control_method' },
+      { label: "Yes, I can control them", next: 'end_resolved' },
+      { label: "No, I still can't control them", next: 'control_method' },
     ]
   },
 
@@ -762,8 +762,8 @@ const TREE = {
     instruction: "Test the outlet with another electrical device.",
     question: "Does the outlet provide power?",
     options: [
-      { label: "Yes", next: 'end_support_no_power' },
-      { label: "No", next: 'end_electrician' },
+      { label: "Yes, the outlet provides power", next: 'end_support_no_power' },
+      { label: "No, the outlet has no power", next: 'end_electrician' },
     ]
   },
 
@@ -773,8 +773,8 @@ const TREE = {
     link: { label: "How to move a heater", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "Can you move it now?",
     options: [
-      { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'heat_fallback_cant_move' },
+      { label: "Yes, I can move it", next: 'end_resolved' },
+      { label: "No, I still can't move it", next: 'heat_fallback_cant_move' },
     ]
   },
 
@@ -787,14 +787,6 @@ const TREE = {
   },
 
   // === HEAT FALLBACK CHECK (single-unit issues, for support triage) ===
-  heat_fallback_damaged: {
-    question: "Can you still get heat another way, app/QR or pull string?",
-    options: [
-      { label: "Yes, at least one way still works", next: 'damaged_end' },
-      { label: "No, it won't heat at all", next: 'damaged_end' },
-    ]
-  },
-
   heat_fallback_some_app: {
     question: "Can you still get heat another way, app/QR or pull string?",
     options: [
@@ -838,7 +830,7 @@ const TREE = {
   heat_fallback_cant_move: {
     question: "Does it still provide heat?",
     options: [
-      { label: "Yes", next: 'end_support_cant_move' },
+      { label: "Yes, it still provides heat", next: 'end_support_cant_move' },
       { label: "No, it won't heat at all", next: 'end_support_cant_move' },
     ]
   },
@@ -975,10 +967,6 @@ const SUMMARIES = {
     0: "Now that the LEDs are on, the heater can be controlled.",
     1: "The LEDs are on, but the heater still can't be controlled.",
   },
-  heat_fallback_damaged: {
-    0: "At least one control method (app/QR or pull string) still produces heat.",
-    1: "The heater produces no heat at all right now.",
-  },
   heat_fallback_some_app: {
     0: "At least one control method (app/QR or pull string) still produces heat.",
     1: "The heater produces no heat at all right now.",
@@ -1003,6 +991,18 @@ const SUMMARIES = {
     0: "The heater still provides heat.",
     1: "The heater produces no heat at all right now.",
   },
+};
+
+// Short recap labels for the history list (question is already shown above it there)
+const SHORT_ANSWERS = {
+  lights_check: { 0: "Yes", 1: "No" },
+  networking: { 0: "Yes", 1: "No" },
+  reseat: { 0: "Yes", 1: "No" },
+  check_breaker: { 0: "Yes", 1: "No" },
+  power_restored_control_check: { 0: "Yes", 1: "No" },
+  test_outlet: { 0: "Yes", 1: "No" },
+  move_action: { 0: "Yes", 1: "No" },
+  heat_fallback_cant_move: { 0: "Yes", 1: "No" },
 };
 
 // State
@@ -1030,6 +1030,18 @@ function getOptions(node) {
 function getSummary(nodeId, optionIndex) {
   if (SUMMARIES[nodeId] && SUMMARIES[nodeId][optionIndex] !== undefined) {
     return SUMMARIES[nodeId][optionIndex];
+  }
+  const node = TREE[nodeId];
+  const options = node && getOptions(node);
+  if (options && options[optionIndex]) {
+    return options[optionIndex].label;
+  }
+  return '';
+}
+
+function getShortAnswer(nodeId, optionIndex) {
+  if (SHORT_ANSWERS[nodeId] && SHORT_ANSWERS[nodeId][optionIndex] !== undefined) {
+    return SHORT_ANSWERS[nodeId][optionIndex];
   }
   const node = TREE[nodeId];
   const options = node && getOptions(node);
@@ -1205,7 +1217,8 @@ function wantsUnitPhoto() {
 }
 
 function getHeatFallbackSuffix() {
-  for (const step of path) {
+  for (let i = path.length - 1; i >= 0; i--) {
+    const step = path[i];
     if (step.nodeId.startsWith('heat_fallback_') && step.optionIndex !== null) {
       return step.optionIndex === 0 ? '_has_heat' : '_no_heat';
     }
@@ -1266,7 +1279,7 @@ function render() {
       const step = path[i];
       const node = TREE[step.nodeId];
       if (step.optionIndex === null) continue;
-      const answer = getOptions(node)[step.optionIndex].label;
+      const answer = getShortAnswer(step.nodeId, step.optionIndex);
       const qText = node.question || '';
       html += '<div class="history-step" onclick="goBack(' + i + ')">';
       html += '<div class="step-num">Step ' + (i + 1) + '</div>';
