@@ -488,11 +488,16 @@ h1 {
   padding: 0;
   max-width: 420px;
   width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  position: fixed;
+  inset: 0;
+  margin: auto;
 }
 
 .qr-scanner-dialog::backdrop {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.65);
 }
 
 .qr-scanner-box {
@@ -523,20 +528,22 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: none;
+  width: 36px;
+  height: 36px;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 18px;
   line-height: 1;
   color: var(--ink-soft);
   cursor: pointer;
+  transition: all 0.15s;
 }
 
 .qr-scanner-close:hover {
-  background: var(--bg);
-  color: var(--ink);
+  background: var(--focal-light);
+  border-color: var(--focal);
+  color: var(--focal);
 }
 
 .qr-scanner-video {
@@ -680,7 +687,12 @@ h1 {
   <div class="qr-scanner-box">
     <div class="qr-scanner-head">
       <h3>Scan QR Code</h3>
-      <button type="button" class="qr-scanner-close" onclick="document.getElementById('qr-scanner-dialog').close()" aria-label="Close">&times;</button>
+      <button type="button" class="qr-scanner-close" onclick="document.getElementById('qr-scanner-dialog').close()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="3" x2="13" y2="13"></line>
+          <line x1="13" y1="3" x2="3" y2="13"></line>
+        </svg>
+      </button>
     </div>
     <video id="qr-scanner-video" class="qr-scanner-video" playsinline muted></video>
     <p id="qr-scanner-status" class="qr-scanner-status">Point the camera at the QR code.</p>
