@@ -3,11 +3,11 @@ description: Installation and usage guides for Focal patio heaters.
 
 # Used by the print fallback in _includes/video.html to build an absolute link.
 # Update this alongside baseurl if you move to a custom domain.
-url: "https://loren-focal.github.io"
+url: "https://support.focalheat.co"
 
 # GitHub Pages serves from a subpath like /repo-name/. This is set to your
 # repo name. If you rename the repo or use a custom domain, update this.
-baseurl: "/external-docs"
+baseurl: "/"
 
 collections:
   guides:
