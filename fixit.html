@@ -518,17 +518,17 @@ h1 {
 .qr-scanner-close {
   position: absolute;
   top: 50%;
-  right: -8px;
+  right: 0;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 1;
   color: var(--ink-soft);
   cursor: pointer;
@@ -540,9 +540,11 @@ h1 {
 }
 
 .qr-scanner-video {
+  display: block;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: center;
   border-radius: 8px;
   background: #000;
 }
@@ -1188,7 +1190,7 @@ function refreshEmailHref(btnId, codeOverride) {
   btn.setAttribute('aria-disabled', String(!canSend));
   const subject = encodeURIComponent(buildSubject(codeOverride));
   const body = encodeURIComponent(buildEmailBody(codeOverride));
-  btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
+  btn.setAttribute('href', 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
 function openQrScanner(index) {
@@ -1391,7 +1393,7 @@ function render() {
     if (node.type === 'resolved') {
       const subject = encodeURIComponent(buildSubject('resolved_followup'));
       const body = encodeURIComponent(buildEmailBody('resolved_followup'));
-      const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
+      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body;
       html += '<div class="endpoint-icon resolved">&#10003;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
       html += '<p>' + esc(node.message) + '</p>';
@@ -1416,7 +1418,7 @@ function render() {
       const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
-      const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
+      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body;
       const attachAsk = node.code === 'damaged'
         ? "Attach a photo of the heater's damage."
         : null;
