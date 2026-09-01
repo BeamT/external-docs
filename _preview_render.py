@@ -72,12 +72,12 @@ def render_include(name, args):
         return f'<ul class="checklist">{lis}</ul>'
     if name == "contact.html":
         if args.get("style") == "compact":
-            return ('Questions: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a>'
-                    ' &middot; <a href="tel:+13143781131">314-378-1131</a>')
+            return ('Questions: <a href="mailto:support@focalheat.co">support@focalheat.co</a>'
+                    ' &middot; <a href="tel:+14153230091">415-323-0091</a>')
         return ('<div class="contact"><p class="contact-name">Focal</p>'
                 '<p>375 Alabama St Suite 220<br>San Francisco, CA 94110</p>'
-                '<p>Phone: <a href="tel:+13143781131">314-378-1131</a>'
-                '<br>Email: <a href="mailto:hello@focalheat.co">hello@focalheat.co</a>'
+                '<p>Phone: <a href="tel:+14153230091">415-323-0091</a>'
+                '<br>Email: <a href="mailto:support@focalheat.co">support@focalheat.co</a>'
                 '<br>Web: <a href="https://www.focalheat.co">www.focalheat.co</a></p></div>')
     if name == "service.html":
         txt = ("The heater has no user-serviceable parts. All service beyond basic "
@@ -174,7 +174,7 @@ def build_packet(out, guides_data):
     <h1>Installer Packet</h1><p class="cover-sub">Everything you need to install Focal heaters, in order.</p>
     <div class="cover-qr"><img src="{qr_data}" width="150" height="150"><div class="cover-qr-text"><strong>Scan for the live guides</strong><span>Always current, with search and full-size diagrams. Opens to the installer sequence.</span></div></div>
     <ol class="cover-seq"><li><strong>Safety &amp; Clearances</strong></li><li><strong>Rail Installation</strong></li><li><strong>Network Setup</strong></li><li><strong>Install the Heaters</strong></li><li><strong>Register &amp; Assign Heaters</strong></li></ol>
-    <p class="cover-foot">Questions: hello@focalheat.co · 314-378-1131</p></section>'''
+    <p class="cover-foot">Questions: support@focalheat.co · 415-323-0091</p></section>'''
     body=cover
     for g in ig:
         body+=f'<section class="packet-guide"><div class="packet-guide-head"><h1>{g["title"]}</h1><span class="packet-ver">v{g.get("version","")} · {g.get("updated","")}</span></div>{g["_html"]}</section>'

@@ -164,11 +164,10 @@ Agreed but not yet done, in roughly the order they unblock each other:
 4. **Add page analytics** (Google Analytics or similar) to the homepage —
    nothing is wired up yet. Tool choice (GA4 vs. a lighter option like
    Plausible/Fathom) hasn't been decided.
-5. **Update the support email address to `support@focalheat.co`**,
-   replacing `hello@focalheat.co`, across `fixit.html`, `_includes/
-   contact.html`, and `_guides/troubleshooting.md` (grep for the old address
-   before changing it — this list can drift). Confirm the new address is
-   live/monitored before shipping the change.
+5. ~~Update the support email address to `support@focalheat.co`, replacing
+   `hello@focalheat.co`~~ — done, across `fixit.html`, `_includes/
+   contact.html`, `_guides/troubleshooting.md`, and `_preview_render.py`.
+   Confirm the new address is live/monitored before shipping the change.
 
 ## Not built yet (deliberate v1 scope)
 
