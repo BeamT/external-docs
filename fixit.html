@@ -456,27 +456,39 @@ h1 {
 }
 
 .qr-scanner-head {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .qr-scanner-head h3 {
   font-size: 16px;
   font-weight: 600;
+  text-align: center;
 }
 
 .qr-scanner-close {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   background: none;
   border: none;
-  font-size: 20px;
+  border-radius: 50%;
+  font-size: 24px;
   line-height: 1;
   color: var(--ink-soft);
   cursor: pointer;
-  padding: 4px;
 }
 
 .qr-scanner-close:hover {
+  background: var(--bg);
   color: var(--ink);
 }
 
@@ -619,7 +631,7 @@ h1 {
   <div class="qr-scanner-box">
     <div class="qr-scanner-head">
       <h3>Scan QR Code</h3>
-      <button type="button" class="qr-scanner-close" onclick="document.getElementById('qr-scanner-dialog').close()">&times;</button>
+      <button type="button" class="qr-scanner-close" onclick="document.getElementById('qr-scanner-dialog').close()" aria-label="Close">&times;</button>
     </div>
     <video id="qr-scanner-video" class="qr-scanner-video" playsinline muted></video>
     <p id="qr-scanner-status" class="qr-scanner-status">Point the camera at the QR code.</p>
@@ -664,7 +676,7 @@ const TREE = {
   },
 
   pull_string_check_some_app: {
-    instruction: "Pull the string on the affected heater(s) all the way down and release it. Wait 30 seconds.",
+    instruction: "Pull the string on the affected heater(s) all the way down until the orange and purple LEDs turn off then release it. Wait 30 seconds.",
     question: "Did that resolve the issue?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
@@ -687,13 +699,11 @@ const TREE = {
     instruction: "Give the pull string a **short** pull and watch the LEDs.",
     link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "What happens?",
-    options: (scope) => scope === 'all' ? [
-      { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
-      { label: "White LEDs changed", next: 'end_pull_working' },
-    ] : [
+    options: [
       { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
       { label: "White LEDs changed", next: 'end_pull_working' },
       { label: "Nothing happened", next: 'heat_fallback_pull_dead' },
+      { label: "Something else / not sure", next: 'heat_fallback_pull_other' },
     ]
   },
 
@@ -801,6 +811,14 @@ const TREE = {
     ]
   },
 
+  heat_fallback_pull_other: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'end_support_pull_other' },
+      { label: "No, it won't heat at all", next: 'end_support_pull_other' },
+    ]
+  },
+
   heat_fallback_pull_schedule: {
     question: "Can you still get heat another way, app/QR or pull string?",
     options: [
@@ -829,7 +847,7 @@ const TREE = {
   end_resolved: {
     type: 'resolved',
     heading: "Issue resolved!",
-    message: "If the problem comes back, run through these steps again."
+    message: "If the issue returns, do these steps again."
   },
 
   end_support_some_app: {
@@ -848,6 +866,12 @@ const TREE = {
   end_support_pull_dead: {
     type: 'support',
     code: 'pull_no_response',
+    heading: "Let's get you some help",
+  },
+
+  end_support_pull_other: {
+    type: 'support',
+    code: 'pull_other',
     heading: "Let's get you some help",
   },
 
@@ -921,6 +945,7 @@ const SUMMARIES = {
     0: "The yellow LEDs are flashing when pulling the string.",
     1: "The white LEDs changed when pulling the string.",
     2: "Nothing happened when pulling the string.",
+    3: "Something unexpected happened when pulling the string, or unsure what happened.",
   },
   schedule_check_pull: {
     0: "Schedule Mode check resolved the issue.",
@@ -959,6 +984,10 @@ const SUMMARIES = {
     1: "The heater produces no heat at all right now.",
   },
   heat_fallback_pull_dead: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_pull_other: {
     0: "At least one control method (app/QR or pull string) still produces heat.",
     1: "The heater produces no heat at all right now.",
   },
@@ -1277,7 +1306,7 @@ function render() {
       html += 'Email Focal Support</a>';
       html += '</div>';
     } else if (node.type === 'support') {
-      const requiresDescription = node.code === 'generic';
+      const requiresDescription = node.code === 'generic' || node.code === 'pull_other';
       const requiresHeaterId = wantsUnitPhoto();
       const descriptionFilled = issueDescription.trim().length > 0;
       const heaterIdFilled = heaterId.trim().length > 0;
@@ -1298,7 +1327,7 @@ function render() {
       }
 
       if (wantsUnitPhoto()) {
-        html += '<div class="textarea-label">Enter the heater\'s QR code or serial number</div>';
+        html += '<div class="textarea-label">Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app</div>';
         html += '<div class="heater-id-row">';
         html += '<input type="text" id="heater-id-input" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterId) + '" oninput="updateHeaterId(this.value)">';
         html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner()" title="Scan QR Code">';
