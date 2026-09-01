@@ -66,7 +66,7 @@ The old heater's slot in Focal Control still points at the unit you just removed
 
 {% include step.html number="3" title="Select the old heater's slot" body="Tap the slot the old heater came out of. The panel below shows the heater still assigned to it, which is the old unit's serial." %}
 
-{% include step.html number="4" title="Scan the new heater's QR tag" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR tag on the new heater, the round tag labeled SCAN TO HEAT. Once it reads, tap Save Heater Assignment to point the slot at the new heater." diagram="reg-05-scan.png" %}
+{% include step.html number="4" title="Scan the new heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the new heater, the round tag labeled SCAN TO HEAT. Once it reads, tap Save Heater Assignment to point the slot at the new heater." diagram="reg-05-scan.png" %}
 
 ## Confirm the new heater
 
