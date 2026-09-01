@@ -394,7 +394,54 @@ h1 {
   flex-direction: column;
   gap: 8px;
   max-width: 360px;
-  margin: 0 auto 16px;
+  margin: 0 auto 10px;
+  position: relative;
+}
+
+.remove-heater-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.remove-heater-btn:hover {
+  border-color: var(--focal);
+  color: var(--focal);
+}
+
+.add-heater-btn {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 4px auto 16px;
+  padding: 10px;
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-heater-btn:hover {
+  border-color: var(--focal);
+  color: var(--focal);
 }
 
 .heater-id-input {
@@ -669,10 +716,10 @@ const TREE = {
 
   // === CAN'T CONTROL ===
   scope: {
-    question: "Are all heaters affected, or only some?",
+    question: "Are all heaters affected, or some?",
     options: [
       { label: "All heaters", next: 'lights_check' },
-      { label: "Only some heaters", next: 'lights_check' },
+      { label: "Some heaters", next: 'lights_check' },
     ]
   },
 
@@ -858,15 +905,22 @@ const TREE = {
 // entries. `code` still drives real behavior elsewhere (buildEmailBody,
 // render's requiresDescription/attachAsk checks), so it's preserved exactly
 // per endpoint, just generated instead of hand-duplicated.
+// `code` here is the detail portion only — no scope prefix. The scope
+// segment (`All`, or a count like `1`/`3`) is prepended at send time by
+// withScopeAndHeatState(), derived from how many heater QR/serial fields
+// are actually populated (see populatedHeaterIds()). The two noUnitPhoto
+// endpoints below never collect a count, so their code is scope-prefixed
+// here directly: `networking`/`no_power` are inherently "all heaters"
+// situations, and `generic` intentionally carries no scope segment at all.
 const END_SUPPORT = {
-  some_app: { code: 'some_heaters_app_reseat_failed' },
-  networking: { code: 'all_heaters_networking_checked', noUnitPhoto: true },
-  pull_dead: { code: 'pull_no_response' },
-  pull_other: { code: 'pull_other' },
-  pull_schedule: { code: 'pull_schedule_checked' },
-  rail_isolated: { code: 'some_heaters_isolated_unit' },
-  no_power: { code: 'no_power_outlet_ok' },
-  cant_move: { code: 'cant_move' },
+  some_app: { code: 'noAppControl_reseatDidNotFix' },
+  networking: { code: 'All_noAppControl_networkingDidNotFix', noUnitPhoto: true },
+  pull_dead: { code: 'noPullControl_pullNoResponse' },
+  pull_other: { code: 'pullOther' },
+  pull_schedule: { code: 'noPullControl_pullScheduleDidNotFix' },
+  rail_isolated: { code: 'isolatedUnit' },
+  no_power: { code: 'All_noHeat_outletHasPower', noUnitPhoto: true },
+  cant_move: { code: 'cantMove' },
   generic: { code: 'generic', noUnitPhoto: true },
 };
 
@@ -894,7 +948,7 @@ const SUMMARIES = {
   },
   scope: {
     0: "All heaters are affected.",
-    1: "Only some heaters are affected.",
+    1: "Some heaters are affected.",
   },
   lights_check: {
     0: "The orange and purple LEDs are on.",
@@ -971,7 +1025,14 @@ const SHORT_ANSWERS = {
 // State
 let path = []; // [{ nodeId, optionIndex }]
 let issueDescription = '';
-let heaterId = '';
+let heaterIds = ['']; // one input row per entry; empty rows are never sent or counted
+
+// Only rows the customer actually typed/scanned something into count as
+// "a heater was reported" — clicking "add another heater" and leaving it
+// blank must not inflate the count or show up in the email.
+function populatedHeaterIds() {
+  return heaterIds.map(id => id.trim()).filter(id => id.length > 0);
+}
 
 // getScope() / getFallbackKind() recover a piece of context from earlier in
 // the conversation by scanning `path` for the step that set it. This is how
@@ -1080,37 +1141,57 @@ function toggleResolvedHelp(link) {
 function startOver() {
   path = [];
   issueDescription = '';
-  heaterId = '';
+  heaterIds = [''];
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function updateIssueDescription(value) {
+function updateIssueDescription(value, btnId, codeOverride) {
   issueDescription = value;
-  refreshEmailHref();
+  refreshEmailHref(btnId, codeOverride);
 }
 
-function updateHeaterId(value) {
-  heaterId = value;
-  refreshEmailHref();
+function updateHeaterId(index, value) {
+  heaterIds[index] = value;
+  refreshEmailHref('email-btn');
 }
 
-function refreshEmailHref() {
-  const btn = document.getElementById('email-btn');
+function addHeaterRow() {
+  heaterIds.push('');
+  render();
+}
+
+// Removing a row always leaves at least one input on screen — dropping to
+// zero rows would leave no way to enter a heater at all.
+function removeHeaterRow(index) {
+  heaterIds.splice(index, 1);
+  if (heaterIds.length === 0) heaterIds.push('');
+  render();
+}
+
+// Re-derives the mailto link (and, where the button can be disabled, whether
+// it's allowed to send yet) whenever the user types into a description or
+// heater-ID field. Shared by both endpoint types that show a live-updating
+// email button: the required-field "support" endpoints (id="email-btn") and
+// the optional-field "issue resolved, but..." follow-up card
+// (id="resolved-email-btn"). `codeOverride` lets the latter keep stamping
+// its email as a resolved-followup instead of a fresh support code.
+function refreshEmailHref(btnId, codeOverride) {
+  const btn = document.getElementById(btnId);
   if (!btn) return;
   const requiresDescription = btn.dataset.requiresDescription === 'true';
   const requiresHeaterId = btn.dataset.requiresHeaterId === 'true';
   const descriptionFilled = issueDescription.trim().length > 0;
-  const heaterIdFilled = heaterId.trim().length > 0;
+  const heaterIdFilled = populatedHeaterIds().length > 0;
   const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
   btn.classList.toggle('disabled', !canSend);
   btn.setAttribute('aria-disabled', String(!canSend));
-  const subject = encodeURIComponent(buildSubject());
-  const body = encodeURIComponent(buildEmailBody());
+  const subject = encodeURIComponent(buildSubject(codeOverride));
+  const body = encodeURIComponent(buildEmailBody(codeOverride));
   btn.setAttribute('href', 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
-function openQrScanner() {
+function openQrScanner(index) {
   const dialog = document.getElementById('qr-scanner-dialog');
   const video = document.getElementById('qr-scanner-video');
   const status = document.getElementById('qr-scanner-status');
@@ -1150,10 +1231,10 @@ function openQrScanner() {
       if (stopped) return;
       if (codes.length > 0) {
         const value = codes[0].rawValue;
-        const input = document.getElementById('heater-id-input');
+        const input = document.getElementById('heater-id-input-' + index);
         if (input) {
           input.value = value;
-          updateHeaterId(value);
+          updateHeaterId(index, value);
         }
         closeQrScanner();
         return;
@@ -1202,20 +1283,36 @@ function wantsUnitPhoto() {
   return true;
 }
 
-function getHeatFallbackSuffix() {
+// Returns true if the heat_fallback checkpoint was answered "no heat at
+// all" — false if it answered "yes, some way still works" or wasn't asked.
+function isNoHeat() {
   for (let i = path.length - 1; i >= 0; i--) {
     const step = path[i];
     const isFallbackNode = step.nodeId === 'heat_fallback' || step.nodeId === 'heat_fallback_cant_move';
     if (isFallbackNode && step.optionIndex !== null) {
-      return step.optionIndex === 0 ? '_has_heat' : '_no_heat';
+      return step.optionIndex === 1;
     }
   }
-  return '';
+  return false;
+}
+
+// Issue codes are shaped {scope}_[noHeat_]{detail}, where scope is either
+// `All` or a bare count of heaters reported (see populatedHeaterIds()).
+// END_SUPPORT stores only the detail portion for per-unit endpoints (their
+// scope depends on how many QR/serial fields got filled in, unknowable
+// until send time) — `All_...` endpoints and `generic` already carry
+// whatever scope prefix they need baked in, since neither has a count to
+// derive, and are passed through unchanged.
+function withScopeAndHeatState(code) {
+  if (!code || code === 'generic' || code.startsWith('All_')) return code;
+  const count = populatedHeaterIds().length || 1;
+  const heatSegment = isNoHeat() ? 'noHeat_' : '';
+  return count + '_' + heatSegment + code;
 }
 
 function buildEmailBody(codeOverride) {
   const endNode = currentEndNode();
-  const code = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
+  const code = codeOverride || (endNode && endNode.code ? withScopeAndHeatState(endNode.code) : null);
   let lines = [];
   if (endNode && endNode.code === 'damaged') {
     lines.push("Please attach a photo of the heater's damage before sending.", '');
@@ -1229,9 +1326,13 @@ function buildEmailBody(codeOverride) {
   if (issueDescription.trim()) {
     lines.push('- ' + issueDescription.trim());
   }
-  if (heaterId.trim()) {
+  const ids = populatedHeaterIds();
+  if (ids.length > 0) {
     lines.push('');
-    lines.push('Heater QR/Serial: ' + heaterId.trim());
+    lines.push(ids.length === 1 ? 'Heater QR/Serial: ' + ids[0] : 'Heater QR/Serials:');
+    if (ids.length > 1) {
+      for (const id of ids) lines.push('- ' + id);
+    }
   }
   if (code) {
     lines.push('');
@@ -1242,7 +1343,7 @@ function buildEmailBody(codeOverride) {
 
 function buildSubject(codeOverride) {
   const endNode = currentEndNode();
-  const codeValue = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
+  const codeValue = codeOverride || (endNode && endNode.code ? withScopeAndHeatState(endNode.code) : null);
   const code = codeValue ? ' [' + codeValue + ']' : '';
   if (path.length > 0) {
     const first = path[0];
@@ -1298,18 +1399,20 @@ function render() {
 
       html += '<p class="another-link">Still need help? <a href="#" onclick="toggleResolvedHelp(this); return false;">Contact support</a>.</p>';
       html += '<div class="send-card resolved-help" hidden>';
+      html += '<div class="textarea-label">Anything you want support to know? (optional)</div>';
+      html += '<textarea class="issue-textarea" placeholder="e.g. it worked, but only for a few minutes" oninput="updateIssueDescription(this.value, \'resolved-email-btn\', \'resolved_followup\')">' + esc(issueDescription) + '</textarea>';
       html += '<ul class="send-reminders">';
       html += '<li>CC others you want in the loop.</li>';
       html += '</ul>';
-      html += '<a class="email-btn" href="' + mailtoHref + '">';
+      html += '<a id="resolved-email-btn" class="email-btn" href="' + mailtoHref + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
       html += '</div>';
     } else if (node.type === 'support') {
-      const requiresDescription = node.code === 'generic' || node.code === 'pull_other';
+      const requiresDescription = node.code === 'generic' || node.code === 'pullOther';
       const requiresHeaterId = wantsUnitPhoto();
       const descriptionFilled = issueDescription.trim().length > 0;
-      const heaterIdFilled = heaterId.trim().length > 0;
+      const heaterIdFilled = populatedHeaterIds().length > 0;
       const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
@@ -1323,17 +1426,26 @@ function render() {
 
       if (requiresDescription) {
         html += '<div class="textarea-label">Describe what\'s going on</div>';
-        html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value)">' + esc(issueDescription) + '</textarea>';
+        html += '<textarea class="issue-textarea" placeholder="How can we help?" oninput="updateIssueDescription(this.value, \'email-btn\')">' + esc(issueDescription) + '</textarea>';
       }
 
       if (wantsUnitPhoto()) {
-        html += '<div class="textarea-label">Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app</div>';
-        html += '<div class="heater-id-row">';
-        html += '<input type="text" id="heater-id-input" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterId) + '" oninput="updateHeaterId(this.value)">';
-        html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner()" title="Scan QR Code">';
-        html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>';
-        html += 'Scan QR</button>';
-        html += '</div>';
+        const label = heaterIds.length > 1
+          ? 'Scan each heater\'s QR code or copy/paste its serial number from the Focal Control app'
+          : 'Scan the heater\'s QR code or copy/paste the serial number from the Focal Control app';
+        html += '<div class="textarea-label">' + label + '</div>';
+        for (let i = 0; i < heaterIds.length; i++) {
+          html += '<div class="heater-id-row">';
+          html += '<input type="text" id="heater-id-input-' + i + '" class="heater-id-input" placeholder="e.g. qr4.ch/12FG3 or DUO02-2607-VX1-00217" value="' + esc(heaterIds[i]) + '" oninput="updateHeaterId(' + i + ', this.value)">';
+          html += '<button type="button" class="scan-qr-btn" onclick="openQrScanner(' + i + ')" title="Scan QR Code">';
+          html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/></svg>';
+          html += 'Scan QR</button>';
+          if (heaterIds.length > 1) {
+            html += '<button type="button" class="remove-heater-btn" onclick="removeHeaterRow(' + i + ')" title="Remove this heater" aria-label="Remove this heater">&times;</button>';
+          }
+          html += '</div>';
+        }
+        html += '<button type="button" class="add-heater-btn" onclick="addHeaterRow()">+ Add another heater</button>';
       }
 
       html += '<div class="send-plain">';
