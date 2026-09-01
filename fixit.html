@@ -534,8 +534,17 @@ const TREE = {
   how_many: {
     question: "Are all heaters affected or only some?",
     options: [
-      { label: "Only some heaters", next: 'end_support_some_app' },
+      { label: "Only some heaters", next: 'pull_string_check_some_app' },
       { label: "All heaters", next: 'schedule_check_app' },
+    ]
+  },
+
+  pull_string_check_some_app: {
+    instruction: "Pull the string on the affected heater(s) all the way down and release it. Wait 30 seconds.",
+    question: "Did that resolve the issue?",
+    options: [
+      { label: "Yes, I'm all set", next: 'end_resolved' },
+      { label: "I still need help", next: 'end_support_some_app' },
     ]
   },
 
@@ -544,7 +553,7 @@ const TREE = {
     link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
     question: "Did that help?",
     options: [
-      { label: "I'm all set", next: 'end_resolved' },
+      { label: "Yes, I'm all set", next: 'end_resolved' },
       { label: "I still need help", next: 'networking' },
     ]
   },
@@ -576,7 +585,7 @@ const TREE = {
     link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
     question: "Did that help?",
     options: [
-      { label: "I'm all set", next: 'end_resolved' },
+      { label: "Yes, I'm all set", next: 'end_resolved' },
       { label: "I still need help", next: 'end_support_pull_schedule' },
     ]
   },
@@ -724,6 +733,10 @@ const SUMMARIES = {
   how_many: {
     0: "Only some heaters are affected.",
     1: "All heaters are affected.",
+  },
+  pull_string_check_some_app: {
+    0: "Pulling the string on the affected heater(s) resolved the issue.",
+    1: "Pulling the string on the affected heater(s) did not resolve the issue.",
   },
   schedule_check_app: {
     0: "Schedule Mode check resolved the issue.",
