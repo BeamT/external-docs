@@ -32,10 +32,6 @@ You need:
 
 {% include warn.html text="Let the old heater cool before you touch it." %}
 
-Watch the swap once before you start. Everything below is the same job written out step by step.
- 
-{% include video.html id="swap-video" src="replace-heater.mp4" poster="replace-heater-poster.jpg" caption="Swapping a heater, start to finish" %}
-
 ## Remove the old heater
 
 {% include step.html number="1" title="Open the rail end" body="Loosen the bumper screw and slide the bumper toward the center of the rail. Remove the end cap screws and take off the end cap, keeping one hand on it so it doesn't fall. Remove the spacers and set them aside." %}

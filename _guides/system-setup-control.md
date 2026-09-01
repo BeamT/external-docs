@@ -2,7 +2,7 @@
 title: System Setup & Control
 audience: [customer]
 audience_order: {customer: 10}
-order: 10
+order: 11
 summary: Set up Focal Control, your schedule, and control the system from one screen.
 version: "1.0"
 updated: "2026-08-07"
@@ -19,7 +19,7 @@ updated: "2026-08-07"
 - [The Heater Control page](#the-heater-control-page)
 - [How Schedule Mode behaves](#how-schedule-mode-behaves)
 
-This guide covers Focal Control, the app you use to run every heater in your space at once. To adjust a single heater, at the unit or for one guest, see [Individual Heater Control]({{ site.baseurl }}/individual-heater-control).
+This guide covers Focal Control, the app you use to run every heater in your space at once. To adjust a single heater, at the unit or for one guest, see [Individual Heater Control]({{ site.baseurl }}/individual-heater-control/).
 
 ## Logging in
 

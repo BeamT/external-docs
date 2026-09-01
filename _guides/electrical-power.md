@@ -2,7 +2,7 @@
 title: Electrical & Power Requirements
 audience: [electrician]
 audience_order: {electrician: 10}
-order: 5
+order: 6
 summary: Circuit, outlet, and plug requirements for electricians.
 version: "1.1"
 updated: "2026-07-28"

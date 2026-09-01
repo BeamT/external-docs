@@ -2,9 +2,9 @@
 title: Individual Heater Control
 audience: [customer, staff, guest]
 audience_order: {customer: 20}
-order: 20
+order: 21
 summary: Control heaters from the app, with the QR code or its pull string.
-version: "0.9"
+version: "1.0"
 updated: "2026-08-07"
 ---
 
@@ -42,8 +42,6 @@ The other three LEDs are white and show the heat level for that side: three lit 
 
 Every heater has a pull string, and it does two different jobs depending on how you pull it. A short tug changes the heat. A hard pull releases the heater so you can move it.
 
-[VIDEO: pull-string demonstration goes here]
-
 ### Change the heat level
 
 Give the string a short tug to step through the heat levels. Starting from off, the first tug jumps straight to Level 3 (HIGH). Each tug after that steps down one level, from 3 to 2 to 1 and then back to off. The three white LEDs update with each tug, so you can see the new level right on the heater.
@@ -54,7 +52,7 @@ This only works inside your open hours. If you tug the string outside those hour
 
 ### Move the heater
 
-Give the string a hard pull to release the heater from the rail. Once it releases, slide it along the rail to where you want it, then let go of the string and it locks back in place. This is the same motion used when heaters are first installed, so if you're repositioning several at once, the [rail installation guide](install-heaters) walks through it in more detail.
+Give the string a hard pull to release the heater from the rail. Once it releases, slide it along the rail to where you want it, then let go of the string and it locks back in place. This is the same motion used when heaters are first installed, so if you're repositioning several at once, the [Install Heaters guide]({{ site.baseurl }}/install-heaters/) walks through it in more detail.
 
 ## Guest QR control
 
