@@ -669,10 +669,10 @@ const TREE = {
 
   // === CAN'T CONTROL ===
   scope: {
-    question: "Are all heaters affected, or only some?",
+    question: "Are all heaters affected, or just one?",
     options: [
       { label: "All heaters", next: 'lights_check' },
-      { label: "Only some heaters", next: 'lights_check' },
+      { label: "Just one heater", next: 'lights_check' },
     ]
   },
 
@@ -801,7 +801,7 @@ const TREE = {
   // skips the heat-fallback question entirely (see END_SUPPORT_TARGETS note).
   damaged_end: {
     type: 'support',
-    code: 'damaged',
+    code: 'oneHeater_damaged',
     heading: "Secure the heater and contact support",
     safetyStep: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
   },
@@ -859,14 +859,14 @@ const TREE = {
 // render's requiresDescription/attachAsk checks), so it's preserved exactly
 // per endpoint, just generated instead of hand-duplicated.
 const END_SUPPORT = {
-  some_app: { code: 'some_heaters_app_reseat_failed' },
-  networking: { code: 'all_heaters_networking_checked', noUnitPhoto: true },
-  pull_dead: { code: 'pull_no_response' },
-  pull_other: { code: 'pull_other' },
-  pull_schedule: { code: 'pull_schedule_checked' },
-  rail_isolated: { code: 'some_heaters_isolated_unit' },
-  no_power: { code: 'no_power_outlet_ok' },
-  cant_move: { code: 'cant_move' },
+  some_app: { code: 'oneHeater_noAppControl_reseatDidNotFix' },
+  networking: { code: 'allHeaters_noAppControl_networkingDidNotFix', noUnitPhoto: true },
+  pull_dead: { code: 'oneHeater_noPullControl_pullNoResponse' },
+  pull_other: { code: 'oneHeater_pullOther' },
+  pull_schedule: { code: 'oneHeater_noPullControl_pullScheduleDidNotFix' },
+  rail_isolated: { code: 'oneHeater_isolatedUnit' },
+  no_power: { code: 'allHeaters_noHeat_outletHasPower', noUnitPhoto: true },
+  cant_move: { code: 'oneHeater_cantMove' },
   generic: { code: 'generic', noUnitPhoto: true },
 };
 
@@ -894,7 +894,7 @@ const SUMMARIES = {
   },
   scope: {
     0: "All heaters are affected.",
-    1: "Only some heaters are affected.",
+    1: "Just one heater is affected.",
   },
   lights_check: {
     0: "The orange and purple LEDs are on.",
@@ -1209,22 +1209,33 @@ function wantsUnitPhoto() {
   return true;
 }
 
-function getHeatFallbackSuffix() {
+// Returns true if the heat_fallback checkpoint was answered "no heat at
+// all" — false if it answered "yes, some way still works" or wasn't asked.
+function isNoHeat() {
   for (let i = path.length - 1; i >= 0; i--) {
     const step = path[i];
     const isFallbackNode = step.nodeId === 'heat_fallback' || step.nodeId === 'heat_fallback_cant_move';
     if (isFallbackNode && step.optionIndex !== null) {
-      return step.optionIndex === 0 ? '_has_heat' : '_no_heat';
+      return step.optionIndex === 1;
     }
   }
-  return '';
+  return false;
+}
+
+// Issue codes are shaped {scope}_[noHeat_]{detail}. Codes whose base
+// already bakes in noHeat (e.g. allHeaters_noHeat_outletHasPower, which
+// never reaches heat_fallback) are left untouched — only insert the
+// segment for codes that pass through the shared heat_fallback checkpoint.
+function withHeatState(code) {
+  if (!code || !isNoHeat() || code.includes('_noHeat_')) return code;
+  return code.replace(/^(allHeaters|oneHeater)_/, '$1_noHeat_');
 }
 
 function buildEmailBody(codeOverride) {
   const endNode = currentEndNode();
-  const code = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
+  const code = codeOverride || (endNode && endNode.code ? withHeatState(endNode.code) : null);
   let lines = [];
-  if (endNode && endNode.code === 'damaged') {
+  if (endNode && endNode.code === 'oneHeater_damaged') {
     lines.push("Please attach a photo of the heater's damage before sending.", '');
   }
   lines.push('Issue description:', '');
@@ -1249,7 +1260,7 @@ function buildEmailBody(codeOverride) {
 
 function buildSubject(codeOverride) {
   const endNode = currentEndNode();
-  const codeValue = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
+  const codeValue = codeOverride || (endNode && endNode.code ? withHeatState(endNode.code) : null);
   const code = codeValue ? ' [' + codeValue + ']' : '';
   if (path.length > 0) {
     const first = path[0];
@@ -1315,7 +1326,7 @@ function render() {
       html += 'Email Focal Support</a>';
       html += '</div>';
     } else if (node.type === 'support') {
-      const requiresDescription = node.code === 'generic' || node.code === 'pull_other';
+      const requiresDescription = node.code === 'generic' || node.code === 'oneHeater_pullOther';
       const requiresHeaterId = wantsUnitPhoto();
       const descriptionFilled = issueDescription.trim().length > 0;
       const heaterIdFilled = heaterId.trim().length > 0;
@@ -1323,7 +1334,7 @@ function render() {
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
       const mailtoHref = 'mailto:hello@focalheat.co?subject=' + subject + '&body=' + body;
-      const attachAsk = node.code === 'damaged'
+      const attachAsk = node.code === 'oneHeater_damaged'
         ? "Attach a photo of the heater's damage."
         : null;
 
