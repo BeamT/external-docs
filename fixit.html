@@ -539,7 +539,7 @@ const TREE = {
     question: "Are all heaters affected or only some?",
     options: [
       { label: "Only some heaters", next: 'pull_string_check_some_app' },
-      { label: "All heaters", next: 'schedule_check_app' },
+      { label: "All heaters", next: 'networking' },
     ]
   },
 
@@ -549,16 +549,6 @@ const TREE = {
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
       { label: "No, I still need help", next: 'end_support_some_app' },
-    ]
-  },
-
-  schedule_check_app: {
-    instruction: "Check to see if Schedule Mode is active. Heaters won't respond outside of scheduled hours.",
-    link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
-    question: "Did that help?",
-    options: [
-      { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "No, I still need help", next: 'networking' },
     ]
   },
 
@@ -749,10 +739,6 @@ const SUMMARIES = {
   pull_string_check_some_app: {
     0: "Pulling the string on the affected heater(s) resolved the issue.",
     1: "Pulling the string on the affected heater(s) did not resolve the issue.",
-  },
-  schedule_check_app: {
-    0: "Schedule Mode check resolved the issue.",
-    1: "Schedule Mode is not the issue.",
   },
   networking: {
     0: "Checking the networking box fixed it.",
