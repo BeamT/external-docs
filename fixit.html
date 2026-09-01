@@ -510,36 +510,35 @@ const TREE = {
   start: {
     question: "What's going on?",
     options: [
-      { label: "Can't control the heater", next: 'lights_check' },
+      { label: "Heaters offline or not responding", next: 'scope' },
       { label: "Can't move the heater", next: 'move_action' },
-      { label: "Heater is damaged", next: 'damaged_end' },
+      { label: "Heater is damaged", next: 'heat_fallback_damaged' },
       { label: "Something else", next: 'end_support_generic' },
     ]
   },
 
   // === CAN'T CONTROL ===
+  scope: {
+    question: "Are all heaters affected, or only some?",
+    options: [
+      { label: "All heaters", next: 'lights_check' },
+      { label: "Only some heaters", next: 'lights_check' },
+    ]
+  },
+
   lights_check: {
     question: "Are the heater's orange and purple LEDs on?",
     options: [
       { label: "Yes", next: 'control_method' },
-      { label: "No", next: 'reseat' },
+      { label: "No", next: (scope) => scope === 'all' ? 'check_breaker' : 'reseat' },
     ]
   },
 
   control_method: {
     question: "How are you trying to control it?",
     options: [
-      { label: "App or QR code", next: 'how_many' },
+      { label: "App or QR code", next: (scope) => scope === 'all' ? 'networking' : 'pull_string_check_some_app' },
       { label: "Pull string", next: 'pull_test' },
-    ]
-  },
-
-  // -- App / QR path --
-  how_many: {
-    question: "Are all heaters affected or only some?",
-    options: [
-      { label: "Only some heaters", next: 'pull_string_check_some_app' },
-      { label: "All heaters", next: 'networking' },
     ]
   },
 
@@ -548,7 +547,7 @@ const TREE = {
     question: "Did that resolve the issue?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "No, I still need help", next: 'end_support_some_app' },
+      { label: "No, I still need help", next: 'heat_fallback_some_app' },
     ]
   },
 
@@ -564,13 +563,16 @@ const TREE = {
 
   // -- Pull string path --
   pull_test: {
-    instruction: "Give the pull string a short pull and watch the LEDs.",
+    instruction: "Give the pull string a **short** pull and watch the LEDs.",
     link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "What happens?",
-    options: [
+    options: (scope) => scope === 'all' ? [
       { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
       { label: "White LEDs changed", next: 'end_pull_working' },
-      { label: "Nothing happened", next: 'end_support_pull_dead' },
+    ] : [
+      { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
+      { label: "White LEDs changed", next: 'end_pull_working' },
+      { label: "Nothing happened", next: 'heat_fallback_pull_dead' },
     ]
   },
 
@@ -580,7 +582,7 @@ const TREE = {
     question: "Did that help?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
-      { label: "No, I still need help", next: 'end_support_pull_schedule' },
+      { label: "No, I still need help", next: 'heat_fallback_pull_schedule' },
     ]
   },
 
@@ -603,8 +605,8 @@ const TREE = {
   check_rail: {
     question: "Look at other heaters on the same rail. Are their orange and purple LEDs on?",
     options: [
-      { label: "Yes, the others are on", next: 'end_support_rail_isolated' },
-      { label: "No, others are dark too", next: 'check_breaker' },
+      { label: "Yes, the others are on", next: 'heat_fallback_rail_isolated' },
+      { label: "No, the others are off too", next: 'check_breaker' },
     ]
   },
 
@@ -618,7 +620,7 @@ const TREE = {
   },
 
   power_restored_control_check: {
-    question: "Now that the LEDs are on, can you control the heater?",
+    question: "Now that the LEDs are on, can you control the heaters?",
     options: [
       { label: "Yes", next: 'end_resolved' },
       { label: "No", next: 'control_method' },
@@ -641,7 +643,7 @@ const TREE = {
     question: "Can you move it now?",
     options: [
       { label: "Yes", next: 'end_resolved' },
-      { label: "No", next: 'end_support_cant_move' },
+      { label: "No", next: 'heat_fallback_cant_move' },
     ]
   },
 
@@ -653,6 +655,55 @@ const TREE = {
     safetyStep: "Move the heater off the slot and secure any loose parts so nothing falls. Don't run a damaged heater."
   },
 
+  // === HEAT FALLBACK CHECK (single-unit issues, for support triage) ===
+  heat_fallback_damaged: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'damaged_end' },
+      { label: "No, it won't heat at all", next: 'damaged_end' },
+    ]
+  },
+
+  heat_fallback_some_app: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'end_support_some_app' },
+      { label: "No, it won't heat at all", next: 'end_support_some_app' },
+    ]
+  },
+
+  heat_fallback_pull_dead: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'end_support_pull_dead' },
+      { label: "No, it won't heat at all", next: 'end_support_pull_dead' },
+    ]
+  },
+
+  heat_fallback_pull_schedule: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'end_support_pull_schedule' },
+      { label: "No, it won't heat at all", next: 'end_support_pull_schedule' },
+    ]
+  },
+
+  heat_fallback_rail_isolated: {
+    question: "Can you still get heat another way, app/QR or pull string?",
+    options: [
+      { label: "Yes, at least one way still works", next: 'end_support_rail_isolated' },
+      { label: "No, it won't heat at all", next: 'end_support_rail_isolated' },
+    ]
+  },
+
+  heat_fallback_cant_move: {
+    question: "Does it still provide heat?",
+    options: [
+      { label: "Yes", next: 'end_support_cant_move' },
+      { label: "No, it won't heat at all", next: 'end_support_cant_move' },
+    ]
+  },
+
   // === ENDPOINTS ===
   end_resolved: {
     type: 'resolved',
@@ -662,32 +713,32 @@ const TREE = {
 
   end_support_some_app: {
     type: 'support',
-    code: 'control_some_app',
+    code: 'some_heaters_app_reseat_failed',
     heading: "Let's get you some help",
   },
 
   end_support_networking: {
     type: 'support',
-    code: 'control_all_app_networking_checked',
+    code: 'all_heaters_networking_checked',
     heading: "Let's get you some help",
     noUnitPhoto: true,
   },
 
   end_support_pull_dead: {
     type: 'support',
-    code: 'control_pull_no_response',
+    code: 'pull_no_response',
     heading: "Let's get you some help",
   },
 
   end_support_pull_schedule: {
     type: 'support',
-    code: 'control_pull_schedule_checked',
+    code: 'pull_schedule_checked',
     heading: "Let's get you some help",
   },
 
   end_support_rail_isolated: {
     type: 'support',
-    code: 'no_power_rail_isolated',
+    code: 'some_heaters_isolated_unit',
     heading: "Let's get you some help",
   },
 
@@ -719,10 +770,14 @@ const TREE = {
 // Natural-language summaries keyed by nodeId -> optionIndex
 const SUMMARIES = {
   start: {
-    0: "Can't control the heater.",
+    0: "Heaters offline or not responding.",
     1: "Can't move the heater.",
     2: "Heater is damaged.",
     3: "Something else is wrong.",
+  },
+  scope: {
+    0: "All heaters are affected.",
+    1: "Only some heaters are affected.",
   },
   lights_check: {
     0: "The orange and purple LEDs are on.",
@@ -731,10 +786,6 @@ const SUMMARIES = {
   control_method: {
     0: "Trying to control it from the app or QR code.",
     1: "Trying to control it from the pull string.",
-  },
-  how_many: {
-    0: "Only some heaters are affected.",
-    1: "All heaters are affected.",
   },
   pull_string_check_some_app: {
     0: "Pulling the string on the affected heater(s) resolved the issue.",
@@ -777,29 +828,71 @@ const SUMMARIES = {
     0: "Now that the LEDs are on, the heater can be controlled.",
     1: "The LEDs are on, but the heater still can't be controlled.",
   },
+  heat_fallback_damaged: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_some_app: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_pull_dead: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_pull_schedule: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_rail_isolated: {
+    0: "At least one control method (app/QR or pull string) still produces heat.",
+    1: "The heater produces no heat at all right now.",
+  },
+  heat_fallback_cant_move: {
+    0: "The heater still provides heat.",
+    1: "The heater produces no heat at all right now.",
+  },
 };
+
+// State
+let path = []; // [{ nodeId, optionIndex }]
+let issueDescription = '';
+
+function getScope() {
+  for (const step of path) {
+    if (step.nodeId === 'scope' && step.optionIndex !== null) {
+      return step.optionIndex === 0 ? 'all' : 'some';
+    }
+  }
+  return null;
+}
+
+function resolveNext(option) {
+  return typeof option.next === 'function' ? option.next(getScope()) : option.next;
+}
+
+function getOptions(node) {
+  return typeof node.options === 'function' ? node.options(getScope()) : node.options;
+}
 
 function getSummary(nodeId, optionIndex) {
   if (SUMMARIES[nodeId] && SUMMARIES[nodeId][optionIndex] !== undefined) {
     return SUMMARIES[nodeId][optionIndex];
   }
   const node = TREE[nodeId];
-  if (node && node.options && node.options[optionIndex]) {
-    return node.options[optionIndex].label;
+  const options = node && getOptions(node);
+  if (options && options[optionIndex]) {
+    return options[optionIndex].label;
   }
   return '';
 }
-
-// State
-let path = []; // [{ nodeId, optionIndex }]
-let issueDescription = '';
 
 function currentNodeId() {
   if (path.length === 0) return 'start';
   const last = path[path.length - 1];
   const node = TREE[last.nodeId];
   if (last.optionIndex !== null && last.optionIndex !== undefined) {
-    return node.options[last.optionIndex].next;
+    return resolveNext(getOptions(node)[last.optionIndex]);
   }
   return last.nodeId;
 }
@@ -812,7 +905,7 @@ function selectOption(optionIndex) {
     path.push({ nodeId, optionIndex });
   }
   const node = TREE[nodeId];
-  const nextId = node.options[optionIndex].next;
+  const nextId = resolveNext(getOptions(node)[optionIndex]);
   const nextNode = TREE[nextId];
   if (!nextNode.type) {
     path.push({ nodeId: nextId, optionIndex: null });
@@ -858,7 +951,7 @@ function currentEndNode() {
   const lastStep = path[path.length - 1];
   const lastNode = TREE[lastStep.nodeId];
   if (lastStep.optionIndex === null) return null;
-  const endId = lastNode.options[lastStep.optionIndex].next;
+  const endId = resolveNext(getOptions(lastNode)[lastStep.optionIndex]);
   return TREE[endId];
 }
 
@@ -867,7 +960,7 @@ function currentEndOption() {
   const lastStep = path[path.length - 1];
   const lastNode = TREE[lastStep.nodeId];
   if (lastStep.optionIndex === null) return null;
-  return lastNode.options[lastStep.optionIndex];
+  return getOptions(lastNode)[lastStep.optionIndex];
 }
 
 function wantsUnitPhoto() {
@@ -878,9 +971,18 @@ function wantsUnitPhoto() {
   return true;
 }
 
+function getHeatFallbackSuffix() {
+  for (const step of path) {
+    if (step.nodeId.startsWith('heat_fallback_') && step.optionIndex !== null) {
+      return step.optionIndex === 0 ? '_has_heat' : '_no_heat';
+    }
+  }
+  return '';
+}
+
 function buildEmailBody(codeOverride) {
   const endNode = currentEndNode();
-  const code = codeOverride || (endNode && endNode.code);
+  const code = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
   let lines = [];
   if (wantsUnitPhoto()) {
     const attachAsk = endNode && endNode.code === 'damaged'
@@ -906,13 +1008,13 @@ function buildEmailBody(codeOverride) {
 
 function buildSubject(codeOverride) {
   const endNode = currentEndNode();
-  const codeValue = codeOverride || (endNode && endNode.code);
+  const codeValue = codeOverride || (endNode && endNode.code ? endNode.code + getHeatFallbackSuffix() : null);
   const code = codeValue ? ' [' + codeValue + ']' : '';
   if (path.length > 0) {
     const first = path[0];
     const node = TREE[first.nodeId];
     if (first.optionIndex !== null) {
-      return 'Troubleshooting: ' + node.options[first.optionIndex].label + code;
+      return 'Troubleshooting: ' + getOptions(node)[first.optionIndex].label + code;
     }
   }
   return 'Troubleshooting help' + code;
@@ -930,7 +1032,7 @@ function render() {
       const step = path[i];
       const node = TREE[step.nodeId];
       if (step.optionIndex === null) continue;
-      const answer = node.options[step.optionIndex].label;
+      const answer = getOptions(node)[step.optionIndex].label;
       const qText = node.question || '';
       html += '<div class="history-step" onclick="goBack(' + i + ')">';
       html += '<div class="step-num">Step ' + (i + 1) + '</div>';
@@ -1029,7 +1131,7 @@ function render() {
     html += '<div class="step-num">Step ' + stepNum + '</div>';
 
     if (node.instruction) {
-      html += '<div class="instruction">' + esc(node.instruction);
+      html += '<div class="instruction">' + escBold(node.instruction);
       if (node.link) {
         html += '<br><a class="inst-link" href="' + node.link.url + '" target="_blank">';
         html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
@@ -1040,8 +1142,9 @@ function render() {
 
     html += '<div class="question-text">' + esc(node.question) + '</div>';
     html += '<div class="options">';
-    for (let i = 0; i < node.options.length; i++) {
-      html += '<button class="opt-btn" onclick="selectOption(' + i + ')">' + esc(node.options[i].label) + '</button>';
+    const options = getOptions(node);
+    for (let i = 0; i < options.length; i++) {
+      html += '<button class="opt-btn" onclick="selectOption(' + i + ')">' + esc(options[i].label) + '</button>';
     }
     html += '</div>';
     html += '</div>';
@@ -1056,6 +1159,10 @@ function render() {
       active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, 50);
+}
+
+function escBold(s) {
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
 function esc(s) {
