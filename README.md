@@ -147,6 +147,26 @@ render at all — without it, guide pages fall back to showing raw text. Run
 opening it via `file://` (the stylesheet is linked with an absolute path and
 won't load otherwise): `python3 -m http.server 8000 --directory _preview`.
 
+## Tests
+
+`fixit.html` is a hand-rolled single-page app with no build step, but its
+send-email button logic has bitten us once already (a stale `onclick`
+silently blocked real clicks after a required field was filled in — looked
+fine in the DOM, worked from DevTools, did nothing on a real tap). There's a
+Playwright regression test for exactly that in `tests/`:
+
+```
+npm install
+npx playwright install chromium
+npx playwright test
+```
+
+It loads `fixit.html` directly (`file://`, no server needed), walks a
+description-required and a heater-ID-required endpoint, and asserts the email
+button is genuinely clickable (not just visually enabled) once its required
+field is filled. Run it after touching `refreshEmailHref`, `buildEmailBody`,
+`buildSubject`, or the `support`/`resolved` endpoint rendering in `render()`.
+
 ## Roadmap
 
 Agreed but not yet done, in roughly the order they unblock each other:
