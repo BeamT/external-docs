@@ -722,7 +722,7 @@ const TREE = {
     question: "What's going on?",
     options: [
       { label: "Heaters offline or not responding", next: 'scope' },
-      { label: "Heater won't move", next: 'move_action' },
+      { label: "Heater won't slide on the rail", next: 'move_action' },
       { label: "Heater is damaged", next: 'damaged_end' },
       { label: "Something else", next: 'end_support_generic' },
     ]
@@ -845,14 +845,14 @@ const TREE = {
     ]
   },
 
-  // === CAN'T MOVE ===
+  // === CAN'T SLIDE ON RAIL ===
   move_action: {
-    instruction: "Pull the string all the way down before trying to slide the heater. If it's still difficult to move, use your other hand to grip the middle of the heater for extra leverage.",
-    link: { label: "How to move a heater", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
-    question: "Can you move it now?",
+    instruction: "Pull the string all the way down before trying to slide the heater along the rail. If it's still difficult to slide, use your other hand to grip the middle of the heater for extra leverage.",
+    link: { label: "How to slide a heater on the rail", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
+    question: "Can you slide it now?",
     options: [
-      { label: "Yes, I can move it", next: 'end_resolved' },
-      { label: "No, I still can't move it", next: 'heat_fallback_cant_move' },
+      { label: "Yes, I can slide it", next: 'end_resolved' },
+      { label: "No, it still won't slide", next: 'heat_fallback_cant_move' },
     ]
   },
 
@@ -934,7 +934,7 @@ const END_SUPPORT = {
   pull_schedule: { code: 'noPullControl_pullScheduleDidNotFix' },
   rail_isolated: { code: 'isolatedUnit' },
   no_power: { code: 'All_noHeat_outletHasPower', noUnitPhoto: true },
-  cant_move: { code: 'cantMove' },
+  cant_move: { code: 'cantSlide' },
   generic: { code: 'generic', noUnitPhoto: true },
 };
 
@@ -956,7 +956,7 @@ for (const [key, def] of Object.entries(END_SUPPORT)) {
 const SUMMARIES = {
   start: {
     0: "Heaters offline or not responding.",
-    1: "Heater won't move.",
+    1: "Heater won't slide on the rail.",
     2: "Heater is damaged.",
     3: "Something else is wrong.",
   },
@@ -1007,8 +1007,8 @@ const SUMMARIES = {
     1: "The outlet does not provide power.",
   },
   move_action: {
-    0: "Full pull down released the heater.",
-    1: "Full pull down did not release the heater.",
+    0: "Full pull down let the heater slide on the rail.",
+    1: "Full pull down did not let the heater slide on the rail.",
   },
   power_restored_control_check: {
     0: "Now that the LEDs are on, the heater can be controlled.",
