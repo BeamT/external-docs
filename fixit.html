@@ -1200,6 +1200,7 @@ function refreshEmailHref(btnId, codeOverride) {
   const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
   btn.classList.toggle('disabled', !canSend);
   btn.setAttribute('aria-disabled', String(!canSend));
+  btn.onclick = canSend ? null : () => false;
   const subject = encodeURIComponent(buildSubject(codeOverride));
   const body = encodeURIComponent(buildEmailBody(codeOverride));
   btn.setAttribute('href', 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body);
@@ -1405,7 +1406,7 @@ function render() {
     if (node.type === 'resolved') {
       const subject = encodeURIComponent(buildSubject('resolved_followup'));
       const body = encodeURIComponent(buildEmailBody('resolved_followup'));
-      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body;
+      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&amp;body=' + body;
       html += '<div class="endpoint-icon resolved">&#10003;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
       html += '<p>' + esc(node.message) + '</p>';
@@ -1430,7 +1431,7 @@ function render() {
       const canSend = (!requiresDescription || descriptionFilled) && (!requiresHeaterId || heaterIdFilled);
       const subject = encodeURIComponent(buildSubject());
       const body = encodeURIComponent(buildEmailBody());
-      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body;
+      const mailtoHref = 'mailto:support@focalheat.co?subject=' + subject + '&amp;body=' + body;
       const attachAsk = node.code === 'damaged'
         ? "Attach a photo of the heater's damage."
         : null;
