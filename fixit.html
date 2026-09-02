@@ -1206,41 +1206,67 @@ function refreshEmailHref(btnId, codeOverride) {
   btn.setAttribute('href', 'mailto:support@focalheat.co?subject=' + subject + '&body=' + body);
 }
 
+let barcodeDetectorPolyfillPromise = null;
+
+// Safari and Firefox (desktop and iOS) never shipped the native BarcodeDetector
+// API, so QR scanning silently failed there. Load a WASM (ZBar) polyfill that
+// implements the same interface, only for browsers that need it.
+function ensureBarcodeDetector() {
+  if ('BarcodeDetector' in window) return Promise.resolve();
+  if (!barcodeDetectorPolyfillPromise) {
+    barcodeDetectorPolyfillPromise = import('https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.23/dist/main.js')
+      .then((module) => {
+        window.BarcodeDetector = module.BarcodeDetectorPolyfill;
+      });
+  }
+  return barcodeDetectorPolyfillPromise;
+}
+
 function openQrScanner(index) {
   const dialog = document.getElementById('qr-scanner-dialog');
   const video = document.getElementById('qr-scanner-video');
   const status = document.getElementById('qr-scanner-status');
   if (!dialog || !video) return;
 
-  if (!('BarcodeDetector' in window)) {
-    status.textContent = "Scanning isn't supported in this browser. Please type the code or serial number instead.";
-    dialog.showModal();
-    return;
-  }
+  let stream = null;
+  let stopped = false;
+
+  dialog.onclose = closeQrScanner;
 
   status.textContent = 'Point the camera at the QR code.';
   dialog.showModal();
 
-  let stream = null;
-  let stopped = false;
-  const detector = new BarcodeDetector({ formats: ['qr_code'] });
-
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } })
-    .catch(() => navigator.mediaDevices.getUserMedia({ video: true }))
-    .then((s) => {
-      stream = s;
-      video.srcObject = stream;
-      return video.play();
-    })
-    .then(scanLoop)
-    .catch((err) => {
-      const reason = err && err.name === 'NotAllowedError'
-        ? 'Camera access was blocked. Allow camera access in your browser settings, or type the code or serial number instead.'
-        : "Couldn't access the camera. Please type the code or serial number instead.";
-      status.textContent = reason;
+  ensureBarcodeDetector()
+    .then(startScanning)
+    .catch(() => {
+      status.textContent = "Scanning isn't supported in this browser. Please type the code or serial number instead.";
     });
 
-  function scanLoop() {
+  function startScanning() {
+    if (stopped) return;
+    const detector = new BarcodeDetector({ formats: ['qr_code'] });
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } })
+      .catch(() => navigator.mediaDevices.getUserMedia({ video: true }))
+      .then((s) => {
+        if (stopped) {
+          s.getTracks().forEach((track) => track.stop());
+          return;
+        }
+        stream = s;
+        video.srcObject = stream;
+        return video.play();
+      })
+      .then(() => scanLoop(detector))
+      .catch((err) => {
+        const reason = err && err.name === 'NotAllowedError'
+          ? 'Camera access was blocked. Allow camera access in your browser settings, or type the code or serial number instead.'
+          : "Couldn't access the camera. Please type the code or serial number instead.";
+        status.textContent = reason;
+      });
+  }
+
+  function scanLoop(detector) {
     if (stopped) return;
     detector.detect(video).then((codes) => {
       if (stopped) return;
@@ -1254,13 +1280,11 @@ function openQrScanner(index) {
         closeQrScanner();
         return;
       }
-      requestAnimationFrame(scanLoop);
+      requestAnimationFrame(() => scanLoop(detector));
     }).catch(() => {
-      requestAnimationFrame(scanLoop);
+      requestAnimationFrame(() => scanLoop(detector));
     });
   }
-
-  dialog.onclose = closeQrScanner;
 
   function closeQrScanner() {
     stopped = true;
