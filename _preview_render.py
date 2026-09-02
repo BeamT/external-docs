@@ -145,7 +145,8 @@ def apply_guide_layout(fm, content_html):
     return f'''<article class="doc">
   <a href="{BASEURL}/" class="crumb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All guides</a>
   <div class="doc-head"><h1>{html.escape(fm.get("title",""))}</h1>
-  <div class="doc-meta">{badges}<span>v{fm.get("version","")}</span><span>Updated {fm.get("updated","")}</span></div></div>
+  <div class="doc-meta">{badges}<span>v{fm.get("version","")}</span><span>Updated {fm.get("updated","")}</span></div>
+  <p class="print-only-url">https://support.focalheat.co/{fm.get("_slug","")}/</p></div>
   <div class="doc-body">{content_html}</div>
   <div class="doc-footer no-print"><p class="feedback">Something wrong, unclear or missing on this page? <a href="{fb}" target="_blank" rel="noopener">Provide feedback</a></p><button class="print-btn" onclick="window.print()">Print or save as PDF</button></div>
 </article>'''
