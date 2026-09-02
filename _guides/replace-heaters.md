@@ -32,10 +32,6 @@ You need:
 
 {% include warn.html text="Let the old heater cool before you touch it." %}
 
-Watch the swap once before you start. Everything below is the same job written out step by step.
- 
-{% include video.html id="swap-video" src="replace-heater.mp4" poster="replace-heater-poster.jpg" caption="Swapping a heater, start to finish" %}
-
 ## Remove the old heater
 
 {% include step.html number="1" title="Open the rail end" body="Loosen the bumper screw and slide the bumper toward the center of the rail. Remove the end cap screws and take off the end cap, keeping one hand on it so it doesn't fall. Remove the spacers and set them aside." %}
@@ -70,7 +66,7 @@ The old heater's slot in Focal Control still points at the unit you just removed
 
 {% include step.html number="3" title="Select the old heater's slot" body="Tap the slot the old heater came out of. The panel below shows the heater still assigned to it, which is the old unit's serial." %}
 
-{% include step.html number="4" title="Scan the new heater's QR tag" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR tag on the new heater, the round tag labeled SCAN TO HEAT. Once it reads, tap Save Heater Assignment to point the slot at the new heater." diagram="reg-05-scan.png" %}
+{% include step.html number="4" title="Scan the new heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the new heater, the round tag labeled SCAN TO HEAT. Once it reads, tap Save Heater Assignment to point the slot at the new heater." diagram="reg-05-scan.png" %}
 
 ## Confirm the new heater
 

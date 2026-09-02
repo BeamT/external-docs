@@ -38,7 +38,7 @@ You need:
 
 {% include step.html number="4" title="Tap the slot you are standing under" body="Tap the slot you're standing under. The panel below reads No Heater Assigned to Rail, with a field for the QR link, serial number, or MAC address." diagram="reg-04-empty-slot-selected.png" %}
 
-{% include step.html number="5" title="Scan that heater's QR tag" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR tag on the heater in that slot (the round tag labeled SCAN TO HEAT). Once it reads, tap Save Heater Assignment." diagram="reg-05-scan.png" %}
+{% include step.html number="5" title="Scan that heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the heater in that slot (the round tag labeled SCAN TO HEAT). Once it reads, tap Save Heater Assignment." diagram="reg-05-scan.png" %}
 
 {% include step.html number="6" title="Repeat until all heaters are assigned" body="Work along the rail slot by slot, then move to the next zone. When you are done, all slots should have a heater assigned." %}
 
