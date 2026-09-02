@@ -1214,7 +1214,7 @@ let barcodeDetectorPolyfillPromise = null;
 function ensureBarcodeDetector() {
   if ('BarcodeDetector' in window) return Promise.resolve();
   if (!barcodeDetectorPolyfillPromise) {
-    barcodeDetectorPolyfillPromise = import('https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.23/dist/index.esm.min.js')
+    barcodeDetectorPolyfillPromise = import('https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.23/dist/main.js')
       .then((module) => {
         window.BarcodeDetector = module.BarcodeDetectorPolyfill;
       });
