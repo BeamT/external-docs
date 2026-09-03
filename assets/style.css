@@ -181,6 +181,8 @@ a { color: inherit; }
 @media (min-width: 640px) { .brand { font-size: 22px; } }
 @media (max-width: 480px) { .dodont { grid-template-columns: 1fr; } }
 
+.print-only-url { display: none; }
+
 @media print {
   :root { --wash: #fff; }
   body { background: #fff; font-size: 12pt; }
@@ -194,6 +196,8 @@ a { color: inherit; }
   .diagram, .step-figure, .card { border-color: #ccc; }
   /* diagrams print at full size, not the on-screen height cap */
   .diagram img, .step-figure img { max-height: none; }
+  /* so people can find their way back to the live page from a printout */
+  .print-only-url { display: block; color: #666; font-size: 10pt; margin-top: 4px; }
 }
 
 /* ---- "On this page" list (plain markdown list, bullets stripped) ---- */
@@ -229,6 +233,8 @@ a { color: inherit; }
 /* the "On this page" heading + its list, hidden in the packet to avoid dead links */
 .packet-guide h2#on-this-page,
 .packet-guide h2#on-this-page + ul { display: none; }
+/* every section is already on the page, so the per-step "Next" CTA is dead weight here */
+.packet-guide .next-link { display: none; }
 .packet-end { margin: 30px 0 60px; color: var(--ink-soft); font-size: 14px; }
 
 @media print {

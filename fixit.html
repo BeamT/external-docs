@@ -775,7 +775,7 @@ const TREE = {
   // -- Pull string path --
   pull_test: {
     instruction: "Give the pull string a **short** pull and watch the LEDs.",
-    link: { label: "How the pull string works", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
+    link: { label: "How the pull string works", url: "{{ site.baseurl }}/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "What happens?",
     options: [
       { label: "Yellow LEDs are flashing", next: 'schedule_check_pull' },
@@ -787,7 +787,7 @@ const TREE = {
 
   schedule_check_pull: {
     instruction: "Schedule Mode is active and heaters won't respond outside of scheduled hours.",
-    link: { label: "Open System Setup Guide", url: "https://loren-focal.github.io/external-docs/system-setup-control/" },
+    link: { label: "Open System Setup Guide", url: "{{ site.baseurl }}/system-setup-control/" },
     question: "Did that help?",
     options: [
       { label: "Yes, I'm all set", next: 'end_resolved' },
@@ -848,7 +848,7 @@ const TREE = {
   // === CAN'T SLIDE ON RAIL ===
   move_action: {
     instruction: "Pull the string all the way down before trying to slide the heater along the rail. If it's still difficult to slide, use your other hand to grip the middle of the heater for extra leverage.",
-    link: { label: "How to slide a heater on the rail", url: "https://loren-focal.github.io/external-docs/individual-heater-control/#at-the-heater-the-pull-string" },
+    link: { label: "How to slide a heater on the rail", url: "{{ site.baseurl }}/individual-heater-control/#at-the-heater-the-pull-string" },
     question: "Can you slide it now?",
     options: [
       { label: "Yes, I can slide it", next: 'end_resolved' },
@@ -1441,7 +1441,7 @@ function render() {
       html += '<div class="textarea-label">Anything you want support to know? (optional)</div>';
       html += '<textarea class="issue-textarea" placeholder="e.g. it worked, but only for a few minutes" oninput="updateIssueDescription(this.value, \'resolved-email-btn\', \'resolved_followup\')">' + esc(issueDescription) + '</textarea>';
       html += '<ul class="send-reminders">';
-      html += '<li>CC others you want in the loop.</li>';
+      html += '<li>CC team members to keep them in the loop.</li>';
       html += '</ul>';
       html += '<a id="resolved-email-btn" class="email-btn" href="' + mailtoHref + '">';
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
@@ -1495,7 +1495,7 @@ function render() {
       if (attachAsk) {
         html += '<li>' + esc(attachAsk) + '</li>';
       }
-      html += '<li>CC others you want in the loop.</li>';
+      html += '<li>CC team members to keep them in the loop.</li>';
       html += '</ul>';
       const disabledClass = canSend ? '' : ' disabled';
       html += '<a id="email-btn" class="email-btn' + disabledClass + '" href="' + mailtoHref + '" data-requires-description="' + requiresDescription + '" data-requires-heater-id="' + requiresHeaterId + '" aria-disabled="' + !canSend + '" onclick="' + (canSend ? '' : 'return false;') + '">';

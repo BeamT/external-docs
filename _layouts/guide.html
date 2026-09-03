@@ -10,10 +10,10 @@ layout: default
   <div class="doc-head">
     <h1>{{ page.title }}</h1>
     <div class="doc-meta">
-      {% for a in page.audience %}<span class="badge">{% if a == 'customer' %}Restaurant{% else %}{{ a | capitalize }}{% endif %}</span>{% endfor %}
       <span>v{{ page.version }}</span>
       <span>Updated {{ page.updated }}</span>
     </div>
+    <p class="print-only-url">{{ page.url | absolute_url }}</p>
   </div>
 
   <div class="doc-body">
