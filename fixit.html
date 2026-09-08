@@ -763,7 +763,7 @@ const TREE = {
   },
 
   networking: {
-    instruction: "Locate the Focal networking box, unplug it from power then plug it back in. If it's located next to your restaurant's router, confirm that it's plugged into your router and the internet is working.",
+    instruction: "Locate the Focal networking box, unplug it from power then plug it back in. If it's located near the heaters, confirm the restaurant's Wi-Fi is operating and providing internet. If it's located next to the restaurant's router, confirm that it's plugged into the router and providing internet.",
 
     question: "Can you control the heaters now?",
     options: [
@@ -1502,7 +1502,7 @@ function render() {
       html += '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>';
       html += 'Email Focal Support</a>';
       html += '</div>';
-      html += '<p class="another-link">If needed, <a href="#" onclick="startOver(); return false;">report another issue after</a>.</p>';
+      html += '<p class="another-link">Have a different issue? <a href="#" onclick="startOver(); return false;">Troubleshoot it</a>.</p>';
     } else if (node.type === 'electrician') {
       html += '<div class="endpoint-icon support">&#9889;</div>';
       html += '<h2>' + esc(node.heading) + '</h2>';
