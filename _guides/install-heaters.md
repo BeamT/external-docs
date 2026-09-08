@@ -11,6 +11,7 @@ updated: "2026-08-04"
 ## On this page
 
 - [Before you start](#before-you-start)
+- [Watch the video](#watch-the-video)
 - [Open the rail end](#open-the-rail-end)
 - [Install each heater](#install-each-heater)
 - [Close up the rail](#close-up-the-rail)
@@ -21,6 +22,12 @@ updated: "2026-08-04"
 The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and slides onto the same rail slot the cable powers.
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set the unit down on the grille or reflector." %}
+
+## Watch the video
+
+Watch the full video once before you start. Refer to the step-by-step written instructions below.
+
+{% include video.html id="install-video" src="install-heaters.mp4" poster="install-heaters-poster.jpg" caption="Installing heaters onto the rail" %}
 
 ## Open the rail end
 

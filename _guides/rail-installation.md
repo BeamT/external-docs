@@ -13,6 +13,7 @@ updated: "2026-07-28"
 - [About the rails](#about-the-rails)
 - [What's in the mounting kit](#whats-in-the-mounting-kit)
 - [Rail placement over the table](#rail-placement-over-the-table)
+- [Watch the video](#watch-the-video)
 - [Mount the rail](#mount-the-rail)
 - [Different mounting methods](#different-mounting-methods)
 - [Post-mount checks](#post-mount-checks)
@@ -96,6 +97,12 @@ One of each.
 Ideally the rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the rail has to be off-center, angle the heaters toward the guests, but not so far that they only warm the guest's head.
 
 {% include diagram.html src="rail-placement.png" caption="Center the rail over the table; angle heaters toward guests when off-center." %}
+
+## Watch the video
+
+Watch the full video once before you start. Refer to the step-by-step written instructions below.
+
+{% include video.html id="mount-video" src="rails-installation.mp4" poster="rails-installation-poster.jpg" caption="Mounting the rail, start to finish" %}
 
 ## Mount the rail
 

@@ -11,6 +11,7 @@ updated: "2026-08-11"
 ## On this page
 
 - [Before you start](#before-you-start)
+- [Watch the video](#watch-the-video)
 - [Remove the old heater](#remove-the-old-heater)
 - [Install the new heater](#install-the-new-heater)
 - [Close up the rail](#close-up-the-rail)
@@ -31,6 +32,12 @@ You need:
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set a unit down on the grille or reflector." %}
 
 {% include warn.html text="Let the old heater cool before you touch it." %}
+
+## Watch the video
+
+Watch the full video once before you start. Refer to the step-by-step written instructions below.
+
+{% include video.html id="swap-video" src="replace-heaters.mp4" poster="replace-heaters-poster.jpg" caption="Swapping a heater, start to finish" %}
 
 ## Remove the old heater
 
