@@ -102,7 +102,7 @@ Ideally the rail runs down the center of the table, so heat hits the middle of e
 
 Watch the full video once before you start. Refer to the step-by-step written instructions below.
 
-{% include video.html id="mount-video" src="rails-installation.mp4" poster="rails-installation-poster.jpg" caption="Mounting the rail, start to finish" %}
+{% include video.html id="mount-video" src="rails-installation.mp4" poster="rails-installation-poster.jpg" qr="rails-installation-qr.svg" caption="Mounting the rail, start to finish" %}
 
 ## Mount the rail
 

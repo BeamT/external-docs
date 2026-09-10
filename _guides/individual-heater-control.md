@@ -42,7 +42,7 @@ The other three LEDs are white and show the heat level for that side: three lit 
 
 Every heater has a pull string, and it does two different jobs depending on how you pull it. A short tug changes the heat. A hard pull releases the heater so you can slide it on the rail.
 
-{% include video.html id="pull-string-video" src="pull-string.mp4" poster="pull-string-poster.jpg" caption="Using the pull string" %}
+{% include video.html id="pull-string-video" src="pull-string.mp4" poster="pull-string-poster.jpg" qr="pull-string-qr.svg" caption="Using the pull string" %}
 
 ### Change the heat level
 
@@ -62,4 +62,4 @@ Every pendant has a QR code a guest can scan with their phone to control their o
 
 The one limit: the QR page does not allow heat to be adjusted outside of your scheduled hours. Inside those hours a guest can set their side freely.
 
-{% include video.html id="qr-video" src="guest-qr-control.mp4" poster="guest-qr-control-poster.jpg" caption="Scanning the QR code to adjust the heat" %}
+{% include video.html id="qr-video" src="guest-qr-control.mp4" poster="guest-qr-control-poster.jpg" qr="guest-qr-control-qr.svg" caption="Scanning the QR code to adjust the heat" %}
