@@ -27,7 +27,7 @@ The rail should already be mounted, plugged in, and switched on. Heaters slide o
 
 Watch the full video once before you start. Refer to the step-by-step written instructions below.
 
-{% include video.html id="install-video" src="install-heaters.mp4" poster="install-heaters-poster.jpg" caption="Installing heaters onto the rail" %}
+{% include video.html id="install-video" src="install-heaters.mp4" poster="install-heaters-poster.jpg" qr="install-heaters-qr.svg" caption="Installing heaters onto the rail" %}
 
 ## Open the rail end
 

@@ -37,7 +37,7 @@ You need:
 
 Watch the full video once before you start. Refer to the step-by-step written instructions below.
 
-{% include video.html id="swap-video" src="replace-heaters.mp4" poster="replace-heaters-poster.jpg" caption="Swapping a heater, start to finish" %}
+{% include video.html id="swap-video" src="replace-heaters.mp4" poster="replace-heaters-poster.jpg" qr="replace-heaters-qr.svg" caption="Swapping a heater, start to finish" %}
 
 ## Remove the old heater
 
