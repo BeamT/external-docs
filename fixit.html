@@ -763,7 +763,7 @@ const TREE = {
   },
 
   networking: {
-    instruction: "Locate the Focal networking box, unplug it from power then plug it back in. If it's located near the heaters, confirm the restaurant's Wi-Fi is operating and providing internet. If it's located next to the restaurant's router, confirm that it's plugged into the router and providing internet.",
+    instruction: "Locate the Focal networking box, unplug it from power, plug it back in and wait 5 minutes.\n\nIf it's located near the heaters, confirm the restaurant's Wi-Fi is operating and providing internet.\n\nIf it's located next to the restaurant's router, confirm that it's plugged into the router and providing internet.",
 
     question: "Can you control the heaters now?",
     options: [
@@ -1552,7 +1552,7 @@ function render() {
 }
 
 function escBold(s) {
-  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
 }
 
 function esc(s) {
