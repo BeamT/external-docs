@@ -133,19 +133,7 @@ HTML pasted into a `.md` file) that nests **block-level** tags (`<div>`,
 `<h2>`, `<p>`) inside a single-line `<a>` gets mangled — kramdown escapes the
 inner tags as literal text instead of parsing them. Inline-level tags
 (`<span>`) inside that same `<a>` are fine. See `_includes/nextlink.html` and
-`_includes/fixitbanner.html` for the working span-only pattern. This bug is
-real on GitHub Pages but **won't show up** in the no-Ruby preview below, since
-that's a simplified emulation, not real kramdown — always sanity-check new
-raw-HTML includes with real Jekyll before trusting the Python preview alone.
-
-**No-Ruby preview (approximate, faster to start)** — a hand-rolled emulator
-included at `_preview_render.py` (handles front matter, `{% include %}`,
-kramdown-ish markdown, both layouts). Needs `python3 -m pip install markdown`
-(or your OS package, e.g. `pacman -S python-markdown`) for guide bodies to
-render at all — without it, guide pages fall back to showing raw text. Run
-`python3 _preview_render.py`, then serve `_preview/` over HTTP rather than
-opening it via `file://` (the stylesheet is linked with an absolute path and
-won't load otherwise): `python3 -m http.server 8000 --directory _preview`.
+`_includes/fixitbanner.html` for the working span-only pattern.
 
 ## Tests
 
@@ -196,6 +184,6 @@ Agreed but not yet done, in roughly the order they unblock each other:
 - Per-site QR codes
 - Formal version control (each guide carries a `version` field as the seed)
 
-`_preview/` and `_site/` (local-preview and Jekyll build output) are listed in
-`.gitignore` and ignored by GitHub Pages regardless (leading underscore); they
-do no harm if committed, but there's no need to.
+`_site/` (Jekyll build output) is listed in `.gitignore` and ignored by GitHub
+Pages regardless (leading underscore); it does no harm if committed, but
+there's no need to.
