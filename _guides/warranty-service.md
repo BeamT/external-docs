@@ -1,5 +1,5 @@
 ---
-title: Warranty and Service
+title: Warranty & Service
 audience: [customer, installer, electrician]
 audience_order: {customer: 50, electrician: 30, installer: 70}
 order: 100
