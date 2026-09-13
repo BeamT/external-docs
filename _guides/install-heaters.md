@@ -56,5 +56,3 @@ Watch the full video once before you start. Refer to the step-by-step written in
 ## Final checks
 
 {% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
-
-{% include nextlink.html slug="register-assign-heaters" title="Assign Heaters" %}

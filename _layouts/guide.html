@@ -20,6 +20,24 @@ layout: default
     {{ content }}
   </div>
 
+  {% if page.audience_order.installer %}
+    {% assign installer_guides = site.guides | where_exp: "g", "g.audience_order.installer" | sort: "audience_order.installer" %}
+    {% assign next_guide = nil %}
+    {% for g in installer_guides %}
+      {% if found %}
+        {% assign next_guide = g %}
+        {% break %}
+      {% endif %}
+      {% if g.url == page.url %}
+        {% assign found = true %}
+      {% endif %}
+    {% endfor %}
+    {% if next_guide %}
+      {% assign next_slug = next_guide.url | replace: "/", "" %}
+      {% include nextlink.html slug=next_slug title=next_guide.title %}
+    {% endif %}
+  {% endif %}
+
   <div class="doc-footer no-print">
     {% include feedback.html %}
     <button class="print-btn" onclick="window.print()">Print or save as PDF</button>

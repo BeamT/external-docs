@@ -136,5 +136,3 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 {% include dodont.html do="Plug directly into a dedicated, GFCI-protected outdoor outlet on its own circuit." dont="Use an extension cord, power strip, or a circuit shared with other loads." %}
 
 Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. Plug into the outlet, then flip the rail switch on. Secure any slack so nothing hangs below the bottom of the rail.
-
-{% include nextlink.html slug="install-heaters" title="Install Heaters" %}

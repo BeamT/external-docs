@@ -1,7 +1,7 @@
 ---
 title: Safety & Clearances
-audience: [customer, installer, electrician]
-audience_order: {installer: 10, electrician: 20, customer: 40}
+audience: [installer, electrician, customer]
+audience_order: {installer: 10, electrician: 20, customer: 25}
 order: 10
 summary: Required clearances and safety guidelines for every install.
 version: "1.2"
@@ -87,5 +87,3 @@ Discontinue use immediately and contact Focal Support if you notice any of these
 {% include checklist.html items="Physical damage to the housing or grille | Burned, frayed, or damaged power cord or plug | Unusual odors or sounds during operation | Heater won't turn on or respond to controls | Any other visible or suspected electrical or heating damage" %}
 
 {% include service.html %}
-
-{% include nextlink.html label="Next" slug="network-setup" title="Set Up Network" %}

@@ -37,4 +37,4 @@ Here's the whole job in order. Each guide ends with a link to the next one. Star
 
 {% include stepitem.html number="5" title="Assign Heaters" body="Scan and assign each heater to its slot." %}
 
-{% include nextlink.html label="Next" slug="safety-and-clearances" title="Safety & Clearances" %}
+{% include stepitem.html number="6" title="Troubleshooting" body="Get help with issues." %}
