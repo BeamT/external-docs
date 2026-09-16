@@ -110,11 +110,13 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="2" title="Prepare the mount" body="Step 2 has two variants. Use the one that matches the structure you're fastening to. You only need one. Either way, fasten the block with #12 wood screws (2\" or longer) into solid wood, or through-mount it with the longer 1/4-20 flat-head screws, SAE washers, and nylon lock nuts." %}
 
-{% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." %}
+{% include warn.html text="Set screws are the most critical fasteners in the assembly. A loose set screw lets the pipe and attached rail slip. Tighten them using the full length of the 1/8\" L-wrench handle until you cannot turn further." %}
 
-{% include step.html number="2B" title="Prepare a beam or joist mount" body="Use this where the only solid surface is a vertical face, such as the side of a beam or joist. Drill a clearance hole in the face for the perpendicular bracket's shaft, seat the shaft, and fasten the bracket flat to the surface. Slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully. Repeat at least twice per rail, matching the drop length so the rail hangs level." %}
+{% include step.html number="2A" title="Prepare a ceiling mount" body="Use this where you can fasten to the underside of an overhead member. Fix a parallel mounting bracket to the structure, then slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully — full length of the wrench handle until you cannot turn further. Repeat at least twice per rail, matching the drop length so the rail hangs level." %}
 
-{% include step.html number="3" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws, then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-03-attach-rail.png" %}
+{% include step.html number="2B" title="Prepare a beam or joist mount" body="Use this where the only solid surface is a vertical face, such as the side of a beam or joist. Drill a clearance hole in the face for the perpendicular bracket's shaft, seat the shaft, and fasten the bracket flat to the surface. Slide the dropdown pipe into the bracket, set your drop length, and tighten both set screws fully — full length of the wrench handle until you cannot turn further. Repeat at least twice per rail, matching the drop length so the rail hangs level." %}
+
+{% include step.html number="3" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws fully (full length of the wrench handle, until you cannot turn further), then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-03-attach-rail.png" %}
 
 ## Different mounting methods
 
@@ -127,7 +129,7 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 ## Post-mount checks
 
-{% include checklist.html items="All fasteners fully tightened | Rail plumb and level to the floor | Rail height and location match the site plan | Rail swings no more than 1/4\" from rest in either direction" %}
+{% include checklist.html items="Set screws fully tightened on every mount (1/8\" L-wrench, full handle length) | All other fasteners fully tightened | Rail plumb and level to the floor | Rail height and location match the site plan | Rail swings no more than 1/4\" from rest in either direction" %}
 
 {% include warn.html text="If the rail swings more than 1/4\", add aircraft cable or bracketing to stiffen the assembly before loading heaters." %}
 
