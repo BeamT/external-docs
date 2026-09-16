@@ -129,7 +129,7 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 ## Post-mount checks
 
-{% include checklist.html items="Set screws fully tightened on every mount (1/8\" L-wrench, full handle length) | All other fasteners fully tightened | Rail plumb and level to the floor | Rail height and location match the site plan | Rail swings no more than 1/4\" from rest in either direction" %}
+{% include checklist.html items="Set screws fully tightened on every mount | All other fasteners fully tightened | Rail plumb and level to the floor | Rail height and location match the site plan | Rail swings no more than 1/4\" from rest in either direction" %}
 
 {% include warn.html text="If the rail swings more than 1/4\", add aircraft cable or bracketing to stiffen the assembly before loading heaters." %}
 
