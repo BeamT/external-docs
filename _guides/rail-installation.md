@@ -116,7 +116,9 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="3" title="Attach the rail to the mounts" body="With a second person, raise the rail and line the pipes up to the mounts. Keep set screws visible on the same side for a clean look. Tighten the pipe set screws using full length of the wrench handle until you cannot turn further, then the T-nut screws on top of each block. Ensure the pipes are vertical. Give the rail a shake to confirm it's solid." diagram="rail-03-attach-rail.png" %}
 
-{% include step.html number="4" title="Re-check all set screws" body="Go back to every mount and re-tighten each set screw using the full length of the 1/8\" L-wrench handle until you cannot turn further. A loose set screw lets the pipe and attached rail slip."%}
+{% include step.html number="4" title="Re-check all set screws" body="Go back to every mount and re-tighten each set screw using the full length of the 1/8\" L-wrench handle until you cannot turn further."%}
+
+{% include warn.html text="Under-tightened set screws will allow the rail to drop under load." %}
 
 ## Different mounting methods
 
