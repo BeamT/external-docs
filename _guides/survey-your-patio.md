@@ -28,9 +28,11 @@ updated: "2026-09-24"
 
 Focal uses your scan, photos, and measurements to draw a Preliminary Layout: where the rails and heaters go, and what your electrician needs to know. You do the survey, so we don't need to visit your site first.
 
+{% include warn.html text="Focal heaters are for covered areas only. If your seating area has no awning, canopy, or roof over it, reply to the email your survey link came in before you start." %}
+
 ## What you'll need
 
-{% include checklist.html items="An iPhone 13 or newer with the free Polycam app and a free Polycam account, for the scan. It can be anyone's on your staff | Any phone, for the photos and the form | A tape measure, 25 ft or longer if you have one. A second person to hold the other end helps | Tables and chairs set up the way they'll be during service. We count and place them from your scan (not set up yet? See below) | About 15 minutes for the form, plus the scan and its processing time | Pen and paper, only if the covered area isn't a rectangle (see Sketch, below)" %}
+{% include checklist.html items="An iPhone with the free Polycam app and a free Polycam account, for the scan. It can be anyone's on your staff | Any phone, for the photos and the form | A tape measure, 25 ft or longer if you have one. A second person to hold the other end helps | Tables and chairs set up for service (not set up yet? See below) | About 15 minutes for the form, plus the scan and its processing time | Pen and paper, only if the covered area isn't a rectangle (see Sketch, below)" %}
 
 ## The order to do it in
 
@@ -41,11 +43,11 @@ Do everything in this guide **before** you open the form. The form asks for each
 3. Mark up the corner photo.
 4. Measure.
 5. Draw a sketch, if the covered area isn't a rectangle.
-6. Open the [Focal Site Survey form](https://form.typeform.com/to/DQXI87AN), answer the questions, upload the photos and paste the Polycam link.
+6. Open the [Focal Site Survey form](https://form.typeform.com/to/DQXI87AN), answer the questions, upload the photos and paste the Polycam link. Tables and chairs not set up? Don't fill out the form yet: see [Tables not set up yet?](#tables-not-set-up-yet)
 
 ## Scan your patio
 
-The scan needs an **iPhone 13 or newer** (Polycam's Space mode isn't on Android). Anyone on your staff can do it and send you the link. [Get Polycam free from the App Store](https://apps.apple.com/us/app/polycam-3d-scanner-lidar-360/id1532482376), then open it and create a free account.
+The scan needs an **iPhone** (Polycam's Space mode isn't on Android). Anyone on your staff can do it and send you the link. [Get Polycam free from the App Store](https://apps.apple.com/us/app/polycam-3d-scanner-lidar-360/id1532482376), then open it and create a free account.
 
 Scan the whole covered area in one go. Polycam may not warn you about a missed spot, so use this list as your check:
 
@@ -137,11 +139,11 @@ You only need a sketch if **the covered area isn't a rectangle**. L-shapes, angl
 
 ## Tables not set up yet?
 
-If your patio is new or the furniture is put away, do the scan, photos, and measurements anyway. Then **reply to the email your survey link came in**, and a Focal team member will set up a video call to plan where the tables go.
+If your patio is new or the furniture is put away, do the scan, photos, and measurements anyway. **Don't fill out the form yet.** Instead, **reply to the email your survey link came in**, and a Focal team member will set up a video call to plan where the tables go.
 
 ## Can't get a scan?
 
-If no one on your staff has an iPhone that can scan, the scan won't work, or we find it doesn't show enough, a Focal team member will set up a guided video call and walk through your patio with you.
+If no one on your staff has an iPhone, the scan won't work, or we find it doesn't show enough, a Focal team member will set up a guided video call and walk through your patio with you.
 
 To ask for one, **reply to the email your survey link came in.**
 
