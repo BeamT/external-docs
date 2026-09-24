@@ -21,6 +21,7 @@ updated: "2026-09-24"
 - [Sketch, if you need one](#sketch-if-you-need-one)
 - [Tables not set up yet?](#tables-not-set-up-yet)
 - [Can't get a scan?](#cant-get-a-scan)
+- [Fill out the form](#fill-out-the-form)
 - [What happens next](#what-happens-next)
 
 ## Why we ask
@@ -40,7 +41,7 @@ Do everything in this guide **before** you open the form. The form asks for each
 3. Mark up the corner photo.
 4. Measure.
 5. Draw a sketch, if the covered area isn't a rectangle.
-6. Open the form, answer the questions, upload the photos and paste the Polycam link.
+6. Open the [Focal Site Survey form](https://form.typeform.com/to/DQXI87AN), answer the questions, upload the photos and paste the Polycam link.
 
 ## Scan your patio
 
@@ -143,6 +144,10 @@ If your patio is new or the furniture is put away, do the scan, photos, and meas
 If no one on your staff has an iPhone that can scan, the scan won't work, or we find it doesn't show enough, a Focal team member will set up a guided video call and walk through your patio with you.
 
 To ask for one, **reply to the email your survey link came in.**
+
+## Fill out the form
+
+When your photos, measurements, and Polycam link are ready, **[open the Focal Site Survey form](https://form.typeform.com/to/DQXI87AN)**.
 
 ## What happens next
 
