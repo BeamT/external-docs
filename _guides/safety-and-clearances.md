@@ -4,8 +4,8 @@ audience: [installer, electrician, customer]
 audience_order: {installer: 10, electrician: 20, customer: 25}
 order: 10
 summary: Required clearances and safety guidelines for every install.
-version: "1.2"
-updated: "2026-07-29"
+version: "1.3"
+updated: "2026-09-25"
 ---
 
 ## On this page
@@ -64,7 +64,7 @@ Every install must meet these distances, measured from the heater and rail to th
 
 Note: a round heater node is 8" in diameter on either side of the rail. Two rails mounted end to end must keep at least 4" of space between them.
 
-{% include diagram.html src="clearances.png" caption="Side view of a ceiling-mounted rail showing all five clearance dimensions." %}
+{% include diagram.html src="clearances.svg" fill=true caption="Side view and top view of a ceiling-mounted rail showing all five clearance dimensions." %}
 
 ## Clearance rules
 
