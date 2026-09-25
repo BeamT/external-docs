@@ -24,7 +24,7 @@ title: null
 </div>
 
 <div class="card-list" id="card-list">
-  {% assign guides = site.guides | sort: "order" %}
+  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" %}
   {% for g in guides %}
   <a class="card" href="{{ g.url | prepend: site.baseurl }}"
      data-audience="{{ g.audience | join: ',' }}"

@@ -140,6 +140,8 @@ a { color: inherit; }
    drawing left so any slack falls on the right rather than as two side bars. */
 .diagram { margin: 20px 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
 .diagram img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; object-fit: contain; object-position: left; margin: 0; }
+/* photo-style diagrams: stretch edge to edge so no paper shows beside them */
+.diagram-fill img { width: 100%; max-height: none; }
 .diagram figcaption { font-size: 13px; color: var(--ink-soft); padding: 10px 14px; border-top: 1px solid var(--line-soft); }
 
 .dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
