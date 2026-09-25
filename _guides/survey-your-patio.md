@@ -55,19 +55,11 @@ Scan the whole patio in one go. Polycam may not warn you about a missed spot, so
 
 ### Scan steps
 
-{% include step.html number="1" title="Start a new capture" body="Open Polycam, start a new capture, and choose <strong>Space</strong>. Turn on the floor plan option if you see one." %}
+{% include step.html number="1" title="Start in a corner" body="Open Polycam, start a new capture, and choose <strong>Space</strong> (turn on the floor plan option if you see one). Stand in a corner of the patio, next to the building if there is one, hold your phone upright at chest height, and start." %}
 
-{% include step.html number="2" title="Start at a corner" body="Stand in one corner of the patio, next to the building if there is one. Hold your phone upright at chest height and start the capture." %}
+{% include step.html number="2" title="Walk the edge slowly, facing in" body="Walk the edge of the patio at a slow, steady pace, <strong>facing into the area</strong>. As you go, tilt the phone up to catch the building wall and anything overhead, then down to the floor edges. Don't stand in one spot and turn: the app needs views from different spots." %}
 
-{% include step.html number="3" title="Walk slowly around the edge, facing in" body="Walk the edge of the patio at a slow, steady pace, <strong>facing into the area</strong>. Don't stand in one spot and turn: the app needs views from different spots to build the model." %}
-
-{% include step.html number="4" title="Get what's above and below" body="As you go, tilt the phone up to catch the building wall and any awning, canopy, or beams, then down to the floor edges." %}
-
-{% include step.html number="5" title="Close the loop" body="Keep going to the far end and back to your starting corner, then finish the capture. Don't stop before the far end." %}
-
-### Common mistakes
-
-{% include dodont.html do="Move slowly and steadily, and point up as well as around." dont="Rush, skip what's overhead, or stop before the far end of the patio." %}
+{% include step.html number="3" title="Close the loop" body="Keep going to the far end and back to your starting corner, then finish the capture." %}
 
 ## Wait for processing
 
@@ -79,7 +71,7 @@ After you finish, Polycam processes the scan. If it asks where to process, choos
 
 ## Take the photos
 
-You'll take three photos. Use your phone's normal camera, not Polycam.
+You'll take three photos. Use your phone's normal camera, not Polycam, on the regular **1x** lens. The **0.5x** wide lens bends straight lines, so step back to fit the patio in instead. If there's no room to step back, 0.5x is okay.
 
 
 | Photo            | How to take it                                                                                                                                                                                                                   |
@@ -95,24 +87,20 @@ You'll take three photos. Use your phone's normal camera, not Polycam.
 
 ## Mark what you'll measure
 
-Draw three lines on the corner photo and label them **W**, **D**, and **H** (just W and D if there's nothing overhead). This photo is your measuring plan: each number you enter in the form matches a line you drew, so width and depth don't get mixed up.
+{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo: W and D along the floor of the seating area, H from the floor up to what's overhead." %}
 
+On the corner photo, draw and label three lines. Each number in the form matches one of them.
 
-| Line           | From                                              | To                              |
-| -------------- | ------------------------------------------------- | ------------------------------- |
-| **W** (width)  | One edge of the patio                             | The other edge                  |
-| **D** (depth)  | The building wall (or the back edge of the patio) | The front edge of the patio     |
-| **H** (height) | The floor                                         | The lowest beam, awning, or roof overhead. Nothing overhead? Skip H |
+- **W:** along the floor, from one side of the seating area to the other.
+- **D:** along the floor, from the building (or back edge) to the front edge.
+- **H:** from the floor up to the lowest beam, awning, or roof. Nothing overhead? Skip H.
 
-
-**Draw W and D along the floor**, where you'll run the tape, and end each line at something you can see, like a wall, railing, planter, or curb, not an open spot on the ground.
+End each line at something you can see, like a wall, railing, planter, or curb.
 
 To draw on the photo:
 
 - **iPhone:** Photos → Edit → Markup
 - **Android:** Google Photos → Edit → Markup
-
-{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo: W and D along the floor of the seating area, H from the floor up to what's overhead." %}
 
 {% include warn.html text="Draw only on the corner photo. Keep the front and side photos clean." %}
 
@@ -120,7 +108,7 @@ To draw on the photo:
 
 Measure each line you drew on the corner photo: W, D, and H if you drew it.
 
-- Measure the **whole patio**, out to its edges. Don't measure just where the tables sit.
+- Measure **exactly the lines you drew**, from the same start point to the same end point, so each number matches the photo.
 - Feet and inches are fine, e.g. *18 ft 6 in*. No decimals needed.
 - Write the three numbers down, or keep them on the corner photo.
 
@@ -130,9 +118,7 @@ Once processing has finished:
 
 {% include step.html number="1" title="Open your scan" body="In Polycam, open the scan of your patio." %}
 
-{% include step.html number="2" title="Allow anyone with the link to view it" body="Tap <strong>Share</strong>. Make sure the scan is shared by link, so <strong>anyone with the link</strong> can view it. We open it from a Focal account, so an invite-only share won't reach us." %}
-
-{% include step.html number="3" title="Copy the link" body="Tap <strong>Copy link</strong>, then paste it into the form's Polycam question. If someone else is filling out the form, text or email them the link." %}
+{% include step.html number="2" title="Copy the link" body="Tap <strong>Share</strong>, then copy the link and paste it into the form's Polycam question. If someone else is filling out the form, text or email them the link." %}
 
 {% include warn.html text="Wait until the scan has finished processing before you copy the link." %}
 
