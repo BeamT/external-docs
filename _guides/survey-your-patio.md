@@ -130,17 +130,17 @@ You only need a sketch if **your patio isn't a rectangle**. L-shapes, angled sid
 
 ## Tables not set up yet?
 
-If your patio is new or the furniture is put away, do the scan, photos, and measurements anyway. **Don't fill out the form yet.** Instead, **contact your sales team member or email [hello@focalheat.co](mailto:hello@focalheat.co)**, and a Focal team member will set up a video call to plan where the tables go.
+If your patio is new or the furniture is put away, do the scan, photos, and measurements anyway. Don't fill out the form yet. Instead, contact your sales team member or email [hello@focalheat.co](mailto:hello@focalheat.co), and a Focal team member will set up a video call to plan where the tables go.
 
 ## Can't get a scan?
 
 If no one on your staff has an iPhone, the scan won't work, or we find it doesn't show enough, a Focal team member will set up a guided video call and walk through your patio with you.
 
-To ask for one, **contact your sales team member or email [hello@focalheat.co](mailto:hello@focalheat.co).**
+To ask for one, contact your sales team member or email [hello@focalheat.co](mailto:hello@focalheat.co).
 
 ## Fill out the form
 
-When your photos, measurements, and Polycam link are ready, [**open the Focal Site Survey form**](https://form.typeform.com/to/DQXI87AN).
+When your photos, measurements, and Polycam link are ready, [open the Focal Site Survey form](https://form.typeform.com/to/DQXI87AN).
 
 ## What happens next
 
