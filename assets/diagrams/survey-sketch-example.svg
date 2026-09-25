@@ -1,58 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" font-family="Archivo, Arial, sans-serif">
-  <rect width="720" height="350" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
 
-  <!-- patio outline (L-shape), gap in the bottom edge for the entrance -->
+  <!-- patio outline (20 ft × 6 ft, 30 px per ft), gap in the bottom edge for the entrance -->
   <g fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M250 256 H312 V172 H480 V60 H60 V256 H200"/>
+    <path d="M240 240 H660 V60 H60 V240 H180"/>
   </g>
 
-  <!-- side lengths + what's on each edge -->
-  <g font-size="15" fill="#111">
-    <text x="270" y="46" text-anchor="middle">30 ft · building wall</text>
-    <text transform="translate(44 158) rotate(-90)" text-anchor="middle">14 ft · railing</text>
-    <text x="62" y="278">18 ft · railing</text>
-    <text x="322" y="242">6 ft · planter</text>
-    <text x="396" y="194" text-anchor="middle">12 ft · railing</text>
-    <text x="490" y="121">8 ft · open</text>
+  <!-- a length on every line; the entrance side is split at the opening -->
+  <g font-size="15" fill="#111" text-anchor="middle">
+    <text x="360" y="46">20 ft</text>
+    <text transform="translate(44 150) rotate(-90)">6 ft</text>
+    <text transform="translate(684 150) rotate(-90)">6 ft</text>
+    <text x="120" y="262">4 ft</text>
+    <text x="450" y="262">14 ft</text>
   </g>
 
-  <!-- tables -->
+  <!-- tables, 30×24 in -->
   <g fill="none" stroke="#111" stroke-width="2">
-    <rect x="95" y="95" width="56" height="35"/>
-    <rect x="200" y="95" width="56" height="35"/>
-    <rect x="100" y="185" width="28" height="28"/>
-    <rect x="225" y="185" width="28" height="28"/>
-    <rect x="340" y="100" width="28" height="28"/>
-    <rect x="420" y="100" width="28" height="28"/>
+    <rect x="97.5" y="120" width="75" height="60"/>
+    <rect x="247.5" y="120" width="75" height="60"/>
+    <rect x="397.5" y="120" width="75" height="60"/>
+    <rect x="547.5" y="120" width="75" height="60"/>
   </g>
 
   <!-- chairs: one mark per chair, on the side it sits -->
   <g fill="#fff" stroke="#111" stroke-width="2">
-    <circle cx="109" cy="85" r="6"/><circle cx="137" cy="85" r="6"/>
-    <circle cx="109" cy="140" r="6"/><circle cx="137" cy="140" r="6"/>
-    <circle cx="214" cy="85" r="6"/><circle cx="242" cy="85" r="6"/>
-    <circle cx="214" cy="140" r="6"/><circle cx="242" cy="140" r="6"/>
-    <circle cx="88" cy="199" r="6"/><circle cx="140" cy="199" r="6"/>
-    <circle cx="213" cy="199" r="6"/><circle cx="265" cy="199" r="6"/>
-    <circle cx="328" cy="114" r="6"/><circle cx="380" cy="114" r="6"/>
-    <circle cx="408" cy="114" r="6"/><circle cx="460" cy="114" r="6"/>
+    <circle cx="135" cy="100" r="7"/><circle cx="135" cy="200" r="7"/>
+    <circle cx="285" cy="100" r="7"/><circle cx="285" cy="200" r="7"/>
+    <circle cx="435" cy="100" r="7"/><circle cx="435" cy="200" r="7"/>
+    <circle cx="585" cy="100" r="7"/><circle cx="585" cy="200" r="7"/>
   </g>
 
   <!-- table sizes -->
   <g font-size="12" fill="#111" text-anchor="middle">
-    <text x="123" y="117">30×48</text>
-    <text x="228" y="117">30×48</text>
-    <text x="114" y="229">24×24</text>
-    <text x="239" y="229">24×24</text>
-    <text x="354" y="144">24×24</text>
-    <text x="434" y="144">24×24</text>
+    <text x="135" y="154">30×24</text>
+    <text x="285" y="154">30×24</text>
+    <text x="435" y="154">30×24</text>
+    <text x="585" y="154">30×24</text>
   </g>
 
   <!-- entrance -->
   <g stroke="#111" stroke-width="2.5" stroke-linecap="round" fill="none">
-    <path d="M225 306 V266"/>
-    <path d="M216 276 L225 265 L234 276"/>
+    <path d="M210 296 V252"/>
+    <path d="M201 262 L210 251 L219 262"/>
   </g>
-  <text x="225" y="326" text-anchor="middle" font-size="15" fill="#111">Entrance</text>
+  <text x="210" y="318" text-anchor="middle" font-size="15" fill="#111">Entrance</text>
 
 </svg>
