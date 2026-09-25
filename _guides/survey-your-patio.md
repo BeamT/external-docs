@@ -98,12 +98,12 @@ You'll take three photos. Use your phone's normal camera, not Polycam, on the re
 
 | Photo            | How to take it                                                                                                              |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Front view**   | The whole patio, straight on, with the building and anything overhead. **Don't draw on it**: it goes on your layout's cover |
+| **Front view**   | The whole patio, straight on, with the building, anything overhead, and the walls, curbs and railings around it. **Don't draw on it**: it goes on your layout's cover |
 | **Side view**    | Stand at one end and shoot along the long side, so we can see the height and what's overhead                                |
 | **Corner photo** | One more photo from a corner, showing the front and side of the patio. You'll mark this one up next                         |
 
 
-{% include diagram.html src="survey-front-view.svg" fill=true caption="Front view: the whole patio, straight on, with the building and anything overhead." %}
+{% include diagram.html src="survey-front-view.svg" fill=true caption="Front view: the whole patio, straight on, with the building, anything overhead, and the walls, curbs and railings around it." %}
 
 {% include diagram.html src="survey-side-view.svg" fill=true caption="Side view: along the long side, showing the height and what's overhead." %}
 
@@ -119,7 +119,7 @@ Take three measurements of the seating area. Each number in the form matches one
 
 - **W:** along the floor, from one side of the seating area to the other.
 - **D:** along the floor, from the building (or back edge) to the front edge.
-- **H:** from the floor up to the lowest beam, awning, or roof. Nothing overhead? Skip H.
+- **H:** from the floor up to the lowest beam, awning, or roof. Nothing overhead? Skip the H line, and type *none* for H in the form.
 
 Start and end each one at something you can see, like a wall, railing, planter, or curb. Feet and inches are fine, e.g. *18 ft 6 in*. No decimals needed.
 
