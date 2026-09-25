@@ -105,14 +105,14 @@ Draw three lines on the corner photo and label them **W**, **D**, and **H** (jus
 | **H** (height) | The floor                                         | The lowest beam, awning, or roof overhead. Nothing overhead? Skip H |
 
 
-**Draw to things you can see**, like a wall, railing, planter, curb, or awning edge, not an open spot on the ground.
+**Draw W and D along the floor**, where you'll run the tape, and end each line at something you can see, like a wall, railing, planter, or curb, not an open spot on the ground.
 
 To draw on the photo:
 
 - **iPhone:** Photos → Edit → Markup
 - **Android:** Google Photos → Edit → Markup
 
-{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo with W, D, and H lines drawn to things you can see." %}
+{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo: W and D along the floor of the seating area, H from the floor up to what's overhead." %}
 
 {% include warn.html text="Draw only on the corner photo. Keep the front and side photos clean." %}
 
