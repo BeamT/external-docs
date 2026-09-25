@@ -87,9 +87,9 @@ Scanned your patio with the tables set up? Skip the sketch and go to [Step 2](#s
 
 Draw your patio on paper and take a photo of it to upload in the form. Measure each side with the tape and write the lengths on the sketch. Tables not set up yet? Draw them where they'll go.
 
-{% include checklist.html items="Every side, with its length | What's on each edge: wall, railing, curb, planter, or open | Each table as a box roughly where it sits, with its size in inches | A small circle for each chair, on the side where it sits | The entrance: leave a gap in the outline and draw an arrow" %}
+{% include checklist.html items="A length on every line you draw. On the entrance side, that's the pieces on each side of the opening | Each table as a box, with its size in inches | A small circle for each chair, on the side where it sits | The entrance: leave a gap in the outline and draw an arrow" %}
 
-{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: every side's length and what's along it, tables with their sizes, a circle for each chair, and the entrance." %}
+{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: a length on every line, including the pieces on each side of the entrance, tables with their sizes, and a circle for each chair." %}
 
 ## Step 2: Take the photos
 
