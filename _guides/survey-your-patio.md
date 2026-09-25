@@ -6,6 +6,8 @@ order: 3
 summary: Scan, photograph, and measure your patio for the Focal Site Survey.
 version: "1.0"
 updated: "2026-09-24"
+unlisted: true
+sitemap: false
 ---
 ## On this page
 
