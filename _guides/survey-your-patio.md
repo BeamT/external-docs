@@ -4,7 +4,7 @@ audience: [customer]
 audience_order: {customer: 5}
 order: 3
 summary: Draw or find a floor plan, photograph, and measure your patio for the Focal Site Survey.
-version: "2.0"
+version: "1.0"
 updated: "2026-09-26"
 unlisted: true
 sitemap: false
