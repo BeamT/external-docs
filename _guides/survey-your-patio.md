@@ -111,7 +111,7 @@ You'll take three photos. Use your phone's normal camera, not Polycam, on the re
 
 Do this even if you scanned or sketched. Tape measurements let us check the scan or sketch against real numbers, and the photo shows the height overhead, which a sketch can't.
 
-{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo: W and D along the floor of the seating area, H from the floor up to what's overhead." %}
+{% include diagram.html src="survey-corner-markup.svg" fill=true caption="Corner photo: W and D along the floor of the seating area, H from the floor up to the lowest beam or awning frame above the tables." %}
 
 ### Measure
 
@@ -119,7 +119,7 @@ Take three measurements of the seating area. Each number in the form matches one
 
 - **W:** along the floor, from one side of the seating area to the other.
 - **D:** along the floor, from the building (or back edge) to the front edge.
-- **H:** from the floor up to the lowest beam, awning, or roof. Nothing overhead? Skip H.
+- **H:** from the floor up to the lowest beam or awning frame above the tables. Nothing overhead? Type *none*.
 
 Start and end each one at something you can see, like a wall, railing, planter, or curb. Feet and inches are fine, e.g. *18 ft 6 in*. No decimals needed.
 
