@@ -305,18 +305,18 @@
 <circle cx="288.4" cy="87.2" r="12.7" fill="#585e5b"/>
 <polygon points="265.7,332.8 264.8,84.4 254.7,82.6 255.6,335.7" fill="#242220"/>
 <polygon points="247.9,333.2 255.6,335.7 254.7,82.6 246.9,84.2" fill="#211f1c"/>
-<line x1="256.8" y1="333.0" x2="515.2" y2="259.5" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="259.3" y1="341.7" x2="254.3" y2="324.3" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="517.7" y1="268.2" x2="512.7" y2="250.8" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<circle cx="378.3" cy="269.3" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
-<text x="378.3" y="276.3" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">W</text><line x1="140.1" y1="295.9" x2="256.8" y2="333.0" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="137.4" y1="304.5" x2="142.8" y2="287.3" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="254.1" y1="341.6" x2="259.5" y2="324.4" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<circle cx="206.9" cy="287.8" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
-<text x="206.9" y="294.8" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">D</text><line x1="255.0" y1="337.1" x2="254.1" y2="81.7" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="246.0" y1="337.1" x2="264.0" y2="337.0" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="245.1" y1="81.7" x2="263.1" y2="81.6" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<circle cx="280.6" cy="209.4" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
-<text x="280.6" y="216.4" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">H</text>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </g>
 </svg>
