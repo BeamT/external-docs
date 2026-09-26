@@ -176,9 +176,6 @@
 <polygon points="357.5,273.8 360.3,274.3 360.3,237.3 357.5,237.0" fill="#2d2a28"/>
 <circle cx="476.1" cy="122.3" r="8.0" fill="#585e5b"/>
 <polygon points="408.8,139.2 524.7,131.5 253.5,80.8 124.8,108.0" fill="#565c5a" stroke="#32302d" stroke-width="0.8" stroke-linejoin="round"/>
-<polygon points="176.5,118.7 458.1,147.6 465.0,147.3 183.9,117.5" fill="#211f1c" stroke="#32302d" stroke-width="0.8" stroke-linejoin="round"/>
-<polygon points="175.3,97.3 182.8,95.7 183.9,117.5 176.5,118.7" fill="#242220" stroke="#32302d" stroke-width="0.8" stroke-linejoin="round"/>
-<polygon points="182.8,95.7 465.3,135.4 465.0,147.3 183.9,117.5" fill="#2e2c29" stroke="#32302d" stroke-width="0.8" stroke-linejoin="round"/>
 <circle cx="447.1" cy="223.2" r="10.5" fill="#8c9387"/>
 <circle cx="441.8" cy="214.0" r="8.7" fill="#9ba396"/>
 <polygon points="334.9,248.9 333.6,249.1 335.0,249.3 336.3,249.1" fill="#353330"/>
@@ -316,10 +313,10 @@
 <line x1="137.4" y1="304.5" x2="142.8" y2="287.3" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
 <line x1="254.1" y1="341.6" x2="259.5" y2="324.4" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
 <circle cx="206.9" cy="287.8" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
-<text x="206.9" y="294.8" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">D</text><line x1="235.2" y1="302.1" x2="228.3" y2="123.1" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="226.2" y1="302.1" x2="244.2" y2="302.1" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<line x1="219.3" y1="123.1" x2="237.3" y2="123.1" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
-<circle cx="206.4" cy="196.0" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
-<text x="206.4" y="203.0" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">H</text>
+<text x="206.9" y="294.8" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">D</text><line x1="255.0" y1="337.1" x2="254.1" y2="81.7" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
+<line x1="246.0" y1="337.1" x2="264.0" y2="337.0" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
+<line x1="245.1" y1="81.7" x2="263.1" y2="81.6" stroke="#ff7a00" stroke-width="5" stroke-linecap="round"/>
+<circle cx="280.6" cy="209.4" r="17" fill="#fff" stroke="#ff7a00" stroke-width="4"/>
+<text x="280.6" y="216.4" text-anchor="middle" font-size="21" font-weight="800" fill="#ff7a00">H</text>
 </g>
 </svg>
