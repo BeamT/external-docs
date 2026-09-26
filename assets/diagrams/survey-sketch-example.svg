@@ -15,6 +15,10 @@
     <text x="480" y="262">16 ft</text>
   </g>
 
+  <!-- bench along the back wall behind the 4-tops, marked built in -->
+  <rect x="372" y="64" width="342" height="38" fill="none" stroke="#111" stroke-width="2"/>
+  <text x="540" y="88" text-anchor="middle" font-size="13" fill="#111">Bench (built in)</text>
+
   <!-- two 2-tops (30×24 in) and two 4-tops (42×24 in) -->
   <g fill="none" stroke="#111" stroke-width="2">
     <rect x="97.5" y="120" width="75" height="60"/>
@@ -23,13 +27,13 @@
     <rect x="577.5" y="120" width="105" height="60"/>
   </g>
 
-  <!-- chairs: one mark per chair, on the side it sits -->
+  <!-- seats: one mark per seat, on the side it sits; on the bench, one per person -->
   <g fill="#fff" stroke="#111" stroke-width="2">
     <circle cx="135" cy="100" r="7"/><circle cx="135" cy="200" r="7"/>
     <circle cx="285" cy="100" r="7"/><circle cx="285" cy="200" r="7"/>
-    <circle cx="424" cy="100" r="7"/><circle cx="476" cy="100" r="7"/>
+    <circle cx="424" cy="83" r="7"/><circle cx="476" cy="83" r="7"/>
     <circle cx="424" cy="200" r="7"/><circle cx="476" cy="200" r="7"/>
-    <circle cx="604" cy="100" r="7"/><circle cx="656" cy="100" r="7"/>
+    <circle cx="604" cy="83" r="7"/><circle cx="656" cy="83" r="7"/>
     <circle cx="604" cy="200" r="7"/><circle cx="656" cy="200" r="7"/>
   </g>
 

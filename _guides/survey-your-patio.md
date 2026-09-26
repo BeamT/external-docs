@@ -49,11 +49,11 @@ A plan you already have is best: a seating chart, a permit drawing, or an archit
 
 Either way, check that it has:
 
-{% include checklist.html items="A length on every side. On the entrance side, that's the pieces on each side of the opening | Each table as a box, with its size in inches | A small circle for each chair, on the side where it sits | The entrance: a gap in the outline and an arrow | Anything built in, like benches or planters, marked <strong>built in</strong>" %}
+{% include checklist.html items="A length on every side. On the entrance side, that's the pieces on each side of the opening. No wall on a side? Measure to the railing, planter or curb where the seating stops | Each table as a box, with its size in inches | A small circle for each seat, on the side where it sits. On a bench, one circle per person who sits there | The entrance: a gap in the outline and an arrow | Anything built in, like benches or planters, marked <strong>built in</strong>" %}
 
 Tables not set up yet? Draw them where they'll go. Free-standing tables can shift a little to fit the heaters, but built-ins can't move, which is why we ask you to mark them.
 
-{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: a length on every side, including the pieces on each side of the entrance, tables with their sizes, and a circle for each chair." %}
+{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: a length on every side, including the pieces on each side of the entrance, tables with their sizes, and a circle for each seat, including along the built-in bench." %}
 
 ## Step 2: Take the photos
 
@@ -63,19 +63,22 @@ You'll take three photos on the regular **1x** lens. The **0.5x** wide lens bend
 | Photo           | How to take it                                                                                                             |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | **Front view**  | The whole seating area, straight on, from the side with the entrance. It goes on your layout's cover                      |
-| **Corner view** | From a back corner, across from the entrance, showing the back and one side of the seating area. **Don't draw on it**     |
+| **Corner view** | Stand in a back corner, across from the entrance, and aim at the far front corner, so the entrance and one side are in the shot. **Don't draw on it** |
 | **Looking up**  | From the middle of the seating area, pointing up at what's overhead. Take it even if nothing is overhead                  |
 
+**Won't fit in one shot?** Take two or more front photos, and add the extras at the end of the form, under "Anything else to show us?"
 
 {% include diagram.html src="survey-front-view.svg" fill=true caption="Front view: the whole seating area, straight on, from the entrance side." %}
 
-{% include diagram.html src="survey-corner-view.svg" fill=true caption="Corner view: from a back corner, showing the back and one side." %}
+{% include diagram.html src="survey-corner-view.svg" fill=true caption="Corner view: from a back corner, aimed at the far front corner." %}
 
 {% include diagram.html src="survey-looking-up.svg" fill=true caption="Looking up: from the middle of the seating area, at the beams, awning frame, or whatever is overhead." %}
 
 ## Step 3: Measure the height
 
 Measure **H**: from the floor up to the lowest beam or awning frame above the tables. Feet and inches are fine, e.g. *8 ft 6 in*. No decimals needed.
+
+**Does it slope or step?** Measure the lowest point, then tell us in the same answer how it slopes and how high the other end is, e.g. *8 ft 4 in at the street, up to 10 ft 4 in at the building*. It doesn't have to slope toward the street. Just describe what you see.
 
 Nothing overhead? Write *none*.
 
