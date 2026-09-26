@@ -53,7 +53,7 @@ Either way, check that it has:
 
 Tables not set up yet? Draw them where they'll go. Free-standing tables can shift a little to fit the heaters, but built-ins can't move, which is why we ask you to mark them.
 
-{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: a length on every side, including the pieces on each side of the entrance, tables with their sizes, a circle for each chair, and the bench marked built in." %}
+{% include diagram.html src="survey-sketch-example.svg" caption="Example sketch: a length on every side, including the pieces on each side of the entrance, tables with their sizes, and a circle for each chair." %}
 
 ## Step 2: Take the photos
 

@@ -1,46 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" font-family="Archivo, Arial, sans-serif">
-  <rect width="720" height="340" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="340" viewBox="0 0 780 340" font-family="Archivo, Arial, sans-serif">
+  <rect width="780" height="340" fill="#ffffff"/>
 
-  <!-- patio outline (20 ft × 6 ft, 30 px per ft), gap in the bottom edge for the entrance -->
+  <!-- patio outline (22 ft × 6 ft, 30 px per ft), gap in the bottom edge for the entrance -->
   <g fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M240 240 H660 V60 H60 V240 H180"/>
+    <path d="M240 240 H720 V60 H60 V240 H180"/>
   </g>
 
   <!-- a length on every line; the entrance side is split at the opening -->
   <g font-size="15" fill="#111" text-anchor="middle">
-    <text x="360" y="46">20 ft</text>
+    <text x="390" y="46">22 ft</text>
     <text transform="translate(44 150) rotate(-90)">6 ft</text>
-    <text transform="translate(684 150) rotate(-90)">6 ft</text>
+    <text transform="translate(744 150) rotate(-90)">6 ft</text>
     <text x="120" y="262">4 ft</text>
-    <text x="450" y="262">14 ft</text>
+    <text x="480" y="262">16 ft</text>
   </g>
 
-  <!-- bench along the back wall, marked built in -->
-  <rect x="90" y="66" width="540" height="36" fill="none" stroke="#111" stroke-width="2"/>
-  <text x="360" y="89" text-anchor="middle" font-size="14" fill="#111">Bench (built in)</text>
-
-  <!-- tables, 30×24 in -->
+  <!-- two 2-tops (30×24 in) and two 4-tops (42×24 in) -->
   <g fill="none" stroke="#111" stroke-width="2">
     <rect x="97.5" y="120" width="75" height="60"/>
     <rect x="247.5" y="120" width="75" height="60"/>
-    <rect x="397.5" y="120" width="75" height="60"/>
-    <rect x="547.5" y="120" width="75" height="60"/>
+    <rect x="397.5" y="120" width="105" height="60"/>
+    <rect x="577.5" y="120" width="105" height="60"/>
   </g>
 
-  <!-- chairs: one mark per chair, on the side it sits; the bench seats the back side -->
+  <!-- chairs: one mark per chair, on the side it sits -->
   <g fill="#fff" stroke="#111" stroke-width="2">
-    <circle cx="135" cy="200" r="7"/>
-    <circle cx="285" cy="200" r="7"/>
-    <circle cx="435" cy="200" r="7"/>
-    <circle cx="585" cy="200" r="7"/>
+    <circle cx="135" cy="100" r="7"/><circle cx="135" cy="200" r="7"/>
+    <circle cx="285" cy="100" r="7"/><circle cx="285" cy="200" r="7"/>
+    <circle cx="424" cy="100" r="7"/><circle cx="476" cy="100" r="7"/>
+    <circle cx="424" cy="200" r="7"/><circle cx="476" cy="200" r="7"/>
+    <circle cx="604" cy="100" r="7"/><circle cx="656" cy="100" r="7"/>
+    <circle cx="604" cy="200" r="7"/><circle cx="656" cy="200" r="7"/>
   </g>
 
   <!-- table sizes -->
   <g font-size="12" fill="#111" text-anchor="middle">
     <text x="135" y="154">30×24</text>
     <text x="285" y="154">30×24</text>
-    <text x="435" y="154">30×24</text>
-    <text x="585" y="154">30×24</text>
+    <text x="450" y="154">42×24</text>
+    <text x="630" y="154">42×24</text>
   </g>
 
   <!-- entrance -->
