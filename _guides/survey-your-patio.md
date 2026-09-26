@@ -49,7 +49,7 @@ A plan you already have is best: a seating chart, a permit drawing, or an archit
 
 Either way, check that it has:
 
-{% include checklist.html items="A length on every side. On the entrance side, that's the pieces on each side of the opening. No wall on a side? Measure to the railing, planter or curb where the seating stops | Each table as a box, with its size in inches | A small circle for each seat, on the side where it sits. On a bench, one circle per person who sits there | The entrance: a gap in the outline and an arrow | Anything built in, like benches or planters, marked <strong>built in</strong>" %}
+{% include checklist.html items="A length on every side.  No wall on a side? Measure to the railing, planter or curb where the seating stops | Each table as a box, with its size in inches | A small circle for each seat, on the side where it sits. On a bench, one circle per person who sits there | The entrance: a gap in the outline and an arrow | Anything built in, like benches or planters, marked <strong>built in</strong>" %}
 
 Tables not set up yet? Draw them where they'll go. Free-standing tables can shift a little to fit the heaters, but built-ins can't move, which is why we ask you to mark them.
 
@@ -57,14 +57,14 @@ Tables not set up yet? Draw them where they'll go. Free-standing tables can shif
 
 ## Step 2: Take the photos
 
-You'll take three photos on the regular **1x** lens. The **0.5x** wide lens bends straight lines, so step back to fit the seating area in instead. If there's no room to step back, 0.5x is okay.
+You'll take three photos. Take the front view on the regular **1x** lens: 0.5x bends straight lines, so step back to fit the seating area in instead. If there's no room to step back, 0.5x is okay. For the corner view and the looking-up photo, use your phone's wide-angle camera (**0.5x**) if it has one, so they take in as much as possible.
 
 
 | Photo           | How to take it                                                                                                             |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **Front view**  | The whole seating area, straight on, from the side with the entrance. It goes on your layout's cover                      |
-| **Corner view** | Stand in a back corner, across from the entrance, and aim at the far front corner, so the entrance and one side are in the shot. **Don't draw on it** |
-| **Looking up**  | From the middle of the seating area, pointing up at what's overhead. Take it even if nothing is overhead                  |
+| **Front view**  | **1x.** The whole seating area, straight on, from the side with the entrance. It goes on your layout's cover                      |
+| **Corner view** | **0.5x if you have it.** Stand in a back corner, across from the entrance, and aim at the far front corner, so the entrance and one side are in the shot |
+| **Looking up**  | **0.5x if you have it.** From the middle of the seating area, pointing up at what's overhead. Take it even if nothing is overhead                  |
 
 **Won't fit in one shot?** Take two or more front photos, and add the extras at the end of the form, under "Anything else to show us?"
 
