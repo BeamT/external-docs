@@ -4,9 +4,23 @@
     <div class="step-title">{{ include.title }}</div>
     <p>{{ include.body }}</p>
     {% if include.diagram %}
+    {% comment %}diagram takes one filename, or several comma-separated. Several are
+    numbered in order and stack; grid="true" lays them out two-up instead. Join two
+    with "+" (a.png+b.png) to put just that pair side by side.{% endcomment %}
+    {% assign diagrams = include.diagram | split: "," %}
+    {% assign multi = include.diagram | split: "+" | size | plus: diagrams.size | minus: 2 %}
+    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}">{% endif %}
+    {% for item in diagrams %}
+    {% assign row = item | split: "+" %}
+    {% if row.size > 1 %}<div class="step-row">{% endif %}
+    {% for d in row %}
     <div class="step-figure">
-      <img src="{{ site.baseurl }}/assets/diagrams/{{ include.diagram }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
+      <img src="{{ site.baseurl }}/assets/diagrams/{{ d | strip }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
     </div>
+    {% endfor %}
+    {% if row.size > 1 %}</div>{% endif %}
+    {% endfor %}
+    {% if multi > 0 %}</div>{% endif %}
     {% endif %}
   </div>
 </div>
