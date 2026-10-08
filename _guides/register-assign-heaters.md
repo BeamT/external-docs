@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 60}
 order: 60
 summary: Scan and assign each heater to its slot.
-version: "1.2"
-updated: "2026-07-28"
+version: "1.3"
+updated: "2026-10-08"
 ---
 
 ## On this page
@@ -25,6 +25,8 @@ You need:
 * A mobile phone with internet and a camera.
 * The restaurant's Focal Control page URL and password provided by Focal.
 * Every heater already seated in its rail slot and powered on.
+
+{% include warn.html text="Heaters can only be assigned while the site is online. If heaters won't assign or don't respond, check that the site's Focal Hub, or networking box on older systems, is plugged in and has internet. If it does and heaters still won't assign, contact Focal." %}
 
 {% include warn.html text="The software layout must match reality. If a heater is assigned to the wrong slot, staff will turn on the wrong heater and think the system is broken." %}
 

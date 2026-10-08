@@ -10,5 +10,5 @@
     <path d="M0 40 q30 -30 60 0"/><path d="M12 52 q18 -18 36 0"/><circle cx="30" cy="62" r="3" fill="#1d9e75"/>
   </g>
   <text x="450" y="150" text-anchor="middle" font-size="12" fill="#0f6e56" font-weight="700">back online</text>
-  <text x="320" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Re-seat the plug, confirm Wi-Fi</text>
+  <text x="320" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Re-seat the plug, confirm WiFi</text>
 </svg>
