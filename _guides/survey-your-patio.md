@@ -4,8 +4,8 @@ audience: [customer]
 audience_order: {customer: 5}
 order: 3
 summary: Draw or find a floor plan, photograph, and measure your patio for the Focal Site Survey.
-version: "1.0"
-updated: "2026-09-26"
+version: "1.1"
+updated: "2026-10-08"
 unlisted: true
 sitemap: false
 ---
@@ -62,13 +62,13 @@ You'll take three photos. Take the front view on the regular **1x** lens: 0.5x b
 
 | Photo           | How to take it                                                                                                             |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **Front view**  | **1x.** The whole seating area, straight on, from the side with the entrance. It goes on your layout's cover                      |
+| **Front view**  | **1x.** The whole seating area, straight on, from the side with the entrance, with the walls, curbs and railings around it. It goes on your layout's cover |
 | **Corner view** | **0.5x if you have it.** Stand in a back corner, across from the entrance, and aim at the far front corner, so the entrance and one side are in the shot |
 | **Looking up**  | **0.5x if you have it.** From the middle of the seating area, pointing up at what's overhead. Take it even if nothing is overhead                  |
 
 **Won't fit in one shot?** Take two or more front photos, and add the extras at the end of the form, under "Anything else to show us?"
 
-{% include diagram.html src="survey-front-view.svg" fill=true caption="Front view: the whole seating area, straight on, from the entrance side." %}
+{% include diagram.html src="survey-front-view.svg" fill=true caption="Front view: the whole seating area, straight on, from the entrance side, with the walls, curbs and railings around it." %}
 
 {% include diagram.html src="survey-corner-view.svg" fill=true caption="Corner view: from a back corner, aimed at the far front corner." %}
 
