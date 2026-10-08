@@ -44,7 +44,7 @@ For service, questions, issues, or replacements, contact Focal Support.
 | Voltage | 120V, 60Hz |
 | Materials | Anodized aluminum in Black (custom colors available on request) |
 | Mounting height | 7–8 ft from floor, mounting hardware included |
-| Wi-Fi | 2.4GHz |
+| WiFi | 2.4GHz |
 | Warranty | 3 years |
 | Operating temperature | -40°F to 140°F |
 | Electrical safety | Certified to UL standard (UL 2021, TÜV Rheinland) |

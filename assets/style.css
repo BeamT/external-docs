@@ -160,6 +160,14 @@ a { color: inherit; }
 .step-body p { margin: 0 0 8px; font-size: 16px; }
 /* grid-column: 2 / -1 aligns the diagram with the step text, not the number. */
 .step-figure { grid-column: 2 / -1; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+/* several diagrams in one step: numbered in order, stacked or two-up with grid="true" */
+.step-figures { grid-column: 2 / -1; display: grid; gap: 10px; counter-reset: fig; }
+.step-grid { grid-template-columns: 1fr 1fr; max-width: 560px; }
+.step-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.step-figures .step-figure { grid-column: auto; position: relative; counter-increment: fig; }
+.step-figures .step-figure::before { content: counter(fig); position: absolute; top: 8px; left: 8px; width: 24px; height: 24px; border-radius: 50%; background: var(--focal); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 24px; text-align: center; }
+main :is(.step-grid, .step-row) .step-figure:has(> img[src$=".png"]) { width: auto; }
+main :is(.step-grid, .step-row) .step-figure img[src$=".png"] { width: 100%; }
 .step-figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; object-fit: contain; object-position: left; margin: 0; }
 
 .checklist { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 8px; }

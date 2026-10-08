@@ -4,8 +4,8 @@ audience: []
 audience_order: {}
 order: 70
 summary: Swap a failed heater and assign the new heater to its slot.
-version: "1.0"
-updated: "2026-08-11"
+version: "1.1"
+updated: "2026-09-28"
 ---
 
 ## On this page
@@ -51,7 +51,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="2" title="Slide it on until it seats" body="Slide the heater along the rail and push until it seats." %}
 
-{% include step.html number="3" title="Untie the pull string and remove the clip" body="The replacement ships with its pull string tied off and a shipping clip in place. Untie the string and remove the clip." %}
+{% include step.html number="3" title="Untie the pull string" body="The replacement ships with its pull string tied off. Untie it." %}
 
 {% include step.html number="4" title="Move it to the old heater's slot" body="Pull the string down firmly until it releases, then slide the new heater to the exact slot the old one came out of. Let go of the string and it will lock in place." %}
 

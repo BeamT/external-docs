@@ -4,8 +4,8 @@ audience: [electrician]
 audience_order: {electrician: 10}
 order: 6
 summary: Circuit, outlet, and plug requirements for electricians.
-version: "1.1"
-updated: "2026-07-28"
+version: "1.2"
+updated: "2026-10-08"
 ---
 
 ## On this page
@@ -58,6 +58,8 @@ Verify at every outlet:
 Position outlets in line with the left side of each rail, where the rail's 8-foot built-in cable exits, so no extension cord is needed. Account for parklet features like pillars when siting the outlet.
 
 {% include dodont.html do="Site the outlet in line with the left side of the rail, within reach of its 8-foot cable." dont="Site the outlet where the rail's cable can't reach without an extension cord." %}
+
+The Focal Hub also needs a standard outlet at the Hub Location marked on the site plan. Don't use an outlet on a light switch.
 
 {% include warn.html text="Do not energize the outlet or operate a heater until mounting and clearance checks are complete." %}
 

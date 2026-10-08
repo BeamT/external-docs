@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Install heaters onto the rail.
-version: "1.3"
-updated: "2026-08-04"
+version: "1.4"
+updated: "2026-09-28"
 ---
 
 ## On this page
@@ -43,7 +43,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="2" title="Slide in until it seats" body="Slide the heater along the rail to its slot and push until it seats."  %}
 
-{% include step.html number="3" title="Untie the pull string and remove the clip" body="Each heater ships with its pull string tied off and a shipping clip in place. Untie the string and remove the clip. Do this for every heater as you install it." %}
+{% include step.html number="3" title="Untie the pull string" body="Each heater ships with its pull string tied off. Untie it. Do this for every heater as you install it." %}
 
 {% include step.html number="4" title="Move the heater to the desired slot" body="Pull the pull string down firmly until it releases, then slide the heater to the desired slot, moving any other heaters on the rail as needed to make room. Let go of the string once it's in position and it will lock in place." %}
 

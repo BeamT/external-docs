@@ -23,3 +23,18 @@ defaults:
 
 # Only what GitHub Pages' Jekyll needs.
 markdown: kramdown
+
+# Dev files that shouldn't be published. Setting this replaces Jekyll's own
+# default list on GitHub Pages (Jekyll 3), so those defaults are repeated here.
+exclude:
+  - README.md
+  - package.json
+  - package-lock.json
+  - playwright.config.js
+  - tests/
+  - node_modules/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - .sass-cache/
+  - .jekyll-cache/
