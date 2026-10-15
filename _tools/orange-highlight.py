@@ -14,6 +14,16 @@ Each PART is one of:
                         Best for round parts (screw heads, holes) at any tilt,
                         and it doesn't care about gaps in inner rings. Keep
                         other parts' lines out of the box.
+    sil:x0,y0,x1,y1     fill the silhouette of a free-standing part inside
+                        this box: everything the white margin around it can't
+                        reach. Best for parts busy with inner lines or
+                        shading (end cap, spacer). Leave white all round the
+                        part and keep other parts out of the box.
+    sil:x,y,x,y,x,y...  the same inside a polygon (3+ points), to step round
+                        a neighbouring part that pokes into the box.
+    ink:x0,y0,x1,y1     turn the line work inside this box solid orange and
+                        thicken it, for parts that are only a line (the pull
+                        string). Keep the box tight to the line.
     ell:cx,cy,rx,ry     fill an upright ellipse. Last resort, for a head
                         facing the camera whose outline is too faint for hull.
 
@@ -55,13 +65,34 @@ def part_mask(gray, spec):
         cx, cy, rx, ry = v
         ImageDraw.Draw(m).ellipse([cx - rx, cy - ry, cx + rx, cy + ry], fill=255)
         return np.asarray(m)
+    if kind == "sil":
+        poly = list(zip(v[::2], v[1::2])) if len(v) > 4 else None
+        if poly:
+            x0, y0 = min(p[0] for p in poly), min(p[1] for p in poly)
+            x1, y1 = max(p[0] for p in poly), max(p[1] for p in poly)
+        else:
+            x0, y0, x1, y1 = v
+        box = np.where(gray[y0:y1, x0:x1] < LINE, 0, 255).astype("uint8")
+        if poly:
+            keep = Image.new("L", (x1 - x0, y1 - y0), 0)
+            ImageDraw.Draw(keep).polygon([(x - x0, y - y0) for x, y in poly], fill=255)
+            box[np.asarray(keep) == 0] = 255  # outside the polygon counts as margin
+        walls = Image.fromarray(box).copy()
+        bw, bh = walls.size
+        for x, y in [(x, 0) for x in range(bw)] + [(x, bh - 1) for x in range(bw)] + [(0, y) for y in range(bh)] + [(bw - 1, y) for y in range(bh)]:
+            if walls.getpixel((x, y)) == 255:
+                ImageDraw.floodfill(walls, (x, y), 128, thresh=0)
+        inside = np.where(np.asarray(walls) == 128, 0, 255).astype("uint8")
+        m = np.zeros((h, w), "uint8")
+        m[y0:y1, x0:x1] = inside
+        return m
     if kind == "hull":
         x0, y0, x1, y1 = v
         ys, xs = np.nonzero(gray[y0:y1, x0:x1] < 130)
         ImageDraw.Draw(m).polygon([(x + x0, y + y0) for x, y in hull(np.c_[xs, ys])], fill=255)
         return np.asarray(m)
     x, y = v
-    walls = Image.fromarray(np.where(gray < LINE, 0, 255).astype("uint8"))
+    walls = Image.fromarray(np.where(gray < LINE, 0, 255).astype("uint8")).copy()  # Pillow 12 floodfill ignores un-copied fromarray images
     if walls.getpixel((x, y)) == 0:
         raise SystemExit(f"point {x},{y} is on a line; pick a spot inside the face")
     ImageDraw.floodfill(walls, (x, y), 128, thresh=0)
@@ -82,12 +113,19 @@ def main():
 
     gray = np.asarray(Image.open(a.src).convert("L")).astype(float)
     mask = np.zeros(gray.shape, "uint8")
+    ink = np.zeros(gray.shape, "uint8")
     for p in a.parts:
-        mask = np.maximum(mask, part_mask(gray, p))
+        if p.startswith("ink:"):
+            x0, y0, x1, y1 = (int(n) for n in p[4:].split(","))
+            ink[y0:y1, x0:x1] = np.where(gray[y0:y1, x0:x1] < LINE, 255, 0)
+        else:
+            mask = np.maximum(mask, part_mask(gray, p))
+    ink = np.asarray(Image.fromarray(ink).filter(ImageFilter.MaxFilter(3))).astype(float)[..., None] / 255
     m = np.asarray(Image.fromarray(mask).filter(ImageFilter.GaussianBlur(0.6))).astype(float)[..., None] / 255
 
     g = np.repeat(gray[..., None], 3, 2)
     out = g * (1 - m) + ORANGE * (g / 255) * m  # white -> orange, lines stay dark
+    out = out * (1 - ink) + ORANGE * ink  # ink: parts drawn as a line turn orange themselves
     img = Image.fromarray(out.clip(0, 255).astype("uint8"))
     if a.crop:
         size, x, y = a.crop.split("+")

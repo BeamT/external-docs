@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Install heaters onto the rail.
-version: "1.4"
-updated: "2026-09-28"
+version: "1.5"
+updated: "2026-10-15"
 ---
 
 ## On this page
@@ -19,7 +19,9 @@ updated: "2026-09-28"
 
 ## Before you start
 
-The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and slides onto the same rail slot the cable powers.
+The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and gets its power from the rail when it locks into a slot, so there is no separate cable to connect.
+
+{% include diagram.html src="duo-00-parts.png" caption="The open end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. This rail holds two heaters. A longer rail holds more, with one spacer between each pair." %}
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set the unit down on the grille or reflector." %}
 
@@ -31,28 +33,30 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Open the rail end
 
-{% include step.html number="1" title="Loosen and move the bumper" body="Loosen the bumper screw and slide the bumper toward the center of the rail to access the two screws beneath." %}
+{% include step.html number="1" title="Find the end that opens" body="Work at the end of the rail opposite the power cord (orange). This is the end that opens." diagram="duo-01-open-end.png" %}
 
-{% include step.html number="2" title="Remove the end cap" body="Remove the end cap screws and take off the end cap to open the end of the rail. Keep one hand on the end cap while removing the screws to ensure it doesn't fall." %}
+{% include step.html number="2" title="Loosen and slide the bumper" body="Loosen the bumper screw with a 2 mm hex wrench (1), then slide the bumper toward the center of the rail to uncover the two end cap screws (2)." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
 
-{% include step.html number="3" title="Remove the spacers" body="Remove the spacers. They will be re-inserted as you install the heaters." %}
+{% include step.html number="3" title="Remove the end cap" body="Remove the two end cap screws with the same 2 mm hex wrench (1), keeping one hand on the end cap so it doesn't fall, then take off the end cap (2)." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
+
+{% include step.html number="4" title="Remove the bumper and spacers" body="Slide the bumper and the spacers off the open end of the rail. The spacers go back in between the heaters as you install them, and the bumper goes back on last." diagram="duo-03-remove-parts.png" %}
 
 ## Install each heater
 
-{% include step.html number="1" title="Unbox and orient the heater" body="Take the heater out of its box. It only slides on in one orientation, so line it up before pushing it onto the rail. Remove the rest of the packaging once it's started onto the rail." %}
+{% include step.html number="1" title="Unbox the heater" body="Take the heater out of its box. Leave the rest of the packaging on until the heater is started onto the rail." %}
 
-{% include step.html number="2" title="Slide in until it seats" body="Slide the heater along the rail to its slot and push until it seats."  %}
+{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the open end of the rail, the end without the power cord. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail (1), and the lug on top lined up with the opening in the rail (2)." diagram="duo-04-orient-string.png,duo-04-orient-lug.png" %}
 
-{% include step.html number="3" title="Untie the pull string" body="Each heater ships with its pull string tied off. Untie it. Do this for every heater as you install it." %}
+{% include step.html number="3" title="Confirm the lug is down" body="The lug must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip on top of the riser that holds the lug down. Leave the clip on, because it comes off as the heater slides onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Move the heater to the desired slot" body="Pull the pull string down firmly until it releases, then slide the heater to the desired slot, moving any other heaters on the rail as needed to make room. Let go of the string once it's in position and it will lock in place." %}
+{% include step.html number="4" title="Slide on and move to the desired slot" body="Slide the heater onto the open end of the rail (any clip comes off as it goes), then remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to its slot, and let go to lock it in place. Move other heaters as needed to make room." diagram="duo-06-inserted.png" %}
 
-{% include step.html number="5" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." %}
+{% include step.html number="5" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." diagram="duo-07-spacer.png" %}
 
 ## Close up the rail
 
-{% include step.html number="1" title="Reinstall the end cap and bumper" body="Slide the bumper clear, refit the end cap and its screws, then slide the bumper back over and tighten its screw. Do not overtighten the bumper screw." %}
+{% include step.html number="1" title="Reinstall the bumper and end cap" body="Slide the bumper back onto the rail and push it clear of the end, then refit the end cap and its two screws (1). Slide the bumper back against the end cap and tighten its screw (2). Do not overtighten the bumper screw." diagram="duo-02-endcap-screws.png+duo-01-bumper-screw.png" %}
 
 ## Final checks
 
-{% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | End cap screwed on and bumper in place" %}
+{% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
