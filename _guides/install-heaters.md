@@ -45,7 +45,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="1" title="Unbox the heater" body="Take the heater out of its box. Leave the rest of the packaging on until the heater is started onto the rail." %}
 
-{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the open end of the rail, the end without the power cord. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail (1), and the lug on top lined up with the opening in the rail (2)." diagram="duo-04-orient-string.png,duo-04-orient-lug.png" %}
+{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the open end of the rail, the end without the power cord. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail." diagram="duo-04-orient-string.png" %}
 
 {% include step.html number="3" title="Confirm the lug is down" body="The lug must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip on top of the riser that holds the lug down. Leave the clip on, because it comes off as the heater slides onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
