@@ -19,9 +19,14 @@ updated: "2026-10-15"
 
 ## Before you start
 
-The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and gets its power from the rail when it locks into a slot, so there is no separate cable to connect. After this, you'll assign each heater to its slot in Focal Control.
+The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the opening end, opposite the cord-exit end. Each Focal heater (Duo) has two heating spots and gets its power from the rail when it locks into a slot, so there is no separate cable to connect. After this, you'll assign each heater to its slot in the Focal Control app.
 
-{% include diagram.html src="duo-00-parts.png" caption="The open end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. This rail holds two heaters. A longer rail holds more, with one spacer between each pair." %}
+You need:
+
+- **A 2 mm hex wrench** for the bumper and end cap screws
+- **The heaters** for this rail, per the site plan
+
+{% include diagram.html src="duo-00-parts.png" caption="The opening end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. This rail holds two heaters. A longer rail holds more, with one spacer between each pair." %}
 
 {% include dodont.html do="Handle each heater by its body, keeping the emitters and grille clear." dont="Grab or set the unit down on the grille or reflector." %}
 
@@ -33,23 +38,23 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Open the rail end
 
-{% include step.html number="1" title="Find the end that opens" body="Work at the end of the rail opposite the power cord (orange). This is the end that opens." diagram="duo-01-open-end.png" %}
+{% include step.html number="1" title="Find the opening end" body="Work at the opening end of the rail, opposite the cord-exit end. This is the end with the removable end cap (orange)." diagram="duo-01-open-end.png" %}
 
-{% include step.html number="2" title="Loosen and slide the bumper" body="Loosen the bumper screw with a 2 mm hex wrench (1), then slide the bumper toward the center of the rail to uncover the two end cap screws (2)." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
+{% include step.html number="2" title="Loosen and slide the bumper" body="Looking up at the underside of the rail, loosen the bumper screw with a 2 mm hex wrench (1), then slide the bumper toward the center of the rail to uncover the two end cap screws (2)." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
 
 {% include step.html number="3" title="Remove the end cap" body="Remove the two end cap screws with the same 2 mm hex wrench (1), keeping one hand on the end cap so it doesn't fall, then take off the end cap (2)." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
 
-{% include step.html number="4" title="Remove the bumper and spacers" body="Slide the bumper and the spacers off the open end of the rail. The spacers go back in between the heaters as you install them, and the bumper goes back on last." diagram="duo-03-remove-parts.png" %}
+{% include step.html number="4" title="Remove the bumper and spacer(s)" body="Slide the bumper and the spacer(s) off the opening end of the rail. The spacers go back in between the heaters as you install them, and the bumper goes back on last." diagram="duo-03-remove-parts.png" %}
 
 ## Install each heater
 
 {% include step.html number="1" title="Unbox the heater" body="Take the heater out of its box. Leave the rest of the packaging on until the heater is started onto the rail." %}
 
-{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the open end of the rail, the end without the power cord. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail." diagram="duo-04-orient-string.png" %}
+{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the opening end of the rail. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail." diagram="duo-04-orient-string.png" %}
 
-{% include step.html number="3" title="Confirm the lug is down" body="The lug must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip on top of the riser that holds the lug down. Leave the clip on, because it comes off as the heater slides onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
+{% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip on top of the riser that holds the lug down. Leave the clip on, because it comes off as the heater slides onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Slide on and move to the desired slot" body="Slide the heater onto the open end of the rail (any clip comes off as it goes), then remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to its slot, and let go to lock it in place. Move other heaters as needed to make room." diagram="duo-06-inserted.png" %}
+{% include step.html number="4" title="Slide on and move to the desired slot" body="Slots are fixed positions along the rail. Any heater can go in any slot, and the spacers keep heaters out of neighboring slots. Fill the slot farthest from the opening end first. Slide the heater onto the opening end of the rail (any clip comes off as it goes), then remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to its slot, and let go. It locks in place and its LEDs light." diagram="duo-06-inserted.png" %}
 
 {% include step.html number="5" title="Insert a spacer and repeat" body="Insert a spacer after the heater. Repeat for each heater, adding spacers between heaters. There should be one spacer in between every pair of heaters." diagram="duo-07-spacer.png" %}
 
@@ -61,4 +66,4 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
 
-{% include warn.html text="You're not done yet. Staff can't control these heaters until each one is assigned to its slot in Focal Control. Assign them now, before you leave the site." %}
+{% include warn.html text="You're not done yet. Staff can't control these heaters until each one is assigned to its slot in the Focal Control app. Assign them now, before you leave the site." %}

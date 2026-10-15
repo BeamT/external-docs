@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 60}
 order: 60
 summary: Scan and assign each heater to its slot.
-version: "1.3"
-updated: "2026-10-08"
+version: "1.4"
+updated: "2026-10-15"
 ---
 
 ## On this page
@@ -18,12 +18,12 @@ updated: "2026-10-08"
 
 ## Before you start
 
-Assigning heaters allows staff to control heaters individually from the Focal Control page. 
+Assigning heaters allows staff to control heaters individually in the Focal Control app. 
 
 You need:
 
 * A mobile phone with internet and a camera.
-* The restaurant's Focal Control page URL and password provided by Focal.
+* The restaurant's Focal Control app link and password from Focal.
 * Every heater already seated in its rail slot and powered on.
 
 {% include warn.html text="Heaters can only be assigned while the site is online. If heaters won't assign or don't respond, check that the site's Focal Hub, or networking box on older systems, is plugged in and has internet. If it does and heaters still won't assign, contact Focal." %}
@@ -32,17 +32,17 @@ You need:
 
 ## Assign each heater to its slot
 
-{% include step.html number="1" title="Open the restaurant's Focal control page and review the map" body="Sign in with the URL and password from Focal. The restaurant map shows how the zones are laid out relative to the street and the patio entrance. Get oriented here before you start scanning, so you know which zone you are standing in." diagram="reg-01-map.png" %}
+{% include step.html number="1" title="Open the Focal Control app and review the map" body="Sign in with the link and password from Focal. The restaurant map shows how the zones are laid out relative to the street and the patio entrance. Get oriented here before you start scanning, so you know which zone you are standing in." diagram="reg-01-map.png" %}
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Tap the empty slot you are standing under" body="Assign Devices shows every zone, rail, and slot already created for this restaurant. A slot marked with an X has no heater assigned yet. Tap the one you're standing under. The panel below reads No Heater Assigned to Rail, with a field for the QR link, serial number, or MAC address." diagram="reg-04-empty-slot-selected.png" %}
+{% include step.html number="3" title="Tap the empty slot you are standing under" body="Assign Devices shows every zone, rail, and slot already created for this restaurant. Each heater shows on the map as two squares, one per heating spot. A slot marked with an X has no heater assigned yet. Tap either square of the slot you're standing under. The panel below reads No Heater Assigned to Rail, with a field for the QR link, serial number, or MAC address." diagram="reg-04-empty-slot-selected.png" %}
 
-{% include step.html number="4" title="Scan that heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the heater in that slot (the round tag labeled SCAN TO HEAT). The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
+{% include step.html number="4" title="Scan that heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the heater in that slot: the round SCAN TO HEAT tag on the end of its pull string. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
 
-{% include step.html number="5" title="Tap Save Heater Assignment" body="Tap Save Heater Assignment. The heater isn't assigned to the slot until you save, so don't skip this." diagram="reg-08-save.png" %}
+{% include step.html number="5" title="Tap Save Heater Assignment" body="Tap Save Heater Assignment. The heater isn't assigned to the slot until you save, so don't skip this. Once it saves, the X on that slot clears." diagram="reg-08-save.png" %}
 
-{% include step.html number="6" title="Repeat until all heaters are assigned" body="Work along the rail slot by slot, then move to the next zone. When you are done, all slots should have a heater assigned." %}
+{% include step.html number="6" title="Repeat until all heaters are assigned" body="Work along the rail slot by slot. For the next zone, scroll down. When you are done, all slots should have a heater assigned." %}
 
 ## Confirm every assignment
 
@@ -52,7 +52,7 @@ After assigning every heater, it's critical to confirm each heater was assigned 
 
 {% include step.html number="2" title="Tap the first slot" body="Tap the first slot on the zone map. It highlights, and the heater's serial number and status appear below with heat level controls at 0." diagram="reg-06-heater-selected.png" %}
 
-{% include step.html number="3" title="Set a non-zero heat level" body="Tap 1, 2, or 3. Look up at the heater in that slot: its LEDs should change to match the level you picked, and it should start putting out heat. If a different heater responds, the wrong heater was assigned to the slot. Go back to Assign Devices and correct the assignment." diagram="reg-07-heater-hot.png" %}
+{% include step.html number="3" title="Set a non-zero heat level" body="Tap 1, 2, or 3 for either spot. Look up at the heater in that slot: its LEDs should change to match the level you picked, and it should start putting out heat. If a different heater responds, the wrong heater was assigned to the slot. Go back to Assign Devices and correct the assignment." diagram="reg-07-heater-hot.png" %}
 
 {% include step.html number="4" title="Work through every heater, then shut them off" body="Repeat for each slot in each zone. Tap 0 on each heater to turn it off before you leave." %}
 

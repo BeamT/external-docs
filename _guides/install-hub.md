@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 30}
 order: 20
 summary: Mount the Focal Hub and plug it in.
-version: "2.0"
-updated: "2026-10-08"
+version: "2.1"
+updated: "2026-10-15"
 ---
 
 ## On this page
@@ -16,7 +16,7 @@ updated: "2026-10-08"
 
 ## Before you start
 
-The Focal Hub is the heaters' link to the internet. It lets guests turn on heat with the QR code, lets staff control heaters from Focal Control, and runs schedules. If it loses its signal, all of that stops working, so placement matters.
+The Focal Hub is the heaters' link to the internet. It lets guests turn on heat with the QR code, lets staff control heaters from the Focal Control app, and runs schedules. If it loses its signal, all of that stops working, so placement matters.
 
 The Hub arrives already set up for this restaurant, so there's nothing to configure. Just mount it and plug it in.
 
