@@ -21,9 +21,10 @@ Each PART is one of:
                         part and keep other parts out of the box.
     sil:x,y,x,y,x,y...  the same inside a polygon (3+ points), to step round
                         a neighbouring part that pokes into the box.
-    ink:x0,y0,x1,y1     turn the line work inside this box solid orange and
-                        thicken it, for parts that are only a line (the pull
-                        string). Keep the box tight to the line.
+    ink:x0,y0,x1,y1     paint a thin part drawn as a pair of lines (the pull
+                        string) solid orange, row by row inside this box,
+                        keeping one dark pixel of outline on each side. Keep
+                        the box tight to the part.
     ell:cx,cy,rx,ry     fill an upright ellipse. Last resort, for a head
                         facing the camera whose outline is too faint for hull.
 
@@ -113,19 +114,21 @@ def main():
 
     gray = np.asarray(Image.open(a.src).convert("L")).astype(float)
     mask = np.zeros(gray.shape, "uint8")
-    ink = np.zeros(gray.shape, "uint8")
+    solid = np.zeros(gray.shape, bool)
     for p in a.parts:
         if p.startswith("ink:"):
             x0, y0, x1, y1 = (int(n) for n in p[4:].split(","))
-            ink[y0:y1, x0:x1] = np.where(gray[y0:y1, x0:x1] < LINE, 255, 0)
+            for y in range(y0, y1):
+                xs = np.nonzero(gray[y, x0:x1] < LINE)[0]
+                if len(xs) >= 2 and xs[-1] - xs[0] >= 2:
+                    solid[y, x0 + xs[0] + 1:x0 + xs[-1]] = True
         else:
             mask = np.maximum(mask, part_mask(gray, p))
-    ink = np.asarray(Image.fromarray(ink).filter(ImageFilter.MaxFilter(3))).astype(float)[..., None] / 255
     m = np.asarray(Image.fromarray(mask).filter(ImageFilter.GaussianBlur(0.6))).astype(float)[..., None] / 255
 
     g = np.repeat(gray[..., None], 3, 2)
     out = g * (1 - m) + ORANGE * (g / 255) * m  # white -> orange, lines stay dark
-    out = out * (1 - ink) + ORANGE * ink  # ink: parts drawn as a line turn orange themselves
+    out[solid] = ORANGE  # ink: too thin to tint, so paint it flat
     img = Image.fromarray(out.clip(0, 255).astype("uint8"))
     if a.crop:
         size, x, y = a.crop.split("+")
