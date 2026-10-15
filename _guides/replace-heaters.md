@@ -24,9 +24,9 @@ updated: "2026-10-15"
 
 This covers swapping a failed or damaged heater for a replacement on a rail that is already installed and running. You remove the old heater, install the new one and then assign the new heater to the slot on the Focal Control page.
 
-The software map has to keep matching the rail layout. Before you move anything, note which slot the failed heater sits in and the order of the heaters between it and the open end of the rail. Any heater you slide off has to go back to the same slot, or its controls will point at the wrong unit.
-
 {% include diagram.html src="duo-00-parts.png" caption="The open end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. Heaters and spacers come off in this order, so lay them out the same way." %}
+
+Before you move anything, note which slot the failed heater sits in and the order of the heaters between it and the open end of the rail. Put each heater you slide off back in the same slot so the software map still matches the rail. If they do get mixed up, you can reassign every slot on the rail later.
 
 You need:
 
@@ -74,25 +74,27 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Reassign the slot
 
-The old heater's slot in Focal Control still points at the unit you just removed, so you need to point it at the new heater. Leave every other slot alone. Those heaters went back where they were, so their assignments are still right.
+The old heater's slot in Focal Control still points at the unit you just removed, so you need to point it at the new heater. If every other heater went back in the same order it came off, leave those slots alone, since their assignments are still right. If you mixed up the order, reassign every slot on that rail the same way, so each slot points at the heater actually sitting in it.
 
 {% include warn.html text="The software layout must match the rail. If the slot points at the wrong heater, staff will turn on the wrong unit and think the system is broken." %}
 
-{% include step.html number="1" title="Open the Focal Control page" body="Sign in with the URL and password from Focal. On the zone map, find the slot the old heater came out of." diagram="reg-01-map.png" %}
+{% include step.html number="1" title="Open the restaurant's Focal control page and review the map" body="Sign in with the URL and password from Focal. The restaurant map shows how the zones are laid out relative to the street and the patio entrance. Get oriented here before you start scanning, so you know which zone you are standing in." diagram="reg-01-map.png" %}
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Select the old heater's slot" body="Tap the slot the old heater came out of. The panel below shows the heater still assigned to it, which is the old unit's serial." diagram="reg-06-heater-selected.png" %}
+{% include step.html number="3" title="Select the old heater's slot and tap Replace Heater" body="Tap the slot the old heater came out of. The panel below shows the old heater's serial number. Since you've already removed the old heater from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
 
-{% include step.html number="4" title="Scan the new heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the new heater, the round tag labeled SCAN TO HEAT. Once it reads, tap Save Heater Assignment to point the slot at the new heater." diagram="reg-05-scan.png" %}
+{% include step.html number="4" title="Scan the new heater's QR code" body="Point the camera at the QR code on the new heater, the round tag labeled SCAN TO HEAT. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
+
+{% include step.html number="5" title="Tap Save Heater Assignment" body="Tap Save Heater Assignment. The slot doesn't point at the new heater until you save, so don't skip this." diagram="rep-03-save.png" %}
 
 ## Confirm the new heater
 
-{% include step.html number="1" title="Go to Heater Control" body="Open the menu in the top left and choose Heater Control." %}
+{% include step.html number="1" title="Go to Heater Control" body="Open the menu in the top left and choose Heater Control." diagram="reg-02-nav.png" %}
 
 {% include step.html number="2" title="Tap the slot and set a heat level" body="Tap the slot you just reassigned, then tap 1, 2, or 3. Look up at the new heater. Its LEDs should change to match the level you picked and it should start putting out heat. If a different heater responds, go back to Assign Devices and fix the assignment." diagram="reg-07-heater-hot.png" %}
 
-{% include step.html number="3" title="Turn it back off" body="Tap 'Turn off all heaters' so nothing is left running before you go." %}
+{% include step.html number="3" title="Turn it back off" body="Tap 0 to turn the heater off so nothing is left running before you go." %}
 
 ## Final checks
 

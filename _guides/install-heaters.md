@@ -19,7 +19,7 @@ updated: "2026-10-15"
 
 ## Before you start
 
-The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and gets its power from the rail when it locks into a slot, so there is no separate cable to connect.
+The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the end opposite the power cord. Each Focal heater (Duo) has two heating nodes and gets its power from the rail when it locks into a slot, so there is no separate cable to connect. After this, you'll assign each heater to its slot in Focal Control.
 
 {% include diagram.html src="duo-00-parts.png" caption="The open end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. This rail holds two heaters. A longer rail holds more, with one spacer between each pair." %}
 
@@ -60,3 +60,5 @@ Watch the full video once before you start. Refer to the step-by-step written in
 ## Final checks
 
 {% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
+
+{% include warn.html text="You're not done yet. Staff can't control these heaters until each one is assigned to its slot in Focal Control. Assign them now, before you leave the site." %}
