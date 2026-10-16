@@ -60,7 +60,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Close up the rail
 
-{% include step.html number="1" title="Reinstall the bumper and end cap" captions="Slide the bumper on and push it clear of the end.|Refit the end cap.|Refit the two end cap screws.|Slide the bumper back against the end cap and tighten its screw (don't overtighten)." diagram="duo-08-bumper-on.png,duo-08-endcap-on.png,duo-02-endcap-screws.png,duo-01-bumper-screw.png" grid="true" %}
+{% include step.html number="1" title="Reinstall the bumper and end cap" captions="Slide the bumper on and push it clear of the end.|Refit the end cap.|Refit the two end cap screws.|Slide the bumper against the end cap and lightly tighten its screw." diagram="duo-08-bumper-on.png,duo-08-endcap-on.png,duo-02-endcap-screws.png,duo-01-bumper-screw.png" grid="true" %}
 
 ## Final checks
 
