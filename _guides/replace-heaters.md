@@ -26,7 +26,7 @@ This covers swapping a failed or damaged heater for a replacement on a rail that
 
 {% include diagram.html src="duo-00-parts.png" caption="The opening end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. Heaters and spacers come off in this order, so lay them out the same way." %}
 
-{% include warn.html text="Note which slot the failed heater is in. Put every heater you take off back in its same slot, so the app's map still matches the rail." %}
+{% include warn.html text="Note which slot the failed heater is in. Put every heater you take off back in its same slot, so the slots in Focal Control still match the rail." %}
 
 You need:
 
@@ -46,9 +46,9 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="1" title="Find the opening end" body="Work at the opening end of the rail, opposite the cord-exit end. This is the end with the removable end cap (orange)." diagram="duo-01-open-end.png" %}
 
-{% include step.html number="2" title="Loosen and slide the bumper" body="Work looking up at the underside of the rail." captions="Loosen the bumper screw with a 2 mm hex wrench.|Slide the bumper toward the center to uncover the two end cap screws." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
+{% include step.html number="2" title="Loosen and slide the bumper" body="Look up at the underside of the rail." captions="Loosen the bumper screw with a 2 mm hex wrench.|Slide the bumper toward the center to uncover the two end cap screws." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
 
-{% include step.html number="3" title="Remove the end cap" captions="Remove the two end cap screws, keeping one hand on the end cap so it doesn't fall.|Take off the end cap." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
+{% include step.html number="3" title="Remove the end cap" captions="Remove the two end cap screws with the 2 mm hex wrench, keeping one hand on the end cap so it doesn't fall.|Take off the end cap." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
 
 ## Remove the old heater
 
@@ -64,7 +64,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip holding the lug down. It slides off by itself as the heater goes onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly, slide the heater to the slot the old one came out of, and let go. It locks in and its LEDs light." diagram="duo-06-inserted.png" %}
+{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the slot the old one came out of, and let go. It locks in and its LEDs light." diagram="duo-06-inserted.png" %}
 
 {% include step.html number="5" title="Put the other heaters back the way they were" body="Slide the heaters you removed back into their original slots, in the same order, with one spacer between each pair. Since they return to the same slots, their assignments stay correct. Only the new heater needs assigning." %}
 
