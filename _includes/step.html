@@ -5,11 +5,11 @@
     <p>{{ include.body }}</p>
     {% if include.diagram %}
     {% comment %}diagram takes one filename, or several comma-separated. Several are
-    numbered in order and stack; grid="true" lays them out two-up instead. Join two
+    numbered in order and stack; grid="true" lays them out two-up instead, grid="3" three-up. Join two
     with "+" (a.png+b.png) to put just that pair side by side.{% endcomment %}
     {% assign diagrams = include.diagram | split: "," %}
     {% assign multi = include.diagram | split: "+" | size | plus: diagrams.size | minus: 2 %}
-    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}">{% endif %}
+    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}{% if include.grid == "3" %} step-grid-3{% endif %}">{% endif %}
     {% for item in diagrams %}
     {% assign row = item | split: "+" %}
     {% if row.size > 1 %}<div class="step-row">{% endif %}
