@@ -159,13 +159,30 @@ a { color: inherit; }
 .step-title { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin: 2px 0 6px; }
 .step-body p { margin: 0 0 8px; font-size: 16px; }
 /* grid-column: 2 / -1 aligns the diagram with the step text, not the number. */
-.step-figure { grid-column: 2 / -1; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+.step-figure { grid-column: 2 / -1; margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
 /* several diagrams in one step: numbered in order, stacked or two-up with grid="true" */
 .step-figures { grid-column: 2 / -1; display: grid; gap: 10px; counter-reset: fig; }
 .step-grid { grid-template-columns: 1fr 1fr; max-width: 560px; }
+.step-grid-3 { grid-template-columns: repeat(3, 1fr); max-width: none; }
+@media (max-width: 560px) { .step-grid-3 { grid-template-columns: 1fr; } }
 .step-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .step-figures .step-figure { grid-column: auto; position: relative; counter-increment: fig; }
-.step-figures .step-figure::before { content: counter(fig); position: absolute; top: 8px; left: 8px; width: 24px; height: 24px; border-radius: 50%; background: var(--focal); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 24px; text-align: center; }
+/* frames are numbered with a small inline "1." at the start of the caption, kept
+   quiet so the big step numbers stay the only prominent ones. Frames without a
+   caption carry the number over the image's corner instead. */
+.step-figures figcaption::before { content: counter(fig) "."; flex: none; color: var(--focal); font-family: var(--font-display); font-weight: 700; }
+.step-figures .step-figure:not(:has(figcaption))::before { content: counter(fig); position: absolute; top: 8px; left: 8px; width: 24px; height: 24px; border-radius: 50%; background: var(--focal); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 24px; text-align: center; }
+/* caption sits above its image, matching single-image steps where the text
+   comes first. In a row, the caption grows so images start at the same height
+   even when one caption wraps to more lines than its neighbour. */
+.step-figure:has(figcaption) { display: flex; flex-direction: column; }
+/* width: 0 + min-width: 100% keeps the caption from widening a fit-content frame */
+.step-figure figcaption { display: flex; flex: 1 0 auto; gap: 6px; align-items: baseline; width: 0; min-width: 100%; box-sizing: border-box; font-size: 15px; line-height: 1.45; padding: 8px 12px; border-bottom: 1px solid var(--line-soft); }
+.step-body .step-after { margin: 12px 0 0; }
+/* variant: an alternative to the step above it. No number of its own; the
+   56px (number column + gap) lines its text up with the step above. */
+.step-variant { grid-template-columns: 1fr; margin-left: 56px; }
+@media (max-width: 560px) { .step-variant { margin-left: 0; } }
 main :is(.step-grid, .step-row) .step-figure:has(> img[src$=".png"]) { width: auto; }
 main :is(.step-grid, .step-row) .step-figure img[src$=".png"] { width: 100%; }
 .step-figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; object-fit: contain; object-position: left; margin: 0; }
@@ -370,7 +387,7 @@ main img[src$=".png"] {
 
 main span:has(> img[src$=".png"]),
 main div:not(.step-figure):has(> img[src$=".png"]),
-main figure:not(.diagram):has(> img[src$=".png"]) {
+main figure:not(.diagram, .step-figure):has(> img[src$=".png"]) {
   background: none;
   border: 0;
   padding: 0;

@@ -1,26 +1,35 @@
-<div class="step">
-  <div class="step-num">{{ include.number }}</div>
+{% comment %}diagram takes one filename, or several comma-separated. Several are
+numbered in order and stack; grid="true" lays them out two-up instead, grid="3" three-up. Join two
+with "+" (a.png+b.png) to put just that pair side by side. captions="A text|B text" gives
+each frame its own caption, in the same order as the images (pairs count as two).
+after="..." is text shown below the images.
+variant="true" marks an alternative to the step above: no number, aligned with its text.{% endcomment %}
+<div class="step{% if include.variant %} step-variant{% endif %}">
+  {% unless include.variant %}<div class="step-num">{{ include.number }}</div>{% endunless %}
   <div class="step-body">
     <div class="step-title">{{ include.title }}</div>
-    <p>{{ include.body }}</p>
+    {% if include.body and include.body != "" %}<p>{{ include.body }}</p>{% endif %}
     {% if include.diagram %}
-    {% comment %}diagram takes one filename, or several comma-separated. Several are
-    numbered in order and stack; grid="true" lays them out two-up instead. Join two
-    with "+" (a.png+b.png) to put just that pair side by side.{% endcomment %}
     {% assign diagrams = include.diagram | split: "," %}
+    {% assign captions = include.captions | split: "|" %}
+    {% assign frame = 0 %}
     {% assign multi = include.diagram | split: "+" | size | plus: diagrams.size | minus: 2 %}
-    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}">{% endif %}
+    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}{% if include.grid == "3" %} step-grid-3{% endif %}">{% endif %}
     {% for item in diagrams %}
     {% assign row = item | split: "+" %}
     {% if row.size > 1 %}<div class="step-row">{% endif %}
     {% for d in row %}
-    <div class="step-figure">
+    {% assign caption = captions[frame] | strip %}
+    <figure class="step-figure">
+      {% if caption != "" %}<figcaption>{{ caption }}</figcaption>{% endif %}
       <img src="{{ site.baseurl }}/assets/diagrams/{{ d | strip }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
-    </div>
+    </figure>
+    {% assign frame = frame | plus: 1 %}
     {% endfor %}
     {% if row.size > 1 %}</div>{% endif %}
     {% endfor %}
     {% if multi > 0 %}</div>{% endif %}
     {% endif %}
+    {% if include.after %}<p class="step-after">{{ include.after }}</p>{% endif %}
   </div>
 </div>
