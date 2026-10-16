@@ -26,7 +26,7 @@ This covers swapping a failed or damaged heater for a replacement on a rail that
 
 {% include diagram.html src="duo-00-parts.png" caption="The opening end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. Heaters and spacers come off in this order, so lay them out the same way." %}
 
-Before you move anything, note which slot the failed heater sits in and the order of the heaters between it and the opening end of the rail. Put each heater you slide off back in the same slot so the software map still matches the rail. If they do get mixed up, you can reassign every slot on the rail later.
+{% include warn.html text="Note which slot the failed heater is in. Put every heater you take off back in its same slot, so the app's map still matches the rail." %}
 
 You need:
 
@@ -46,15 +46,15 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="1" title="Find the opening end" body="Work at the opening end of the rail, opposite the cord-exit end. This is the end with the removable end cap (orange)." diagram="duo-01-open-end.png" %}
 
-{% include step.html number="2" title="Loosen and slide the bumper" body="Looking up at the underside of the rail, loosen the bumper screw with a 2 mm hex wrench (1), then slide the bumper toward the center of the rail to uncover the two end cap screws (2)." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
+{% include step.html number="2" title="Loosen and slide the bumper" body="Work looking up at the underside of the rail." captions="Loosen the bumper screw with a 2 mm hex wrench.|Slide the bumper toward the center to uncover the two end cap screws." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
 
-{% include step.html number="3" title="Remove the end cap" body="Remove the two end cap screws with the same 2 mm hex wrench (1), keeping one hand on the end cap so it doesn't fall, then take off the end cap (2)." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
+{% include step.html number="3" title="Remove the end cap" captions="Remove the two end cap screws, keeping one hand on the end cap so it doesn't fall.|Take off the end cap." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
 
 ## Remove the old heater
 
-{% include step.html number="1" title="Remove the bumper and anything in the way" body="Slide the bumper off the opening end of the rail. If other heaters or spacers sit between the opening end and the failed heater, take them off next. To remove a heater, pull its string down firmly and then slide it off the rail. Lay everything out in the order it came off so each piece goes back to the same slot." diagram="duo-03-remove-bumper.png" %}
+{% include step.html number="1" title="Remove the bumper" body="Slide the bumper off the opening end of the rail." diagram="duo-03-remove-bumper.png" %}
 
-{% include step.html number="2" title="Take out the old heater" body="Remove the failed heater the same way: pull its string down firmly and slide it off. Set it aside to return to Focal." diagram="duo-04-remove-heater.png" %}
+{% include step.html number="2" title="Slide off heaters until the failed one is out" body="Pull each heater's string down firmly and slide it off, then the spacer behind it. Keep going until the failed heater is off. Lay everything out in the order it came off, and set the failed heater aside to return to Focal." diagram="duo-04-remove-heater.png" %}
 
 ## Install the new heater
 
@@ -62,15 +62,15 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include step.html number="2" title="Orient the heater" body="Heaters slide on from the opening end of the rail. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail." diagram="duo-04-orient-string.png" %}
 
-{% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip on top of the riser that holds the lug down. Leave the clip on, because it comes off as the heater slides onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
+{% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip holding the lug down. It slides off by itself as the heater goes onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the opening end of the rail (any clip comes off as it goes), then remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the exact slot the old one came out of, and let go. It locks in place and its LEDs light." diagram="duo-06-inserted.png" %}
+{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly, slide the heater to the slot the old one came out of, and let go. It locks in and its LEDs light." diagram="duo-06-inserted.png" %}
 
 {% include step.html number="5" title="Put the other heaters back the way they were" body="Slide the heaters you removed back into their original slots, in the same order, with one spacer between each pair. Since they return to the same slots, their assignments stay correct. Only the new heater needs assigning." %}
 
 ## Close up the rail
 
-{% include step.html number="1" title="Reinstall the bumper and end cap" body="Slide the bumper back onto the rail and push it clear of the end, then refit the end cap and its two screws (1). Slide the bumper back against the end cap and tighten its screw (2). Do not overtighten the bumper screw." diagram="duo-02-endcap-screws.png+duo-01-bumper-screw.png" %}
+{% include step.html number="1" title="Reinstall the bumper and end cap" captions="Slide the bumper on and push it clear of the end.|Refit the end cap.|Refit the two end cap screws.|Slide the bumper back against the end cap and tighten its screw (don't overtighten)." diagram="duo-08-bumper-on.png,duo-08-endcap-on.png,duo-02-endcap-screws.png,duo-01-bumper-screw.png" grid="true" %}
 
 ## Reassign the slot
 
