@@ -19,7 +19,7 @@ Prefer a hard copy? The printable packet contains everything you need in one pla
 
 ## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet are on hand | The number of rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand | If the Hub isn't configured yet: the restaurant's WiFi name and password from Focal | Focal Control app link and password from Focal | A phone with a camera and internet | A 2 mm hex wrench for the rail end cap and bumper | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed at the cord-exit end of each rail" %}
+{% include checklist.html items="Site plan and this packet are on hand | The number of rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand | The restaurant's WiFi name and password (from Focal or the restaurant), in case the Hub isn't configured yet | Focal Control app link and password from Focal | A phone with a camera and internet | A 2 mm hex wrench for the rail end cap and bumper | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed at the cord-exit end of each rail" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 
