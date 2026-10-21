@@ -4,8 +4,8 @@ audience: [customer]
 audience_order: {customer: 10}
 order: 11
 summary: Set up Focal Control, your schedule, and control the system from one screen.
-version: "1.0"
-updated: "2026-08-07"
+version: "1.1"
+updated: "2026-10-21"
 ---
 
 ## On this page
@@ -41,7 +41,7 @@ Tap the menu icon in the upper left corner, next to the Focal logo. The menu has
 
 Focal Control always runs in one of two modes, and knowing which one you're in explains almost everything the system does.
 
-**Schedule Mode** manages the heat for you. Inside the hours you set, heaters adjust on their own, and at closing they shut off automatically. This is the mode you'll run day to day.
+**Schedule Mode** manages the heat for you. Inside the hours you set, heaters turn on when guests sit down and turn off when they leave. At closing, everything shuts off automatically. This is the mode you'll run day to day.
 
 **Manual Mode** hands full control to you and your guests, with no automatic shutdown. It's meant for stretches when you want the heaters on outside your normal hours. Because nothing turns off on its own in Manual Mode, don't leave the system in it overnight.
 
@@ -57,7 +57,7 @@ Open Scheduling, uncheck the days you're closed, and tap Save Settings. The heat
 
 ## How heat levels get set
 
-Heat runs from OFF (0) up to HIGH (3). In Schedule Mode, Focal sets the level for you based on the outside temperature:
+Heat runs from OFF (0) up to HIGH (3). In Schedule Mode, when a heater turns on for guests, Focal sets how hot it runs based on the outside temperature:
 
 {% include checklist.html items="Below 55°F: Level 3 (HIGH) | 55 to 60°F: Level 2 | 60 to 65°F: Level 1 | 65°F and above: no heat" %}
 
@@ -79,6 +79,6 @@ From this page, switch to Manual Mode, run the heaters as long as you need, then
 
 Outside your scheduled hours, the heaters stay disabled. If someone tries to turn one on at the unit during that time, it flashes yellow to show it can't run yet.
 
-Inside your hours, the heaters manage themselves, adjusting to the temperature as described above. Any change you or a guest makes overrides the automatic level for that heater until the next cycle.
+Inside your hours, heaters turn on when guests sit down and turn off when they leave, at the level set by the outside temperature (see [How heat levels get set](#how-heat-levels-get-set)). Any change you or a guest makes overrides the automatic level for that heater until the next cycle.
 
 {% include nextlink.html slug="individual-heater-control" title="Individual Heater Control" %}
