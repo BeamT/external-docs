@@ -5,8 +5,8 @@ audience_order: {installer: 5}
 order: 5
 summary: Pre-job checklist and the full install sequence at a glance.
 lead: true
-version: "1.7"
-updated: "2026-10-15"
+version: "1.8"
+updated: "2026-10-21"
 ---
 
 ## On this page
@@ -19,7 +19,7 @@ Prefer a hard copy? The printable packet contains everything you need in one pla
 
 ## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet are on hand | The number of rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand | Focal Control app link and password from Focal | A phone with a camera and internet | A 2 mm hex wrench for the rail end cap and bumper | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed at the cord-exit end of each rail" %}
+{% include checklist.html items="Site plan and this packet are on hand | The number of rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand | If the Hub isn't configured yet: the restaurant's WiFi name and password from Focal | Focal Control app link and password from Focal | A phone with a camera and internet | A 2 mm hex wrench for the rail end cap and bumper | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed at the cord-exit end of each rail" %}
 
 {% include warn.html text="Do not power on any rail until mounting is complete and clearances are verified." %}
 
@@ -29,7 +29,7 @@ Here's the whole job in order. Each guide ends with a link to the next one. Star
 
 {% include stepitem.html number="1" title="Safety & Clearances" body="Required clearances and safety guidelines for every install." %}
 
-{% include stepitem.html number="2" title="Install Hub" body="Mount the Focal Hub and plug it in." %}
+{% include stepitem.html number="2" title="Install Hub" body="Mount the Focal Hub, plug it in, and connect it to WiFi if needed." %}
 
 {% include stepitem.html number="3" title="Install Rails" body="Mount the rails and power them on." %}
 
