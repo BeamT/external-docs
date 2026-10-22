@@ -3,9 +3,9 @@ title: Install Hub
 audience: [installer]
 audience_order: {installer: 30}
 order: 20
-summary: Mount the Focal Hub, plug it in, and connect it to WiFi if needed.
-version: "2.3"
-updated: "2026-10-21"
+summary: Plug in the Focal Hub, connect it to WiFi if needed, then mount it.
+version: "2.4"
+updated: "2026-10-22"
 ---
 
 ## On this page
@@ -43,15 +43,17 @@ The Hub talks wirelessly to the heaters and, unless there's a network cable, to 
 
 ## Steps
 
-{% include step.html number="1" title="Mount the Hub" body="Mount the Hub on the wall at the designated spot." %}
+{% include warn.html text="Check the WiFi connection before you mount the Hub. The QR code is on top of the Hub, so you can't reach it once it's mounted, and it only works while the Hub has power." %}
 
-{% include step.html number="2" title="Plug it in" body="Plug the Hub into a standard outlet. Avoid outlets on a light switch: if the outlet loses power, the heaters go offline." %}
+{% include step.html number="1" title="Plug it in" body="Hold the Hub at the designated spot and plug it into a standard outlet. Avoid outlets on a light switch: if the outlet loses power, the heaters go offline." %}
 
-{% include step.html number="3" title="Connect the network cable, if there is one" body="If the restaurant ran a network cable to the Hub Location, plug it into the Hub. Leave a drip loop: let the cable hang down below the Hub's port before it rises back up into it, so water drips off the bottom of the loop instead of running into the Hub. No cable? The Hub uses WiFi instead." %}
-
-{% include step.html number="4" title="Check the Hub's WiFi connection" body="Skip this step if you plugged in a network cable. Otherwise, with the Hub plugged in, scan the QR code on the Hub with your phone's camera. When your phone asks you to sign in to the network, tap Sign in. The page that opens shows whether the Hub is connected. If it is, you're done. If not, enter the restaurant's WiFi network name and password, and the page should then show the Hub as connected." %}
+{% include step.html number="2" title="Check the Hub's WiFi connection" body="Skip this step if the restaurant ran a network cable to the Hub Location. Otherwise, with the Hub plugged in, scan the QR code on top of the Hub with your phone's camera. When your phone asks you to sign in to the network, tap Sign in. The page that opens shows whether the Hub is connected. If it is, move on to mounting. If not, enter the restaurant's WiFi network name and password, and the page should then show the Hub as connected." %}
 
 {% include warn.html text="Use the network the restaurant tested, usually their staff WiFi. Guest WiFi with a sign-in page won't work. If the page still doesn't show the Hub as connected, check the network name and password and try again, then contact Focal." %}
+
+{% include step.html number="3" title="Mount the Hub" body="Mount the Hub on the wall at the designated spot, keeping it plugged in." %}
+
+{% include step.html number="4" title="Connect the network cable, if there is one" body="If the restaurant ran a network cable to the Hub Location, plug it into the Hub. Leave a drip loop: let the cable hang down below the Hub's port before it rises back up into it, so water drips off the bottom of the loop instead of running into the Hub. No cable? The Hub uses WiFi instead." %}
 
 ## Final checks
 
