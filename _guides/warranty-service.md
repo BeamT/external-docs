@@ -40,7 +40,7 @@ For service, questions, issues, or replacements, contact Focal Support.
 
 | Spec | Value |
 |---|---|
-| Max output | 600W (300W each x 2 heating spots) |
+| Max output | 600W (300W each x 2 heating heads) |
 | Voltage | 120V, 60Hz |
 | Materials | Anodized aluminum in Black (custom colors available on request) |
 | Mounting height | 7–8 ft from floor, mounting hardware included |

@@ -24,7 +24,7 @@ Each Focal rail ships with a factory-installed plug — either 15A or 20A depend
 
 ## System basics
 
-Each Focal heater is rated 600W (two 300W heating spots) at 120V, 60Hz. A rail's total load depends on how many heaters it carries.
+Each Focal heater is rated 600W (two 300W heating heads) at 120V, 60Hz. A rail's total load depends on how many heaters it carries.
 
 Focal heaters conform to UL 2021 and are certified by TÜV Rheinland.
 

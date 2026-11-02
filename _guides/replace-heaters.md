@@ -82,7 +82,7 @@ The old heater's slot in the Focal Control app still points at the unit you just
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Select the old heater's slot and tap Replace Heater" body="Tap the slot the old heater came out of. Each heater shows on the map as two squares, one per heating spot; tap either one. The panel below shows the old heater's serial number. Since you've already removed the old heater from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
+{% include step.html number="3" title="Select the old heater's slot and tap Replace Heater" body="Tap the slot the old heater came out of. Each heater shows on the map as two squares, one per heating head; tap either one. The panel below shows the old heater's serial number. Since you've already removed the old heater from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
 
 {% include step.html number="4" title="Scan the new heater's QR code" body="Point the camera at the QR code on the new heater: the round SCAN TO HEAT tag on the end of its pull string. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
 
@@ -92,7 +92,7 @@ The old heater's slot in the Focal Control app still points at the unit you just
 
 {% include step.html number="1" title="Go to Heater Control" body="Open the menu in the top left and choose Heater Control." diagram="reg-02-nav.png" %}
 
-{% include step.html number="2" title="Tap the slot and set a heat level" body="Tap the slot you just reassigned, then tap 1, 2, or 3 for either spot. Look up at the new heater. Its LEDs should change to match the level you picked and it should start putting out heat. If a different heater responds, go back to Assign Devices and fix the assignment." diagram="reg-07-heater-hot.png" %}
+{% include step.html number="2" title="Tap the slot and set a heat level" body="Tap the slot you just reassigned, then tap 1, 2, or 3 for either head. Look up at the new heater. Its LEDs should change to match the level you picked and it should start putting out heat. If a different heater responds, go back to Assign Devices and fix the assignment." diagram="reg-07-heater-hot.png" %}
 
 {% include step.html number="3" title="Turn it back off" body="Tap 0 to turn the heater off so nothing is left running before you go." %}
 
