@@ -48,7 +48,7 @@ Every heater has a pull string, and it does two different jobs depending on how 
 
 Give the string a short tug to step through the heat levels. Starting from off, the first tug jumps straight to Level 3 (HIGH). Each tug after that steps down one level, from 3 to 2 to 1 and then back to off. The three white LEDs update with each tug, so you can see the new level right on the heater.
 
-The pull string sets the whole heater, both heating spots, to the same level. To run the two sides at different levels, use the app instead.
+The pull string sets the whole heater, both heating heads, to the same level. To run the two sides at different levels, use the app instead.
 
 This only works inside your open hours. If you tug the string outside those hours, the heat can't be adjusted, and the LEDs flash yellow to tell you it isn't available.
 

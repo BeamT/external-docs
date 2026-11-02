@@ -37,7 +37,7 @@ You need:
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Tap the empty slot you are standing under" body="Assign Devices shows every zone, rail, and slot already created for this restaurant. Each heater shows on the map as two squares, one per heating spot. A slot marked with an X has no heater assigned yet. Tap either square of the slot you're standing under. The panel below reads No Heater Assigned to Rail, with a field for the QR link, serial number, or MAC address." diagram="reg-04-empty-slot-selected.png" %}
+{% include step.html number="3" title="Tap the empty slot you are standing under" body="Assign Devices shows every zone, rail, and slot already created for this restaurant. Each heater shows on the map as two squares, one per heating head. A slot marked with an X has no heater assigned yet. Tap either square of the slot you're standing under. The panel below reads No Heater Assigned to Rail, with a field for the QR link, serial number, or MAC address." diagram="reg-04-empty-slot-selected.png" %}
 
 {% include step.html number="4" title="Scan that heater's QR code" body="Tap the camera icon and allow camera access if your phone asks. Point the camera at the QR code on the heater in that slot: the round SCAN TO HEAT tag on the end of its pull string. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
 
@@ -53,7 +53,7 @@ After assigning every heater, it's critical to confirm each heater was assigned 
 
 {% include step.html number="2" title="Tap the first slot" body="Tap the first slot on the zone map. It highlights, and the heater's serial number and status appear below with heat level controls at 0." diagram="reg-06-heater-selected.png" %}
 
-{% include step.html number="3" title="Set a non-zero heat level" body="Tap 1, 2, or 3 for either spot. Look up at the heater in that slot: its LEDs should change to match the level you picked, and it should start putting out heat. If a different heater responds, the wrong heater was assigned to the slot. Go back to Assign Devices and correct the assignment." diagram="reg-07-heater-hot.png" %}
+{% include step.html number="3" title="Set a non-zero heat level" body="Tap 1, 2, or 3 for either head. Look up at the heater in that slot: its LEDs should change to match the level you picked, and it should start putting out heat. If a different heater responds, the wrong heater was assigned to the slot. Go back to Assign Devices and correct the assignment." diagram="reg-07-heater-hot.png" %}
 
 {% include step.html number="4" title="Work through every heater, then shut them off" body="Repeat for each slot in each zone. Tap 0 on each heater to turn it off before you leave." %}
 
