@@ -2,7 +2,7 @@
 title: Individual Heater Control
 audience: [customer, staff, guest]
 audience_order: {customer: 20}
-order: 21
+order: 15
 summary: Control heaters from the app, with the QR code or its pull string.
 version: "1.0"
 updated: "2026-08-07"
