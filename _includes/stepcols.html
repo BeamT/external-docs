@@ -1,0 +1,26 @@
+{% comment %}A numbered step whose body is side-by-side alternative columns.
+cols="Title|img,img|caption//caption ;; Title|img|caption". A column with more than one image
+gets numbered captions (1. 2.) above its frames. Parameters number, title, body, after as in step.html.{% endcomment %}
+<div class="step">
+  <div class="step-num">{{ include.number }}</div>
+  <div class="step-body">
+    <div class="step-title">{{ include.title }}</div>
+    {% if include.body %}<p>{{ include.body }}</p>{% endif %}
+    <div class="step-cols">
+      {% assign cols = include.cols | split: ";;" %}{% for col in cols %}{% assign f = col | split: "|" %}{% assign imgs = f[1] | split: "," %}{% assign caps = f[2] | split: "//" %}
+      <section class="step-col">
+        <div class="step-col-title">{{ f[0] | strip }}</div>
+        <div class="step-col-figs{% if imgs.size > 1 %} numbered{% endif %}">
+          {% for img in imgs %}
+          <figure class="step-figure">
+            <figcaption>{{ caps[forloop.index0] | strip }}</figcaption>
+            <img src="{{ site.baseurl }}/assets/diagrams/{{ img | strip }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
+          </figure>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+    {% if include.after %}<p class="step-after">{{ include.after }}</p>{% endif %}
+  </div>
+</div>

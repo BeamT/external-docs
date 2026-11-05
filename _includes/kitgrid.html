@@ -1,0 +1,9 @@
+{% comment %}items="image|name|qty|optional use ;; ...". Images come from assets/diagrams/. A missing image shows the "coming soon" placeholder.{% endcomment %}
+<div class="kit-grid">
+{% assign list = include.items | split: ";;" %}{% for it in list %}{% assign f = it | split: "|" %}
+  <figure class="kit-card">
+    <div class="kit-img"><img src="{{ site.baseurl }}/assets/diagrams/{{ f[0] | strip }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))"></div>
+    <figcaption><span class="kit-name">{{ f[1] | strip }}</span><span class="kit-qty">&times; {{ f[2] | strip }}</span>{% assign use = f[3] | strip %}{% if use != "" %}<span class="kit-use">{{ use }}</span>{% endif %}</figcaption>
+  </figure>
+{% endfor %}
+</div>

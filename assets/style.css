@@ -485,3 +485,40 @@ h2[id], h3[id] {
     border-radius: 0;
   }
 }
+
+/* Mounting kit parts grid */
+.kit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 10px 0 18px; }
+@media (max-width: 520px) { .kit-grid { grid-template-columns: repeat(2, 1fr); } }
+.kit-card { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
+.kit-img { height: 140px; display: flex; align-items: center; justify-content: center; padding: 8px; border-bottom: 1px solid var(--line-soft); }
+.kit-img img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.kit-card figcaption { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; font-size: 15px; line-height: 1.35; }
+.kit-name { font-weight: 700; }
+.kit-qty { color: var(--focal); font-weight: 700; }
+.kit-use { color: var(--muted, #555); font-size: 13px; }
+.kit-img .diagram-missing { font-size: 12px; color: var(--muted, #777); text-align: center; }
+
+.step-plain .step-figure figcaption::before, .step-plain .step-figure:not(:has(figcaption))::before { content: none; display: none; }
+
+/* Step with side-by-side alternative columns (stepcols.html) */
+.step-cols { display: grid; grid-template-columns: minmax(0, 1fr); align-items: stretch; gap: 20px; margin-top: 4px; }
+.step-col { display: flex; flex-direction: column; gap: 8px; }
+.step-col-title { font-weight: 700; font-size: 16px; }
+.step-col { min-width: 0; }
+.step-col-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; counter-reset: fig; flex: 1; align-content: start; }
+.step-col-figs figure { margin: 0; min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; counter-increment: fig; }
+.step-col-figs figcaption { display: flex; gap: 6px; align-items: baseline; font-size: 15px; line-height: 1.45; padding: 8px 12px; border-bottom: 1px solid var(--line-soft); }
+.step-col-figs.numbered { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.step-col-figs.numbered figcaption::before { content: counter(fig) "."; flex: none; color: var(--focal); font-family: var(--font-display); font-weight: 700; }
+.step-col-figs img { display: block; width: 100%; max-height: 220px; object-fit: contain; }
+.step-col-figs:not(.numbered) img { max-height: 440px; }
+@media (max-width: 640px) { .step-col-figs.numbered { grid-template-columns: minmax(0, 1fr); } }
+/* stepcols figures reuse .step-figure (exempt from the inline-PNG reset); undo its grid placement */
+.step-col-figs .step-figure { grid-column: auto; }
+.step-col-figs .step-figure img { width: 100%; object-position: center; }
+/* Single-frame column stretches to the height of its neighbor */
+.step-col-figs:not(.numbered) { grid-template-rows: 1fr; }
+/* Single frame matches the width of one card in a numbered neighbor */
+@media (min-width: 641px) { .step-col-figs:not(.numbered) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.step-col-figs:not(.numbered) .step-figure img { flex: none; height: auto; max-height: 440px; margin: auto 0; }
+.step-col-figs .step-figure figcaption { flex: none; }
