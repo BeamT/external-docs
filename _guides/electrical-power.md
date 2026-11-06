@@ -55,9 +55,9 @@ Verify at every outlet:
 
 ## Placement
 
-Position outlets in line with the cord-exit end of each rail, where the rail's 8-foot built-in cable exits, so no extension cord is needed. Account for parklet features like pillars when siting the outlet.
+Position outlets in line with the cord-exit end of each rail, where the rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for parklet features like pillars when siting the outlet.
 
-{% include dodont.html do="Site the outlet in line with the cord-exit end of the rail, within reach of its 8-foot cable." dont="Site the outlet where the rail's cable can't reach without an extension cord." %}
+{% include dodont.html do="Site the outlet in line with the cord-exit end of the rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
 
 The Focal Hub also needs a standard outlet at the Hub Location marked on the site plan. Don't use an outlet on a light switch.
 

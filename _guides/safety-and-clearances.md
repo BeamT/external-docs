@@ -45,7 +45,7 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 
 - The heater runs on 120VAC, 60 Hz. Connect only to a properly installed, GFCI-protected, dedicated outlet.
 - Do not use the heater if the power cord or plug is damaged.
-- Do not use an extension cord or power strip. Plug directly into a dedicated outdoor outlet.
+- Do not use a power strip. Plug into a dedicated outdoor outlet, or into an extension cord rated 12 AWG or heavier if the rail's cable can't reach.
 - Do not run the cord under flooring, decking, or coverings where it can be pinched or damaged.
 - Outdoors, always use a weather-protected outlet with an in-use weatherproof cover.
 - Unplug the heater before relocating it, or before any cleaning or maintenance, or when not in use long-term.

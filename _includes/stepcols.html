@@ -1,14 +1,17 @@
 {% comment %}A numbered step whose body is side-by-side alternative columns.
-cols="Title|img,img|caption//caption ;; Title|img|caption". A column with more than one image
-gets numbered captions (1. 2.) above its frames. Parameters number, title, body, after as in step.html.{% endcomment %}
-<div class="step">
+cols="Title|img,img|caption//caption ;; Title|img|caption". The columns are alternatives
+(a fork), joined by an "or" divider. A column with more than one image gets numbered captions (1. 2.) above
+its frames. Parameters number, title, body, after as in step.html.{% endcomment %}
+<div class="step" id="step-{{ include.number }}">
   <div class="step-num">{{ include.number }}</div>
   <div class="step-body">
     <div class="step-title">{{ include.title }}</div>
     {% if include.body %}<p>{{ include.body }}</p>{% endif %}
+    <p class="step-jump">Follow one: {% assign jcols = include.cols | split: ";;" %}{% for jc in jcols %}{% assign jf = jc | split: "|" %}<a href="#step-{{ include.number }}-{{ jf[0] | strip | slugify }}">{{ jf[0] | strip }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}</p>
     <div class="step-cols">
       {% assign cols = include.cols | split: ";;" %}{% for col in cols %}{% assign f = col | split: "|" %}{% assign imgs = f[1] | split: "," %}{% assign caps = f[2] | split: "//" %}
-      <section class="step-col">
+      {% unless forloop.first %}<div class="step-or" aria-hidden="true">or</div>{% endunless %}
+      <section class="step-col" id="step-{{ include.number }}-{{ f[0] | strip | slugify }}">
         <div class="step-col-title">{{ f[0] | strip }}</div>
         <div class="step-col-figs{% if imgs.size > 1 %} numbered{% endif %}">
           {% for img in imgs %}

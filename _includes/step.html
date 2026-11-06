@@ -4,11 +4,12 @@ with "+" (a.png+b.png) to put just that pair side by side. captions="A text|B te
 each frame its own caption, in the same order as the images (pairs count as two).
 after="..." is text shown below the images.
 nonumber="true" drops the frame numbers (for frames that are alternatives, not a sequence).
+flat="true" drops the number and title so the images sit in a plain section.
 variant="true" marks an alternative to the step above: no number, aligned with its text.{% endcomment %}
-<div class="step{% if include.variant %} step-variant{% endif %}">
-  {% unless include.variant %}<div class="step-num">{{ include.number }}</div>{% endunless %}
+<div class="step{% if include.variant %} step-variant{% endif %}{% if include.flat %} step-flat{% endif %}"{% if include.number %}{% unless include.variant %} id="step-{{ include.number }}"{% endunless %}{% endif %}>
+  {% unless include.variant or include.flat %}<div class="step-num">{{ include.number }}</div>{% endunless %}
   <div class="step-body">
-    <div class="step-title">{{ include.title }}</div>
+    {% if include.title %}<div class="step-title">{{ include.title }}</div>{% endif %}
     {% if include.body and include.body != "" %}<p>{{ include.body }}</p>{% endif %}
     {% if include.diagram %}
     {% assign diagrams = include.diagram | split: "," %}
