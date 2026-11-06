@@ -65,9 +65,11 @@ None of these fit your site? See [Different mounting methods](#different-mountin
 
 Pick one method and use it on every bracket hole.
 
-- **Through bolts:** you can reach the far side of the beam, post or wall. Drill all the way through and secure with a washer and lock nut.
-- **Wood screws:** you can't reach the far side, and the wood is solid and at least 1.5" thick. Drill a pilot hole and screw in.
-- **Tapped holes:** the structure is metal thick enough to tap [confirm]. Drill and tap each hole, then thread the bolt straight in. No washer or nut.
+| Method | Use it when | Tools you need |
+|---|---|---|
+| Through bolts | You can reach the far side of the beam, post or wall. Drill all the way through and secure with a washer and lock nut. | 5/16" drill bit [confirm]<br>7/16" wrench or socket [confirm] |
+| Wood screws | You can't reach the far side, and the wood is solid and at least 1.5" thick. Drill a pilot hole and screw in. | 9/64" drill bit [confirm] |
+| Tapped holes | The structure is metal thick enough to tap [confirm]. Drill and tap each hole, then thread the bolt straight in. No washer or nut. | 13/64" drill bit [confirm]<br>1/4-20 tap [confirm] |
 
 Can't reach the far side, and the wood isn't solid? Don't mount here. Contact Focal. For concrete, supply your own fasteners rated for 300 lb.
 
@@ -94,11 +96,8 @@ Every rail ships with the same kit: two pre-built rail block assemblies, two of 
 | Tape measure, level and pencil | Every install: for marking the bracket holes and measuring the pipes | [Step 1](#step-1), [Step 2](#step-2) |
 | Ladder | Every install | [Step 1](#step-1) |
 | Pipe cutter or hacksaw, and a file for deburring | Every install: for cutting the dropdown pipe to length | [Step 2](#step-2) |
-| 9/64" drill bit [confirm] | When using wood screws: for pilot holes | [Step 1](#step-1) |
 | 3/8" drill bit | When using the vertical bracket: for the 1/2"-deep hole that takes the bracket's support shaft | [Step 1](#step-1) |
-| 5/16" drill bit [confirm] | With through bolts: for holes through the beam or post | [Step 1](#step-1) |
-| 7/16" wrench or socket [confirm] | With through bolts: for holding the lock nut | [Step 1](#step-1) |
-| 13/64" drill bit and 1/4-20 tap [confirm] | With tapped holes: for threading each hole | [Step 1](#step-1) |
+| Bit and tools for your fastening method | Every install: listed with each method | [Fastening options](#fastening-options) |
 | Cable clips or ties | Every install: for securing the cable | [Plug in the rail](#plug-in-the-rail) |
 | 12 AWG extension cord | Only if the 8-foot cable can't reach the outlet | [Plug in the rail](#plug-in-the-rail) |
 
