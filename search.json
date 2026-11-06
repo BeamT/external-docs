@@ -31,6 +31,9 @@ permalink: /search.json
       {%- if anchor != "" -%}{%- assign url = guide_url | append: "#" | append: anchor -%}{%- else -%}{%- assign url = guide_url -%}{%- endif -%}
       {%- assign body = chunk | replace_first: head_html, "" | replace: "<", " <" | strip_html | normalize_whitespace | strip -%}
     {%- endif -%}
+    {%- comment -%} strip_html leaves entities behind; the page renders text nodes only, so decode them. &amp; goes last. {%- endcomment -%}
+    {%- assign heading = heading | replace: "&nbsp;", " " | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+    {%- assign body = body | replace: "&nbsp;", " " | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
     {%- assign heading_lc = heading | downcase -%}
     {%- if heading_lc == "on this page" -%}{%- continue -%}{%- endif -%}
     {%- if heading == "" and body == "" -%}{%- continue -%}{%- endif -%}
