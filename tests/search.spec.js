@@ -17,8 +17,10 @@ let server;
 let base;
 
 test.beforeAll(async () => {
-  test.skip(!fs.existsSync(path.join(SITE, 'search.json')),
-    'Build the site first: jekyll build --baseurl ""');
+  const built = fs.existsSync(path.join(SITE, 'search.json'));
+  // In CI the workflow builds the site first, so a missing build is a failure.
+  if (process.env.CI && !built) throw new Error('_site/search.json missing: run jekyll build first');
+  test.skip(!built, 'Build the site first: jekyll build --baseurl ""');
   server = http.createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
     let file = path.join(SITE, p);
