@@ -1,0 +1,44 @@
+---
+layout: null
+permalink: /search.json
+---
+{%- comment -%}
+  Pre-computed search index, rebuilt by Jekyll on every GitHub Pages build.
+  One record per <h2> section of each listed guide (plus the guide's intro),
+  searched in the browser by assets/search.js. Guides with `unlisted: true`
+  are left out. "On this page" TOC sections are skipped.
+{%- endcomment -%}
+{%- assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" -%}
+{%- assign n = 0 -%}
+[
+{%- capture fixit_url -%}{{ "/fixit/" | relative_url }}{%- endcapture -%}
+{"id":0,"url":{{ fixit_url | jsonify }},"guide":"Troubleshoot now","heading":"Interactive troubleshooter","summary":"Follow the prompts to fix the issue, or send details to Focal Support.","audience":["customer","installer","electrician"],"body":"troubleshoot fix problem issue help not working offline not heating won't turn on no heat error app hub heater support contact email"}
+{%- for g in guides -%}
+  {%- assign guide_url = g.url | relative_url -%}
+  {%- assign chunks = g.content | split: "<h2" -%}
+  {%- for chunk in chunks -%}
+    {%- if forloop.first -%}
+      {%- assign heading = "" -%}
+      {%- assign url = guide_url -%}
+      {%- assign body = chunk | replace: "<", " <" | strip_html | normalize_whitespace | strip -%}
+    {%- else -%}
+      {%- assign head_html = chunk | split: "</h2>" | first -%}
+      {%- assign heading = "<h2" | append: head_html | append: "</h2>" | replace: "<", " <" | strip_html | normalize_whitespace | strip -%}
+      {%- assign anchor = "" -%}
+      {%- if head_html contains 'id="' -%}
+        {%- assign anchor = head_html | split: 'id="' | last | split: '"' | first -%}
+      {%- endif -%}
+      {%- if anchor != "" -%}{%- assign url = guide_url | append: "#" | append: anchor -%}{%- else -%}{%- assign url = guide_url -%}{%- endif -%}
+      {%- assign body = chunk | replace_first: head_html, "" | replace: "<", " <" | strip_html | normalize_whitespace | strip -%}
+    {%- endif -%}
+    {%- comment -%} strip_html leaves entities behind; the page renders text nodes only, so decode them. &amp; goes last. {%- endcomment -%}
+    {%- assign heading = heading | replace: "&nbsp;", " " | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+    {%- assign body = body | replace: "&nbsp;", " " | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&amp;", "&" -%}
+    {%- assign heading_lc = heading | downcase -%}
+    {%- if heading_lc == "on this page" -%}{%- continue -%}{%- endif -%}
+    {%- if heading == "" and body == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign n = n | plus: 1 -%}
+,{"id":{{ n }},"url":{{ url | jsonify }},"guide":{{ g.title | jsonify }},"heading":{{ heading | jsonify }},"summary":{{ g.summary | default: "" | jsonify }},"audience":{% if g.audience %}{{ g.audience | jsonify }}{% else %}[]{% endif %},"body":{{ body | jsonify }}}
+  {%- endfor -%}
+{%- endfor %}
+]
