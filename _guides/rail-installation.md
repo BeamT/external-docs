@@ -77,27 +77,27 @@ Can't reach the far side, and the wood isn't solid? Don't mount here. Contact Fo
 
 ## Gather the kit and tools
 
-### Kit hardware
+### Overhead mounting kit hardware
 
-Every rail ships with the same kit: two pre-built rail block assemblies, two of each bracket type, plus fasteners for all three fastening methods. Use two brackets per rail.
+The overhead mounting kit includes two pre-built rail block assemblies, two of each bracket type, plus fasteners for all three fastening methods. Use two brackets per rail.
 
 {% include kitgrid.html items="kit-rail-block.png|Rail block assembly|2|Fully assembled. The T-nuts, T-nut screws and set screws are already in place ;; kit-parallel-bracket.png|Overhead bracket|2|Underside of beam, joist or ceiling ;; kit-perpendicular-bracket.png|Vertical bracket|2|Side of beam, joist or wall ;; kit-set-screw.png|Set screw, 1/4-20 x 5/16\"|4|Clamps the pipe in the bracket. Thread two into each bracket ;; kit-dropdown-pipe.svg|Dropdown pipe, 6 ft|1|Cut into two drops that hang the rail ;; kit-wood-screw.png|Wood screw, #12 x 2\" and 3\"|4 of each length|For wood screws ;; kit-flat-head-screw.png|Machine screw, 1/4-20 x 1.5\", 2.5\" and 3.5\"|4 of each length|For through bolts and tapped holes ;; kit-washer.png|SAE washer, 1/4\" ID|4|For through bolts ;; kit-lock-nut.png|Nylon lock nut, 1/4-20|4|For through bolts" %}
 
-### Kit tools
+### Overhead mounting kit tools
 
 {% include kitgrid.html items="kit-tool-l-wrench-1-8.png|1/8\" L-wrench|1|Set screws ;; kit-tool-l-wrench-t30.png|T30 L-wrench|1|Machine screws, T-nut screws ;; kit-tool-t25-bit.png|T25 screwdriver bit|1|Wood screws" %}
 
 ### What to bring
 
-{% include warn.html text="The kit does not include a drill, drill bits, a nut wrench, a pipe cutter, or measuring tools. Have everything below with you before you start." %}
+{% include warn.html text="The overhead mounting kit does not include a drill, drill bits, a nut wrench, a pipe cutter, or measuring tools. Have everything below with you before you start." %}
 
 Bring these for every install:
 
 - Drill and ladder
 - Tape measure, level and pencil
-- Pipe cutter or hacksaw, and a file for deburring
+- Pipe cutter or hacksaw, and a deburring file
 - Cable clips or ties
-- 12 AWG extension cord, only if the 8-foot cable can't reach the outlet
+- 12 AWG extension cord, if the 8-foot cable can't reach the outlet
 
 Then add the tools for the choices you made:
 
@@ -105,9 +105,9 @@ Then add the tools for the choices you made:
 |---|---|
 | Overhead bracket | Nothing extra |
 | Vertical bracket | 3/8" support-shaft bit |
-| Wood screws | Pilot bit for #12 wood screws. The right size depends on your wood, so check a pilot hole chart. |
+| Wood screws | Pilot bit for #12 screws (size depends on your wood, so check a pilot hole chart) |
 | Through bolts | Through-hole bit for 1/4-20 bolts<br>7/16" wrench or socket |
-| Tapped holes | 1/4-20 tap, and the tap-drill bit that tap calls for |
+| Tapped holes | 1/4-20 tap<br>Matching tap-drill bit |
 
 
 ## Mount the rail
