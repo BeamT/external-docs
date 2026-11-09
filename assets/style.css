@@ -233,7 +233,6 @@ main :is(.step-grid, .step-row) .step-figure img[src$=".png"] { width: 100%; }
 /* ---- "On this page" list (plain markdown list, bullets stripped) ---- */
 .doc-body h2:first-of-type { margin-top: 20px; }
 .doc-body h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin: 24px 0 8px; }
-.doc-body td img { display: block; width: 140px; max-width: 100%; height: auto; }
 .doc-body > ul:first-of-type { list-style: none; }
 
 
