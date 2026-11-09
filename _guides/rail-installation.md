@@ -21,6 +21,8 @@ updated: "2026-10-15"
 - [Post-mount checks](#post-mount-checks)
 - [Plug in the rail](#plug-in-the-rail)
 
+{% include diagram.html src="rail-03-rail-mounted.png" caption="The finished install, overhead mount shown: the rail hangs level from two brackets on drop-down pipes." %}
+
 ## Before you start
 
 Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) first, and confirm each rail's location and length against the site plan.
@@ -55,9 +57,12 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Mounting options
 
-Pick the bracket that fits your structure. Use the same type for both brackets on a rail.
+Choose your mounting in two steps: the bracket type, then the fastening method below. Each lists what you bring. Use the same bracket type for both brackets on a rail.
 
-{% include step.html flat="true" captions="<strong>Overhead bracket:</strong> for an overhead surface, such as the underside of a beam, joist or ceiling.|<strong>Vertical bracket:</strong> for a vertical surface, such as the side of a beam, joist or wall." diagram="mount-parallel.png,mount-perpendicular.png" grid="true" nonumber="true" %}
+| Bracket | Image | Use on | You bring |
+|---|---|---|---|
+| Overhead bracket | <img src="{{ site.baseurl }}/assets/diagrams/mount-overhead.png" alt="Overhead bracket"> | Underside of a beam, joist or ceiling | Nothing extra |
+| Vertical bracket | <img src="{{ site.baseurl }}/assets/diagrams/mount-vertical.png" alt="Vertical bracket" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))"> | Side of a beam, joist or wall | 3/8" drill bit, for the 1/2"-deep hole that takes the support shaft |
 
 None of these fit your site? See [Different mounting methods](#different-mounting-methods).
 
@@ -65,11 +70,11 @@ None of these fit your site? See [Different mounting methods](#different-mountin
 
 Pick one method and use it on every bracket hole.
 
-| Method | Use it when | Tools you need |
+| Method | Use when | You bring |
 |---|---|---|
-| Through bolts | You can reach the far side of the beam, post or wall. Drill all the way through and secure with a washer and lock nut. | 5/16" drill bit [confirm]<br>7/16" wrench or socket [confirm] |
-| Wood screws | You can't reach the far side, and the wood is solid and at least 1.5" thick. Drill a pilot hole and screw in. | 9/64" drill bit [confirm] |
-| Tapped holes | The structure is metal thick enough to tap [confirm]. Drill and tap each hole, then thread the bolt straight in. No washer or nut. | 13/64" drill bit [confirm]<br>1/4-20 tap [confirm] |
+| Wood screws | Solid wood at least 1.5" thick, and you can't reach the far side | 9/64" drill bit [confirm] |
+| Through bolts | You can reach the far side of the beam, post or wall | 5/16" drill bit [confirm]<br>7/16" wrench or socket [confirm] |
+| Tapped holes | Metal thick enough to tap [confirm] | 13/64" drill bit [confirm]<br>1/4-20 tap [confirm] |
 
 Can't reach the far side, and the wood isn't solid? Don't mount here. Contact Focal. For concrete, supply your own fasteners rated for 300 lb.
 
@@ -79,16 +84,16 @@ Every rail ships with the same kit: two pre-built rail block assemblies, two of 
 
 ### Hardware
 
-{% include kitgrid.html items="kit-rail-block.png|Rail block assembly|2|Fully assembled. The T-nuts, T-nut screws and set screws are already in place ;; kit-parallel-bracket.png|Overhead bracket|2|Underside of beam, joist or ceiling ;; kit-perpendicular-bracket.png|Vertical bracket|2|Side of beam, joist or wall ;; kit-set-screw.png|Set screw, 1/4-20 x 5/16\"|4|Clamps the pipe in the bracket. Thread two into each bracket ;; kit-dropdown-pipe.svg|Dropdown pipe, 6 ft|1|Cut into two drops that hang the rail ;; kit-wood-screw.png|Wood screw, #12 x 2\" and 3\"|4 of each length|For wood screws ;; kit-flat-head-screw.png|Through bolt, 1/4-20 x 1.5\", 2.5\" and 3.5\"|4 of each length|For through bolts and tapped holes ;; kit-washer.png|SAE washer, 1/4\" ID|4|For through bolts ;; kit-lock-nut.png|Nylon lock nut, 1/4-20|4|For through bolts" %}
+{% include kitgrid.html items="kit-rail-block.png|Rail block assembly|2|Fully assembled. The T-nuts, T-nut screws and set screws are already in place ;; kit-parallel-bracket.png|Overhead bracket|2|Underside of beam, joist or ceiling ;; kit-perpendicular-bracket.png|Vertical bracket|2|Side of beam, joist or wall ;; kit-set-screw.png|Set screw, 1/4-20 x 5/16\"|4|Clamps the pipe in the bracket. Thread two into each bracket ;; kit-dropdown-pipe.svg|Dropdown pipe, 6 ft|1|Cut into two drops that hang the rail ;; kit-wood-screw.png|Wood screw, #12 x 2\" and 3\"|4 of each length|For wood screws ;; kit-flat-head-screw.png|Machine screw, 1/4-20 x 1.5\", 2.5\" and 3.5\"|4 of each length|For through bolts and tapped holes ;; kit-washer.png|SAE washer, 1/4\" ID|4|For through bolts ;; kit-lock-nut.png|Nylon lock nut, 1/4-20|4|For through bolts" %}
 
 ### Tools
 
-{% include kitgrid.html items="kit-tool-l-wrench-1-8.png|1/8\" L-wrench|1|Set screws ;; kit-tool-l-wrench-t30.png|T30 L-wrench|1|Through bolts, tapped-hole bolts, T-nut screws ;; kit-tool-t25-bit.png|T25 screwdriver bit|1|Wood screws" %}
+{% include kitgrid.html items="kit-tool-l-wrench-1-8.png|1/8\" L-wrench|1|Set screws ;; kit-tool-l-wrench-t30.png|T30 L-wrench|1|Machine screws, T-nut screws ;; kit-tool-t25-bit.png|T25 screwdriver bit|1|Wood screws" %}
 
 
 ## What you need to bring
 
-{% include warn.html text="The kit does not include a drill, drill bits, a nut wrench, a pipe cutter, or measuring tools. Have them with you before you start." %}
+{% include warn.html text="The kit does not include a drill, drill bits, a nut wrench, a pipe cutter, or measuring tools. Have them with you before you start, along with the tools listed for your bracket and fastening method." %}
 
 | You need | When you need it | Where |
 |---|---|---|
@@ -96,8 +101,6 @@ Every rail ships with the same kit: two pre-built rail block assemblies, two of 
 | Tape measure, level and pencil | Every install: for marking the bracket holes and measuring the pipes | [Step 1](#step-1), [Step 2](#step-2) |
 | Ladder | Every install | [Step 1](#step-1) |
 | Pipe cutter or hacksaw, and a file for deburring | Every install: for cutting the dropdown pipe to length | [Step 2](#step-2) |
-| 3/8" drill bit | When using the vertical bracket: for the 1/2"-deep hole that takes the bracket's support shaft | [Step 1](#step-1) |
-| Bit and tools for your fastening method | Every install: listed with each method | [Fastening options](#fastening-options) |
 | Cable clips or ties | Every install: for securing the cable | [Plug in the rail](#plug-in-the-rail) |
 | 12 AWG extension cord | Only if the 8-foot cable can't reach the outlet | [Plug in the rail](#plug-in-the-rail) |
 
@@ -108,9 +111,9 @@ Every rail ships with the same kit: two pre-built rail block assemblies, two of 
 <!-- Through-bolt sequence (screw through bracket, washer + lock nut on far side) is unconfirmed -->
 {% include stepcols.html number="1" title="Fasten the brackets" body="Fasten both brackets, spaced to match where the rail blocks will sit, about 12\" in from each end of the rail. The diagrams show wood screws. Use the longest screw that stays in the wood, at least 1.25\" into it, and tighten with the T25 bit." cols="Overhead bracket|rail-02a-screw-bracket.png|Drill a 9/64\" pilot hole at each bracket hole, then fasten the overhead bracket with one screw in each hole. ;; Vertical bracket|rail-02b-drill-hole.png,rail-02b-screw-bracket.png|Drill a 3/8\" hole, 1/2\" deep. It takes the bracket's support shaft only.//Drill a 9/64\" pilot hole at each bracket hole, then fasten the vertical bracket flat with one screw in each hole." %}
 
-{% include step.html variant="true" title="Through bolts instead of wood screws" body="At each bracket hole, drill a 5/16\" hole all the way through. Pass a through bolt through the bracket and the beam, then add a washer and lock nut on the far side. Pick a bolt long enough that its end is at least flush with the nut. Tighten with the T30 L-wrench, holding the nut with a 7/16\" wrench." %}
+{% include step.html variant="true" title="Through bolts instead of wood screws" body="At each bracket hole, drill a 5/16\" hole all the way through. Pass a machine screw through the bracket and the beam, then add a washer and lock nut on the far side. Pick a screw long enough that its end is at least flush with the nut. Tighten with the T30 L-wrench, holding the nut with a 7/16\" wrench." %}
 
-{% include step.html variant="true" title="Tapped holes instead of wood screws" body="At each bracket hole, drill a 13/64\" hole through the metal, then tap it 1/4-20. Thread a bolt through the bracket and into the tapped hole. No washer or nut. Pick a bolt long enough to engage at least 1/4\" of thread [confirm]. Tighten with the T30 L-wrench." %}
+{% include step.html variant="true" title="Tapped holes instead of wood screws" body="At each bracket hole, drill a 13/64\" hole through the metal, then tap it 1/4-20. Thread a machine screw through the bracket and into the tapped hole. No washer or nut. Pick a screw long enough to engage at least 1/4\" of thread [confirm]. Tighten with the T30 L-wrench." %}
 
 {% include step.html number="2" title="Insert the pipes" body="Fit a pipe in each bracket. Cut both pipes to the same length so the rail hangs level at the site plan height, allowing 2.25\" for the rail itself, then deburr the cuts." captions="Slide the dropdown pipe into the bracket (overhead bracket shown).|Tighten both set screws with the 1/8\" L-wrench, using the full handle until they stop." diagram="rail-02a-insert-pipe.png,rail-02a-set-screws.png" grid="true" %}
 
@@ -128,7 +131,7 @@ Focal offers mounting hardware, but off-the-shelf hardware also works through th
 
 - A threaded rod as a drop-down
 - A U-bolt to attach unistrut to a pipe
-- Attaching the rail directly to a wood beam with through bolts, without a drop-down, using the longer 1/4-20 through bolts with SAE washers and nylon lock nuts
+- Attaching the rail directly to a wood beam with through bolts, without a drop-down, using the longer 1/4-20 machine screws with SAE washers and nylon lock nuts
 - An L-bracket to unistrut when rails run perpendicular to a wall
 
 ## Post-mount checks
