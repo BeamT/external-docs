@@ -154,4 +154,3 @@ Focal offers mounting hardware, but off-the-shelf hardware also works through th
 
 Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. Plug into the outlet, then turn on the rail switch. It's on the cord-exit end, underneath the rail. Secure any slack with clips or ties so nothing hangs below the bottom of the rail.
 
-{% include nextlink.html slug="install-heaters" title="Install Heaters" %}

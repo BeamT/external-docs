@@ -81,4 +81,3 @@ Outside your scheduled hours, the heaters stay disabled. If someone tries to tur
 
 Inside your hours, heaters turn on when guests sit down and turn off when they leave, at the level set by the outside temperature (see [How heat levels get set](#how-heat-levels-get-set)). Any change you or a guest makes overrides the automatic level for that heater until the next cycle.
 
-{% include nextlink.html slug="individual-heater-control" title="Individual Heater Control" %}
