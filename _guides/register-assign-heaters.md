@@ -24,7 +24,7 @@ You need:
 
 * A mobile phone with internet and a camera.
 * The restaurant's Focal Control app link and password from Focal.
-* Every heater already seated in its rail slot and powered on.
+* Every heater already seated in its rail slot and powered on. Each heater's orange and purple LEDs should be lit before you scan, which means it is getting power. If they are dark, check that the rail is plugged in, the rail's power switch is on (at the cord-exit end, underneath the rail) and the breaker is on.
 * About 30 minutes.
 
 {% include warn.html text="Heaters can only be assigned while the site is online. If heaters won't assign or don't respond, check that the site's Focal Hub, or networking box on older systems, is plugged in and has internet. If it does and heaters still won't assign, contact Focal." %}

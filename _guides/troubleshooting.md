@@ -30,7 +30,7 @@ Covers offline, app, or QR code control. First give the pull string a short pull
 
 ### No power or lights
 
-Re-seat the heater first (pull the string down, slide it off and back on). If other heaters on the same rail are also dark, check the rail switch (on the cord-exit end, underneath the rail) and the breaker, then test the outlet on a known-good circuit. If Focal sends a replacement heater, see [Replace a Heater]({{ site.baseurl }}/replace-heaters/).
+Re-seat the heater first (pull the string down, slide it off and back on). If other heaters on the same rail are also dark, check the rail switch (on the cord-exit end, underneath the rail) and the breaker, then test the outlet on a known-good circuit. If Focal sends a replacement heater, see [Replace Heaters]({{ site.baseurl }}/replace-heaters/).
 
 {% include video.html id="no-power-video" src="no-power-lights.mp4" poster="no-power-lights-poster.jpg" qr="no-power-lights-qr.svg" caption="Checking power at the rail" %}
 

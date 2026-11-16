@@ -19,7 +19,7 @@ updated: "2026-10-15"
 
 ## Before you start
 
-The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the opening end, opposite the cord-exit end. Each Focal heater (Duo) has two heating heads and gets its power from the rail when it locks into a slot, so there is no separate cable to connect. After this, you'll assign each heater to its slot in the Focal Control app.
+The rail should already be mounted, plugged in, and switched on. Heaters slide onto the rail from the opening end, opposite the cord-exit end. Each Focal heater (Duo) has two heating heads and gets its power from the rail when it locks into a slot, so there is no separate cable to connect. Each heater's orange and purple LEDs light when it locks into a slot, which means it is getting power. If they stay dark, check that the rail is plugged in, the rail's power switch is on and the breaker is on. After this, you'll assign each heater to its slot in the Focal Control app.
 
 You need:
 
