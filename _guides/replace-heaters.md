@@ -58,7 +58,7 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Install the new heaters
 
-Install one heater at a time, working from the farthest slot toward the opening end. Repeat steps 1 to 4 for each new heater.
+Work slot by slot, from the farthest slot toward the opening end. For a slot getting a new heater, do steps 1 to 4. For a slot keeping its old heater, do step 5. Put one spacer between each pair of heaters, none after the last one.
 
 {% include step.html number="1" title="Unbox the new heater" body="Take a replacement out of its box. Leave the rest of the packaging on until the heater is started onto the rail." %}
 
@@ -66,9 +66,9 @@ Install one heater at a time, working from the farthest slot toward the opening 
 
 {% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip holding the lug down. It slides off by itself as the heater goes onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the slot a failed heater came out of, and let go. It locks in and its LEDs light. Then add a spacer after it." diagram="duo-06-inserted.png" %}
+{% include step.html number="4" title="Slide on and move to a failed heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the slot a failed heater came out of, and let go. It locks in and its LEDs light. If another heater goes on after this one, slide a spacer on next." diagram="duo-06-inserted.png" %}
 
-{% include step.html number="5" title="Put the other heaters back the way they were" body="Slide any heaters you are keeping back into their original slots, in the same order, with one spacer between each pair. Since they return to the same slots, their assignments stay correct. Only the new heaters need assigning." %}
+{% include step.html number="5" title="Put the heaters you are keeping back the way they were" body="When you reach a slot whose heater you are keeping, slide that heater back on, in the same order it came off. If another heater goes on after it, slide a spacer on next. Since they return to the same slots, their assignments stay correct. Only the new heaters need assigning." %}
 
 ## Close up the rail
 
@@ -80,7 +80,7 @@ Each swapped slot in the Focal Control app still points at the unit you removed,
 
 If you replaced every heater on the rail, the order doesn't matter. Assign each new heater to any slot on the rail, as long as each slot points at the heater actually sitting in it.
 
-{% include warn.html text="A new heater has to be powered before the app can assign it. Look at the new heater: its orange and purple side LEDs should be lit, which means it is getting power. If they are dark, check that the rail is plugged in, the rail's power switch is on (at the cord-exit end, underneath the rail) and the breaker is on." %}
+A new heater has to be powered before the app can assign it. Its orange and purple LEDs should be lit, which means it is getting power. If they are dark, see "No power or lights" in [Troubleshooting]({{ site.baseurl }}/troubleshooting/#no-power-or-lights).
 
 {% include warn.html text="The software layout must match the rail. If the slot points at the wrong heater, staff will turn on the wrong unit and think the system is broken." %}
 
@@ -88,7 +88,7 @@ If you replaced every heater on the rail, the order doesn't matter. Assign each 
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Select a swapped slot and tap Replace Heater" body="Tap a slot a failed heater came out of. Each heater shows on the map as two squares, one per heating head; tap either one. The panel below shows the old heater's serial number. Since you've already removed it from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks. If you are swapping several heaters, work one slot at a time." diagram="rep-02-replace.png" %}
+{% include step.html number="3" title="Select a swapped slot and tap Replace Heater" body="Tap a slot a failed heater came out of. Each heater shows on the map as two squares, one per heating head; tap either one. The panel below shows the old heater's serial number. Since you've already removed it from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
 
 {% include step.html number="4" title="Scan the new heater's QR code" body="Point the camera at the QR code on the new heater sitting in that slot: the round SCAN TO HEAT tag on the end of its pull string. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
 
@@ -99,13 +99,13 @@ If you replaced every heater on the rail, the order doesn't matter. Assign each 
 ## Confirm the new heaters
 
 {% include step.html number="1" title="Go to Heater Control" body="Open the menu in the top left and choose Heater Control." diagram="reg-02-nav.png" %}
-Make sure the rail's power switch is on before you scan. 
+
 {% include step.html number="2" title="Tap a slot and set a heat level" body="Tap a slot you just reassigned, then tap 1, 2, or 3 for either head. Look up at the new heater. Its LEDs should change to match the level you picked and it should start putting out heat. If a different heater responds, go back to Assign Devices and fix the assignment. Repeat for each slot you reassigned." diagram="reg-07-heater-hot.png" %}
 
 {% include step.html number="3" title="Turn them back off" body="Tap 0 on each heater you tested so nothing is left running before you go." %}
 
 ## Final checks
 
-{% include checklist.html items="Each new heater is in a slot an old one came out of, and every kept heater is back in its original slot | Each reassigned slot commands the new heater sitting in it and no other | There is a spacer between each pair of heaters | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
+{% include checklist.html items="Each new heater is in a slot an old one came out of | Every heater you kept is back in its original slot | Each reassigned slot commands the new heater sitting in it and no other | There is a spacer between each pair of heaters | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
 
 If a new heater won't come online or the wrong unit responds, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/).
