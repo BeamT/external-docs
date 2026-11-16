@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Install heaters onto the rail.
-version: "1.5"
-updated: "2026-10-15"
+version: "1.6"
+updated: "2026-11-16"
 ---
 
 ## On this page

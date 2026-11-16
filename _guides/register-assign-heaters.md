@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 60}
 order: 60
 summary: Scan and assign each heater to its slot.
-version: "1.5"
-updated: "2026-10-22"
+version: "1.6"
+updated: "2026-11-16"
 ---
 
 ## On this page

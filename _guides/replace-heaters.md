@@ -4,8 +4,8 @@ audience: []
 audience_order: {}
 order: 70
 summary: Swap one or more failed heaters on a rail and assign the new heaters to their slots.
-version: "1.2"
-updated: "2026-10-15"
+version: "1.3"
+updated: "2026-11-16"
 ---
 
 ## On this page
