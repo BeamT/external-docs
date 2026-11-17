@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 40}
 order: 30
 summary: Mount the rails and power them on.
-version: "1.4"
-updated: "2026-10-15"
+version: "2.0"
+updated: "2026-11-17"
 ---
 
 
