@@ -1,7 +1,7 @@
 ---
 name: preview
 description: Preview the site on a local Jekyll server and post the page URL. Use when the user says "preview", "show me", "let me see it", or asks to view a page or guide locally.
-argument-hint: "[page path, e.g. guides/rail-installation]"
+argument-hint: "[page path, e.g. rail-installation]"
 ---
 
 # Preview the site
