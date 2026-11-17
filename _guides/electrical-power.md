@@ -4,8 +4,8 @@ audience: [electrician]
 audience_order: {electrician: 10}
 order: 6
 summary: Circuit, outlet, and plug requirements for electricians.
-version: "1.3"
-updated: "2026-10-15"
+version: "1.4"
+updated: "2026-11-17"
 ---
 
 ## On this page
@@ -55,7 +55,7 @@ Verify at every outlet:
 
 ## Placement
 
-Position outlets in line with the cord-exit end of each rail, where the rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for parklet features like pillars when siting the outlet.
+Position outlets in line with the cord-exit end of each rail, where the rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for features like pillars or posts when siting the outlet.
 
 {% include dodont.html do="Site the outlet in line with the cord-exit end of the rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
 
