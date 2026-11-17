@@ -24,7 +24,7 @@ sitemap: false
 
 ## Why we ask
 
-Focal uses your floor plan, photos, and height to draw a Preliminary Layout: where the rails and heaters go, and what your electrician and installer need to know.
+Focal uses your floor plan, photos, and height to draw a Preliminary Layout: where the Rails and heaters go, and what your electrician and installer need to know.
 
 ## What you'll need
 

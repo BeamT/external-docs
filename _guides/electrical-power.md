@@ -18,27 +18,27 @@ updated: "2026-11-17"
 
 ## Overview
 
-Each Focal rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet on its own dedicated circuit.
+Each Focal Rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each Rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet on its own dedicated circuit.
 
-{% include dodont.html do="Give every rail its own dedicated branch circuit with a correctly sized breaker." dont="Share a circuit with other appliances or loads." %}
+{% include dodont.html do="Give every Rail its own dedicated branch circuit with a correctly sized breaker." dont="Share a circuit with other appliances or loads." %}
 
 ## System basics
 
-Each Focal heater is rated 600W (two 300W heating heads) at 120V, 60Hz. A rail's total load depends on how many heaters it carries.
+Each Focal heater is rated 600W (two 300W heating heads) at 120V, 60Hz. A Rail's total load depends on how many heaters it carries.
 
 Focal heaters conform to UL 2021 and are certified by TÜV Rheinland.
 
 ## Rail configurations
 
-Each rail is limited to a maximum number of heaters. The rail model determines the plug and the circuit you need to provide.
+Each Rail is limited to a maximum number of heaters. The Rail model determines the plug and the circuit you need to provide.
 
 {% include railtable.html %}
 
-{% include warn.html text="Never load a rail with more heaters than its row allows. If more heat is needed, add another rail on its own circuit." %}
+{% include warn.html text="Never load a Rail with more heaters than its row allows. If more heat is needed, add another Rail on its own circuit." %}
 
 ## Outlet and circuit by plug type
 
-Match the outlet and circuit to whichever plug the rail arrived with.
+Match the outlet and circuit to whichever plug the Rail arrived with.
 
 | Factory plug | Required outlet | Required circuit |
 |---|---|---|
@@ -47,7 +47,7 @@ Match the outlet and circuit to whichever plug the rail arrived with.
 
 ## Notes for electricians
 
-All cabling connected to a rail should be 12AWG rated for 20A.
+All cabling connected to a Rail should be 12AWG rated for 20A.
 
 Verify at every outlet:
 
@@ -55,9 +55,9 @@ Verify at every outlet:
 
 ## Placement
 
-Position outlets in line with the cord-exit end of each rail, where the rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for features like pillars or posts when siting the outlet.
+Position outlets in line with the cord-exit end of each Rail, where the Rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for features like pillars or posts when siting the outlet.
 
-{% include dodont.html do="Site the outlet in line with the cord-exit end of the rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
+{% include dodont.html do="Site the outlet in line with the cord-exit end of the Rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
 
 The Focal Hub also needs a standard outlet at the Hub Location marked on the site plan. Don't use an outlet on a light switch.
 

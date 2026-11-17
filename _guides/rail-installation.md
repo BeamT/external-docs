@@ -3,7 +3,7 @@ title: Install Rails
 audience: [installer]
 audience_order: {installer: 40}
 order: 30
-summary: Mount the rails and power them on.
+summary: Mount the Rails and power them on.
 version: "2.0"
 updated: "2026-11-17"
 ---
@@ -12,33 +12,33 @@ updated: "2026-11-17"
 ## On this page
 
 - [Before you start](#before-you-start)
-- [About the rails](#about-the-rails)
+- [About the Rails](#about-the-rails)
 - [Rail placement over the table](#rail-placement-over-the-table)
 - [Watch the video](#watch-the-video)
 - [Choose your mounting](#choose-your-mounting)
 - [Gather the kit and tools](#gather-the-kit-and-tools)
-- [Mount the rail](#mount-the-rail)
+- [Mount the Rail](#mount-the-rail)
 - [Different mounting methods](#different-mounting-methods)
 - [Post-mount checks](#post-mount-checks)
-- [Plug in the rail](#plug-in-the-rail)
+- [Plug in the Rail](#plug-in-the-rail)
 
-{% include diagram.html src="rail-03-rail-mounted.png" caption="The finished install, underside bracket shown: the rail hangs level from two brackets on drop-down pipes." %}
+{% include diagram.html src="rail-03-rail-mounted.png" caption="The finished install, underside bracket shown: the Rail hangs level from two brackets on drop-down pipes." %}
 
 ## Before you start
 
-Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) first. If you have a site plan, confirm each rail's location, length and height against it. If you don't, decide those three before you mount anything.
+Read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) first. If you have a site plan, confirm each Rail's location, length and height against it. If you don't, decide those three before you mount anything.
 
 - **Opening end:** heaters slide on at the end opposite the cord-exit end. Leave at least 4" past it, clear of walls, posts and beams.
-- **Power:** the rail has an 8-foot cable at the cord-exit end, so that end must face the outlet. If it can't reach, use a 12 AWG or heavier extension cord. See [Electrical & Power]({{ site.baseurl }}/electrical-power/).
-- **Helper:** a second person isn't required, but it makes lifting the rail much easier.
+- **Power:** the Rail has an 8-foot cable at the cord-exit end, so that end must face the outlet. If it can't reach, use a 12 AWG or heavier extension cord. See [Electrical & Power]({{ site.baseurl }}/electrical-power/).
+- **Helper:** a second person isn't required, but it makes lifting the Rail much easier.
 
 {% include dodont.html do="Confirm the mounting surface is solid and can hold 300 lb. For concrete, bring your own fasteners rated for 150 lb at each bracket." dont="Mount to anything that flexes or isn't rated for the load." %}
 
-{% include warn.html text="Do not power on the rail until mounting is complete and clearances are verified." %}
+{% include warn.html text="Do not power on the Rail until mounting is complete and clearances are verified." %}
 
-## About the rails
+## About the Rails
 
-The rail holds the Focal heaters, which go on after the rail is up. Rails come in three lengths:
+The Rail holds the Focal heaters, which go on after the Rail is up. Rails come in three lengths:
 
 {% include railtable.html %}
 
@@ -46,15 +46,15 @@ The T-slot on top takes the mounting hardware. The heaters slide onto a separate
 
 ## Rail placement over the table
 
-Ideally the rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the rail has to be off-center, heaters can be angled towards the guests.
+Ideally the Rail runs down the center of the table, so heat hits the middle of each guest's chest, not the top of their head. If the Rail has to be off-center, heaters can be angled towards the guests.
 
-{% include diagram.html src="rail-placement.png" caption="Center the rail over the table. If it has to be off-center, heaters can be angled toward guests." %}
+{% include diagram.html src="rail-placement.png" caption="Center the Rail over the table. If it has to be off-center, heaters can be angled toward guests." %}
 
 ## Watch the video
 
 Watch the full video once before you start. Refer to the step-by-step written instructions below.
 
-{% include video.html id="mount-video" src="rails-installation.mp4" poster="rails-installation-poster.jpg" qr="rails-installation-qr.svg" caption="Mounting the rail, start to finish" %}
+{% include video.html id="mount-video" src="rails-installation.mp4" poster="rails-installation-poster.jpg" qr="rails-installation-qr.svg" caption="Mounting the Rail, start to finish" %}
 
 ## Choose your mounting
 
@@ -85,9 +85,9 @@ For concrete, supply your own fasteners rated for 150 lb at each bracket. None o
 
 ### Overhead mounting kit hardware
 
-The overhead mounting kit includes two pre-built rail block assemblies, two of each bracket type, plus fasteners for all three fastening methods. Use two brackets per rail.
+The overhead mounting kit includes two pre-built Rail block assemblies, two of each bracket type, plus fasteners for all three fastening methods. Use two brackets per Rail.
 
-{% include kitgrid.html items="kit-rail-block.png|Rail block assembly|2|Slides into the rail's T-slot and clamps the pipe ;; kit-parallel-bracket.png|Underside bracket|2|Mounts to the underside of a beam or joist ;; kit-perpendicular-bracket.png|Side bracket|2|Mounts to the side of a beam or joist ;; kit-set-screw.png|Set screw, 1/4-20 x 5/16\"|4|Clamps the pipe in the bracket ;; kit-dropdown-pipe.png|Drop-down pipe, 3 ft|2|Cut to length to hang the rail ;; kit-wood-screw.png|Wood screw, #12 x 2\" and 3\"|4 of each length|Fastens brackets to solid wood ;; kit-flat-head-screw.png|Machine screw, 1/4-20 x 1.5\", 2.5\" and 3.5\"|4 of each length|Fastens brackets with a nut (through bolt) or into a tapped hole ;; kit-washer.png|SAE washer, 1/4\" ID|4|Sits under the lock nut ;; kit-lock-nut.png|Nylon lock nut, 1/4-20|4|Secures a through bolt on the far side" %}
+{% include kitgrid.html items="kit-rail-block.png|Rail block assembly|2|Slides into the Rail's T-slot and clamps the pipe ;; kit-parallel-bracket.png|Underside bracket|2|Mounts to the underside of a beam or joist ;; kit-perpendicular-bracket.png|Side bracket|2|Mounts to the side of a beam or joist ;; kit-set-screw.png|Set screw, 1/4-20 x 5/16\"|4|Clamps the pipe in the bracket ;; kit-dropdown-pipe.png|Drop-down pipe, 3 ft|2|Cut to length to hang the Rail ;; kit-wood-screw.png|Wood screw, #12 x 2\" and 3\"|4 of each length|Fastens brackets to solid wood ;; kit-flat-head-screw.png|Machine screw, 1/4-20 x 1.5\", 2.5\" and 3.5\"|4 of each length|Fastens brackets with a nut (through bolt) or into a tapped hole ;; kit-washer.png|SAE washer, 1/4\" ID|4|Sits under the lock nut ;; kit-lock-nut.png|Nylon lock nut, 1/4-20|4|Secures a through bolt on the far side" %}
 
 ### Overhead mounting kit tools
 
@@ -117,7 +117,7 @@ Then add the tools for the choices you made:
 | Tapped holes     | 1/4-20 tap<br>Drill bit for 1/4-20 tap                       |
 
 
-## Mount the rail
+## Mount the Rail
 
 <!-- 2" max for through bolts: 3.5" screw - bracket (19.69 mm underside, 25 mm side) - SAE washer (~0.065") - nylon lock nut (~0.33"). Gives 2.33" underside, 2.12" side; rounded down. Washer/nut thickness are typical values, not measured. -->
 
@@ -127,39 +127,39 @@ Then add the tools for the choices you made:
 
 <!-- Through-bolt sequence (screw through bracket, washer + lock nut on far side) is unconfirmed -->
 
-{% include stepcols.html number="1" title="Fasten the brackets with wood screws" body="Fasten both brackets about 12\" in from each end of the rail, spaced to match where the rail blocks will sit. Use the 3\" screw unless it would poke through the back of the wood, then use the 2\"." cols="Underside bracket|rail-02a-screw-bracket.png|Drill a pilot hole at each bracket hole. Fasten the underside bracket with one screw in each hole, using the T25 bit. ;; Side bracket|rail-02b-drill-hole.png,rail-02b-screw-bracket.png|Using the support-shaft bit, drill a hole 1/2\" deep. It takes the bracket's support shaft only.//Drill a pilot hole at each bracket hole. Fasten the side bracket flush against the surface with one screw in each hole, using the T25 bit." %}
+{% include stepcols.html number="1" title="Fasten the brackets with wood screws" body="Fasten both brackets about 12\" in from each end of the Rail, spaced to match where the Rail blocks will sit. Use the 3\" screw unless it would poke through the back of the wood, then use the 2\"." cols="Underside bracket|rail-02a-screw-bracket.png|Drill a pilot hole at each bracket hole. Fasten the underside bracket with one screw in each hole, using the T25 bit. ;; Side bracket|rail-02b-drill-hole.png,rail-02b-screw-bracket.png|Using the support-shaft bit, drill a hole 1/2\" deep. It takes the bracket's support shaft only.//Drill a pilot hole at each bracket hole. Fasten the side bracket flush against the surface with one screw in each hole, using the T25 bit." %}
 
 {% include step.html variant="true" title="Through bolts instead of wood screws" body="Use when you can reach the far side. For the side bracket, still drill the 1/2\" support-shaft hole first. Drill through the beam at each bracket hole, then bolt through with a machine screw, washer and lock nut. Use the 2.5\" screw for a beam up to 1\" thick, or the 3.5\" up to 2\". Tighten with the T30 L-wrench while holding the nut with the 7/16\" wrench. Thread the nut on fully." %}
 
 {% include step.html variant="true" title="Tapped holes instead of wood screws" body="Use for steel or aluminum at least 1/2\" thick. For the side bracket, still drill the 1/2\" support-shaft hole first. Drill each bracket hole with the tap-drill bit, tap it with the 1/4-20 tap, and thread in a 1.5\" machine screw with the T30 L-wrench." %}
 
-{% include step.html number="2" title="Insert the pipes" body="Fit a pipe in each bracket. Cut both pipes to the same length so the rail hangs level at the planned height, at least the minimum in Safety & Clearances. Measure from the top of the bracket down to your planned rail height (from the site plan, if you have one), then subtract 2.25\" for the rail. The pipe runs all the way through the bracket, so the bracket's height doesn't change the length. Deburr the cuts." captions="Slide the drop-down pipe into the bracket (underside bracket shown).|Tighten both set screws with the 1/8\" L-wrench, using the full handle until they stop." diagram="rail-02a-insert-pipe.png,rail-02a-set-screws.png" grid="true" %}
+{% include step.html number="2" title="Insert the pipes" body="Fit a pipe in each bracket. Cut both pipes to the same length so the Rail hangs level at the planned height, at least the minimum in Safety & Clearances. Measure from the top of the bracket down to your planned Rail height (from the site plan, if you have one), then subtract 2.25\" for the Rail. The pipe runs all the way through the bracket, so the bracket's height doesn't change the length. Deburr the cuts." captions="Slide the drop-down pipe into the bracket (underside bracket shown).|Tighten both set screws with the 1/8\" L-wrench, using the full handle until they stop." diagram="rail-02a-insert-pipe.png,rail-02a-set-screws.png" grid="true" %}
 
-{% include step.html number="3" title="Slide the rail blocks onto the rail" body="Keep the T-nut screws on top loose so the blocks can slide, and make sure the set screws are backed out enough for the pipe to fit." captions="Slide a rail block into the T-slot, set screws facing away from guests.|Use two per rail, spaced to match the brackets you installed above." diagram="rail-01-slide-block.png,rail-01-blocks-placed.png" %}
+{% include step.html number="3" title="Slide the Rail blocks onto the Rail" body="Keep the T-nut screws on top loose so the blocks can slide, and make sure the set screws are backed out enough for the pipe to fit." captions="Slide a Rail block into the T-slot, set screws facing away from guests.|Use two per Rail, spaced to match the brackets you installed above." diagram="rail-01-slide-block.png,rail-01-blocks-placed.png" %}
 
-{% include step.html number="4" title="Attach the rail to the pipes" after="Make sure the pipes hang straight down and give the rail a shake to confirm it's solid." captions="Lift the rail up under the pipes, ideally with a second person.|Slide each block under its pipe, then lift so the pipe seats in the block.|Tighten the block's set screws with the 1/8\" L-wrench, using the full handle until they stop.|Tighten the two T-nut screws on top with the T30 L-wrench." diagram="rail-03-raise-rail.png,rail-03-rail-mounted.png,rail-03-set-screws.png+rail-03-tnut-screws.png" %}
+{% include step.html number="4" title="Attach the Rail to the pipes" after="Make sure the pipes hang straight down and give the Rail a shake to confirm it's solid." captions="Lift the Rail up under the pipes, ideally with a second person.|Slide each block under its pipe, then lift so the pipe seats in the block.|Tighten the block's set screws with the 1/8\" L-wrench, using the full handle until they stop.|Tighten the two T-nut screws on top with the T30 L-wrench." diagram="rail-03-raise-rail.png,rail-03-rail-mounted.png,rail-03-set-screws.png+rail-03-tnut-screws.png" %}
 
 {% include step.html number="5" title="Re-check all set screws" body="Go back to every mount and re-tighten each set screw with the 1/8\" L-wrench, using the full handle until it stops." %}
 
 ## Different mounting methods
 
-Focal offers mounting hardware, but off-the-shelf hardware also works through the T-slot. Any mounting hardware must connect to the rail through T-nuts. Some sites need a different approach:
+Focal offers mounting hardware, but off-the-shelf hardware also works through the T-slot. Any mounting hardware must connect to the Rail through T-nuts. Some sites need a different approach:
 
 - A threaded rod as a drop-down
 - A U-bolt to attach unistrut to a pipe
-- Attaching the rail directly to a wood beam with through bolts, without a drop-down, using 1/4-20 machine screws and SAE washers
-- An L-bracket to unistrut when rails run perpendicular to a wall
+- Attaching the Rail directly to a wood beam with through bolts, without a drop-down, using 1/4-20 machine screws and SAE washers
+- An L-bracket to unistrut when Rails run perpendicular to a wall
 
 ## Post-mount checks
 
-{% include checklist.html items="Every fastener fully tightened, with set screws re-tightened using the full handle of the 1/8\" L-wrench, and the rail swings no more than 1/4\" from rest in either direction | Pipes plumb and rail level | Rail height and location match the site plan or your planned layout | All clearances in Safety & Clearances are met" %}
+{% include checklist.html items="Every fastener fully tightened, with set screws re-tightened using the full handle of the 1/8\" L-wrench, and the Rail swings no more than 1/4\" from rest in either direction | Pipes plumb and Rail level | Rail height and location match the site plan or your planned layout | All clearances in Safety & Clearances are met" %}
 
-{% include warn.html text="Under-tightened set screws will allow the rail to drop under load." %}
+{% include warn.html text="Under-tightened set screws will allow the Rail to drop under load." %}
 
 
-## Plug in the rail
+## Plug in the Rail
 
 {% include dodont.html do="Plug into a dedicated, GFCI-protected outdoor outlet on its own circuit. If the cable can't reach, use an extension cord rated 12 AWG or heavier." dont="Use a power strip, a lighter extension cord, or a circuit shared with other loads." %}
 
-Run the cable along the rail, up the mounting hardware, or along posts and beams so it stays out of sight from guests. Plug into the outlet, then turn on the rail switch. It's on the cord-exit end, underneath the rail. Secure any slack with clips or ties so nothing hangs below the bottom of the rail.
+Run the cable along the Rail, up the mounting hardware, or along posts and beams so it stays out of sight from guests. Plug into the outlet, then turn on the Rail switch. It's on the cord-exit end, underneath the Rail. Secure any slack with clips or ties so nothing hangs below the bottom of the Rail.
 

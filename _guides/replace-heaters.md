@@ -12,21 +12,21 @@ updated: "2026-10-15"
 
 - [Before you start](#before-you-start)
 - [Watch the video](#watch-the-video)
-- [Open the rail end](#open-the-rail-end)
+- [Open the Rail end](#open-the-rail-end)
 - [Remove the old heater](#remove-the-old-heater)
 - [Install the new heater](#install-the-new-heater)
-- [Close up the rail](#close-up-the-rail)
+- [Close up the Rail](#close-up-the-rail)
 - [Reassign the slot](#reassign-the-slot)
 - [Confirm the new heater](#confirm-the-new-heater)
 - [Final checks](#final-checks)
 
 ## Before you start
 
-This covers swapping a failed or damaged heater for a replacement on a rail that is already installed and running. You remove the old heater, install the new one and then assign the new heater to the slot in the Focal Control app.
+This covers swapping a failed or damaged heater for a replacement on a Rail that is already installed and running. You remove the old heater, install the new one and then assign the new heater to the slot in the Focal Control app.
 
-{% include diagram.html src="duo-00-parts.png" caption="The opening end of the rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the rail. Heaters and spacers come off in this order, so lay them out the same way." %}
+{% include diagram.html src="duo-00-parts.png" caption="The opening end of the Rail, left to right: end cap, bumper, a heater, a spacer, a second heater and the Rail. Heaters and spacers come off in this order, so lay them out the same way." %}
 
-{% include warn.html text="Note which slot the failed heater is in. Put every heater you take off back in its same slot, so the slots in Focal Control still match the rail." %}
+{% include warn.html text="Note which slot the failed heater is in. Put every heater you take off back in its same slot, so the slots in Focal Control still match the Rail." %}
 
 You need:
 
@@ -42,47 +42,47 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 {% include video.html id="swap-video" src="replace-heaters.mp4" poster="replace-heaters-poster.jpg" qr="replace-heaters-qr.svg" caption="Swapping a heater, start to finish" %}
 
-## Open the rail end
+## Open the Rail end
 
-{% include step.html number="1" title="Find the opening end" body="Work at the opening end of the rail, opposite the cord-exit end. This is the end with the removable end cap (orange)." diagram="duo-01-open-end.png" %}
+{% include step.html number="1" title="Find the opening end" body="Work at the opening end of the Rail, opposite the cord-exit end. This is the end with the removable end cap (orange)." diagram="duo-01-open-end.png" %}
 
-{% include step.html number="2" title="Loosen and slide the bumper" body="Look up at the underside of the rail." captions="Loosen the bumper screw with a 2 mm hex wrench.|Slide the bumper toward the center to uncover the two end cap screws." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
+{% include step.html number="2" title="Loosen and slide the bumper" body="Look up at the underside of the Rail." captions="Loosen the bumper screw with a 2 mm hex wrench.|Slide the bumper toward the center to uncover the two end cap screws." diagram="duo-01-bumper-screw.png,duo-01-bumper-slid.png" %}
 
 {% include step.html number="3" title="Remove the end cap" captions="Remove the two end cap screws with the 2 mm hex wrench, keeping one hand on the end cap so it doesn't fall.|Take off the end cap." diagram="duo-02-endcap-screws.png,duo-02-endcap-off.png" %}
 
 ## Remove the old heater
 
-{% include step.html number="1" title="Remove the bumper" body="Slide the bumper off the opening end of the rail." diagram="duo-03-remove-bumper.png" %}
+{% include step.html number="1" title="Remove the bumper" body="Slide the bumper off the opening end of the Rail." diagram="duo-03-remove-bumper.png" %}
 
 {% include step.html number="2" title="Slide off heaters until the failed one is out" body="Pull each heater's string down firmly and slide it off, then the spacer behind it. Keep going until the failed heater is off. Lay everything out in the order it came off, and set the failed heater aside to return to Focal." diagram="duo-04-remove-heater.png" %}
 
 ## Install the new heater
 
-{% include step.html number="1" title="Unbox the new heater" body="Take the replacement out of its box. Leave the rest of the packaging on until the heater is started onto the rail." %}
+{% include step.html number="1" title="Unbox the new heater" body="Take the replacement out of its box. Leave the rest of the packaging on until the heater is started onto the Rail." %}
 
-{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the opening end of the rail. The heater only fits one way: hold it with the pull string on the trailing side, away from the rail." diagram="duo-04-orient-string.png" %}
+{% include step.html number="2" title="Orient the heater" body="Heaters slide on from the opening end of the Rail. The heater only fits one way: hold it with the pull string on the trailing side, away from the Rail." diagram="duo-04-orient-string.png" %}
 
-{% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the rail. A new heater ships with a small plastic clip holding the lug down. It slides off by itself as the heater goes onto the rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
+{% include step.html number="3" title="Confirm the lug is down" body="The lug (the round power connector on top of the riser) must be down for the heater to slide onto the Rail. A new heater ships with a small plastic clip holding the lug down. It slides off by itself as the heater goes onto the Rail. If there's no clip and the lug is up, pull the pull string down until the lug drops." diagram="duo-05-lug-down.png" %}
 
-{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the rail and remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the slot the old one came out of, and let go. It locks in and its LEDs light." diagram="duo-06-inserted.png" %}
+{% include step.html number="4" title="Slide on and move to the old heater's slot" body="Slide the heater onto the Rail and remove the rest of the packaging. Pull the string down firmly to release the heater, slide it to the slot the old one came out of, and let go. It locks in and its LEDs light." diagram="duo-06-inserted.png" %}
 
 {% include step.html number="5" title="Put the other heaters back the way they were" body="Slide the heaters you removed back into their original slots, in the same order, with one spacer between each pair. Since they return to the same slots, their assignments stay correct. Only the new heater needs assigning." %}
 
-## Close up the rail
+## Close up the Rail
 
 {% include step.html number="1" title="Reinstall the bumper and end cap" captions="Slide the bumper on and push it clear of the end.|Refit the end cap.|Refit the two end cap screws.|Slide the bumper back against the end cap and tighten its screw (don't overtighten)." diagram="duo-08-bumper-on.png,duo-08-endcap-on.png,duo-02-endcap-screws.png,duo-01-bumper-screw.png" grid="true" %}
 
 ## Reassign the slot
 
-The old heater's slot in the Focal Control app still points at the unit you just removed, so you need to point it at the new heater. If every other heater went back in the same order it came off, leave those slots alone, since their assignments are still right. If you mixed up the order, reassign every slot on that rail the same way, so each slot points at the heater actually sitting in it.
+The old heater's slot in the Focal Control app still points at the unit you just removed, so you need to point it at the new heater. If every other heater went back in the same order it came off, leave those slots alone, since their assignments are still right. If you mixed up the order, reassign every slot on that Rail the same way, so each slot points at the heater actually sitting in it.
 
-{% include warn.html text="The software layout must match the rail. If the slot points at the wrong heater, staff will turn on the wrong unit and think the system is broken." %}
+{% include warn.html text="The software layout must match the Rail. If the slot points at the wrong heater, staff will turn on the wrong unit and think the system is broken." %}
 
 {% include step.html number="1" title="Open the Focal Control app and review the map" body="Sign in with the link and password from Focal. The restaurant map shows how the zones are laid out relative to the street and the patio entrance. Get oriented here before you start scanning, so you know which zone you are standing in." diagram="reg-01-map.png" %}
 
 {% include step.html number="2" title="Open Assign Devices" body="Tap the menu icon in the top left and choose Assign Devices." diagram="reg-02-nav.png" %}
 
-{% include step.html number="3" title="Select the old heater's slot and tap Replace Heater" body="Tap the slot the old heater came out of. Each heater shows on the map as two squares, one per heating head; tap either one. The panel below shows the old heater's serial number. Since you've already removed the old heater from the rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
+{% include step.html number="3" title="Select the old heater's slot and tap Replace Heater" body="Tap the slot the old heater came out of. Each heater shows on the map as two squares, one per heating head; tap either one. The panel below shows the old heater's serial number. Since you've already removed the old heater from the Rail, it's expected that it says Heater is offline. Tap Replace Heater, then tap the camera icon next to the field that opens and allow camera access if your phone asks." diagram="rep-02-replace.png" %}
 
 {% include step.html number="4" title="Scan the new heater's QR code" body="Point the camera at the QR code on the new heater: the round SCAN TO HEAT tag on the end of its pull string. The field fills in with the heater's code once it reads." diagram="reg-05-scan.png" %}
 
@@ -98,6 +98,6 @@ The old heater's slot in the Focal Control app still points at the unit you just
 
 ## Final checks
 
-{% include checklist.html items="The new heater sits in the same slot the old one came out of | Every other heater is back in its original slot with a spacer between each pair | The reassigned slot commands the new heater and no other | Bumper back on the rail, end cap screwed on, and bumper screw tightened" %}
+{% include checklist.html items="The new heater sits in the same slot the old one came out of | Every other heater is back in its original slot with a spacer between each pair | The reassigned slot commands the new heater and no other | Bumper back on the Rail, end cap screwed on, and bumper screw tightened" %}
 
 If the new heater won't come online or the wrong unit responds, see [Troubleshooting]({{ site.baseurl }}/troubleshooting/).
