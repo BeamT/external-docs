@@ -492,7 +492,7 @@ h2[id], h3[id] {
 .kit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 10px 0 18px; }
 @media (max-width: 520px) { .kit-grid { grid-template-columns: repeat(2, 1fr); } }
 .kit-card { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
-.kit-img { height: 140px; display: flex; align-items: center; justify-content: center; padding: 8px; border-bottom: 1px solid var(--line-soft); }
+.kit-img { height: 172px; display: flex; align-items: center; justify-content: center; padding: 6px; border-bottom: 1px solid var(--line-soft); }
 main .kit-img img, main .kit-img img[src$=".png"] { border: 0; border-radius: 0; max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 .kit-card figcaption { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; font-size: 15px; line-height: 1.35; }
 .kit-name { font-weight: 700; }
