@@ -18,9 +18,9 @@ updated: "2026-10-15"
 
 ## Overview
 
-Each Focal rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet on its own dedicated circuit.
+Each Focal rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet. Each rail needs its own circuit.
 
-{% include dodont.html do="Give every rail its own dedicated branch circuit with a correctly sized breaker." dont="Share a circuit with other appliances or loads." %}
+{% include dodont.html do="Give every rail its own circuit with a correctly sized breaker." dont="Put more than one rail on the same circuit." %}
 
 ## System basics
 
@@ -42,8 +42,8 @@ Match the outlet and circuit to whichever plug the rail arrived with.
 
 | Factory plug | Required outlet | Required circuit |
 |---|---|---|
-| NEMA 5-15P | NEMA 5-15R, outdoor-rated, GFCI protected | Dedicated 15A circuit, appropriately sized breaker |
-| NEMA 5-20P | NEMA 5-20R, outdoor-rated, GFCI protected | Dedicated 20A circuit, appropriately sized breaker |
+| NEMA 5-15P | NEMA 5-15R, outdoor-rated, GFCI protected | Its own 15A circuit, appropriately sized breaker |
+| NEMA 5-20P | NEMA 5-20R, outdoor-rated, GFCI protected | Its own 20A circuit, appropriately sized breaker |
 
 ## Notes for electricians
 
@@ -51,7 +51,7 @@ All cabling connected to a rail should be 12AWG rated for 20A.
 
 Verify at every outlet:
 
-{% include checklist.html items="Outdoor-rated receptacle with an in-use weatherproof cover | GFCI protection | Proper grounding | No exposed conductors or loose connections | Dedicated branch circuit, breaker sized to the plug" %}
+{% include checklist.html items="Outdoor-rated receptacle with an in-use weatherproof cover | GFCI protection | Proper grounding | No exposed conductors or loose connections | Rail on its own circuit, breaker sized to the plug" %}
 
 ## Placement
 
