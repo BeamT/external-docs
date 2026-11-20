@@ -139,6 +139,6 @@ Any mounting hardware must connect to the rail through T-nuts, but some sites ne
 
 ## Plug in the rail
 
-{% include dodont.html do="Plug directly into a dedicated, GFCI-protected outdoor outlet on its own circuit." dont="Use an extension cord, power strip, or a circuit shared with other loads." %}
+{% include dodont.html do="Plug directly into a GFCI-protected outdoor outlet on the rail's own circuit." dont="Use an extension cord, power strip, or a circuit shared with another rail." %}
 
 Run the cable along the rail, up the mounting hardware, or along parklet features so it stays out of sight from diners and the street. Plug into the outlet, then turn on the rail switch. It's on the cord-exit end, underneath the rail. Secure any slack so nothing hangs below the bottom of the rail.
