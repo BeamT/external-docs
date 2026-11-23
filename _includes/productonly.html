@@ -1,0 +1,12 @@
+{% comment %}productonly wraps content for one Product: for="restaurant" or for="home".
+Capture the content first so Markdown renders inside it:
+  {% capture body %}Text for restaurants.{% endcapture %}
+  {% include productonly.html for="restaurant" content=body %}
+On screen it shows only when the Guide page's Product matches (see _layouts/guide.html);
+in print both Products' blocks show, each with its label. The label is CSS-only
+(data-label), so it never reaches the search index. Put the block under the section's
+heading: search.json reads data-product-only to mark that section Restaurant-only or
+Home-only.{% endcomment %}
+<div class="product-block" data-product-only="{{ include.for }}" data-label="{% if include.for == 'home' %}Home{% else %}Restaurant{% endif %}">
+{{ include.content | markdownify }}
+</div>
