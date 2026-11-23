@@ -78,13 +78,17 @@ Markdown renders inside it, and put the block under the section's heading:
 
 - `for` is `restaurant` or `home`. On screen the block shows only when it matches
   the Guide page's Product: the Guide's own Product, or for a guide tagged
-  `both`, the saved choice (`focal-product` in `localStorage`), else Restaurant.
+  `both`, the saved choice (`focal-product` in `localStorage`, see `assets/product.js`), else Restaurant.
   In print both Products' blocks show, each with its label.
 - The search index marks a section holding a block with `only` (`restaurant` or
   `home`), so Product-scoped search can skip it.
-- `equivalent: /other-guide/` in front matter links a single-Product guide to the
-  other Product's version in its one-line note.
-- All of this, plus the "Restaurant · Home" tag and the note, stays hidden until
+- Each guide header gets one line: "For Restaurants. View for Homes instead".
+  On a guide tagged `both` the link flips the page in place; on a single-Product
+  guide it goes to the other Product's version, set with `equivalent: /other-guide/`
+  in front matter (no link without it). Opening a guide only reads the saved
+  choice; clicking the link saves it. `assets/product.js` holds the read and write.
+  The line does not print.
+- All of this stays hidden until
   `home_enabled: true` in `_config.yml`. Until then the site is Restaurant only.
 - `tests/guide-product.spec.js` builds its own copy of the site with the setting
   on. It needs Ruby and Bundler.

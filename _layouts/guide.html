@@ -4,12 +4,7 @@ layout: default
 {% assign guide_product = page.product | default: "restaurant" %}
 {% comment %}Until the Home setting (home_enabled) is on, the site is Restaurant only: no tag, no note, no Home content.{% endcomment %}
 <article class="doc" data-guide-product="{{ guide_product }}" data-product="{% if guide_product == 'home' and site.home_enabled %}home{% else %}restaurant{% endif %}"{% if site.home_enabled %} data-home="on"{% endif %}>
-{% if site.home_enabled and guide_product == "both" %}
-<script>
-    // A Guide tagged both follows the saved Product choice. Reading only: opening a Guide never changes it.
-    try { if (localStorage.getItem("focal-product") === "home") document.currentScript.parentNode.setAttribute("data-product", "home"); } catch (e) {}
-  </script>
-  {% endif %}
+{% if site.home_enabled %}<script src="{{ '/assets/product.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>{% endif %}
 
   <a href="{{ site.baseurl }}/" class="crumb">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -19,12 +14,17 @@ layout: default
   <div class="doc-head">
     <h1>{{ page.title }}</h1>
     {% if site.home_enabled %}
-      {% if guide_product == "both" %}
-        <p class="product-tag">Restaurant · Home</p>
-      {% else %}
-        {% if guide_product == "home" %}{% assign this_name = "Focal Home" %}{% assign other_name = "Restaurant" %}{% else %}{% assign this_name = "Focal Restaurant" %}{% assign other_name = "Home" %}{% endif %}
-        <p class="product-note">This guide is for {{ this_name }}.{% if page.equivalent %} <a href="{{ page.equivalent | relative_url }}">See the {{ other_name }} version</a>{% endif %}</p>
-      {% endif %}
+      {% comment %}One line says which Product the page is for and links to the other. On a Guide tagged both the link flips the page in place; on a single-Product Guide it goes to the equivalent Guide, when there is one. Either click saves the choice (assets/product.js).{% endcomment %}
+      <p class="product-line">
+        {% if guide_product == "both" %}
+          <span data-for="restaurant">For Restaurants.</span><span data-for="home">For Homes.</span>
+          <a href="#" class="product-switch" data-switch="home" data-flip>View for Homes instead</a><a href="#" class="product-switch" data-switch="restaurant" data-flip>View for Restaurants instead</a>
+        {% elsif guide_product == "home" %}
+          <span>For Homes.</span>{% if page.equivalent %} <a href="{{ page.equivalent | relative_url }}" data-switch="restaurant">View for Restaurants instead</a>{% endif %}
+        {% else %}
+          <span>For Restaurants.</span>{% if page.equivalent %} <a href="{{ page.equivalent | relative_url }}" data-switch="home">View for Homes instead</a>{% endif %}
+        {% endif %}
+      </p>
     {% endif %}
     <div class="doc-meta">
       <span>v{{ page.version }}</span>

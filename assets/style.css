@@ -165,9 +165,13 @@ a { color: inherit; }
 .doc[data-home="on"][data-guide-product="both"] .product-block::before { display: block; }
 .doc[data-product="restaurant"] .product-block[data-product-only="home"],
 .doc[data-product="home"] .product-block[data-product-only="restaurant"] { display: none; }
-.product-tag { display: inline-block; margin: 0 0 8px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink-soft); font-size: 13px; font-weight: 700; }
-.product-note { margin: 0 0 8px; color: var(--ink-soft); font-size: 15px; }
-.product-note a { color: var(--focal-ink); }
+.product-line { margin: 0 0 8px; color: var(--ink-soft); font-size: 15px; }
+.product-line a { color: var(--focal-ink); }
+.doc[data-guide-product="both"] .product-line [data-for], .doc[data-guide-product="both"] .product-switch { display: none; }
+.doc[data-guide-product="both"][data-product="restaurant"] [data-for="restaurant"],
+.doc[data-guide-product="both"][data-product="home"] [data-for="home"] { display: inline; }
+.doc[data-guide-product="both"][data-js][data-product="restaurant"] [data-switch="home"],
+.doc[data-guide-product="both"][data-js][data-product="home"] [data-switch="restaurant"] { display: inline; }
 
 /* ---- framed diagrams (SVG) ----
    The frame hugs the diagram and sits in the text column so its left edge
@@ -252,7 +256,7 @@ main :is(.step-grid, .step-row) .step-figure img[src$=".png"] { width: 100%; }
 @media print {
   :root { --wash: #fff; }
   body { background: #fff; font-size: 12pt; }
-  .topbar, .filter-row, .doc-footer, .crumb, .no-print { display: none !important; }
+  .topbar, .filter-row, .doc-footer, .crumb, .no-print, .product-line { display: none !important; }
   .wrap { max-width: none; padding: 0; }
   .doc { padding: 0; }
   .card { break-inside: avoid; }

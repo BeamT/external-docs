@@ -118,25 +118,31 @@ test.afterAll(async () => {
 
 test.setTimeout(120000);
 
-test('a Guide tagged both shows the Restaurant · Home tag', async ({ page }) => {
+test('a Guide tagged both says which Product it shows and offers the other', async ({ page }) => {
   await page.goto(`${on}/fixture-both-guide/`);
-  await expect(page.locator('.product-tag')).toHaveText('Restaurant · Home');
-  await expect(page.locator('.product-note')).toHaveCount(0);
+  const line = page.locator('.product-line');
+  await expect(line).toContainText('For Restaurants.');
+  await expect(line.getByRole('link', { name: 'View for Homes instead' })).toBeVisible();
+  await expect(line.getByRole('link', { name: 'View for Restaurants instead' })).toBeHidden();
+  await page.evaluate((k) => localStorage.setItem(k, 'home'), KEY);
+  await page.reload();
+  await expect(line).toContainText('For Homes.');
+  await expect(line.getByRole('link', { name: 'View for Restaurants instead' })).toBeVisible();
 });
 
-test('a single-Product Guide shows the note with a link to the equivalent', async ({ page }) => {
+test('a single-Product Guide says so and links to the equivalent', async ({ page }) => {
   await page.goto(`${on}/fixture-home-guide/`);
-  const note = page.locator('.product-note');
-  await expect(note).toContainText('This guide is for Focal Home');
-  await expect(note.locator('a')).toHaveAttribute('href', '/fixture-both-guide/');
-  await expect(page.locator('.product-tag')).toHaveCount(0);
+  const line = page.locator('.product-line');
+  await expect(line).toContainText('For Homes.');
+  await expect(line.locator('a')).toHaveAttribute('href', '/fixture-both-guide/');
+  await expect(line.locator('a')).toHaveText('View for Restaurants instead');
 });
 
-test('the note has no link when there is no equivalent', async ({ page }) => {
+test('the line has no link when there is no equivalent', async ({ page }) => {
   await page.goto(`${on}/fixture-restaurant-guide/`);
-  const note = page.locator('.product-note');
-  await expect(note).toContainText('This guide is for Focal Restaurant');
-  await expect(note.locator('a')).toHaveCount(0);
+  const line = page.locator('.product-line');
+  await expect(line).toContainText('For Restaurants.');
+  await expect(line.locator('a')).toHaveCount(0);
 });
 
 test('conditional content follows the Guide page Product', async ({ page }) => {
@@ -163,21 +169,47 @@ test('opening a Home Guide with Restaurant saved leaves the saved choice unchang
   await page.goto(`${on}/fixture-restaurant-guide/`);
   await page.evaluate((k) => localStorage.setItem(k, 'restaurant'), KEY);
   await page.goto(`${on}/fixture-home-guide/`);
-  await expect(page.locator('.product-note')).toBeVisible();
+  await expect(page.locator('.product-line')).toContainText('For Homes.');
   expect(await page.evaluate((k) => localStorage.getItem(k), KEY)).toBe('restaurant');
+});
+
+test('clicking View for Homes instead flips the page and saves Home', async ({ page }) => {
+  await page.goto(`${on}/fixture-both-guide/`);
+  await page.evaluate((k) => localStorage.setItem(k, 'restaurant'), KEY);
+  await page.reload();
+  await page.getByRole('link', { name: 'View for Homes instead' }).click();
+  await expect(page.getByText('App text for homes.')).toBeVisible();
+  await expect(page.getByText('Hub text for restaurants.')).toBeHidden();
+  await expect(page.locator('.product-line')).toContainText('For Homes.');
+  expect(await page.evaluate((k) => localStorage.getItem(k), KEY)).toBe('home');
+  await page.reload();
+  await expect(page.getByText('App text for homes.')).toBeVisible();
+});
+
+test('clicking the link to the equivalent Guide saves that Product', async ({ page }) => {
+  await page.goto(`${on}/fixture-home-guide/`);
+  await page.evaluate((k) => localStorage.setItem(k, 'home'), KEY);
+  await page.getByRole('link', { name: 'View for Restaurants instead' }).click();
+  await expect(page).toHaveURL(/fixture-both-guide/);
+  expect(await page.evaluate((k) => localStorage.getItem(k), KEY)).toBe('restaurant');
+});
+
+test('the line does not print', async ({ page }) => {
+  await page.goto(`${on}/fixture-both-guide/`);
+  await page.emulateMedia({ media: 'print' });
+  await expect(page.locator('.product-line')).toBeHidden();
 });
 
 test('with the setting off nothing new is visible', async ({ page }) => {
   await page.goto(`${off}/fixture-both-guide/`);
-  await expect(page.locator('.product-tag')).toHaveCount(0);
-  await expect(page.locator('.product-note')).toHaveCount(0);
+  await expect(page.locator('.product-line')).toHaveCount(0);
   await expect(page.getByText('Hub text for restaurants.')).toBeVisible();
   await expect(page.getByText('App text for homes.')).toBeHidden();
   await page.evaluate((k) => localStorage.setItem(k, 'home'), KEY);
   await page.reload();
   await expect(page.getByText('App text for homes.')).toBeHidden();
   await page.goto(`${off}/fixture-home-guide/`);
-  await expect(page.locator('.product-note')).toHaveCount(0);
+  await expect(page.locator('.product-line')).toHaveCount(0);
 });
 
 test('search index marks a section that holds a Product-only block', async () => {
