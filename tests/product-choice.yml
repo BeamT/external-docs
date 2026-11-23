@@ -1,0 +1,3 @@
+# Build override for the product-choice Playwright tests:
+#   jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
+product_choice: true
