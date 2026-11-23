@@ -5,8 +5,8 @@ audience_order: {installer: 5}
 order: 5
 summary: Pre-job checklist and the full install sequence at a glance.
 lead: true
-version: "1.8"
-updated: "2026-10-21"
+version: "1.9"
+updated: "2026-11-17"
 ---
 
 ## On this page
@@ -19,7 +19,7 @@ Prefer a hard copy? The printable packet contains everything you need in one pla
 
 ## Confirm before you start
 
-{% include checklist.html items="Site plan and this packet are on hand | The number of Rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand | The restaurant's WiFi name and password (from Focal or the restaurant), in case the Hub isn't configured yet | Focal Control app link and password from Focal | A phone with a camera and internet | A 2 mm hex wrench for the Rail end cap and bumper | Rail mounting surface can support 300 lb | A dedicated GFCI outlet is installed at the cord-exit end of each Rail" %}
+{% include checklist.html items="Site plan and this packet are on hand, and the number of Rails and heaters on hand match the site plan | Focal Hub and its power cord are on hand, plus the restaurant's WiFi name and password (from Focal or the restaurant) in case the Hub isn't configured yet | A phone with a camera and internet, plus the Focal Control app link and password from Focal | A 2 mm hex wrench for the Rail end cap and bumper | The site is ready: the Rail mounting surface can support 300 lb, and a GFCI outlet on its own circuit is installed at the cord-exit end of each Rail" %}
 
 {% include warn.html text="Do not power on any Rail until mounting is complete and clearances are verified." %}
 

@@ -84,6 +84,28 @@ SVG. Reference them by filename in `diagram`/`step` includes.
 The whole visual identity lives in `assets/style.css` (colors, type, the
 do/don't cards, steps, print rules). Edit once; every guide updates.
 
+## Search
+
+The search box in the header (on every page except `/fixit/`) does full-text
+search over every guide, in the browser, with no external service:
+
+- `search.json` is a Liquid template. Jekyll builds it into a
+  pre-computed index on every Pages build. It holds one record per `##`
+  section of each guide, linked to that section's anchor, plus one hand-written
+  record for the `/fixit/` wizard. New guides are indexed automatically.
+  Guides with `unlisted: true` are left out, and so are "On this page" TOC
+  sections.
+- `assets/search.js` fetches the index the first time someone focuses the
+  box, then searches it with [MiniSearch](https://github.com/lucaong/minisearch),
+  which is vendored at `assets/vendor/minisearch.min.js` (MIT, ~6 KB gzipped).
+  Search matches prefixes and tolerates typos ("clearence" finds
+  "clearance"). Headings rank above body text. Press `/` to focus the box.
+- To upgrade MiniSearch: `npm pack minisearch@<version>`, minify
+  `dist/umd/index.js` (e.g. `npx terser -c -m`), and replace the vendored
+  file, keeping the version/license header comment.
+- `tests/search.spec.js` covers it. Run `jekyll build --baseurl ""` first,
+  because the test reads `_site/` (it skips if `_site/` is missing).
+
 ## The homepage and the troubleshooting tool
 
 `index.html` is the landing page. It organizes guides **by audience**

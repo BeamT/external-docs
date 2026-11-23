@@ -4,8 +4,8 @@ audience: [installer]
 audience_order: {installer: 50}
 order: 40
 summary: Install heaters onto the Rail.
-version: "1.5"
-updated: "2026-10-15"
+version: "1.6"
+updated: "2026-11-16"
 ---
 
 ## On this page
@@ -19,7 +19,7 @@ updated: "2026-10-15"
 
 ## Before you start
 
-The Rail should already be mounted, plugged in, and switched on. Heaters slide onto the Rail from the opening end, opposite the cord-exit end. Each Focal heater (Duo) has two heating heads and gets its power from the Rail when it locks into a slot, so there is no separate cable to connect. After this, you'll assign each heater to its slot in the Focal Control app.
+The Rail should already be mounted, plugged in, and switched on. Heaters slide onto the Rail from the opening end, opposite the cord-exit end. Each Focal heater (Duo) has two heating heads and gets its power from the Rail when it locks into a slot, so there is no separate cable to connect. Each heater's orange and purple LEDs light when it locks into a slot, which means it is getting power. If they stay dark, check that the Rail is plugged in, the Rail's power switch is on and the breaker is on. After this, you'll assign each heater to its slot in the Focal Control app.
 
 You need:
 

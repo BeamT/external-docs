@@ -28,7 +28,7 @@ Start with the [troubleshooting tool]({{ site.baseurl }}/fixit/) — it resolves
 
 {% include service.html %}
 
-If a unit is damaged or malfunctioning, discontinue use, secure any loose parts, and contact Focal for a replacement rather than attempting a repair. When the replacement arrives, follow [Replace a Heater]({{ site.baseurl }}/replace-heaters/).
+If a unit is damaged or malfunctioning, discontinue use, secure any loose parts, and contact Focal for a replacement rather than attempting a repair. When the replacement arrives, follow [Replace Heaters]({{ site.baseurl }}/replace-heaters/).
 
 ## Contact Focal
 

@@ -63,11 +63,6 @@ Make two choices: a bracket type, then a fastening method. The tools for each ar
 ### Bracket type
 
 
-| Bracket           | Use on                       |
-| ----------------- | ---------------------------- |
-| Underside bracket | Underside of a beam or joist |
-| Side bracket      | Side of a beam or joist      |
-
 
 ### Fastening method
 
@@ -159,7 +154,7 @@ Focal offers mounting hardware, but off-the-shelf hardware also works through th
 
 ## Plug in the Rail
 
-{% include dodont.html do="Plug into a dedicated, GFCI-protected outdoor outlet on its own circuit. If the cable can't reach, use an extension cord rated 12 AWG or heavier." dont="Use a power strip, a lighter extension cord, or a circuit shared with other loads." %}
+{% include dodont.html do="Plug into a GFCI-protected outdoor outlet on the Rail's own circuit. If the cable can't reach, use an extension cord rated 12 AWG or heavier." dont="Use a power strip, a lighter extension cord, or a circuit shared with another Rail." %}
 
 Run the cable along the Rail, up the mounting hardware, or along posts and beams so it stays out of sight from guests. Plug into the outlet, then turn on the Rail switch. It's on the cord-exit end, underneath the Rail. Secure any slack with clips or ties so nothing hangs below the bottom of the Rail.
 
