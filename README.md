@@ -59,12 +59,35 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-`product`, `stage`, `install_order` and `operate_order` are data only for now:
-nothing reads them yet, so the "Next" chain and print packet still follow the
+`stage`, `install_order` and `operate_order` are data only for now: nothing
+reads them yet (only `product` is read, by the guide layout, see below), so the "Next" chain and print packet still follow the
 old fields. `audience` and `audience_order` are those old per-role fields. The
 landing page, search index, "Next" link and print packet read them until the
 Stage tabs replace them; keep them on existing guides and leave them off new
 ones.
+
+## Product-only content and the Guide Product tag
+
+Wrap content for one Product in `productonly.html`. Capture the text first so
+Markdown renders inside it, and put the block under the section's heading:
+
+```liquid
+{% raw %}{% capture hub %}Plug the Hub into the outlet.{% endcapture %}
+{% include productonly.html for="restaurant" content=hub %}{% endraw %}
+```
+
+- `for` is `restaurant` or `home`. On screen the block shows only when it matches
+  the Guide page's Product: the Guide's own Product, or for a guide tagged
+  `both`, the saved choice (`focal-product` in `localStorage`), else Restaurant.
+  In print both Products' blocks show, each with its label.
+- The search index marks a section holding a block with `only` (`restaurant` or
+  `home`), so Product-scoped search can skip it.
+- `equivalent: /other-guide/` in front matter links a single-Product guide to the
+  other Product's version in its one-line note.
+- All of this, plus the "Restaurant · Home" tag and the note, stays hidden until
+  `home_enabled: true` in `_config.yml`. Until then the site is Restaurant only.
+- `tests/guide-product.spec.js` builds its own copy of the site with the setting
+  on. It needs Ruby and Bundler.
 
 ## The building blocks
 

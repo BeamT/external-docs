@@ -5,7 +5,8 @@ permalink: /search.json
 {%- comment -%}
   Pre-computed search index, rebuilt by Jekyll on every GitHub Pages build.
   One record per <h2> section of each listed guide (plus the guide's intro),
-  searched in the browser by assets/search.js. Guides with `unlisted: true`
+  searched in the browser by assets/search.js. "only" is "restaurant" or "home"
+  when the section holds a productonly.html block, otherwise "". Guides with `unlisted: true`
   are left out. "On this page" TOC sections are skipped.
 {%- endcomment -%}
 {%- assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" -%}
@@ -37,8 +38,13 @@ permalink: /search.json
     {%- assign heading_lc = heading | downcase -%}
     {%- if heading_lc == "on this page" -%}{%- continue -%}{%- endif -%}
     {%- if heading == "" and body == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign only = "" -%}
+    {%- assign has_r = false -%}{%- assign has_h = false -%}
+    {%- if chunk contains 'data-product-only="restaurant"' -%}{%- assign has_r = true -%}{%- endif -%}
+    {%- if chunk contains 'data-product-only="home"' -%}{%- assign has_h = true -%}{%- endif -%}
+    {%- if has_r and has_h -%}{%- assign only = "" -%}{%- elsif has_r -%}{%- assign only = "restaurant" -%}{%- elsif has_h -%}{%- assign only = "home" -%}{%- endif -%}
     {%- assign n = n | plus: 1 -%}
-,{"id":{{ n }},"url":{{ url | jsonify }},"guide":{{ g.title | jsonify }},"heading":{{ heading | jsonify }},"summary":{{ g.summary | default: "" | jsonify }},"audience":{% if g.audience %}{{ g.audience | jsonify }}{% else %}[]{% endif %},"body":{{ body | jsonify }}}
+,{"id":{{ n }},"url":{{ url | jsonify }},"guide":{{ g.title | jsonify }},"heading":{{ heading | jsonify }},"summary":{{ g.summary | default: "" | jsonify }},"audience":{% if g.audience %}{{ g.audience | jsonify }}{% else %}[]{% endif %},"only":{{ only | jsonify }},"body":{{ body | jsonify }}}
   {%- endfor -%}
 {%- endfor %}
 ]
