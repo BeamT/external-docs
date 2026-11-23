@@ -145,8 +145,13 @@ do/don't cards, steps, print rules). Edit once; every guide updates.
 
 ## Search
 
-The search box in the header (on every page except `/fixit/`) does full-text
-search over every guide, in the browser, with no external service:
+Search opens in one panel from the top-bar icon, the landing-page search
+field, or the `/` key (on every page except `/fixit/`). On desktop it drops
+below the top bar; on phones it fills the screen. Escape, Cancel or a click
+outside closes it and returns focus to whatever opened it. A scope line under
+the input says what is searched ("Searching all guides" while the Product
+setting is off). It does full-text search over every guide, in the browser,
+with no external service:
 
 - `search.json` is a Liquid template. Jekyll builds it into a
   pre-computed index on every Pages build. It holds one record per `##`
@@ -154,11 +159,11 @@ search over every guide, in the browser, with no external service:
   record for the `/fixit/` wizard. New guides are indexed automatically.
   Guides with `unlisted: true` are left out, and so are "On this page" TOC
   sections.
-- `assets/search.js` fetches the index the first time someone focuses the
-  box, then searches it with [MiniSearch](https://github.com/lucaong/minisearch),
+- `assets/search.js` fetches the index the first time the panel opens,
+  then searches it with [MiniSearch](https://github.com/lucaong/minisearch),
   which is vendored at `assets/vendor/minisearch.min.js` (MIT, ~6 KB gzipped).
   Search matches prefixes and tolerates typos ("clearence" finds
-  "clearance"). Headings rank above body text. Press `/` to focus the box.
+  "clearance"). Headings rank above body text. 
 - To upgrade MiniSearch: `npm pack minisearch@<version>`, minify
   `dist/umd/index.js` (e.g. `npx terser -c -m`), and replace the vendored
   file, keeping the version/license header comment.

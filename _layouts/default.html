@@ -20,14 +20,27 @@
         <img src="{{ site.baseurl }}/assets/wordmark.png" alt="Focal" height="24" style="height:24px;width:auto;display:block"
              onerror="this.style.display='none';this.insertAdjacentHTML('afterend','Focal<span class=&quot;dot&quot;>.</span>')">
       </a>
-      <div class="searchbox">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="search" id="search" placeholder="Search guides" aria-label="Search documentation"
-               autocomplete="off" spellcheck="false"
-               data-index="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
-      </div>
+      <button class="search-icon" type="button" data-open-search aria-label="Search guides" aria-haspopup="dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </header>
+  <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="Search guides" hidden>
+    <div class="search-sheet">
+      <div class="search-sheet-inner">
+        <div class="search-row">
+          <div class="searchbox">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="search" placeholder="Search guides" aria-label="Search documentation"
+                   autocomplete="off" spellcheck="false"
+                   data-index="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
+          </div>
+          <button class="search-cancel" type="button" data-close-search>Cancel</button>
+        </div>
+        <p class="search-scope" id="search-scope">Searching <b>all guides</b></p>
+      </div>
+    </div>
+  </div>
   <main class="wrap">
     {{ content }}
   </main>
