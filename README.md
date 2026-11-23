@@ -53,18 +53,22 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   number for each Product; a guide with a single Product needs only that one.
   Leave a key out when the guide isn't in that Product's order. Service has no
   required order. Electrical & Power has an Install number but stays out of the
-  "Next" chain and the print packet for now.
+  "Next" chain and the print packet for now (`next_chain: false`).
 - **Mount**: the way a rail attaches (Overhead, and later Freestanding, Wall
   and Self-mount). Mount is not front matter. Mount-specific steps live in one
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-`stage`, `install_order` and `operate_order` are data only for now: nothing
-reads them yet (only `product` is read, by the guide layout, see below), so the "Next" chain and print packet still follow the
-old fields. `audience` and `audience_order` are those old per-role fields. The
-landing page, search index, "Next" link and print packet read them until the
-Stage tabs replace them; keep them on existing guides and leave them off new
-ones.
+The "Next" link at the end of a guide and the Restaurant print packet read
+`install_order` (`_includes/nextguide.html`, `print-installer.html`). "Next"
+considers only guides visible to the page's Product and follows that Product's
+Install order; on a guide tagged `both` it shows the link for the saved Product
+choice, Restaurant when none. A guide with `next_chain: false` is skipped.
+Troubleshooting carries `install_order: {restaurant: 65}` so the Restaurant
+path still ends there. `stage` and `operate_order` are data only for now:
+the landing page and search index still read `audience` and `audience_order`
+until the Stage tabs replace them; keep them on existing guides and leave them
+off new ones.
 
 ## Product-only content and the Guide Product tag
 

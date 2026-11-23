@@ -56,11 +56,11 @@ permalink: /print/installer/
     <p class="cover-foot">{% include contact.html style="compact" %}</p>
   </section>
 
-  <!-- Concatenated guides in installer order -->
-  {% assign installer_guides = site.guides | where_exp: "g", "g.audience contains 'installer'" %}
-  {% assign ordered = installer_guides | sort: "audience_order.installer" %}
+  <!-- Concatenated guides in the Restaurant Install order (Electrical & Power stays out for now) -->
+  {% assign ordered = site.guides | where_exp: "g", "g.install_order.restaurant" | sort: "install_order.restaurant" %}
   {% for g in ordered %}
-    {% unless g.url contains 'start-here' %}
+    {% assign gp = g.product | default: "restaurant" %}
+    {% unless g.url contains 'start-here' or g.next_chain == false or gp == "home" %}
     <section class="packet-guide">
       <div class="packet-guide-head">
         <h1>{{ g.title }}</h1>
