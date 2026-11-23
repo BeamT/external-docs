@@ -4,8 +4,8 @@ audience: [installer, electrician, customer]
 audience_order: {installer: 10, electrician: 20, customer: 25}
 order: 10
 summary: Required clearances and safety guidelines for every install.
-version: "1.4"
-updated: "2026-10-15"
+version: "1.5"
+updated: "2026-11-23"
 ---
 
 ## On this page
