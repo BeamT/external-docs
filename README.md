@@ -167,15 +167,17 @@ search over every guide, in the browser, with no external service:
 
 ## The homepage and the troubleshooting tool
 
-`index.html` is the landing page. It organizes guides **by audience**
-(Electrician / Installer / Restaurant / All), not by topic — a filter-chip
-row plus client-side JS re-sorts and re-filters the `site.guides` collection
-using each guide's `audience` / `audience_order` front matter. It also
-supports deep-linking a specific audience view via `?a=installer` (used by
-the printed packet's QR code and the `/installer/`, `/electrician/`,
-`/restaurant/` share-link redirect pages at the repo root).
+`index.html` is the landing page. It organizes guides **by Stage**
+(All / Install / Operate / Service) as tabs over a compact guide list, using
+each guide's `product` and `stage` front matter, ordered by `install_order` /
+`operate_order` (falling back to `order`). A tab with no Guides is hidden, and
+the lead Guide (`lead: true`) is marked "Start here" on a Stage tab. The
+address bar follows the current tab (`?stage=install|operate|service`). Old
+`?a=installer|electrician` links open Install and `?a=customer` opens Operate;
+the `/installer/`, `/electrician/` and `/restaurant/` redirect pages at the
+repo root follow the same map (Restaurant opens Operate).
 
-Above that filtered grid sits a featured banner (not a guide card) linking to
+Above the tabs sits a featured banner (not a guide card) linking to
 `/fixit/` — the interactive troubleshooting wizard. `fixit.html` is a
 standalone, self-contained page (own inline `<style>`/`<script>`, a small
 decision-tree JS engine, no shared site chrome) that walks a customer through
