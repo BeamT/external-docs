@@ -59,12 +59,28 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-`product`, `stage`, `install_order` and `operate_order` are data only for now:
-nothing reads them yet, so the "Next" chain and print packet still follow the
-old fields. `audience` and `audience_order` are those old per-role fields. The
+The landing page reads `product`, `stage`, `install_order` and `operate_order`.
+The "Next" chain and print packet still follow the old fields. `audience` and `audience_order` are those old per-role fields. The
 landing page, search index, "Next" link and print packet read them until the
 Stage tabs replace them; keep them on existing guides and leave them off new
 ones.
+
+## Product choice setting
+
+`product_choice` in `_config.yml` is `false` until the launch ticket under #136
+turns it on. Off, the site is Restaurant only: no Home tab, no first-visit
+choice, and `?product=` is ignored. On, the top bar shows **Restaurant · Home**
+tabs and a search icon, the landing page asks "Which Focal do you have?" on a
+first visit, and the choice is saved in the browser (`?product=home` or
+`?product=restaurant` sets it; opening a Guide never changes it).
+
+`tests/product-choice.spec.js` covers both settings. Build the site twice
+before running it:
+
+```
+bundle exec jekyll build --baseurl ""
+bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
+```
 
 ## The building blocks
 
