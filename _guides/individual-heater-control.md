@@ -40,7 +40,7 @@ The other three LEDs are white and show the heat level for that side: three lit 
 
 ## At the heater: the pull string
 
-Every heater has a pull string, and it does two different jobs depending on how you pull it. A short tug changes the heat. A hard pull releases the heater so you can slide it on the rail.
+Every heater has a pull string, and it does two different jobs depending on how you pull it. A short tug changes the heat. A hard pull releases the heater so you can slide it on the Rail.
 
 {% include video.html id="pull-string-video" src="pull-string.mp4" poster="pull-string-poster.jpg" qr="pull-string-qr.svg" caption="Using the pull string" %}
 
@@ -52,9 +52,9 @@ The pull string sets the whole heater, both heating heads, to the same level. To
 
 This only works inside your open hours. If you tug the string outside those hours, the heat can't be adjusted, and the LEDs flash yellow to tell you it isn't available.
 
-### Slide the heater on the rail
+### Slide the heater on the Rail
 
-Give the string a hard pull to release the heater from the rail. Once it releases, slide it along the rail to where you want it, then let go of the string and it locks back in place. This is the same motion used when heaters are first installed, so if you're repositioning several at once, the [Install Heaters guide]({{ site.baseurl }}/install-heaters/) walks through it in more detail.
+Give the string a hard pull to release the heater from the Rail. Once it releases, slide it along the Rail to where you want it, then let go of the string and it locks back in place. This is the same motion used when heaters are first installed, so if you're repositioning several at once, the [Install Heaters guide]({{ site.baseurl }}/install-heaters/) walks through it in more detail.
 
 ## Guest QR control
 

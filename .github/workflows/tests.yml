@@ -16,15 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Build the site with the same Jekyll major version GitHub Pages uses,
-      # since tests/search.spec.js reads the generated _site/search.json.
+      # Build the site with the Jekyll version pinned in Gemfile.lock, since
+      # tests/search.spec.js reads the generated _site/search.json.
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
-      - name: Install Jekyll
-        run: gem install --no-document jekyll:3.10.0 kramdown-parser-gfm
+          bundler-cache: true
       - name: Build site
-        run: jekyll build --baseurl ""
+        run: bundle exec jekyll build --baseurl ""
 
       - uses: actions/setup-node@v4
         with:

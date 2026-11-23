@@ -3,25 +3,27 @@ numbered in order and stack; grid="true" lays them out two-up instead, grid="3" 
 with "+" (a.png+b.png) to put just that pair side by side. captions="A text|B text" gives
 each frame its own caption, in the same order as the images (pairs count as two).
 after="..." is text shown below the images.
+nonumber="true" drops the frame numbers (for frames that are alternatives, not a sequence).
+flat="true" drops the number and title so the images sit in a plain section.
 variant="true" marks an alternative to the step above: no number, aligned with its text.{% endcomment %}
-<div class="step{% if include.variant %} step-variant{% endif %}">
-  {% unless include.variant %}<div class="step-num">{{ include.number }}</div>{% endunless %}
+<div class="step{% if include.variant %} step-variant{% endif %}{% if include.flat %} step-flat{% endif %}"{% if include.number %}{% unless include.variant %} id="step-{{ include.number }}"{% endunless %}{% endif %}>
+  {% unless include.variant or include.flat %}<div class="step-num">{{ include.number }}</div>{% endunless %}
   <div class="step-body">
-    <div class="step-title">{{ include.title }}</div>
+    {% if include.title %}<div class="step-title">{{ include.title }}</div>{% endif %}
     {% if include.body and include.body != "" %}<p>{{ include.body }}</p>{% endif %}
     {% if include.diagram %}
     {% assign diagrams = include.diagram | split: "," %}
     {% assign captions = include.captions | split: "|" %}
     {% assign frame = 0 %}
     {% assign multi = include.diagram | split: "+" | size | plus: diagrams.size | minus: 2 %}
-    {% if multi > 0 %}<div class="step-figures{% if include.grid %} step-grid{% endif %}{% if include.grid == "3" %} step-grid-3{% endif %}">{% endif %}
+    {% if multi > 0 %}<div class="step-figures{% if include.nonumber %} step-plain{% endif %}{% if include.grid %} step-grid{% endif %}{% if include.grid == "3" %} step-grid-3{% endif %}">{% endif %}
     {% for item in diagrams %}
     {% assign row = item | split: "+" %}
     {% if row.size > 1 %}<div class="step-row">{% endif %}
     {% for d in row %}
     {% assign caption = captions[frame] | strip %}
     <figure class="step-figure">
-      {% if caption != "" %}<figcaption>{{ caption }}</figcaption>{% endif %}
+      {% if caption != "" %}<figcaption><span>{{ caption }}</span></figcaption>{% endif %}
       <img src="{{ site.baseurl }}/assets/diagrams/{{ d | strip }}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'diagram-missing',textContent:'Diagram coming soon'}))">
     </figure>
     {% assign frame = frame | plus: 1 %}

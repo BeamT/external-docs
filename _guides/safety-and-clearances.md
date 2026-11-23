@@ -4,8 +4,8 @@ audience: [installer, electrician, customer]
 audience_order: {installer: 10, electrician: 20, customer: 25}
 order: 10
 summary: Required clearances and safety guidelines for every install.
-version: "1.4"
-updated: "2026-10-15"
+version: "1.5"
+updated: "2026-11-23"
 ---
 
 ## On this page
@@ -30,7 +30,7 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 
 - Read all instructions before installing or operating.
 - Use the heater only as described in this documentation. Any other use may cause fire, electric shock, or injury.
-- Focal heaters and rails must only be used in the allowable configurations Focal specifies. Never exceed the maximum number of heaters per rail.
+- Focal heaters and Rails must only be used in the allowable configurations Focal specifies. Never exceed the maximum number of heaters per Rail.
 
 ## Heat & burn hazards
 
@@ -45,26 +45,26 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 
 - The heater runs on 120VAC, 60 Hz. Connect only to a properly installed, GFCI-protected outlet on its own circuit.
 - Do not use the heater if the power cord or plug is damaged.
-- Do not use an extension cord or power strip. Plug directly into an outdoor outlet on the rail's own circuit.
+- Do not use a power strip. Plug into an outdoor outlet on the Rail's own circuit, or into an extension cord rated 12 AWG or heavier if the Rail's cable can't reach.
 - Do not run the cord under flooring, decking, or coverings where it can be pinched or damaged.
 - Outdoors, always use a weather-protected outlet with an in-use weatherproof cover.
 - Unplug the heater before relocating it, or before any cleaning or maintenance, or when not in use long-term.
 
 ## Minimum clearances
 
-Every install must meet these distances, measured from the heater and rail to the nearest surface.
+Every install must meet these distances, measured from the heater and Rail to the nearest surface.
 
 | Reference | Dimension | Minimum distance |
 |---|---|---|
-| Ceiling, above rail | A | 0 in (0 cm) |
-| Wall, side of rail | B | 20 in (51 cm) |
+| Ceiling, above Rail | A | 0 in (0 cm) |
+| Wall, side of Rail | B | 20 in (51 cm) |
 | Objects under the heater | C | 36 in (91 cm) |
-| Floor to bottom of rail | D | 84 in / 7 ft — use 90 in where people walk under |
+| Floor to bottom of Rail | D | 84 in / 7 ft — use 90 in where people walk under |
 | Wall to side of heater facing down | E | 20 in (51 cm) |
 
-Note: each round heating head is 8" in diameter on either side of the rail. Two rails mounted end to end must keep at least 4" of space between them.
+Note: each round heating head is 8" in diameter on either side of the Rail. Two Rails mounted end to end must keep at least 4" of space between them.
 
-{% include diagram.html src="clearances.svg" fill=true caption="Side view and top view of a ceiling-mounted rail showing all five clearance dimensions." %}
+{% include diagram.html src="clearances.svg" fill=true caption="Side view and top view of a ceiling-mounted Rail showing all five clearance dimensions." %}
 
 ## Clearance rules
 
@@ -72,7 +72,7 @@ Note: each round heating head is 8" in diameter on either side of the rail. Two 
 
 - Never install heaters or place objects near them without meeting the required clearances.
 - Never block or obstruct the front of the heater.
-- Keep curtains, awnings, umbrellas, and fabric roofs at least 20 in from the heater, and never hang or drape anything on the rail or heaters.
+- Keep curtains, awnings, umbrellas, and fabric roofs at least 20 in from the heater, and never hang or drape anything on the Rail or heaters.
 
 ## Installation & use
 

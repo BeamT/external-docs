@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200" font-family="system-ui, sans-serif" font-size="13">
+<rect width="300" height="200" fill="#fff"/>
+<rect x="30" y="50" width="240" height="64" fill="#ead9b8" stroke="#8a7350" stroke-width="2"/>
+<rect x="144" y="50" width="12" height="64" fill="#fff"/>
+<rect x="145" y="56" width="10" height="134" fill="#4b5563"/>
+<path d="M145 56 L150 48 L155 56Z" fill="#4b5563"/>
+<text x="168" y="170" font-weight="700" fill="#111">5/16" through</text>
+</svg>

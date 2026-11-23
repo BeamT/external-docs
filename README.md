@@ -137,17 +137,20 @@ GitHub builds the real site for you, so this is optional.
 **Real Jekyll (exact parity with GitHub Pages)** — the most reliable option,
 since it's the same renderer GitHub Pages uses. Needs Ruby (already on most
 systems: `ruby -v`). On Ruby 3.4+, a couple of gems that used to ship with
-Ruby by default now need installing explicitly:
+Ruby by default now need installing explicitly. The `Gemfile` pins them, so the
+one-time setup is just bundler:
 
 ```
-gem install --user-install jekyll bundler erb webrick
+gem install --user-install bundler
 export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"   # match your ruby -v
-jekyll serve --host 127.0.0.1 --port 4000 --baseurl ""
+_tools/preview.sh [page]        # e.g. _tools/preview.sh rail-installation
 ```
 
-Then open `http://127.0.0.1:4000/`. Auto-regenerates on file changes; refresh
-your browser to see them (add `--livereload` plus the `jekyll-livereload` gem
-for auto-refresh).
+The script installs the gems into `vendor/bundle` on first run, starts Jekyll
+on a free port (from 4000 up) with `--baseurl ""` and `--livereload`, reuses a
+server already running for your checkout, and prints the page URL. The page
+auto-regenerates and refreshes when you save. AI agents can run the same thing
+with the `/preview` skill (`.agents/skills/preview/`).
 
 ⚠️ Real Jekyll uses kramdown for Markdown, which is stricter than it looks:
 a raw HTML block (like `{% raw %}{% include %}{% endraw %}` output, or inline
