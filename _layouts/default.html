@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v={{ site.time | date: '%s' }}">
 </head>
-<body{% if site.product_choice %} class="product-choice" data-page-product="{{ page.product }}"{% endif %}>
+<body{% if site.product_choice %} class="product-choice" data-page-product="{% if page.layout == 'guide' and page.product == nil %}restaurant{% else %}{{ page.product }}{% endif %}"{% endif %}>
   {%- if site.product_choice %}
   <script>
   // Saved Product choice. Kept in localStorage, then a cookie, then memory, so

@@ -73,7 +73,7 @@ title: null
   {% for g in guides %}
   <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"
      data-stages="{{ g.stage | join: ',' }}"
-     data-products="{% if g.product == 'both' %}restaurant,home{% else %}{{ g.product }}{% endif %}"
+     data-products="{% if g.product == 'both' %}restaurant,home{% elsif g.product == 'home' %}home{% else %}restaurant{% endif %}"
      data-order-all="{{ g.order }}"
      data-order-install="{{ g.install_order.restaurant | default: g.order }}"
      data-order-operate="{{ g.operate_order.restaurant | default: g.order }}"
