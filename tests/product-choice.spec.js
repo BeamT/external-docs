@@ -79,6 +79,13 @@ test.describe('setting on', () => {
     expect(await titles(page)).toEqual(home);
   });
 
+  test('?product= on a Guide does not change the saved choice', async ({ page }) => {
+    await page.goto(on.url + '/?product=restaurant');
+    await page.goto(on.url + '/rail-installation/?product=home');
+    await page.goto(on.url + '/');
+    await expect(page.getByRole('heading', { name: 'Focal for Restaurants', exact: true })).toBeVisible();
+  });
+
   test('?product= sets the saved choice', async ({ page }) => {
     await page.goto(on.url + '/?product=restaurant');
     await expect(page.getByRole('heading', { name: 'Focal for Restaurants', exact: true })).toBeVisible();

@@ -68,7 +68,7 @@ title: null
   {% if site.product_choice %}
   {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" %}
   {% else %}
-  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | where_exp: "g", "g.product == 'restaurant' or g.product == 'both'" | sort: "order" %}
+  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | where_exp: "g", "g.product != 'home'" | sort: "order" %}
   {% endif %}
   {% for g in guides %}
   <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"

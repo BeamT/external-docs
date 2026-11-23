@@ -60,10 +60,9 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
 The landing page reads `product`, `stage`, `install_order` and `operate_order`.
-The "Next" chain and print packet still follow the old fields. `audience` and `audience_order` are those old per-role fields. The
-landing page, search index, "Next" link and print packet read them until the
-Stage tabs replace them; keep them on existing guides and leave them off new
-ones.
+The search index, "Next" link and print packet still follow `audience` and
+`audience_order`, the old per-role fields. Keep them on existing guides and
+leave them off new ones until Stage replaces them.
 
 ## Product choice setting
 
@@ -229,6 +228,10 @@ description-required and a heater-ID-required endpoint, and asserts the email
 button is genuinely clickable (not just visually enabled) once its required
 field is filled. Run it after touching `refreshEmailHref`, `buildEmailBody`,
 `buildSubject`, or the `support`/`resolved` endpoint rendering in `render()`.
+
+The other specs read built output, not the source: `landing.spec.js` and
+`search.spec.js` read `_site/`, and `product-choice.spec.js` reads both `_site/`
+and `_site_choice/` (see "Product choice setting"). Build before running them.
 
 ## Roadmap
 

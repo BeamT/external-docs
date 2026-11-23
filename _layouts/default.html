@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v={{ site.time | date: '%s' }}">
 </head>
-<body{% if site.product_choice %} class="product-choice" data-page-product="{% if page.layout == 'guide' and page.product == nil %}restaurant{% else %}{{ page.product }}{% endif %}"{% endif %}>
+<body{% if site.product_choice %} class="product-choice"{% if page.url == "/" %} data-landing-page{% endif %} data-page-product="{% if page.layout == 'guide' and page.product == nil %}restaurant{% else %}{{ page.product }}{% endif %}"{% endif %}>
   {%- if site.product_choice %}
   <script>
   // Saved Product choice. Kept in localStorage, then a cookie, then memory, so
@@ -32,7 +32,8 @@
       try { localStorage.setItem(KEY, v); } catch (e) {}
       try { document.cookie = KEY + '=' + v + '; path=/; max-age=31536000; SameSite=Lax'; } catch (e) {}
     }
-    var q = new URLSearchParams(window.location.search).get('product');
+    // ?product= is for the landing page only; opening a Guide never changes the choice.
+    var q = document.body.hasAttribute('data-landing-page') ? new URLSearchParams(window.location.search).get('product') : null;
     if (ok[q]) write(q);
     return { get: read, set: write };
   })();
