@@ -18,8 +18,6 @@ Create one file in `_guides/`, e.g. `_guides/troubleshooting.md`:
 ```markdown
 ---
 title: Troubleshooting
-audience: [customer, installer]
-audience_order: {customer: 20}
 product: restaurant
 stage: [service]
 order: 6
@@ -61,9 +59,12 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-`audience` and `audience_order` are the old per-role fields. The landing page
-and search index still read them until the Stage tabs replace them; keep them
-on existing guides and leave them off new ones.
+`product`, `stage`, `install_order` and `operate_order` are data only for now:
+nothing reads them yet, so the "Next" chain and print packet still follow the
+old fields. `audience` and `audience_order` are those old per-role fields. The
+landing page, search index, "Next" link and print packet read them until the
+Stage tabs replace them; keep them on existing guides and leave them off new
+ones.
 
 ## The building blocks
 
