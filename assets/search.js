@@ -33,7 +33,7 @@
     toggle.addEventListener('click', function () { box.hidden ? openBox(toggle) : closeBox(); });
     document.querySelectorAll('[data-search-open]').forEach(function (el) {
       el.addEventListener('focus', function () { if (box.hidden && !restoring) openBox(el); });
-      el.addEventListener('click', function () { if (box.hidden) openBox(el); });
+      el.addEventListener('click', function () { if (box.hidden) openBox(el); else input.focus(); });
     });
   }
 
@@ -257,9 +257,16 @@
     }
   });
 
+  // Opening the box shifts the page, so the click that opened it can land on
+  // another element. Don't treat that click as an outside click.
+  var pressedOpener = false;
+  document.addEventListener('mousedown', function (e) {
+    pressedOpener = !!(e.target.closest && e.target.closest('[data-search-open], #search-toggle'));
+  }, true);
+
   document.addEventListener('click', function (e) {
     if (!box.contains(e.target)) close();
-    if (toggle && !box.hidden && !box.contains(e.target) && !toggle.contains(e.target) &&
+    if (toggle && !box.hidden && !pressedOpener && !box.contains(e.target) && !toggle.contains(e.target) &&
         !(e.target.closest && e.target.closest('[data-search-open]'))) {
       box.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
