@@ -80,7 +80,7 @@ test('tolerates typos, supports keyboard nav and Escape on the homepage', async 
   await expect(page.locator('#search-results li[aria-selected="true"]')).toHaveCount(1);
 
   await page.keyboard.press('Escape');
-  await expect(page.locator('#search-panel')).toBeHidden();
+  await expect(page.locator('#search-results')).toBeHidden();
 });
 
 test('shows an empty state for nonsense', async ({ page }) => {
@@ -126,7 +126,8 @@ test('Escape, Cancel and clicking outside close it and return focus to the opene
 
   const field = page.locator('.search-field');
   await field.click();
-  await page.mouse.click(5, 700); // dimmed backdrop below the sheet
+  const vh = page.viewportSize().height;
+  await page.mouse.click(5, vh - 5); // dimmed backdrop below the sheet
   await expect(panel).toBeHidden();
   await expect(field).toBeFocused();
 });
@@ -141,9 +142,43 @@ test('is usable at 360px and results scroll inside the panel', async ({ page }) 
   const noHScroll = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   expect(noHScroll).toBe(true);
   const box = await page.locator('.search-sheet').boundingBox();
-  expect(box.height).toBeGreaterThanOrEqual(639);
+  expect(box.height).toBeGreaterThanOrEqual(page.viewportSize().height - 1);
   const r = await page.locator('#search-results').evaluate((el) => ({
     scrolls: el.scrollHeight > el.clientHeight, overflowY: getComputedStyle(el).overflowY }));
   expect(r.overflowY).toBe('auto');
   expect(r.scrolls).toBe(true);
+});
+
+test('Escape closes the results, then clears the input, then closes the panel', async ({ page }) => {
+  await page.goto(base + '/');
+  await page.keyboard.press('/');
+  await page.keyboard.type('breaker');
+  await expect(page.locator('#search-results .search-hit').first()).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search-results')).toBeHidden();
+  await expect(page.locator('#search-panel')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search')).toHaveValue('');
+  await expect(page.locator('#search-panel')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search-panel')).toBeHidden();
+});
+
+test('on desktop the panel sits below the top bar and the icon is a 44px target', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto(base + '/');
+  const icon = await page.locator('.search-icon').boundingBox();
+  expect(icon.width).toBeGreaterThanOrEqual(44);
+  expect(icon.height).toBeGreaterThanOrEqual(44);
+  await page.locator('.search-icon').click();
+  const bar = await page.locator('.topbar').boundingBox();
+  const sheet = await page.locator('.search-sheet').boundingBox();
+  expect(sheet.y).toBeGreaterThanOrEqual(bar.y + bar.height - 1);
+});
+
+test('the search input shows a focus indicator', async ({ page }) => {
+  await page.goto(base + '/');
+  await page.keyboard.press('/');
+  const shadow = await page.locator('.searchbox').evaluate((el) => getComputedStyle(el).boxShadow);
+  expect(shadow).not.toBe('none');
 });

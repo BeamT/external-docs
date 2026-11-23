@@ -149,8 +149,8 @@ Search opens in one panel from the top-bar icon, the landing-page search
 field, or the `/` key (on every page except `/fixit/`). On desktop it drops
 below the top bar; on phones it fills the screen. Escape, Cancel or a click
 outside closes it and returns focus to whatever opened it. A scope line under
-the input says what is searched ("Searching all guides" while the Product
-setting is off). It does full-text search over every guide, in the browser,
+the input says what is searched ("Searching all guides" for now; it is static
+text in `_layouts/default.html`). It does full-text search over every guide, in the browser,
 with no external service:
 
 - `search.json` is a Liquid template. Jekyll builds it into a
@@ -163,7 +163,7 @@ with no external service:
   then searches it with [MiniSearch](https://github.com/lucaong/minisearch),
   which is vendored at `assets/vendor/minisearch.min.js` (MIT, ~6 KB gzipped).
   Search matches prefixes and tolerates typos ("clearence" finds
-  "clearance"). Headings rank above body text. 
+  "clearance"). Headings rank above body text.
 - To upgrade MiniSearch: `npm pack minisearch@<version>`, minify
   `dist/umd/index.js` (e.g. `npx terser -c -m`), and replace the vendored
   file, keeping the version/license header comment.
