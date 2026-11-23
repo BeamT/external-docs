@@ -2,6 +2,8 @@
 title: WiFi Requirements
 audience: [customer]
 audience_order: {customer: 60}
+product: restaurant
+stage: [install]
 order: 110
 summary: Check and improve WiFi for your Focal Hub.
 version: "1.0"

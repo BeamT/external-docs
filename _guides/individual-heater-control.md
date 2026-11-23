@@ -2,6 +2,9 @@
 title: Individual Heater Control
 audience: [customer, staff, guest]
 audience_order: {customer: 20}
+product: restaurant
+stage: [operate]
+operate_order: {restaurant: 20}
 order: 15
 summary: Control heaters from the app, with the QR code or its pull string.
 version: "1.0"

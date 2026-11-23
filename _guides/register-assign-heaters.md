@@ -2,6 +2,9 @@
 title: Assign Heaters
 audience: [installer]
 audience_order: {installer: 60}
+product: restaurant
+stage: [install]
+install_order: {restaurant: 60}
 order: 60
 summary: Scan and assign each heater to its slot.
 version: "1.6"

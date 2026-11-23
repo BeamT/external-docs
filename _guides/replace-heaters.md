@@ -2,6 +2,8 @@
 title: Replace Heaters
 audience: []
 audience_order: {}
+product: restaurant
+stage: [service]
 order: 70
 summary: Swap one or more failed heaters on a Rail and assign the new heaters to their slots.
 version: "1.3"

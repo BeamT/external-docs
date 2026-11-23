@@ -2,6 +2,8 @@
 title: Warranty & Service
 audience: [customer]
 audience_order: {customer: 50}
+product: both
+stage: [service]
 order: 100
 summary: How to reach Focal for service and warranty help.
 version: "1.3"

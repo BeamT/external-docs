@@ -2,6 +2,9 @@
 title: Install Hub
 audience: [installer]
 audience_order: {installer: 30}
+product: restaurant
+stage: [install]
+install_order: {restaurant: 30}
 order: 20
 summary: Plug in the Focal Hub, connect it to WiFi if needed, then mount it.
 version: "2.4"
