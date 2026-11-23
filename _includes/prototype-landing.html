@@ -1,0 +1,709 @@
+{%- comment -%}
+PROTOTYPE — throwaway. Do not merge to main.
+Question: what should the two-product landing page and the top-bar product toggle look like?
+(Plan: Notion "Focal Home — Support Site Plan", section 1.)
+Three variants of the landing page on the existing "/" route, switchable via ?variant=A|B|C|current.
+Only included when jekyll.environment != "production" (see index.html), so GitHub Pages never ships it.
+State is in memory + URL (?p=restaurant|home, ?s=all|install|use|service). Nothing is saved.
+Product/stage tags below are copied from the plan's guide-by-guide table; "planned" guides don't exist yet.
+{%- endcomment -%}
+<div id="px-root"></div>
+
+<style>
+  /* ---------- shared ---------- */
+  .px-hidden { display: none !important; }
+  .px-tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--ink-soft); background: var(--line-soft); border-radius: 999px; padding: 1px 9px; margin-left: 6px; vertical-align: middle; }
+  .px-tag--planned { color: #7a4a00; background: var(--warn-wash); }
+  .card.px-planned { border-style: dashed; }
+  .px-icon { width: 28px; height: 28px; flex: none; color: var(--focal-ink); }
+  .px-hero-kicker { font-size: 14px; font-weight: 600; color: var(--focal-ink); margin: 0 0 6px; }
+
+  /* ---------- A: gate + segmented control ---------- */
+  .pxA-seg { display: inline-flex; flex: none; background: var(--wash); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .pxA-seg button { border: 0; background: transparent; font: inherit; font-size: 14px; color: var(--ink-soft); padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+  .pxA-seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .pxA-choose h2 { font-family: var(--font-display); font-size: 22px; margin: 8px 0 14px; }
+  .pxA-doors { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-bottom: 60px; }
+  .pxA-door { display: flex; flex-direction: column; gap: 10px; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; cursor: pointer; }
+  .pxA-door:hover { border-color: var(--ink); }
+  .pxA-door .px-icon { width: 40px; height: 40px; }
+  .pxA-door strong { font-family: var(--font-display); font-size: 22px; line-height: 1.1; }
+  .pxA-door span { color: var(--ink-soft); font-size: 15px; }
+  .pxA-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 26px 0 4px; }
+  .pxA-tabs button { border: 0; background: none; font: inherit; font-size: 15px; color: var(--ink-soft); padding: 8px 12px; border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; }
+  .pxA-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--focal); font-weight: 600; }
+  .pxA-stagehint { color: var(--ink-soft); font-size: 14px; margin: 10px 0 0; }
+  @media (max-width: 560px) {
+    .pxA-doors { grid-template-columns: 1fr; }
+    .pxA-seg button { padding: 5px 9px; font-size: 13px; }
+  }
+
+  /* ---------- B: switcher menu + one long page grouped by stage ---------- */
+  .pxB-switch { position: relative; flex: none; }
+  .pxB-pill { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 6px 10px; cursor: pointer; color: var(--ink); }
+  .pxB-pill--empty { border-color: var(--focal); color: var(--focal-ink); background: var(--focal-wash); }
+  .pxB-menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 40; width: 280px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,0.12); padding: 6px; }
+  .pxB-menu button { display: flex; gap: 10px; width: 100%; text-align: left; font: inherit; background: none; border: 0; border-radius: 8px; padding: 10px; cursor: pointer; color: var(--ink); }
+  .pxB-menu button:hover, .pxB-menu button[aria-checked="true"] { background: var(--focal-wash); }
+  .pxB-menu small { display: block; color: var(--ink-soft); font-size: 13px; line-height: 1.35; }
+  .pxB-ask { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: var(--paper); border: 1px solid var(--focal); border-radius: var(--radius); padding: 16px 20px; margin: 8px 0 0; }
+  .pxB-ask strong { font-family: var(--font-display); font-size: 19px; }
+  .pxB-ask div { display: flex; gap: 8px; }
+  .pxB-jump { position: sticky; top: 61px; z-index: 10; background: var(--wash); display: flex; gap: 18px; padding: 12px 0; margin-top: 18px; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .pxB-jump a { color: var(--ink-soft); text-decoration: none; }
+  .pxB-jump a:hover { color: var(--ink); }
+  .pxB-group { scroll-margin-top: 120px; padding-top: 22px; }
+  .pxB-group > h2 { font-family: var(--font-display); font-size: 24px; margin: 0; }
+  .pxB-group > p { color: var(--ink-soft); font-size: 15px; margin: 2px 0 10px; }
+  .pxB-group .card-list { padding: 4px 0 10px; }
+  .pxB-shared-note { color: var(--ink-soft); font-size: 14px; margin: 14px 0 0; }
+
+  /* ---------- C: product band under the top bar + stage journey ---------- */
+  .pxC-band { border-top: 1px solid var(--line-soft); }
+  .pxC-band-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; display: flex; gap: 22px; }
+  .pxC-band button { font: inherit; font-size: 15px; background: none; border: 0; padding: 10px 0 9px; border-bottom: 3px solid transparent; color: var(--ink-soft); cursor: pointer; }
+  .pxC-band button[aria-selected="true"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--focal); }
+  .pxC-band--empty button { color: var(--focal-ink); }
+  .pxC-strip { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; color: inherit; background: var(--focal-wash); border-left: 4px solid var(--focal); padding: 12px 16px; border-radius: 6px; margin: 4px 0 0; font-size: 15px; }
+  .pxC-strip b { font-family: var(--font-display); font-size: 17px; }
+  .pxC-journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 26px 0 0; counter-reset: stage; }
+  .pxC-stage { position: relative; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); padding: 14px 16px 14px 18px; cursor: pointer; margin-left: -1px; }
+  .pxC-stage:first-child { border-radius: var(--radius) 0 0 var(--radius); margin-left: 0; }
+  .pxC-stage:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+  .pxC-stage::before { counter-increment: stage; content: counter(stage); display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--line-soft); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .pxC-stage[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); z-index: 1; }
+  .pxC-stage[aria-selected="true"]::before { background: var(--focal); color: var(--ink); }
+  .pxC-stage strong { display: block; font-family: var(--font-display); font-size: 20px; }
+  .pxC-stage span { display: block; font-size: 13px; opacity: 0.75; line-height: 1.35; }
+  .pxC-all { display: inline-block; margin: 10px 0 0; font-size: 14px; color: var(--ink-soft); background: none; border: 0; font-family: inherit; cursor: pointer; text-decoration: underline; padding: 0; }
+  .pxC-all[aria-selected="true"] { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .pxC-rows { list-style: none; margin: 16px 0 60px; padding: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+  .pxC-rows li + li { border-top: 1px solid var(--line-soft); }
+  .pxC-rows a { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 13px 18px; text-decoration: none; color: inherit; }
+  .pxC-rows a:hover { background: var(--wash); }
+  .pxC-rows b { font-weight: 600; }
+  .pxC-rows small { grid-column: 1; color: var(--ink-soft); font-size: 14px; }
+  .pxC-rows .pxC-go { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--ink-soft); }
+  .pxC-rows .pxC-lead b::before { content: "Start here · "; color: var(--focal-ink); }
+  .pxC-pick { list-style: none; padding: 0; margin: 20px 0 60px; display: grid; gap: 10px; }
+  .pxC-pick button { width: 100%; display: flex; align-items: center; gap: 14px; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; cursor: pointer; }
+  .pxC-pick button:hover { border-color: var(--ink); }
+  .pxC-pick strong { display: block; font-family: var(--font-display); font-size: 19px; }
+  .pxC-pick small { color: var(--ink-soft); font-size: 14px; }
+  @media (max-width: 560px) {
+    .pxC-journey { grid-template-columns: 1fr; }
+    .pxC-stage, .pxC-stage:first-child, .pxC-stage:last-child { border-radius: 0; margin-left: 0; margin-top: -1px; }
+    .pxC-stage:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .pxC-stage:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+  }
+
+  /* ---------- D: one-line top bar (logo · product switch · search icon), tabs in page ---------- */
+  .pxD-seg { display: inline-flex; flex: none; background: var(--wash); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .pxD-seg button { border: 0; background: transparent; font: inherit; font-size: 14px; font-weight: 600; color: var(--ink-soft); min-height: 36px; padding: 0 14px; border-radius: 999px; cursor: pointer; transition: background-color 0.15s, color 0.15s; }
+  .pxD-seg button:hover { color: var(--ink); }
+  .pxD-seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .pxD-seg--empty { border-color: var(--focal); }
+  .pxD-icon { margin-left: auto; flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .pxD-icon:hover { border-color: var(--ink); }
+  .pxD-icon:focus-visible, .pxD-find:focus-visible, .pxD-seg button:focus-visible, .pxD-tabs button:focus-visible, .pxD-rows a:focus-visible, .pxD-scope button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .pxD-hero { padding: 40px 0 0; }
+  .pxD-hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 8vw, 46px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
+  .pxD-hero p { color: var(--ink-soft); margin: 0; max-width: 34em; }
+  .pxD-find { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 54px; margin: 22px 0 18px; padding: 0 16px; font: inherit; font-size: 17px; color: var(--ink-soft); text-align: left; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); cursor: text; transition: border-color 0.15s; }
+  .pxD-find:hover { border-color: var(--ink-soft); }
+  .pxD-find span { flex: 1; }
+  .pxD-find kbd { font: 600 12px/1 var(--font-body); color: var(--ink-soft); border: 1px solid var(--line); border-radius: 6px; padding: 4px 7px; background: var(--wash); }
+  .pxD-gate { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
+  .pxD-gate button { width: 100%; display: flex; align-items: center; gap: 14px; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: border-color 0.15s; }
+  .pxD-gate button:hover { border-color: var(--ink); }
+  .pxD-gate strong { display: block; font-family: var(--font-display); font-size: 20px; line-height: 1.15; }
+  .pxD-gate small { display: block; color: var(--ink-soft); font-size: 15px; margin-top: 2px; }
+  .pxD-gate .pxD-chev { margin-left: auto; }
+  .pxD-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin: 30px 0 0; }
+  .pxD-tabs button { border: 0; background: none; font: inherit; font-size: 15px; color: var(--ink-soft); min-height: 44px; padding: 0 12px; border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; }
+  .pxD-tabs button:hover { color: var(--ink); }
+  .pxD-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--focal); font-weight: 600; }
+  .pxD-rows { list-style: none; margin: 14px 0 80px; padding: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+  .pxD-rows li + li { border-top: 1px solid var(--line-soft); }
+  .pxD-rows a { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 14px 18px; text-decoration: none; color: inherit; }
+  .pxD-rows li:first-child a { border-radius: var(--radius) var(--radius) 0 0; }
+  .pxD-rows li:last-child a { border-radius: 0 0 var(--radius) var(--radius); }
+  .pxD-rows a:hover { background: var(--wash); }
+  .pxD-rows b { font-weight: 600; }
+  .pxD-rows small { grid-column: 1; color: var(--ink-soft); font-size: 15px; line-height: 1.45; }
+  .pxD-rows .pxD-chev { grid-row: 1 / span 2; grid-column: 2; align-self: center; }
+  .pxD-start { display: block; font-size: 13px; font-weight: 600; color: var(--focal-ink); }
+  .pxD-chev { color: var(--ink-soft); width: 18px; height: 18px; }
+  /* D top bar, "tabs" style (default): product tabs sit on the bar's bottom edge */
+  .topbar.pxD-bar .topbar-inner { padding-top: 0; padding-bottom: 0; min-height: 64px; align-items: stretch; gap: 12px; }
+  .topbar.pxD-bar .brand { align-self: center; }
+  .topbar.pxD-bar .brand img { height: 28px !important; }
+  .pxD-div { align-self: center; flex: none; width: 1px; height: 26px; background: var(--line); }
+  .pxD-ptabs { display: flex; gap: 2px; margin-left: 14px; }
+  .pxD-ptabs button { display: flex; align-items: center; font: inherit; font-size: 16px; font-weight: 600; color: var(--ink-soft); background: none; border: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; margin-bottom: -1px; padding: 0 10px; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+  .pxD-ptabs button:hover { color: var(--ink); }
+  .pxD-ptabs button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--focal); }
+  .pxD-ptabs button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
+  .pxD-icon--plain { align-self: center; border-color: transparent; background: none; }
+  .pxD-icon--plain:hover { border-color: transparent; background: var(--wash); }
+  @media (max-width: 560px) {
+    .topbar.pxD-bar .topbar-inner { gap: 6px; padding-left: 16px; padding-right: 8px; min-height: 58px; }
+    .topbar.pxD-bar .brand img { height: 24px !important; }
+    .pxD-ptabs { margin-left: 6px; }
+    .pxD-ptabs button { font-size: 15px; padding: 0 8px; }
+  }
+  /* search sheet: drops from the top on desktop, full screen on phones */
+  .pxD-panel { position: fixed; inset: 0; z-index: 60; background: rgba(17, 17, 17, 0.32); }
+  .pxD-panel[hidden] { display: none; }
+  .pxD-sheet { background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 12px 32px rgba(17, 17, 17, 0.14); max-height: 82vh; overflow-y: auto; overscroll-behavior: contain; }
+  .pxD-sheet-inner { max-width: var(--maxw); margin: 0 auto; padding: 12px 20px 18px; }
+  .pxD-row { display: flex; align-items: center; gap: 10px; }
+  .pxD-row .searchbox { padding: 11px 16px; background: var(--paper); border-color: var(--ink-soft); }
+  .pxD-row .searchbox input { font-size: 18px; }
+  .pxD-cancel { flex: none; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink); background: none; border: 0; min-height: 44px; padding: 0 6px; cursor: pointer; }
+  .pxD-scope { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 10px 12px 2px; font-size: 14px; color: var(--ink-soft); }
+  .pxD-scope b { color: var(--ink); }
+  .pxD-scope button { font: inherit; font-weight: 600; color: var(--focal-ink); background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .pxD-sheet .search-results { position: static !important; box-shadow: none; border: 0; padding: 6px 0 0; margin: 0; max-height: none; }
+  .pxD-sheet .search-results .pxS-head:first-child:not(.pxS-head--other) { display: none; }
+  @media (max-width: 560px) {
+    .pxD-seg button { padding: 0 11px; font-size: 13px; }
+    .pxD-find kbd { display: none; }
+    .pxD-panel { background: var(--paper); }
+    .pxD-sheet { height: 100%; max-height: none; box-shadow: none; border: 0; }
+    .pxD-sheet-inner { padding: 10px 16px 24px; }
+  }
+
+  /* ---------- scoped search dropdown ---------- */
+  .pxS-head { padding: 8px 12px 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); }
+  .pxS-head--other { margin-top: 6px; border-top: 1px solid var(--line-soft); padding-top: 12px; text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 600; }
+  .search-hit-title .px-tag { font-weight: 600; }
+  .pxS-more { display: block; width: 100%; text-align: left; font: inherit; font-size: 14px; font-weight: 600; color: var(--focal-ink); background: none; border: 0; border-top: 1px solid var(--line-soft); margin-top: 6px; padding: 12px; border-radius: 0 0 8px 8px; cursor: pointer; }
+  .search-results li[aria-selected="true"] .pxS-more { background: var(--focal-wash); }
+
+  /* ---------- floating prototype switcher (not part of the design) ---------- */
+  .px-bar { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 100; display: flex; align-items: center; gap: 6px; background: #1b1b1b; color: #fff; border-radius: 999px; padding: 6px 8px; box-shadow: 0 8px 28px rgba(0,0,0,0.35); font: 13px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; max-width: calc(100vw - 24px); }
+  .px-bar button { background: #333; color: #fff; border: 0; border-radius: 999px; min-width: 30px; height: 30px; cursor: pointer; font: inherit; padding: 0 10px; white-space: nowrap; }
+  .px-bar button:hover { background: #555; }
+  .px-bar .px-label { padding: 0 8px; white-space: nowrap; }
+  .px-bar .px-state { color: #ffb366; padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 560px) { .px-bar .px-state, .px-bar .px-name { display: none; } }
+</style>
+
+<script>
+(function () {
+  var BASE = window.__baseurl === '/' ? '' : (window.__baseurl || '');
+
+  // ---- Data: existing guides from Jekyll, tagged per the plan's table ----
+  var existing = [
+    {% assign pxguides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" %}
+    {% for g in pxguides %}{ slug: {{ g.url | remove: '/' | jsonify }}, title: {{ g.title | jsonify }}, summary: {{ g.summary | jsonify }}, url: {{ g.url | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  var TAGS = {
+    'start-here':              { p: ['restaurant'], s: ['install'], lead: true },
+    'safety-and-clearances':   { p: ['restaurant', 'home'], s: ['install', 'use', 'service'] },
+    'electrical-power':        { p: ['restaurant', 'home'], s: ['install'] },
+    'install-hub':             { p: ['restaurant'], s: ['install'] },
+    'rail-installation':       { p: ['restaurant', 'home'], s: ['install'] },
+    'install-heaters':         { p: ['restaurant', 'home'], s: ['install'] },
+    'register-assign-heaters': { p: ['restaurant'], s: ['install'] },
+    'wifi-requirements':       { p: ['restaurant'], s: ['install'] },
+    'system-setup-control':    { p: ['restaurant'], s: ['use'] },
+    'individual-heater-control': { p: ['restaurant'], s: ['use'] },
+    'replace-heaters':         { p: ['restaurant'], s: ['service'] },
+    'troubleshooting':         { p: ['restaurant'], s: ['service'] },
+    'maintenance':             { p: ['restaurant', 'home'], s: ['service'] },
+    'warranty-service':        { p: ['restaurant', 'home'], s: ['service'] }
+  };
+  var PLANNED = [
+    { slug: 'home-start-here', title: 'Home: Start Here', summary: 'Tools, the install sequence and what to expect, in six steps or fewer.', p: ['home'], s: ['install'], lead: true, order: 4,
+      kw: 'install tools drill bit socket wrench checklist sequence waiver do it yourself power leds' },
+    { slug: 'set-up-duo', title: 'Set up your Duo in the app', summary: 'Sign in, put the Duo in Setup Mode, join it to your Wi-Fi and name it.', p: ['home'], s: ['use'], order: 50,
+      kw: 'app setup mode wifi wi-fi network password sign in email code name duo blink pull string hold retry failed' },
+    { slug: 'control-duo', title: 'Control and aim your Duo', summary: 'Heat levels, aiming, Identify, and the pull string.', p: ['home'], s: ['use'], order: 51,
+      kw: 'control heat level aim spot orange purple identify pull string offline badge firmware update app' },
+    { slug: 'home-wifi', title: 'Home Wi-Fi and app requirements', summary: '2.4 GHz, phone permissions, guest networks and sign-in pages.', p: ['home'], s: ['use'], order: 52,
+      kw: 'wifi wi-fi 2.4 ghz router network guest captive portal permissions local network bluetooth cloud phone' },
+    { slug: 'replace-duo', title: 'Replace a Duo', summary: 'Swap a Duo, set up the new one and remove the old one from your account.', p: ['home'], s: ['service'], order: 71,
+      kw: 'replace swap broken failed heater new duo remove account rail end cap' },
+    { slug: 'change-wifi', title: 'Change Wi-Fi, move or sell a Duo', summary: 'New network, new home, or a new owner.', p: ['home'], s: ['service'], order: 72,
+      kw: 'change wifi wi-fi router new network password move sell factory reset ownership remove account' },
+    { slug: 'delete-account', title: 'Delete your account', summary: 'Request deletion of your Focal Home account and its data.', p: ['home'], s: [], order: 200,
+      kw: 'delete account data privacy remove google play request' }
+  ];
+  // Sections of shared guides that only apply to Restaurant (search index is per <h2> section).
+  var SECTION_TAGS = {
+    '/electrical-power/#placement': ['restaurant'],
+    '/install-heaters/#final-checks': ['restaurant'],
+    '/maintenance/#daily-power-check-for-staff': ['restaurant']
+  };
+  var GUIDES = existing.map(function (g, i) {
+    var t = TAGS[g.slug] || { p: ['restaurant'], s: [] };
+    return { slug: g.slug, title: g.title, summary: g.summary, href: BASE + g.url, p: t.p, s: t.s, lead: !!t.lead, order: i * 10 };
+  }).concat(PLANNED.map(function (g) {
+    return Object.assign({ href: '#', planned: true }, g);
+  })).sort(function (a, b) { return a.order - b.order; });
+
+  var PRODUCTS = {
+    restaurant: { short: 'Restaurant', long: 'Focal for Restaurants', blurb: 'Hub, rails and heaters for patios, run by staff from Focal Control.' },
+    home: { short: 'Home', long: 'Focal for Homes', blurb: 'Duo heaters that join your Wi-Fi, set up in the Focal Home app.' }
+  };
+  var STAGES = {
+    install: { label: 'Install', blurb: 'Mount, power and commission.' },
+    use: { label: 'Use', blurb: 'Set up the app and control heaters.' },
+    service: { label: 'Service', blurb: 'Swaps, maintenance, warranty.' }
+  };
+  var BANNERS = {
+    restaurant: { eyebrow: 'Need help now?', title: 'Troubleshoot now', text: 'Follow the prompts to get help now.', href: BASE + '/fixit/' },
+    home: { eyebrow: 'Just got your Duo?', title: 'Set up your Duo', text: 'Connect it to your Wi-Fi in the Focal Home app.', href: '#' }
+  };
+  var ICONS = {
+    restaurant: '<svg class="px-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11"/></svg>',
+    home: '<svg class="px-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-6h4v6"/></svg>'
+  };
+
+  function guidesFor(p, s) {
+    return GUIDES.filter(function (g) {
+      return g.p.indexOf(p) !== -1 && (s === 'all' || g.s.indexOf(s) !== -1);
+    });
+  }
+  function stagesFor(p) {
+    return Object.keys(STAGES).filter(function (s) { return guidesFor(p, s).length; });
+  }
+  function esc(t) { return String(t || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function tags(g) {
+    var out = '';
+    if (g.p.length > 1) out += '<span class="px-tag">Restaurant · Home</span>';
+    if (g.planned) out += '<span class="px-tag px-tag--planned">Planned</span>';
+    return out;
+  }
+  function card(g, lead) {
+    return '<a class="card' + (lead ? ' card--lead' : '') + (g.planned ? ' px-planned' : '') + '" href="' + g.href + '">' +
+      '<div class="lead-eyebrow">Start here</div><h2>' + esc(g.title) + tags(g) + '</h2><p>' + esc(g.summary) + '</p></a>';
+  }
+  function cards(list, stage) {
+    return list.map(function (g, i) { return card(g, i === 0 && g.lead && stage !== 'all'); }).join('');
+  }
+  function banner(p, cls) {
+    var b = BANNERS[p];
+    return '<a class="fixit-banner ' + (cls || '') + '" href="' + b.href + '"><div class="fixit-banner-text">' +
+      '<div class="fixit-banner-eyebrow">' + b.eyebrow + '</div><h2>' + b.title + '</h2><p>' + b.text + '</p></div>' +
+      '<span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span></a>';
+  }
+
+  // ---- State (memory + URL only) ----
+  var VARIANTS = [
+    { key: 'A', name: 'Gate + segmented toggle' },
+    { key: 'B', name: 'Menu switcher + grouped page' },
+    { key: 'C', name: 'Product band + stage journey' },
+    { key: 'D', name: 'Recommended mix' },
+    { key: 'current', name: 'Today’s landing' }
+  ];
+  var q = new URLSearchParams(window.__pxSearch || location.search);
+  var state = {
+    variant: VARIANTS.some(function (v) { return v.key === q.get('variant'); }) ? q.get('variant') : 'A',
+    product: PRODUCTS[q.get('p')] ? q.get('p') : null,
+    stage: STAGES[q.get('s')] ? q.get('s') : 'all',
+    search: q.get('search') === 'global' ? 'global' : 'scoped',
+    bar: q.get('bar') === 'pill' ? 'pill' : 'tabs',
+    menuOpen: false
+  };
+  function set(patch) {
+    Object.assign(state, patch);
+    if ('product' in patch && !('stage' in patch)) state.stage = 'all';
+    if (state.product && state.stage !== 'all' && stagesFor(state.product).indexOf(state.stage) === -1) state.stage = 'all';
+    var u = new URLSearchParams();
+    u.set('variant', state.variant);
+    if (state.product) u.set('p', state.product);
+    if (state.product && state.stage !== 'all') u.set('s', state.stage);
+    if (state.search === 'global') u.set('search', 'global');
+    if (state.bar === 'pill') u.set('bar', 'pill');
+    history.replaceState(null, '', location.pathname + '?' + u.toString());
+    render();
+    if ('product' in patch || 'search' in patch || 'variant' in patch) { searchUI.expanded = false; searchUI.refresh(); }
+  }
+
+  var root = document.getElementById('px-root');
+  var current = document.getElementById('proto-current');
+  var topInner = document.querySelector('.topbar-inner');
+  var topbar = document.querySelector('.topbar');
+  var slot = document.createElement('div'); slot.style.display = 'contents';
+  topInner.insertBefore(slot, topInner.querySelector('.searchbox'));
+  var band = document.createElement('div');
+  topbar.appendChild(band);
+
+  // ---------- Variant A: gate on first visit, segmented control in the top bar ----------
+  function VariantA() {
+    var p = state.product;
+    slot.innerHTML = '<div class="pxA-seg" role="group" aria-label="Product">' +
+      Object.keys(PRODUCTS).map(function (k) {
+        return '<button data-p="' + k + '" aria-pressed="' + (p === k) + '">' + PRODUCTS[k].short + '</button>';
+      }).join('') + '</div>';
+    band.innerHTML = '';
+    if (!p) {
+      return '<section class="hero"><h1>Focal Support</h1><p>How to prepare for, install, and use Focal heaters.</p></section>' +
+        '<div class="pxA-choose"><h2>Which Focal do you have?</h2><div class="pxA-doors">' +
+        Object.keys(PRODUCTS).map(function (k) {
+          return '<button class="pxA-door" data-p="' + k + '">' + ICONS[k] + '<strong>' + PRODUCTS[k].long + '</strong><span>' + PRODUCTS[k].blurb + '</span></button>';
+        }).join('') + '</div></div>';
+    }
+    var tabs = ['all'].concat(stagesFor(p));
+    var list = guidesFor(p, state.stage);
+    return '<section class="hero"><p class="px-hero-kicker">' + PRODUCTS[p].long + '</p><h1>Focal Support</h1>' +
+      '<p>How to prepare for, install, and use Focal heaters.</p></section>' + banner(p) +
+      '<div class="pxA-tabs" role="tablist">' + tabs.map(function (s) {
+        return '<button role="tab" data-s="' + s + '" aria-selected="' + (state.stage === s) + '">' + (s === 'all' ? 'All' : STAGES[s].label) + '</button>';
+      }).join('') + '</div>' +
+      (state.stage !== 'all' ? '<p class="pxA-stagehint">' + STAGES[state.stage].blurb + '</p>' : '') +
+      '<div class="card-list">' + cards(list, state.stage) + '</div>';
+  }
+
+  // ---------- Variant B: no gate; switcher menu by the logo; stages as sections on one page ----------
+  function VariantB() {
+    var p = state.product;
+    slot.innerHTML = '<div class="pxB-switch"><button class="pxB-pill' + (p ? '' : ' pxB-pill--empty') + '" data-menu aria-haspopup="menu" aria-expanded="' + state.menuOpen + '">' +
+      (p ? PRODUCTS[p].short : 'Choose product') + ' <span aria-hidden="true">&#9662;</span></button>' +
+      (state.menuOpen ? '<div class="pxB-menu" role="menu">' + Object.keys(PRODUCTS).map(function (k) {
+        return '<button role="menuitemradio" aria-checked="' + (p === k) + '" data-p="' + k + '">' + ICONS[k] + '<span><b>' + PRODUCTS[k].long + '</b><small>' + PRODUCTS[k].blurb + '</small></span></button>';
+      }).join('') + '</div>' : '') + '</div>';
+    band.innerHTML = '';
+    var head = '<section class="hero"><h1>Focal Support</h1><p>How to prepare for, install, and use Focal heaters.</p></section>';
+    if (!p) {
+      var shared = GUIDES.filter(function (g) { return g.p.length > 1; });
+      return head + '<div class="pxB-ask"><strong>Which Focal do you have?</strong><div>' +
+        Object.keys(PRODUCTS).map(function (k) { return '<button class="chip" data-p="' + k + '">' + PRODUCTS[k].long + '</button>'; }).join('') +
+        '</div></div><p class="pxB-shared-note">Until you choose, only guides for both products are shown.</p>' +
+        '<div class="card-list">' + cards(shared, 'all') + '</div>';
+    }
+    var stages = stagesFor(p);
+    var other = GUIDES.filter(function (g) { return g.p.indexOf(p) !== -1 && !g.s.length; });
+    return head + banner(p) +
+      '<nav class="pxB-jump">' + stages.map(function (s) { return '<a href="#pxB-' + s + '">' + STAGES[s].label + '</a>'; }).join('') +
+      (other.length ? '<a href="#pxB-other">More</a>' : '') + '</nav>' +
+      stages.map(function (s) {
+        return '<section class="pxB-group" id="pxB-' + s + '"><h2>' + STAGES[s].label + '</h2><p>' + STAGES[s].blurb + '</p>' +
+          '<div class="card-list">' + cards(guidesFor(p, s), s) + '</div></section>';
+      }).join('') +
+      (other.length ? '<section class="pxB-group" id="pxB-other"><h2>More</h2><p>Account and other pages.</p><div class="card-list">' + cards(other, 'all') + '</div></section>' : '') +
+      '<div style="height:60px"></div>';
+  }
+
+  // ---------- Variant C: full-width product band under the top bar; stages as a numbered journey ----------
+  // ---------- Variant D: recommended mix ----------
+  // Top bar: logo · Restaurant|Home switch · search icon. Stage tabs live in the page.
+  // Search opens one sheet from either the top-bar icon or the landing field; the sheet states its scope.
+  var SEARCH_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  var CHEV_SVG = '<svg class="pxD-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var SUBTITLES = {
+    restaurant: 'Install, run and service your Focal system.',
+    home: 'Set up, use and look after your Duo heaters.'
+  };
+  var panel = document.createElement('div');
+  panel.className = 'pxD-panel'; panel.hidden = true;
+  panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-label', 'Search guides');
+  panel.innerHTML = '<div class="pxD-sheet"><div class="pxD-sheet-inner"><div class="pxD-row"><button class="pxD-cancel" data-close-search type="button">Cancel</button></div><div class="pxD-scope"></div></div></div>';
+  document.body.appendChild(panel);
+  var opener = null;
+  function openPanel(from) {
+    opener = from || document.activeElement;
+    panel.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    var inp = document.getElementById('search');
+    if (inp) { inp.focus(); inp.select(); }
+    searchUI.refresh();
+  }
+  function closePanel() {
+    if (panel.hidden) return;
+    panel.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (opener && opener.focus) opener.focus();
+  }
+  panel.addEventListener('mousedown', function (e) { if (e.target === panel) closePanel(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) closePanel(); });
+  function scopeLine() {
+    var p = state.product, s = scopeNow();
+    if (!p) return '<span>Searching <b>all guides</b></span>';
+    if (s) return '<span>Searching <b>' + PRODUCTS[p].short + ' guides</b></span><button type="button" data-scope="global">Search all guides</button>';
+    return '<span>Searching <b>all guides</b></span><button type="button" data-scope="scoped">Only ' + PRODUCTS[p].short + ' guides</button>';
+  }
+  // Move the one real search box between the top bar (A/B/C/current) and the sheet (D).
+  function placeSearch() {
+    var box = searchUI.box || document.querySelector('.searchbox');
+    if (!box) return;
+    var row = panel.querySelector('.pxD-row');
+    if (state.variant === 'D') {
+      if (box.parentNode !== row) row.insertBefore(box, row.firstChild);
+      if (searchUI.list) panel.querySelector('.pxD-sheet-inner').appendChild(searchUI.list);
+    } else {
+      closePanel();
+      if (box.parentNode !== topInner) topInner.appendChild(box);
+      if (searchUI.list && searchUI.list.parentNode !== box) box.appendChild(searchUI.list);
+    }
+    panel.querySelector('.pxD-scope').innerHTML = scopeLine();
+  }
+  function findField() {
+    var s = scopeNow();
+    return '<button class="pxD-find" type="button" data-open-search>' + SEARCH_SVG + '<span>' +
+      (s ? 'Search ' + PRODUCTS[s].short + ' guides' : 'Search all guides') + '</span><kbd>/</kbd></button>';
+  }
+  function VariantD() {
+    var p = state.product;
+    band.innerHTML = '';
+    topbar.classList.toggle('pxD-bar', state.bar === 'tabs');
+    var btns = Object.keys(PRODUCTS).map(function (k) {
+      return '<button type="button" data-p="' + k + '" aria-pressed="' + (p === k) + '">' + PRODUCTS[k].short + '</button>';
+    }).join('');
+    slot.innerHTML = state.bar === 'pill'
+      ? '<div class="pxD-seg' + (p ? '' : ' pxD-seg--empty') + '" role="group" aria-label="Product">' + btns + '</div>' +
+        '<button class="pxD-icon" type="button" data-open-search aria-label="Search guides">' + SEARCH_SVG + '</button>'
+      : '<div class="pxD-ptabs" role="group" aria-label="Product">' + btns + '</div>' +
+        '<button class="pxD-icon pxD-icon--plain" type="button" data-open-search aria-label="Search guides">' + SEARCH_SVG + '</button>';
+    if (!p) {
+      return '<section class="pxD-hero"><h1>Which Focal do you have?</h1>' +
+        '<p>Pick one to see its guides. You can switch any time at the top of the page.</p></section>' +
+        '<ul class="pxD-gate">' + Object.keys(PRODUCTS).map(function (k) {
+          return '<li><button type="button" data-p="' + k + '">' + ICONS[k] + '<span><strong>' + PRODUCTS[k].long + '</strong><small>' + PRODUCTS[k].blurb + '</small></span>' + CHEV_SVG + '</button></li>';
+        }).join('') + '</ul>' + findField();
+    }
+    var tabs = ['all'].concat(stagesFor(p));
+    var list = guidesFor(p, state.stage);
+    return '<section class="pxD-hero"><h1>' + PRODUCTS[p].long + '</h1><p>' + SUBTITLES[p] + '</p></section>' +
+      findField() + banner(p) +
+      '<div class="pxD-tabs" role="tablist" aria-label="Stage">' + tabs.map(function (s) {
+        return '<button type="button" role="tab" data-s="' + s + '" aria-selected="' + (state.stage === s) + '">' + (s === 'all' ? 'All' : STAGES[s].label) + '</button>';
+      }).join('') + '</div>' +
+      '<ul class="pxD-rows">' + list.map(function (g, i) {
+        var lead = i === 0 && g.lead && state.stage !== 'all';
+        return '<li><a href="' + g.href + '">' + '<span>' + (lead ? '<span class="pxD-start">Start here</span>' : '') +
+          '<b>' + esc(g.title) + '</b>' + (g.planned ? '<span class="px-tag px-tag--planned">Planned</span>' : '') + '</span>' +
+          '<small>' + esc(g.summary) + '</small>' + CHEV_SVG + '</a></li>';
+      }).join('') + '</ul>';
+  }
+
+  function VariantC() {
+    var p = state.product;
+    slot.innerHTML = '';
+    band.className = 'pxC-band' + (p ? '' : ' pxC-band--empty');
+    band.innerHTML = '<div class="pxC-band-inner" role="tablist" aria-label="Product">' + Object.keys(PRODUCTS).map(function (k) {
+      return '<button role="tab" data-p="' + k + '" aria-selected="' + (p === k) + '">' + PRODUCTS[k].long + '</button>';
+    }).join('') + '</div>';
+    if (!p) {
+      return '<section class="hero"><h1>Which Focal do you have?</h1><p>Pick one to see the guides for it. You can switch any time from the bar above.</p></section>' +
+        '<ul class="pxC-pick">' + Object.keys(PRODUCTS).map(function (k) {
+          return '<li><button data-p="' + k + '">' + ICONS[k] + '<span><strong>' + PRODUCTS[k].long + '</strong><small>' + PRODUCTS[k].blurb + '</small></span></button></li>';
+        }).join('') + '</ul>';
+    }
+    var b = BANNERS[p];
+    var list = guidesFor(p, state.stage);
+    return '<section class="hero"><h1>' + PRODUCTS[p].long + '</h1><p>How to prepare for, install, and use Focal heaters.</p></section>' +
+      '<a class="pxC-strip" href="' + b.href + '"><span><b>' + b.title + '</b> &middot; ' + b.text + '</span><span aria-hidden="true">&rarr;</span></a>' +
+      '<div class="pxC-journey" role="tablist">' + stagesFor(p).map(function (s) {
+        return '<button class="pxC-stage" role="tab" data-s="' + s + '" aria-selected="' + (state.stage === s) + '"><strong>' + STAGES[s].label + '</strong><span>' +
+          STAGES[s].blurb + ' ' + guidesFor(p, s).length + ' guides</span></button>';
+      }).join('') + '</div>' +
+      '<button class="pxC-all" data-s="all" aria-selected="' + (state.stage === 'all') + '">All ' + guidesFor(p, 'all').length + ' guides</button>' +
+      '<ul class="pxC-rows">' + list.map(function (g, i) {
+        var lead = i === 0 && g.lead && state.stage !== 'all';
+        return '<li><a href="' + g.href + '" class="' + (lead ? 'pxC-lead' : '') + '"><b>' + esc(g.title) + tags(g) + '</b><small>' + esc(g.summary) + '</small><span class="pxC-go">&rsaquo;</span></a></li>';
+      }).join('') + '</ul>';
+  }
+
+  // ---------- Scoped search (replaces assets/search.js on this page) ----------
+  // Rules being tested:
+  //  1. No product chosen (or ?search=global): search everything, tag each hit with its product.
+  //  2. Product chosen: hits for that product first (shared guides count for both).
+  //  3. The other product's hits are collapsed into one "N more in X guides" row, not hidden.
+  //  4. If the product has no hits, show the other product's hits straight away, labelled.
+  //  5. Fix it never appears for Home.
+  var searchUI = { expanded: false, refresh: function () {} };
+  function scopeNow() {
+    return (state.variant !== 'current' && state.search === 'scoped') ? state.product : null;
+  }
+  function productsOfUrl(url) {
+    var path = url.replace(BASE, '');
+    if (SECTION_TAGS[path]) return SECTION_TAGS[path];
+    if (path.indexOf('/fixit/') === 0) return ['restaurant'];
+    var slug = path.split('#')[0].replace(/\//g, '');
+    return (TAGS[slug] || { p: ['restaurant'] }).p;
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var old = document.getElementById('search');
+    var box = old && old.closest('.searchbox');
+    if (!old || !box || typeof MiniSearch === 'undefined') return;
+    var input = old.cloneNode(true);           // drops search.js's listeners
+    old.replaceWith(input);
+    var oldList = box.querySelector('.search-results'); if (oldList) oldList.remove();
+    var list = document.createElement('ul');
+    list.id = 'search-results'; list.className = 'search-results'; list.setAttribute('role', 'listbox'); list.hidden = true;
+    box.appendChild(list);
+
+    var mini = null, loading = null, active = -1;
+    function load() {
+      if (loading) return loading;
+      loading = fetch(input.getAttribute('data-index')).then(function (r) { return r.json(); }).then(function (docs) {
+        docs = docs.concat(PLANNED.map(function (g, i) {
+          return { id: 'planned-' + i, url: '#', guide: g.title, heading: '', summary: g.summary, body: g.summary + ' ' + g.kw, snip: g.summary, planned: true };
+        }));
+        mini = new MiniSearch({
+          fields: ['heading', 'guide', 'summary', 'body'],
+          storeFields: ['url', 'guide', 'heading', 'body', 'snip', 'planned'],
+          searchOptions: { boost: { heading: 3, guide: 2, summary: 1.5 }, prefix: true, fuzzy: 0.2 }
+        });
+        mini.addAll(docs);
+      });
+      return loading;
+    }
+    function hitsFor(qs) {
+      var h = mini.search(qs, { combineWith: 'AND' });
+      if (!h.length) h = mini.search(qs, { combineWith: 'OR' });
+      return h.map(function (x) { x.p = x.planned ? ['home'] : productsOfUrl(x.url); return x; });
+    }
+    function productTag(p) {
+      return p.length > 1 ? 'Restaurant · Home' : PRODUCTS[p[0]].short;
+    }
+    function item(h, withTag) {
+      var src = h.snip || h.body || '';
+      var snip = src.slice(0, 140).replace(/\s+\S*$/, '') + (src.length > 140 ? '…' : '');
+      return '<li role="option" aria-selected="false"><a class="search-hit px-sel" href="' + h.url + '" tabindex="-1">' +
+        '<span class="search-hit-title">' + esc(h.guide) + (h.heading ? '<span class="search-hit-sep"> › </span>' + esc(h.heading) : '') +
+        (withTag ? '<span class="px-tag">' + productTag(h.p) + '</span>' : '') +
+        (h.planned ? '<span class="px-tag px-tag--planned">Planned</span>' : '') + '</span>' +
+        (snip ? '<span class="search-hit-snippet">' + esc(snip) + '</span>' : '') + '</a></li>';
+    }
+    function placeholder() {
+      var s = scopeNow();
+      input.placeholder = state.variant === 'current' ? 'Search guides' : (s ? 'Search ' + PRODUCTS[s].short + ' guides' : 'Search all guides');
+    }
+    function close() { list.hidden = true; active = -1; input.setAttribute('aria-expanded', 'false'); }
+    function draw() {
+      var qs = input.value.trim();
+      placeholder();
+      if (qs.length < 2) { close(); list.innerHTML = ''; return; }
+      load().then(function () {
+        if (input.value.trim() !== qs) return;
+        var scope = scopeNow();
+        var all = hitsFor(qs);
+        var tagAll = state.variant !== 'current' && !scope;
+        var html = '';
+        if (!scope) {
+          if (state.variant !== 'current') html += '<li class="pxS-head">All guides</li>';
+          html += all.slice(0, 8).map(function (h) { return item(h, tagAll); }).join('');
+          if (!all.length) html = '<li class="search-empty">No results for “' + esc(qs) + '”</li>';
+        } else {
+          var other = scope === 'home' ? 'restaurant' : 'home';
+          var mine = all.filter(function (h) { return h.p.indexOf(scope) !== -1; }).slice(0, 8);
+          var theirs = all.filter(function (h) { return h.p.indexOf(scope) === -1 && !(scope === 'home' && /\/fixit\//.test(h.url)); }).slice(0, 8);
+          if (mine.length) {
+            html += '<li class="pxS-head">' + PRODUCTS[scope].short + ' guides</li>' + mine.map(function (h) { return item(h, false); }).join('');
+            if (theirs.length) {
+              html += searchUI.expanded
+                ? '<li class="pxS-head pxS-head--other">' + PRODUCTS[other].short + ' guides</li>' + theirs.map(function (h) { return item(h, false); }).join('')
+                : '<li role="option" aria-selected="false"><button class="pxS-more px-sel" type="button">' + theirs.length + ' more in ' + PRODUCTS[other].short + ' guides &rsaquo;</button></li>';
+            }
+          } else if (theirs.length) {
+            html += '<li class="pxS-head pxS-head--other">No ' + PRODUCTS[scope].short + ' guides match. From ' + PRODUCTS[other].short + ' guides:</li>' +
+              theirs.map(function (h) { return item(h, false); }).join('');
+          } else {
+            html = '<li class="search-empty">No results for “' + esc(qs) + '”</li>';
+          }
+        }
+        list.innerHTML = html;
+        active = -1;
+        list.hidden = false; input.setAttribute('aria-expanded', 'true');
+      });
+    }
+    function setActive(i) {
+      var opts = list.querySelectorAll('li[role="option"]');
+      if (!opts.length) return;
+      active = (i + opts.length) % opts.length;
+      opts.forEach(function (li, k) { li.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
+      opts[active].scrollIntoView({ block: 'nearest' });
+    }
+    function expand() { searchUI.expanded = true; draw(); input.focus(); }
+    list.addEventListener('mousedown', function (e) {
+      if (e.target.closest('.pxS-more')) { e.preventDefault(); expand(); }
+    });
+    input.addEventListener('focus', function () { load(); if (input.value.trim().length >= 2) draw(); });
+    input.addEventListener('input', function () { searchUI.expanded = false; draw(); });
+    input.addEventListener('keydown', function (e) {
+      var opts = list.querySelectorAll('li[role="option"]');
+      if (e.key === 'ArrowDown' && opts.length) { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === 'ArrowUp' && opts.length) { e.preventDefault(); setActive(active - 1); }
+      else if (e.key === 'Enter' && opts.length && !list.hidden) {
+        e.preventDefault();
+        var el = opts[active >= 0 ? active : 0].querySelector('.px-sel');
+        if (el.classList.contains('pxS-more')) expand();
+        else if (el.getAttribute('href') !== '#') { close(); location.href = el.href; }
+      } else if (e.key === 'Escape') {
+        if (!list.hidden) { e.preventDefault(); close(); } else input.value = '';
+      }
+    });
+    document.addEventListener('click', function (e) { if (!box.contains(e.target) && !list.contains(e.target) && !panel.contains(e.target)) close(); });
+    document.addEventListener('keydown', function (e) {   // search.js's "/" shortcut points at the old input
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+      var t = e.target;
+      if (t && t !== document.body && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      e.preventDefault(); if (state.variant === 'D') openPanel(); else input.focus();
+    });
+    searchUI.refresh = draw; searchUI.box = box; searchUI.list = list;
+    placeholder(); placeSearch();
+  });
+
+  // ---------- Switcher bar ----------
+  var bar = document.createElement('div');
+  bar.className = 'px-bar';
+  bar.innerHTML = '<button data-step="-1" aria-label="Previous variant">&larr;</button><span class="px-label"></span>' +
+    '<button data-step="1" aria-label="Next variant">&rarr;</button><span class="px-state"></span>' +
+    '<button data-search title="Compare scoped vs global search">search: scoped</button>' +
+    '<button data-reset title="Forget product choice (first-visit view)">clear</button>';
+  document.body.appendChild(bar);
+  function step(d) {
+    var i = VARIANTS.findIndex(function (v) { return v.key === state.variant; });
+    set({ variant: VARIANTS[(i + d + VARIANTS.length) % VARIANTS.length].key, menuOpen: false });
+  }
+  bar.addEventListener('click', function (e) {
+    var t = e.target.closest('button'); if (!t) return;
+    if (t.dataset.step) step(+t.dataset.step);
+    if ('reset' in t.dataset) set({ product: null, stage: 'all' });
+    if ('search' in t.dataset) set({ search: state.search === 'scoped' ? 'global' : 'scoped' });
+  });
+  document.addEventListener('keydown', function (e) {
+    var el = document.activeElement;
+    if (el && (el.matches('input, textarea, select') || el.isContentEditable)) return;
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'Escape' && state.menuOpen) set({ menuOpen: false });
+  });
+
+  // ---------- Events for all variants ----------
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-p], [data-s], [data-menu], [data-open-search], [data-close-search], [data-scope], a[href="#"]');
+    if (!t) { if (state.menuOpen) set({ menuOpen: false }); return; }
+    if (t.matches('a[href="#"]')) { e.preventDefault(); return; }
+    if ('menu' in t.dataset) return set({ menuOpen: !state.menuOpen });
+    if ('openSearch' in t.dataset) return openPanel(t);
+    if ('closeSearch' in t.dataset) return closePanel();
+    if (t.dataset.scope) return set({ search: t.dataset.scope });
+    if (t.dataset.p) return set({ product: t.dataset.p, menuOpen: false });
+    if (t.dataset.s) set({ stage: t.dataset.s });
+  });
+
+  function render() {
+    var v = VARIANTS.find(function (x) { return x.key === state.variant; });
+    bar.querySelector('.px-label').innerHTML = v.key + '<span class="px-name"> (' + v.name + ')</span>';
+    bar.querySelector('.px-state').textContent = 'product: ' + (state.product || 'none') + ' · stage: ' + state.stage +
+      ' · search scope: ' + (scopeNow() || 'all');
+    bar.querySelector('[data-search]').textContent = 'search: ' + state.search;
+    var isCurrent = state.variant === 'current';
+    placeSearch();
+    if (state.variant !== 'D') topbar.classList.remove('pxD-bar');
+    current.classList.toggle('px-hidden', !isCurrent);
+    root.classList.toggle('px-hidden', isCurrent);
+    if (isCurrent) { slot.innerHTML = ''; band.innerHTML = ''; band.className = ''; return; }
+    if (state.variant !== 'C') band.className = '';
+    root.innerHTML = ({ A: VariantA, B: VariantB, C: VariantC, D: VariantD })[state.variant]();
+  }
+  render();
+})();
+</script>

@@ -2,6 +2,8 @@
 layout: home
 title: null
 ---
+{% if jekyll.environment != "production" %}<script>window.__pxSearch = location.search; /* PROTOTYPE: saved before the old filter script resets the URL */</script>{% endif %}
+<div id="proto-current">
 <section class="hero">
   <h1>Focal Support</h1>
   <p>How to prepare for, install, and use Focal heaters.</p>
@@ -107,3 +109,5 @@ title: null
   apply();
 })();
 </script>
+</div>
+{% if jekyll.environment != "production" %}{% include prototype-landing.html %}{% endif %}
