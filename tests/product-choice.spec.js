@@ -46,7 +46,7 @@ const overflow = (page) => page.evaluate(
 test.describe('setting on', () => {
   test('first visit shows the choice and nothing else', async ({ page }) => {
     await page.goto(on.url + '/');
-    await expect(page.getByRole('heading', { name: 'Which Focal do you have?' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Select your product' })).toBeVisible();
     await expect(page.locator('.choice')).toHaveText([/Focal for Restaurants/, /Focal for Homes/]);
     await expect(page.getByPlaceholder('Search all guides')).toBeVisible();
     await expect(page.locator('.guide-row:visible')).toHaveCount(0);
@@ -152,7 +152,7 @@ test.describe('setting off', () => {
   test('behaves as Restaurant only', async ({ page }) => {
     await page.goto(off.url + '/');
     await expect(page.getByRole('heading', { name: 'Focal Support' })).toBeVisible();
-    await expect(page.getByText('Which Focal do you have?')).toHaveCount(0);
+    await expect(page.getByText('Select your product')).toHaveCount(0);
     await expect(page.locator('.product-tab')).toHaveCount(0);
     await expect(page.locator('#search-toggle')).toHaveCount(0);
     await expect(page.locator('#searchbox')).toBeVisible();

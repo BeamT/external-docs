@@ -70,7 +70,7 @@ ones.
 `product_choice` in `_config.yml` is `false` until the launch ticket under #136
 turns it on. Off, the site is Restaurant only: no Home tab, no first-visit
 choice, and `?product=` is ignored. On, the top bar shows **Restaurant · Home**
-tabs and a search icon, the landing page asks "Which Focal do you have?" on a
+tabs and a search icon, the landing page asks "Select your product" on a
 first visit, and the choice is saved in the browser (`?product=home` or
 `?product=restaurant` sets it; opening a Guide never changes it).
 
