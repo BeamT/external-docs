@@ -60,6 +60,7 @@ a { color: inherit; }
 .topbar-inner { max-width: var(--maxw); margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 14px; }
 .brand { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.02em; font-size: 20px; text-decoration: none; white-space: nowrap; }
 .brand .dot { color: var(--focal); }
+.brand-logo { height: 24px; width: auto; display: block; }
 .searchbox { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; background: var(--wash); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; }
 .searchbox input { border: 0; background: transparent; outline: none; width: 100%; font-size: 16px; color: var(--ink); }
 .searchbox svg { flex: none; color: var(--ink-soft); }
@@ -88,6 +89,38 @@ a { color: inherit; }
   .search-results { position: fixed; top: 58px; left: 12px; right: 12px; max-height: calc(100vh - 80px); }
 }
 
+/* ---- Product choice (site.product_choice) ---- */
+.product-choice .topbar-inner { padding-top: 0; padding-bottom: 0; flex-wrap: wrap; gap: 0; }
+.product-choice .brand { display: flex; align-items: center; height: 56px; margin-right: 12px; }
+.product-choice .brand-logo { height: 28px; }
+.product-tabs { display: flex; align-self: stretch; }
+.product-tab { display: flex; align-items: center; padding: 0 12px; margin-bottom: -1px; border-bottom: 3px solid transparent; color: var(--ink-soft); font-size: 16px; text-decoration: none; white-space: nowrap; }
+.product-tab:hover { color: var(--ink); }
+.product-tab[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--focal); }
+.product-tab:focus { outline: none; }
+.product-tab:focus-visible, .search-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.search-toggle { margin-left: auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
+.search-toggle:hover, .search-toggle[aria-expanded="true"] { background: var(--wash); }
+.product-choice .searchbox { flex: 1 1 100%; order: 5; margin: 0 0 12px; }
+.product-choice .searchbox[hidden] { display: none; }
+.product-choice .search-results { position: absolute; top: calc(100% + 8px); left: 0; right: 0; max-height: min(70vh, 520px); }
+@media (max-width: 560px) {
+  .product-choice .topbar-inner { padding-left: 12px; padding-right: 8px; }
+  .product-choice .brand { margin-right: 4px; }
+  .product-choice .brand-logo { height: 24px; }
+  .product-tab { padding: 0 9px; font-size: 15px; }
+}
+
+.choices { display: grid; gap: 12px; margin: 22px 0 18px; }
+.choice { display: block; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; text-decoration: none; color: inherit; transition: border-color 0.15s, box-shadow 0.15s; }
+.choice:hover { border-color: var(--ink); box-shadow: inset 0 0 0 999px rgba(0,0,0,0.035); }
+.choice:focus { outline: none; }
+.choice:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.choice-name { display: block; font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+.choice-desc { display: block; color: var(--ink-soft); font-size: 15px; line-height: 1.4; }
+.landing-search { display: block; width: 100%; box-sizing: border-box; margin: 4px 0 18px; padding: 12px 16px; font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; cursor: text; }
+.landing-search:focus { outline: none; border-color: var(--ink-soft); }
+
 .hero { padding: 40px 0 20px; }
 .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 8vw, 46px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 12px; }
 .hero p { color: var(--ink-soft); margin: 0; max-width: 34em; }
@@ -106,6 +139,7 @@ a { color: inherit; }
   color: inherit;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
+.fixit-banner[hidden] { display: none; }
 .fixit-banner:hover { border-color: var(--focal-ink); box-shadow: inset 0 0 0 999px rgba(0,0,0,0.035); }
 .fixit-banner:active { transform: scale(0.995); }
 .fixit-banner-eyebrow { display: block; font-size: 13px; font-weight: 600; color: var(--focal-ink); margin-bottom: 4px; }
