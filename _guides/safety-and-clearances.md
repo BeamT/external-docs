@@ -2,6 +2,10 @@
 title: Safety & Clearances
 audience: [installer, electrician, customer]
 audience_order: {installer: 10, electrician: 20, customer: 25}
+product: both
+stage: [install, operate, service]
+install_order: {restaurant: 10, home: 10}
+operate_order: {restaurant: 5, home: 5}
 order: 10
 summary: Required clearances and safety guidelines for every install.
 version: "1.5"

@@ -2,6 +2,9 @@
 title: Install Rails
 audience: [installer]
 audience_order: {installer: 40}
+product: both
+stage: [install]
+install_order: {restaurant: 40, home: 40}
 order: 30
 summary: Mount the Rails and power them on.
 version: "2.0"

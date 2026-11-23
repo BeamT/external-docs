@@ -2,6 +2,8 @@
 title: Troubleshooting
 audience: [customer, installer]
 audience_order: {customer: 20, installer: 65}
+product: restaurant
+stage: [service]
 order: 80
 summary: Get help with issues.
 version: "1.6"

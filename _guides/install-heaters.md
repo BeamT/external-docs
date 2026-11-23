@@ -2,6 +2,9 @@
 title: Install Heaters
 audience: [installer]
 audience_order: {installer: 50}
+product: both
+stage: [install]
+install_order: {restaurant: 50, home: 50}
 order: 40
 summary: Install heaters onto the Rail.
 version: "1.6"

@@ -2,6 +2,8 @@
 title: Maintenance & Care
 audience: [customer]
 audience_order: {customer: 30}
+product: both
+stage: [service]
 order: 90
 summary: Maintenance and care for your Focal system.
 version: "1.1"

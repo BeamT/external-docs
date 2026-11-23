@@ -2,6 +2,8 @@
 title: Survey Your Patio
 audience: [customer]
 audience_order: {customer: 5}
+product: restaurant
+stage: []
 order: 3
 summary: Draw or find a floor plan, photograph, and measure your patio for the Focal Site Survey.
 version: "1.1"

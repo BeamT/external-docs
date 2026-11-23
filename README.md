@@ -18,7 +18,8 @@ Create one file in `_guides/`, e.g. `_guides/troubleshooting.md`:
 ```markdown
 ---
 title: Troubleshooting
-audience: [customer, installer]
+product: restaurant
+stage: [service]
 order: 6
 summary: Fixes for the most common issues on site.
 version: "1.0"
@@ -33,6 +34,37 @@ Regular Markdown works: **bold**, tables, lists, ## headings.
 ```
 
 That's it — the new page and its search entry appear automatically on the next build.
+
+## Tag every guide: Product, Stage, Mount
+
+Every guide carries `product` and `stage` front matter. The terms are defined in
+`GLOSSARY.md`.
+
+- **`product`**: `restaurant`, `home` or `both`. A guide with no `product` is
+  treated as Restaurant, so untagged content keeps today's behaviour. Tag
+  every new guide explicitly anyway.
+- **`stage`**: a list of `install`, `operate` and `service`, for example
+  `stage: [install, operate]`. A guide can sit in several Stages. An empty list
+  (`stage: []`) means the guide appears under All only. Stages are the same for
+  every Product.
+- **Order**: `install_order` and `operate_order` give the position of the guide
+  within that Stage, one number per Product:
+  `install_order: {restaurant: 40, home: 40}`. A guide tagged `both` gets a
+  number for each Product; a guide with a single Product needs only that one.
+  Leave a key out when the guide isn't in that Product's order. Service has no
+  required order. Electrical & Power has an Install number but stays out of the
+  "Next" chain and the print packet for now.
+- **Mount**: the way a rail attaches (Overhead, and later Freestanding, Wall
+  and Self-mount). Mount is not front matter. Mount-specific steps live in one
+  clearly headed section of the guide, for example "Overhead mount" in
+  Install Rails, so a new Mount means moving a section, not rewriting a guide.
+
+`product`, `stage`, `install_order` and `operate_order` are data only for now:
+nothing reads them yet, so the "Next" chain and print packet still follow the
+old fields. `audience` and `audience_order` are those old per-role fields. The
+landing page, search index, "Next" link and print packet read them until the
+Stage tabs replace them; keep them on existing guides and leave them off new
+ones.
 
 ## The building blocks
 
@@ -189,7 +221,8 @@ Agreed but not yet done, in roughly the order they unblock each other:
    bare standalone page. This is the central blocking item — the item below
    depends on it.
 2. ~~Shrink `_guides/troubleshooting.md` into a short stub that forwards to
-   `/fixit/`~~ — done; it's now a 29-line stub.
+   `/fixit/`~~ — not planned any more; the guide keeps its full content (the two
+   coexist, see above).
 3. **Move to a custom domain**, `support.focalheat.co`, for the whole site
    (guides + wizard together).When this happens, update `url` and
    `baseurl` in `_config.yml` together (see the comments already in that

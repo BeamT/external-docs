@@ -2,6 +2,9 @@
 title: System Setup & Control
 audience: [customer]
 audience_order: {customer: 10}
+product: restaurant
+stage: [operate]
+operate_order: {restaurant: 10}
 order: 11
 summary: Set up Focal Control, your schedule, and control the system from one screen.
 version: "1.1"

@@ -2,6 +2,9 @@
 title: "Installer: Start Here"
 audience: [installer]
 audience_order: {installer: 5}
+product: restaurant
+stage: [install]
+install_order: {restaurant: 5}
 order: 5
 summary: Pre-job checklist and the full install sequence at a glance.
 lead: true
