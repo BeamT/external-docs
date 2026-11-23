@@ -16,26 +16,29 @@ title: null
   <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
 </a>
 
-<div class="filter-row" role="group" aria-label="Filter by audience">
-  <button class="chip" data-aud="all" aria-pressed="true">All</button>
-  <button class="chip" data-aud="electrician" aria-pressed="false">Electrician</button>
-  <button class="chip" data-aud="installer" aria-pressed="false">Installer</button>
-  <button class="chip" data-aud="customer" aria-pressed="false">Restaurant</button>
+<div class="stage-tabs" role="tablist" aria-label="Filter by stage">
+  <button class="stage-tab" role="tab" data-stage="all" aria-selected="true">All</button>
+  <button class="stage-tab" role="tab" data-stage="install" aria-selected="false">Install</button>
+  <button class="stage-tab" role="tab" data-stage="operate" aria-selected="false">Operate</button>
+  <button class="stage-tab" role="tab" data-stage="service" aria-selected="false">Service</button>
 </div>
 
-<div class="card-list" id="card-list">
-  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" %}
+<div class="guide-list" id="guide-list" role="tabpanel">
+  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | where_exp: "g", "g.product == 'restaurant' or g.product == 'both'" | sort: "order" %}
   {% for g in guides %}
-  <a class="card" href="{{ g.url | prepend: site.baseurl }}"
-     data-audience="{{ g.audience | join: ',' }}"
-     data-order-default="{{ g.order }}"
-     data-order-installer="{{ g.audience_order.installer | default: 999 }}"
-     data-order-electrician="{{ g.audience_order.electrician | default: 999 }}"
-     data-order-customer="{{ g.audience_order.customer | default: 999 }}"
+  <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"
+     data-stages="{{ g.stage | join: ',' }}"
+     data-order-all="{{ g.order }}"
+     data-order-install="{{ g.install_order.restaurant | default: g.order }}"
+     data-order-operate="{{ g.operate_order.restaurant | default: g.order }}"
+     data-order-service="{{ g.service_order.restaurant | default: g.order }}"
      data-lead="{% if g.lead %}true{% else %}false{% endif %}">
-    {% if g.lead %}<div class="lead-eyebrow">Start here</div>{% endif %}
-    <h2>{{ g.title }}</h2>
-    <p>{{ g.summary }}</p>
+    <span class="guide-row-text">
+      <span class="lead-eyebrow">Start here</span>
+      <h2>{{ g.title }}</h2>
+      <p>{{ g.summary }}</p>
+    </span>
+    <span class="guide-row-chevron" aria-hidden="true">&rsaquo;</span>
   </a>
   {% endfor %}
 </div>
@@ -43,66 +46,79 @@ title: null
 
 <script>
 (function () {
-  var list = document.getElementById('card-list');
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
-  var chips = document.querySelectorAll('.chip');
+  var list = document.getElementById('guide-list');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.guide-row'));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.stage-tab'));
   var empty = document.getElementById('empty');
-  var aud = 'all';
+  var STAGES = ['install', 'operate', 'service'];
+  var stage = 'all';
 
-  // Deep-link support: ?a=installer (used by the printed packet's QR and by
-  // the /installer/, /electrician/, /restaurant/ share links) opens straight
-  // to that audience's ordered view.
+  // Old ?a= links (printed packet QR, shared URLs) map onto Stages.
+  var LEGACY = { installer: 'install', electrician: 'install', customer: 'operate' };
+
   var params = new URLSearchParams(window.location.search);
-  var initial = params.get('a');
-  if (initial && ['installer','electrician','customer'].indexOf(initial) !== -1) {
-    aud = initial;
+  var fromStage = params.get('stage');
+  var fromLegacy = params.get('a');
+  if (fromStage && STAGES.indexOf(fromStage) !== -1) {
+    stage = fromStage;
+  } else if (fromLegacy && LEGACY[fromLegacy]) {
+    stage = LEGACY[fromLegacy];
   }
 
-  // Keep the address bar in sync with the visible filter, so copying the URL
-  // out of the browser shares the filtered view rather than the full list.
+  function inStage(row, s) {
+    return s === 'all' || row.dataset.stages.split(',').indexOf(s) !== -1;
+  }
+
+  // A tab with no Guides is hidden. If the requested tab is empty, fall back
+  // to All.
+  tabs.forEach(function (t) {
+    var s = t.dataset.stage;
+    t.hidden = !rows.some(function (r) { return inStage(r, s); });
+  });
+  var current = tabs.filter(function (t) { return t.dataset.stage === stage; })[0];
+  if (!current || current.hidden) stage = 'all';
+
+  // Keep the address bar in sync with the current tab, so copying the URL
+  // shares that tab rather than the full list.
   function syncUrl() {
     if (!window.history || !history.replaceState) return;
     history.replaceState(null, '',
-      aud === 'all' ? window.location.pathname : window.location.pathname + '?a=' + aud);
+      stage === 'all' ? window.location.pathname : window.location.pathname + '?stage=' + stage);
   }
 
-  function orderFor(card) {
-    var key = aud === 'all' ? 'default' : aud;
-    var dataKey = 'order' + key.charAt(0).toUpperCase() + key.slice(1);
-    return parseInt(card.dataset[dataKey] || card.dataset.orderDefault, 10);
+  function orderFor(row) {
+    var key = stage.charAt(0).toUpperCase() + stage.slice(1);
+    return parseInt(row.dataset['order' + key], 10);
   }
 
   function apply() {
-    var visible = cards.filter(function (c) {
-      var ok = aud === 'all' || c.dataset.audience.split(',').indexOf(aud) !== -1;
-      c.style.display = ok ? '' : 'none';
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.stage === stage); });
+
+    var visible = rows.filter(function (r) {
+      var ok = inStage(r, stage);
+      r.style.display = ok ? '' : 'none';
       return ok;
     });
-
     visible.sort(function (a, b) { return orderFor(a) - orderFor(b); });
-    visible.forEach(function (c) { list.appendChild(c); });
+    visible.forEach(function (r) { list.appendChild(r); });
 
-    // Promote the audience's entry-point guide to a lead card. Only in a
-    // filtered view, where "first" actually means "start here".
-    cards.forEach(function (c) { c.classList.remove('card--lead'); });
-    if (aud !== 'all' && visible.length &&
-        visible[0].dataset.lead === 'true') {
-      visible[0].classList.add('card--lead');
+    // Mark the lead Guide "Start here", only on a Stage tab, where first
+    // actually means "start here".
+    rows.forEach(function (r) { r.classList.remove('guide-row--lead'); });
+    if (stage !== 'all' && visible.length && visible[0].dataset.lead === 'true') {
+      visible[0].classList.add('guide-row--lead');
     }
 
     if (empty) empty.hidden = visible.length !== 0;
   }
 
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      aud = chip.dataset.aud;
-      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip); });
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      stage = t.dataset.stage;
       syncUrl();
       apply();
     });
   });
-  // reflect any deep-linked audience in the pressed chip before first render
-  chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.aud === aud); });
   syncUrl();
   apply();
 })();
