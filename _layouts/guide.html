@@ -37,22 +37,12 @@ layout: default
     {{ content }}
   </div>
 
-  {% if page.audience_order.installer %}
-    {% assign installer_guides = site.guides | where_exp: "g", "g.audience_order.installer" | sort: "audience_order.installer" %}
-    {% assign next_guide = nil %}
-    {% for g in installer_guides %}
-      {% if found %}
-        {% assign next_guide = g %}
-        {% break %}
-      {% endif %}
-      {% if g.url == page.url %}
-        {% assign found = true %}
-      {% endif %}
-    {% endfor %}
-    {% if next_guide %}
-      {% assign next_slug = next_guide.url | replace: "/", "" %}
-      {% include nextlink.html slug=next_slug title=next_guide.title %}
-    {% endif %}
+  {% comment %}"Next" follows the Guide page's Product. A Guide tagged both gets one link per Product and shows the one for the saved choice (Restaurant when none); with the Home setting off only Restaurant's is built.{% endcomment %}
+  {% if guide_product == "both" %}
+    {% include nextguide.html product="restaurant" %}
+    {% if site.home_enabled %}{% include nextguide.html product="home" %}{% endif %}
+  {% else %}
+    {% include nextguide.html product=guide_product %}
   {% endif %}
 
   <div class="doc-footer no-print">

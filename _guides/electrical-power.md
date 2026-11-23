@@ -5,6 +5,7 @@ audience_order: {electrician: 10}
 product: both
 stage: [install]
 install_order: {restaurant: 15, home: 20}
+next_chain: false
 order: 6
 summary: Circuit, outlet, and plug requirements for electricians.
 version: "1.4"

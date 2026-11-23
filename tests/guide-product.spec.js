@@ -222,3 +222,47 @@ test('search index marks a section that holds a Product-only block', async () =>
   const hub = idx.find((r) => r.heading === 'Hub section');
   expect(hub.body).toBe('Hub text for restaurants.');
 });
+
+// "Next" links follow the Guide page's Product and that Product's Install order.
+const nextOf = async (page, base, slug) => {
+  await page.goto(`${base}/${slug}/`);
+  const link = page.locator('a.next-link:visible');
+  return (await link.count()) ? new URL(await link.first().getAttribute('href'), base).pathname.replace(/\//g, '') : null;
+};
+const follow = async (page, base, start) => {
+  const seen = [start];
+  for (let next = await nextOf(page, base, start); next && seen.length < 20; next = await nextOf(page, base, next)) seen.push(next);
+  return seen;
+};
+const RESTAURANT_PATH = ['start-here', 'safety-and-clearances', 'install-hub', 'rail-installation',
+  'install-heaters', 'register-assign-heaters', 'troubleshooting'];
+
+test('the Restaurant Next path is unchanged, with the setting on or off', async ({ page }) => {
+  expect(await follow(page, off, 'start-here')).toEqual(RESTAURANT_PATH);
+  expect(await follow(page, on, 'start-here')).toEqual(RESTAURANT_PATH);
+});
+
+test('with Home saved, Next on a Guide tagged both follows the Home Install order', async ({ page }) => {
+  await page.goto(`${on}/safety-and-clearances/`);
+  await page.evaluate((k) => localStorage.setItem(k, 'home'), KEY);
+  const path = await follow(page, on, 'safety-and-clearances');
+  expect(path).toEqual(['safety-and-clearances', 'rail-installation', 'install-heaters']);
+  expect(path).not.toContain('install-hub');
+  expect(path).not.toContain('register-assign-heaters');
+});
+
+test('a Guide tagged both falls back to Restaurant when nothing is saved', async ({ page }) => {
+  expect(await nextOf(page, on, 'install-heaters')).toBe('register-assign-heaters');
+});
+
+test('Electrical & Power is out of the Next chain', async ({ page }) => {
+  expect(await nextOf(page, on, 'electrical-power')).toBeNull();
+  expect(RESTAURANT_PATH).not.toContain('electrical-power');
+});
+
+test('the Restaurant print packet follows the Restaurant Install order', async ({ page }) => {
+  await page.goto(`${on}/print/installer/`);
+  const titles = await page.locator('.packet-guide h1').allTextContents();
+  expect(titles).toEqual(['Safety & Clearances', 'Install Hub', 'Install Rails', 'Install Heaters',
+    'Assign Heaters', 'Troubleshooting']);
+});

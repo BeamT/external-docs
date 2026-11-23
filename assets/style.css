@@ -571,3 +571,8 @@ main .kit-img img, main .kit-img img[src$=".png"] { border: 0; border-radius: 0;
 @media (min-width: 641px) { .step-col-figs:not(.numbered) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .step-col-figs:not(.numbered) .step-figure img { flex: none; height: auto; max-height: 440px; margin: auto 0; }
 .step-col-figs .step-figure figcaption { flex: none; }
+
+/* "Next" on a Guide tagged both: one link per Product, the page's Product shows. */
+.doc[data-guide-product="both"] .next-for { display: none; }
+.doc[data-guide-product="both"][data-product="restaurant"] .next-for[data-next-for="restaurant"],
+.doc[data-guide-product="both"][data-product="home"] .next-for[data-next-for="home"] { display: block; }
