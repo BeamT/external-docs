@@ -47,7 +47,7 @@ test.describe('setting on', () => {
   test('first visit shows the choice and nothing else', async ({ page }) => {
     await page.goto(on.url + '/');
     await expect(page.getByRole('heading', { name: 'Which Focal do you have?' })).toBeVisible();
-    await expect(page.locator('.choice')).toHaveText([/Restaurant/, /Home/]);
+    await expect(page.locator('.choice')).toHaveText([/Focal for Restaurants/, /Focal for Homes/]);
     await expect(page.getByPlaceholder('Search all guides')).toBeVisible();
     await expect(page.locator('.guide-row:visible')).toHaveCount(0);
     await expect(page.locator('.stage-tabs')).toBeHidden();
@@ -66,7 +66,7 @@ test.describe('setting on', () => {
   test('choosing Home shows only Home and shared Guides, and survives a reload', async ({ page }) => {
     await page.goto(on.url + '/');
     await page.locator('.choice[data-product="home"]').click();
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     await expect(page.locator('#banner-home')).toBeVisible();
     await expect(page.locator('#banner-home h2')).toHaveText('Set up your Duo');
     await expect(page.locator('#banner-restaurant')).toBeHidden();
@@ -75,27 +75,27 @@ test.describe('setting on', () => {
     expect(home).toContain('Electrical & Power Requirements'); // tagged both
     expect(home).not.toContain('Troubleshooting');             // Restaurant only
     await page.goto(on.url + '/');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     expect(await titles(page)).toEqual(home);
   });
 
   test('?product= sets the saved choice', async ({ page }) => {
     await page.goto(on.url + '/?product=restaurant');
-    await expect(page.getByRole('heading', { name: 'Restaurant', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Restaurants', exact: true })).toBeVisible();
     await expect(page.locator('#banner-restaurant h2')).toHaveText('Troubleshoot now');
     expect(await titles(page)).toContain('Troubleshooting');
     await page.goto(on.url + '/?product=home');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     await page.goto(on.url + '/');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
   });
 
   test('Product tabs link to the landing page and save the choice', async ({ page }) => {
     await page.goto(on.url + '/?product=restaurant');
     await page.locator('.product-tab[data-product="home"]').click();
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     await page.goto(on.url + '/');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
   });
 
   test('opening a Guide never changes the choice; both-tagged Guide shows the saved choice', async ({ page }) => {
@@ -104,7 +104,7 @@ test.describe('setting on', () => {
     await expect(page.locator('.product-tab[data-product="restaurant"]')).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('.product-tab[data-product="home"]')).not.toHaveAttribute('aria-current', 'page');
     await page.goto(on.url + '/');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     await page.goto(on.url + '/electrical-power/');
     await expect(page.locator('.product-tab[data-product="home"]')).toHaveAttribute('aria-current', 'page');
   });
@@ -115,11 +115,11 @@ test.describe('setting on', () => {
       Object.defineProperty(document, 'cookie', { get() { return ''; }, set() {} });
     });
     await page.goto(on.url + '/?product=home');
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
     // The address bar keeps the choice, so a reload still works.
     expect(page.url()).toContain('product=home');
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'Home', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Focal for Homes', exact: true })).toBeVisible();
   });
 
   test('the search icon and the landing field open search', async ({ page }) => {
