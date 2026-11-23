@@ -8,11 +8,11 @@ title: null
   <div class="choices">
     <a class="choice" href="{{ site.baseurl }}/?product=restaurant" data-product="restaurant">
       <span class="choice-name">Focal for Restaurants</span>
-      <span class="choice-desc">Install, run and service your Focal system.</span>
+      <span class="choice-desc">Install, operate and service your Focal system.</span>
     </a>
     <a class="choice" href="{{ site.baseurl }}/?product=home" data-product="home">
       <span class="choice-name">Focal for Homes</span>
-      <span class="choice-desc">Set up, operate and look after your Duo heaters.</span>
+      <span class="choice-desc">Install, operate and service your Focal system.</span>
     </a>
   </div>
   <input type="search" class="landing-search" data-search-open placeholder="Search all guides" aria-label="Search all guides" autocomplete="off" readonly>
@@ -21,7 +21,7 @@ title: null
 <div id="product-view" hidden>
 <section class="hero">
   <h1 id="product-name">Focal for Restaurants</h1>
-  <p id="product-subtitle">Install, run and service your Focal system.</p>
+  <p id="product-subtitle">Install, operate and service your Focal system.</p>
 </section>
 <input type="search" class="landing-search" data-search-open placeholder="Search guides" aria-label="Search guides" autocomplete="off" readonly>
 
@@ -106,8 +106,8 @@ title: null
   // Product choice (site.product_choice). Off: Restaurant only, as before.
   var CHOICE = document.body.classList.contains('product-choice');
   var PRODUCTS = {
-    restaurant: { name: 'Focal for Restaurants', subtitle: 'Install, run and service your Focal system.' },
-    home: { name: 'Focal for Homes', subtitle: 'Set up, operate and look after your Duo heaters.' }
+    restaurant: { name: 'Focal for Restaurants', subtitle: 'Install, operate and service your Focal system.' },
+    home: { name: 'Focal for Homes', subtitle: 'Install, operate and service your Focal system.' }
   };
   var product = 'restaurant';
   if (CHOICE) {
