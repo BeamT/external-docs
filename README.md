@@ -53,16 +53,23 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   number for each Product; a guide with a single Product needs only that one.
   Leave a key out when the guide isn't in that Product's order. Service has no
   required order. Electrical & Power has an Install number but stays out of the
-  "Next" chain and the print packet for now.
+  "Next" chain and the print packet for now (`next_chain: false`).
 - **Mount**: the way a rail attaches (Overhead, and later Freestanding, Wall
   and Self-mount). Mount is not front matter. Mount-specific steps live in one
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-The landing page reads `product`, `stage`, `install_order` and `operate_order`.
-The search index, "Next" link and print packet still follow `audience` and
-`audience_order`, the old per-role fields. Keep them on existing guides and
-leave them off new ones until Stage replaces them.
+The "Next" link at the end of a guide and the Restaurant print packet read
+`install_order` (`_includes/nextguide.html`, `print-installer.html`). "Next"
+considers only guides visible to the page's Product and follows that Product's
+Install order; on a guide tagged `both` it shows the link for the saved Product
+choice, Restaurant when none. A guide with `next_chain: false` is skipped.
+Troubleshooting carries `install_order: {restaurant: 65}` so the Restaurant
+path still ends there. `stage` and `operate_order` are data only for now:
+the search index still reads `audience` and `audience_order` until the
+Stage tabs replace them; keep them on existing guides and leave them off new
+ones. The landing page reads `product`, `stage`, `install_order` and
+`operate_order`.
 
 ## Product choice setting
 
@@ -80,6 +87,33 @@ before running it:
 bundle exec jekyll build --baseurl ""
 bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
 ```
+
+## Product-only content and the Guide Product tag
+
+Wrap content for one Product in `productonly.html`. Capture the text first so
+Markdown renders inside it, and put the block under the section's heading:
+
+```liquid
+{% raw %}{% capture hub %}Plug the Hub into the outlet.{% endcapture %}
+{% include productonly.html for="restaurant" content=hub %}{% endraw %}
+```
+
+- `for` is `restaurant` or `home`. On screen the block shows only when it matches
+  the Guide page's Product: the Guide's own Product, or for a guide tagged
+  `both`, the saved choice (`focal-product` in `localStorage`, see `assets/product.js`), else Restaurant.
+  In print both Products' blocks show, each with its label.
+- The search index marks a section holding a block with `only` (`restaurant` or
+  `home`), so Product-scoped search can skip it.
+- Each guide header gets one line: "For Restaurants. View for Homes instead".
+  On a guide tagged `both` the link flips the page in place; on a single-Product
+  guide it goes to the other Product's version, set with `equivalent: /other-guide/`
+  in front matter (no link without it). Opening a guide only reads the saved
+  choice; clicking the link saves it. `assets/product.js` holds the read and write.
+  The line does not print.
+- All of this stays hidden until
+  `home_enabled: true` in `_config.yml`. Until then the site is Restaurant only.
+- `tests/guide-product.spec.js` builds its own copy of the site with the setting
+  on. It needs Ruby and Bundler.
 
 ## The building blocks
 

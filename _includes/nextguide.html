@@ -1,0 +1,23 @@
+{% comment %}nextguide: the "Next" link at the end of a Guide, for one Product (product="restaurant" or "home").
+It considers only Guides visible to that Product (tagged for it or both) that have an install_order
+number for it, in that order, and skips any Guide with next_chain: false (Electrical & Power, for now).
+Renders nothing when this Guide is not in the chain or is its last step. The wrapper lets the layout
+show one Product's link on a Guide tagged both (see assets/style.css).{% endcomment %}
+{% assign np = include.product %}
+{% capture np_key %}install_order.{{ np }}{% endcapture %}
+{% assign np_chain = site.guides | where_exp: "g", "g.install_order[np]" | sort: np_key %}
+{% assign np_next = nil %}
+{% assign np_found = false %}
+{% for g in np_chain %}
+  {% assign np_gp = g.product | default: "restaurant" %}
+  {% if g.next_chain == false or np_gp != np and np_gp != "both" %}{% continue %}{% endif %}
+  {% if np_found %}
+    {% assign np_next = g %}
+    {% break %}
+  {% endif %}
+  {% if g.url == page.url %}{% assign np_found = true %}{% endif %}
+{% endfor %}
+{% if np_next %}
+  {% assign np_slug = np_next.url | replace: "/", "" %}
+  <div class="next-for" data-next-for="{{ np }}">{% include nextlink.html slug=np_slug title=np_next.title %}</div>
+{% endif %}

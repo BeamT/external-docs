@@ -1,7 +1,11 @@
 ---
 layout: default
 ---
-<article class="doc">
+{% assign guide_product = page.product | default: "restaurant" %}
+{% comment %}Until the Home setting (home_enabled) is on, the site is Restaurant only: no tag, no note, no Home content.{% endcomment %}
+<article class="doc" data-guide-product="{{ guide_product }}" data-product="{% if guide_product == 'home' and site.home_enabled %}home{% else %}restaurant{% endif %}"{% if site.home_enabled %} data-home="on"{% endif %}>
+{% if site.home_enabled %}<script src="{{ '/assets/product.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>{% endif %}
+
   <a href="{{ site.baseurl }}/" class="crumb">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     All guides
@@ -9,6 +13,19 @@ layout: default
 
   <div class="doc-head">
     <h1>{{ page.title }}</h1>
+    {% if site.home_enabled %}
+      {% comment %}One line says which Product the page is for and links to the other. On a Guide tagged both the link flips the page in place; on a single-Product Guide it goes to the equivalent Guide, when there is one. Either click saves the choice (assets/product.js).{% endcomment %}
+      <p class="product-line">
+        {% if guide_product == "both" %}
+          <span data-for="restaurant">For Restaurants.</span><span data-for="home">For Homes.</span>
+          <a href="#" class="product-switch" data-switch="home" data-flip>View for Homes instead</a><a href="#" class="product-switch" data-switch="restaurant" data-flip>View for Restaurants instead</a>
+        {% elsif guide_product == "home" %}
+          <span>For Homes.</span>{% if page.equivalent %} <a href="{{ page.equivalent | relative_url }}" data-switch="restaurant">View for Restaurants instead</a>{% endif %}
+        {% else %}
+          <span>For Restaurants.</span>{% if page.equivalent %} <a href="{{ page.equivalent | relative_url }}" data-switch="home">View for Homes instead</a>{% endif %}
+        {% endif %}
+      </p>
+    {% endif %}
     <div class="doc-meta">
       <span>v{{ page.version }}</span>
       <span>Updated {{ page.updated }}</span>
@@ -20,22 +37,12 @@ layout: default
     {{ content }}
   </div>
 
-  {% if page.audience_order.installer %}
-    {% assign installer_guides = site.guides | where_exp: "g", "g.audience_order.installer" | sort: "audience_order.installer" %}
-    {% assign next_guide = nil %}
-    {% for g in installer_guides %}
-      {% if found %}
-        {% assign next_guide = g %}
-        {% break %}
-      {% endif %}
-      {% if g.url == page.url %}
-        {% assign found = true %}
-      {% endif %}
-    {% endfor %}
-    {% if next_guide %}
-      {% assign next_slug = next_guide.url | replace: "/", "" %}
-      {% include nextlink.html slug=next_slug title=next_guide.title %}
-    {% endif %}
+  {% comment %}"Next" follows the Guide page's Product. A Guide tagged both gets one link per Product and shows the one for the saved choice (Restaurant when none); with the Home setting off only Restaurant's is built.{% endcomment %}
+  {% if guide_product == "both" %}
+    {% include nextguide.html product="restaurant" %}
+    {% if site.home_enabled %}{% include nextguide.html product="home" %}{% endif %}
+  {% else %}
+    {% include nextguide.html product=guide_product %}
   {% endif %}
 
   <div class="doc-footer no-print">

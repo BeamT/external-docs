@@ -191,6 +191,22 @@ a { color: inherit; }
 .warn p { margin: 0; font-size: 15px; }
 .warn p strong { color: var(--warn); }
 
+/* Product-only content (_includes/productonly.html). Screen shows the Guide page's Product. */
+.product-block { border-left: 3px solid var(--line); padding: 2px 0 2px 14px; margin: 18px 0; }
+.product-block > :first-child { margin-top: 0; }
+.product-block > :last-child { margin-bottom: 0; }
+.product-block::before { content: attr(data-label); display: none; margin-bottom: 4px; color: var(--ink-soft); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.doc[data-home="on"][data-guide-product="both"] .product-block::before { display: block; }
+.doc[data-product="restaurant"] .product-block[data-product-only="home"],
+.doc[data-product="home"] .product-block[data-product-only="restaurant"] { display: none; }
+.product-line { margin: 0 0 8px; color: var(--ink-soft); font-size: 15px; }
+.product-line a { color: var(--focal-ink); }
+.doc[data-guide-product="both"] .product-line [data-for], .doc[data-guide-product="both"] .product-switch { display: none; }
+.doc[data-guide-product="both"][data-product="restaurant"] [data-for="restaurant"],
+.doc[data-guide-product="both"][data-product="home"] [data-for="home"] { display: inline; }
+.doc[data-guide-product="both"][data-js][data-product="restaurant"] [data-switch="home"],
+.doc[data-guide-product="both"][data-js][data-product="home"] [data-switch="restaurant"] { display: inline; }
+
 /* ---- framed diagrams (SVG) ----
    The frame hugs the diagram and sits in the text column so its left edge
    lines up with the step copy. Height is capped so tall art doesn't force
@@ -274,11 +290,14 @@ main :is(.step-grid, .step-row) .step-figure img[src$=".png"] { width: 100%; }
 @media print {
   :root { --wash: #fff; }
   body { background: #fff; font-size: 12pt; }
-  .topbar, .stage-tabs, .doc-footer, .crumb, .no-print { display: none !important; }
+  .topbar, .stage-tabs, .doc-footer, .crumb, .no-print, .product-line { display: none !important; }
   .wrap { max-width: none; padding: 0; }
   .doc { padding: 0; }
   .guide-row { break-inside: avoid; }
-  .step, .dodont, .warn, .diagram, .checklist li { break-inside: avoid; }
+  .step, .dodont, .warn, .diagram, .checklist li, .product-block { break-inside: avoid; }
+  /* Both Products print, each with its label. */
+  .doc[data-home="on"] .product-block { display: block !important; }
+  .doc[data-home="on"] .product-block::before { display: block !important; color: #000; }
   .doc-body h2 { break-after: avoid; }
   a { text-decoration: none; color: #000; }
   .diagram, .step-figure, .guide-row { border-color: #ccc; }
@@ -586,3 +605,8 @@ main .kit-img img, main .kit-img img[src$=".png"] { border: 0; border-radius: 0;
 @media (min-width: 641px) { .step-col-figs:not(.numbered) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .step-col-figs:not(.numbered) .step-figure img { flex: none; height: auto; max-height: 440px; margin: auto 0; }
 .step-col-figs .step-figure figcaption { flex: none; }
+
+/* "Next" on a Guide tagged both: one link per Product, the page's Product shows. */
+.doc[data-guide-product="both"] .next-for { display: none; }
+.doc[data-guide-product="both"][data-product="restaurant"] .next-for[data-next-for="restaurant"],
+.doc[data-guide-product="both"][data-product="home"] .next-for[data-next-for="home"] { display: block; }
