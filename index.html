@@ -24,7 +24,10 @@ title: null
 </div>
 
 <div class="guide-list" id="guide-list" role="tabpanel">
-  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | where_exp: "g", "g.product == 'restaurant' or g.product == 'both'" | sort: "order" %}
+  {% assign listed = site.guides | where_exp: "g", "g.unlisted != true" %}
+  {% assign only_restaurant = listed | where: "product", "restaurant" %}
+  {% assign both_products = listed | where: "product", "both" %}
+  {% assign guides = only_restaurant | concat: both_products | sort: "order" %}
   {% for g in guides %}
   <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"
      data-stages="{{ g.stage | join: ',' }}"
