@@ -6,14 +6,16 @@ permalink: /search.json
   Pre-computed search index, rebuilt by Jekyll on every GitHub Pages build.
   One record per <h2> section of each listed guide (plus the guide's intro),
   searched in the browser by assets/search.js. "only" is "restaurant" or "home"
-  when the section holds a productonly.html block, otherwise "". Guides with `unlisted: true`
+  when the section holds a productonly.html block, otherwise "". "product" is what
+  Product-scoped search reads: the section's mark, else the Guide's tag ("restaurant", "home"
+  or "both"; Restaurant when untagged). The Fix it record is Restaurant with fixit:true. Guides with `unlisted: true`
   are left out. "On this page" TOC sections are skipped.
 {%- endcomment -%}
 {%- assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" -%}
 {%- assign n = 0 -%}
 [
 {%- capture fixit_url -%}{{ "/fixit/" | relative_url }}{%- endcapture -%}
-{"id":0,"url":{{ fixit_url | jsonify }},"guide":"Troubleshoot now","heading":"Interactive troubleshooter","summary":"Follow the prompts to fix the issue, or send details to Focal Support.","audience":["customer","installer","electrician"],"body":"troubleshoot fix problem issue help not working offline not heating won't turn on no heat error app hub heater support contact email"}
+{"id":0,"url":{{ fixit_url | jsonify }},"guide":"Troubleshoot now","heading":"Interactive troubleshooter","summary":"Follow the prompts to fix the issue, or send details to Focal Support.","audience":["customer","installer","electrician"],"only":"","product":"restaurant","fixit":true,"body":"troubleshoot fix problem issue help not working offline not heating won't turn on no heat error app hub heater support contact email"}
 {%- for g in guides -%}
   {%- assign guide_url = g.url | relative_url -%}
   {%- assign chunks = g.content | split: "<h2" -%}
@@ -43,8 +45,10 @@ permalink: /search.json
     {%- if chunk contains 'data-product-only="restaurant"' -%}{%- assign has_r = true -%}{%- endif -%}
     {%- if chunk contains 'data-product-only="home"' -%}{%- assign has_h = true -%}{%- endif -%}
     {%- if has_r and has_h -%}{%- assign only = "" -%}{%- elsif has_r -%}{%- assign only = "restaurant" -%}{%- elsif has_h -%}{%- assign only = "home" -%}{%- endif -%}
+    {%- comment -%} product: the section's mark when it is Restaurant-only or Home-only, else the Guide's tag (Restaurant when it has none). {%- endcomment -%}
+    {%- assign product = only | default: g.product | default: "restaurant" -%}
     {%- assign n = n | plus: 1 -%}
-,{"id":{{ n }},"url":{{ url | jsonify }},"guide":{{ g.title | jsonify }},"heading":{{ heading | jsonify }},"summary":{{ g.summary | default: "" | jsonify }},"audience":{% if g.audience %}{{ g.audience | jsonify }}{% else %}[]{% endif %},"only":{{ only | jsonify }},"body":{{ body | jsonify }}}
+,{"id":{{ n }},"url":{{ url | jsonify }},"guide":{{ g.title | jsonify }},"heading":{{ heading | jsonify }},"summary":{{ g.summary | default: "" | jsonify }},"audience":{% if g.audience %}{{ g.audience | jsonify }}{% else %}[]{% endif %},"only":{{ only | jsonify }},"product":{{ product | jsonify }},"body":{{ body | jsonify }}}
   {%- endfor -%}
 {%- endfor %}
 ]

@@ -59,6 +59,7 @@ Verify at every outlet:
 
 ## Placement
 
+{% capture placement %}
 Position outlets in line with the cord-exit end of each Rail, where the Rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for features like pillars or posts when siting the outlet.
 
 {% include dodont.html do="Site the outlet in line with the cord-exit end of the Rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
@@ -68,3 +69,5 @@ The Focal Hub also needs a standard outlet at the Hub Location marked on the sit
 {% include warn.html text="Do not energize the outlet or operate a heater until mounting and clearance checks are complete." %}
 
 For anything not covered here, contact Focal.
+{% endcapture %}
+{% include productonly.html for="restaurant" content=placement %}

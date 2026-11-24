@@ -4,6 +4,17 @@
  * per <h2> section of each listed guide. It is fetched lazily the first time
  * the search panel opens and searched with the vendored MiniSearch library
  * (assets/vendor/minisearch.min.js). No external services.
+ *
+ * Product-scoped (when the Product choice setting is on, so window.FocalProduct
+ * exists). Each record carries its Product: "restaurant", "home" or "both".
+ *   1. No Product known: search everything, tag each result with its Product.
+ *   2. Product known: that Product's results; "both" counts for either.
+ *   3. The other Product's results collapse into one last line that expands.
+ *   4. Nothing in the Product: show the other's results under a "No X guides match" line.
+ *   5. Never show Fix it when the scope is Home.
+ * The Product is the saved choice, else the Guide page's own Product. The scope
+ * line's link switches to all guides (and back) for this search only.
+ * At most the best two matches per Guide are shown.
  */
 (function () {
   var input = document.getElementById('search');
@@ -12,6 +23,11 @@
   if (!input || !panel || !sheet || typeof MiniSearch === 'undefined') return;
 
   var MAX_HITS = 8;
+  var PER_GUIDE = 2;
+  var NAMES = { restaurant: 'Restaurant', home: 'Home' };
+  var scopeEl = document.getElementById('search-scope');
+  var productsOn = !!window.FocalProduct;
+  var widened = false; // this search only: scope switched to all guides
   var SNIPPET = 160;
   var indexUrl = input.getAttribute('data-index');
 
@@ -34,6 +50,7 @@
   function openPanel(from) {
     opener = from || document.activeElement;
     panel.hidden = false;
+    paintScope();
     // Desktop: start the panel below the sticky top bar. Phones: full screen.
     var bar = document.querySelector('.topbar');
     panel.style.top = bar && window.matchMedia('(min-width: 561px)').matches
@@ -49,6 +66,7 @@
     close();
     panel.hidden = true;
     document.documentElement.classList.remove('search-open');
+    widened = false;
     if (opener && opener.focus && document.contains(opener)) opener.focus();
     opener = null;
   }
@@ -67,7 +85,7 @@
       .then(function (docs) {
         mini = new MiniSearch({
           fields: ['heading', 'guide', 'summary', 'body'],
-          storeFields: ['url', 'guide', 'heading', 'body'],
+          storeFields: ['url', 'guide', 'heading', 'body', 'product', 'fixit'],
           searchOptions: {
             boost: { heading: 3, guide: 2, summary: 1.5 },
             prefix: true,
@@ -83,10 +101,67 @@
     return loading;
   }
 
+  // The Product the search is scoped to: the saved choice, else the Guide page's
+  // own Product (null on a Guide tagged both, or off a Guide). Null means all.
+  function chosenProduct() {
+    if (!productsOn) return null;
+    var saved = window.FocalProduct.get();
+    if (saved) return saved;
+    var own = document.body.getAttribute('data-page-product');
+    return NAMES[own] ? own : null;
+  }
+  function scope() { return widened ? null : chosenProduct(); }
+
+  function paintScope() {
+    if (!scopeEl || !productsOn) return;
+    var chosen = chosenProduct();
+    scopeEl.textContent = '';
+    scopeEl.appendChild(document.createTextNode('Searching '));
+    var b = document.createElement('b');
+    b.textContent = chosen && !widened ? NAMES[chosen] + ' guides' : 'all guides';
+    scopeEl.appendChild(b);
+    if (!chosen) return;
+    scopeEl.appendChild(document.createTextNode(' \u00b7 '));
+    var link = document.createElement('button');
+    link.type = 'button';
+    link.className = 'search-scope-link';
+    link.textContent = widened ? 'Search ' + NAMES[chosen] + ' guides' : 'Search all guides';
+    link.addEventListener('click', function () {
+      widened = !widened;
+      paintScope();
+      update();
+      input.focus();
+    });
+    scopeEl.appendChild(link);
+  }
+
+  function guideOf(hit) { return hit.url.split('#')[0]; }
+  function inProduct(hit, p) { return hit.product === p || hit.product === 'both'; }
+  // Best PER_GUIDE matches per Guide, in rank order.
+  function perGuide(hits) {
+    var seen = {};
+    return hits.filter(function (h) {
+      var g = guideOf(h);
+      seen[g] = (seen[g] || 0) + 1;
+      return seen[g] <= PER_GUIDE;
+    });
+  }
+
+  // Returns { hits, others, otherName, tag }: hits in the scope, then the other
+  // Product's hits (collapsed by render()), and whether to tag each hit.
   function search(q) {
-    var hits = mini.search(q, { combineWith: 'AND' });
-    if (!hits.length) hits = mini.search(q, { combineWith: 'OR' });
-    return hits.slice(0, MAX_HITS);
+    var all = mini.search(q, { combineWith: 'AND' });
+    if (!all.length) all = mini.search(q, { combineWith: 'OR' });
+    if (!productsOn) { // setting off: Restaurant only, no tags
+      return { hits: perGuide(all.filter(function (h) { return h.product !== 'home'; })).slice(0, MAX_HITS), others: [], tag: false };
+    }
+    var p = scope();
+    if (!p) return { hits: perGuide(all).slice(0, MAX_HITS), others: [], tag: true };
+    var other = p === 'home' ? 'restaurant' : 'home';
+    var mine = all.filter(function (h) { return inProduct(h, p); });
+    var rest = all.filter(function (h) { return !inProduct(h, p); });
+    if (p === 'home') rest = rest.filter(function (h) { return !h.fixit; }); // rule 5
+    return { hits: perGuide(mine).slice(0, MAX_HITS), others: perGuide(rest), otherName: NAMES[other], scopeName: NAMES[p], tag: false };
   }
 
   function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -138,8 +213,10 @@
     return (start > 0 ? '…' : '') + s;
   }
 
+  function options() { return Array.prototype.slice.call(list.querySelectorAll('li[role="option"]')); }
+
   function setActive(i) {
-    var items = list.children;
+    var items = options();
     if (!items.length) { active = -1; input.removeAttribute('aria-activedescendant'); return; }
     active = (i + items.length) % items.length;
     for (var k = 0; k < items.length; k++) {
@@ -162,54 +239,104 @@
     active = -1;
   }
 
-  function render(q, hits) {
+  var nextId = 0;
+
+  function hitItem(hit, q, tag) {
+    var terms = termsFor(hit, q);
+    var li = document.createElement('li');
+    li.id = 'search-hit-' + (nextId++);
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', 'false');
+
+    var a = document.createElement('a');
+    a.className = 'search-hit';
+    a.href = hit.url;
+    a.tabIndex = -1;
+
+    var title = document.createElement('span');
+    title.className = 'search-hit-title';
+    appendMarked(title, hit.guide, terms);
+    if (hit.heading) {
+      var sep = document.createElement('span');
+      sep.className = 'search-hit-sep';
+      sep.textContent = ' \u203a ';
+      title.appendChild(sep);
+      appendMarked(title, hit.heading, terms);
+    }
+    if (tag) {
+      var t = document.createElement('span');
+      t.className = 'search-hit-tag';
+      t.textContent = hit.product === 'both' ? 'Restaurant \u00b7 Home' : NAMES[hit.product] || '';
+      title.appendChild(t);
+    }
+    a.appendChild(title);
+
+    var text = snippet(hit.body, terms);
+    if (text) {
+      var p = document.createElement('span');
+      p.className = 'search-hit-snippet';
+      appendMarked(p, text, terms);
+      a.appendChild(p);
+    }
+
+    a.addEventListener('click', closePanel);
+    li.appendChild(a);
+    li.addEventListener('mousemove', function () {
+      var i = options().indexOf(li);
+      if (active !== i) setActive(i);
+    });
+    return li;
+  }
+
+  function note(text) {
+    var li = document.createElement('li');
+    li.className = 'search-note';
+    li.textContent = text;
+    return li;
+  }
+
+  function render(q, res) {
     list.textContent = '';
     active = -1;
-    if (!hits.length) {
-      var none = document.createElement('li');
-      none.className = 'search-empty';
-      none.textContent = 'No results for “' + q + '”';
-      list.appendChild(none);
+    nextId = 0;
+    if (!res.hits.length && !res.others.length) {
+      list.appendChild(note('No results for \u201c' + q + '\u201d')).className = 'search-empty';
       open();
       return;
     }
-    hits.forEach(function (hit, i) {
-      var terms = termsFor(hit, q);
+    if (!res.hits.length) { // rule 4: nothing in the scope, show the other Product's results
+      list.appendChild(note('No ' + res.scopeName + ' guides match. From ' + res.otherName + ' guides:'));
+      res.others.forEach(function (h) { list.appendChild(hitItem(h, q, false)); });
+      open();
+      return;
+    }
+    res.hits.forEach(function (h) { list.appendChild(hitItem(h, q, res.tag)); });
+    if (res.others.length) { // rule 3: one collapsed line, expands in place
       var li = document.createElement('li');
-      li.id = 'search-hit-' + i;
+      li.id = 'search-hit-' + (nextId++);
+      li.className = 'search-more-row';
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', 'false');
-
-      var a = document.createElement('a');
-      a.className = 'search-hit';
-      a.href = hit.url;
-      a.tabIndex = -1;
-
-      var title = document.createElement('span');
-      title.className = 'search-hit-title';
-      appendMarked(title, hit.guide, terms);
-      if (hit.heading) {
-        var sep = document.createElement('span');
-        sep.className = 'search-hit-sep';
-        sep.textContent = ' › ';
-        title.appendChild(sep);
-        appendMarked(title, hit.heading, terms);
-      }
-      a.appendChild(title);
-
-      var text = snippet(hit.body, terms);
-      if (text) {
-        var p = document.createElement('span');
-        p.className = 'search-hit-snippet';
-        appendMarked(p, text, terms);
-        a.appendChild(p);
-      }
-
-      a.addEventListener('click', closePanel);
-      li.appendChild(a);
-      li.addEventListener('mousemove', function () { if (active !== i) setActive(i); });
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'search-more';
+      btn.tabIndex = -1;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = res.others.length + ' more in ' + res.otherName + ' guides \u203a';
+      btn.addEventListener('click', function () {
+        var at = options().indexOf(li);
+        list.removeChild(li);
+        res.others.forEach(function (h) { list.appendChild(hitItem(h, q, false)); });
+        input.focus();
+        setActive(at);
+      });
+      li.appendChild(btn);
+      li.addEventListener('mousemove', function () {
+        var i = options().indexOf(li);
+        if (active !== i) setActive(i);
+      });
       list.appendChild(li);
-    });
+    }
     open();
   }
 
@@ -232,19 +359,21 @@
   input.addEventListener('input', update);
 
   input.addEventListener('keydown', function (e) {
-    var hits = list.querySelectorAll('.search-hit');
+    var items = options();
     if (e.key === 'ArrowDown') {
-      if (!hits.length) return;
+      if (!items.length) return;
       e.preventDefault(); open(); setActive(active + 1);
     } else if (e.key === 'ArrowUp') {
-      if (!hits.length) return;
+      if (!items.length) return;
       e.preventDefault(); open(); setActive(active - 1);
     } else if (e.key === 'Enter') {
-      if (!hits.length || list.hidden) return;
+      if (!items.length || list.hidden) return;
       e.preventDefault();
-      var target = hits[active >= 0 ? active : 0];
+      var el = items[active >= 0 ? active : 0];
+      var link = el.querySelector('a');
+      if (!link) { el.querySelector('button').click(); return; } // the "more" line expands
       closePanel();
-      window.location.href = target.href;
+      window.location.href = link.href;
     } else if (e.key === 'Escape') {
       e.preventDefault();
       if (!list.hidden) close();

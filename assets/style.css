@@ -99,6 +99,12 @@ a { color: inherit; }
 .search-hit-snippet { display: block; margin-top: 2px; font-size: 14px; line-height: 1.45; color: var(--ink-soft); }
 .search-results mark { background: transparent; color: var(--focal-ink); font-weight: 700; }
 .search-empty { padding: 12px; font-size: 15px; color: var(--ink-soft); }
+.search-note { padding: 12px 12px 6px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.search-hit-tag { display: inline-block; margin-left: 8px; padding: 1px 7px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 1.5; color: var(--ink-soft); vertical-align: 1px; }
+.search-more { display: block; width: 100%; padding: 12px; border: 0; border-radius: 8px; background: none; font: inherit; font-size: 15px; font-weight: 600; text-align: left; color: var(--focal-ink); cursor: pointer; }
+.search-results li[aria-selected="true"] .search-more, .search-more:hover { background: var(--focal-wash); }
+.search-scope-link { padding: 0; border: 0; background: none; font: inherit; color: var(--focal-ink); text-decoration: underline; cursor: pointer; }
+.search-scope-link:focus-visible, .search-more:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 @media (max-width: 560px) {
   .search-field kbd { display: none; }
   .search-panel { background: var(--paper); }
@@ -202,7 +208,8 @@ a { color: inherit; }
 .warn p strong { color: var(--warn); }
 
 /* Product-only content (_includes/productonly.html). Screen shows the Guide page's Product. */
-.product-block { border-left: 3px solid var(--line); padding: 2px 0 2px 14px; margin: 18px 0; }
+.product-block { margin: 18px 0; }
+.doc[data-home="on"] .product-block { border-left: 3px solid var(--line); padding: 2px 0 2px 14px; }
 .product-block > :first-child { margin-top: 0; }
 .product-block > :last-child { margin-bottom: 0; }
 .product-block::before { content: attr(data-label); display: none; margin-bottom: 4px; color: var(--ink-soft); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
