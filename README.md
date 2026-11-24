@@ -66,9 +66,27 @@ Install order; on a guide tagged `both` it shows the link for the saved Product
 choice, Restaurant when none. A guide with `next_chain: false` is skipped.
 Troubleshooting carries `install_order: {restaurant: 65}` so the Restaurant
 path still ends there. `stage` and `operate_order` are data only for now:
-the landing page and search index still read `audience` and `audience_order`
-until the Stage tabs replace them; keep them on existing guides and leave them
-off new ones.
+the search index still reads `audience` and `audience_order` until the
+Stage tabs replace them; keep them on existing guides and leave them off new
+ones. The landing page reads `product`, `stage`, `install_order` and
+`operate_order`.
+
+## Product choice setting
+
+`product_choice` in `_config.yml` is `false` until the launch ticket under #136
+turns it on. Off, the site is Restaurant only: no Home tab, no first-visit
+choice, and `?product=` is ignored. On, the top bar shows **Restaurant · Home**
+tabs and a search icon, the landing page asks "Select your product" on a
+first visit, and the choice is saved in the browser (`?product=home` or
+`?product=restaurant` sets it; opening a Guide never changes it).
+
+`tests/product-choice.spec.js` covers both settings. Build the site twice
+before running it:
+
+```
+bundle exec jekyll build --baseurl ""
+bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
+```
 
 ## Product-only content and the Guide Product tag
 
@@ -244,6 +262,10 @@ description-required and a heater-ID-required endpoint, and asserts the email
 button is genuinely clickable (not just visually enabled) once its required
 field is filled. Run it after touching `refreshEmailHref`, `buildEmailBody`,
 `buildSubject`, or the `support`/`resolved` endpoint rendering in `render()`.
+
+The other specs read built output, not the source: `landing.spec.js` and
+`search.spec.js` read `_site/`, and `product-choice.spec.js` reads both `_site/`
+and `_site_choice/` (see "Product choice setting"). Build before running them.
 
 ## Roadmap
 

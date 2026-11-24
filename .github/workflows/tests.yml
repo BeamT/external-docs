@@ -24,6 +24,10 @@ jobs:
           bundler-cache: true
       - name: Build site
         run: bundle exec jekyll build --baseurl ""
+      # Second build with the Product choice setting on, for
+      # tests/product-choice.spec.js.
+      - name: Build site with Product choice on
+        run: bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
 
       - uses: actions/setup-node@v4
         with:

@@ -10,6 +10,33 @@
   var box = input && input.closest('.searchbox');
   if (!input || !box || typeof MiniSearch === 'undefined') return;
 
+  // With the Product choice on, the search box is tucked behind the top-bar
+  // icon (and the landing-page field). Until the search panel replaces this,
+  // opening it reveals the box below the bar.
+  var toggle = document.getElementById('search-toggle');
+  var opener = null;
+  var restoring = false;
+  function openBox(from) {
+    if (!toggle) return;
+    opener = from || toggle;
+    box.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    input.focus();
+  }
+  function closeBox() {
+    if (!toggle || box.hidden) return;
+    box.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    if (opener) { restoring = true; opener.focus(); restoring = false; }
+  }
+  if (toggle) {
+    toggle.addEventListener('click', function () { box.hidden ? openBox(toggle) : closeBox(); });
+    document.querySelectorAll('[data-search-open]').forEach(function (el) {
+      el.addEventListener('focus', function () { if (box.hidden && !restoring) openBox(el); });
+      el.addEventListener('click', function () { if (box.hidden) openBox(el); else input.focus(); });
+    });
+  }
+
   var MAX_HITS = 8;
   var SNIPPET = 160;
   var indexUrl = input.getAttribute('data-index');
@@ -225,12 +252,25 @@
       window.location.href = target.href;
     } else if (e.key === 'Escape') {
       if (!list.hidden) { e.preventDefault(); close(); }
+      else if (toggle) { e.preventDefault(); input.value = ''; closeBox(); }
       else if (input.value) { input.value = ''; }
     }
   });
 
+  // Opening the box shifts the page, so the click that opened it can land on
+  // another element. Don't treat that click as an outside click.
+  var pressedOpener = false;
+  document.addEventListener('mousedown', function (e) {
+    pressedOpener = !!(e.target.closest && e.target.closest('[data-search-open], #search-toggle'));
+  }, true);
+
   document.addEventListener('click', function (e) {
     if (!box.contains(e.target)) close();
+    if (toggle && !box.hidden && !pressedOpener && !box.contains(e.target) && !toggle.contains(e.target) &&
+        !(e.target.closest && e.target.closest('[data-search-open]'))) {
+      box.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // "/" focuses search from anywhere on the page (unless already typing).
@@ -239,6 +279,7 @@
     var t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
     e.preventDefault();
-    input.focus();
+    if (toggle) openBox(document.activeElement && document.activeElement !== document.body ? document.activeElement : toggle);
+    else input.focus();
   });
 })();

@@ -2,6 +2,46 @@
 layout: home
 title: null
 ---
+{% if site.product_choice %}
+<section class="hero" id="choose">
+  <h1>Select your product</h1>
+  <div class="choices">
+    <a class="choice" href="{{ site.baseurl }}/?product=restaurant" data-product="restaurant">
+      <span class="choice-name">Focal for Restaurants</span>
+      <span class="choice-desc">For restaurants and venues. Controlled in the Focal Control app.</span>
+    </a>
+    <a class="choice" href="{{ site.baseurl }}/?product=home" data-product="home">
+      <span class="choice-name">Focal for Homes</span>
+      <span class="choice-desc">For your home. Controlled in the Focal Home app.</span>
+    </a>
+  </div>
+  <input type="search" class="landing-search" data-search-open placeholder="Search all guides" aria-label="Search all guides" autocomplete="off" readonly>
+</section>
+
+<div id="product-view" hidden>
+<section class="hero">
+  <h1 id="product-name">Focal for Restaurants</h1>
+  <p id="product-subtitle">Install, operate and service your Focal system.</p>
+</section>
+<input type="search" class="landing-search" data-search-open placeholder="Search guides" aria-label="Search guides" autocomplete="off" readonly>
+
+<a class="fixit-banner" id="banner-restaurant" href="{{ site.baseurl }}/fixit/">
+  <div class="fixit-banner-text">
+    <div class="fixit-banner-eyebrow">Need help now?</div>
+    <h2>Troubleshoot now</h2>
+    <p>Follow the prompts to get help now.</p>
+  </div>
+  <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
+</a>
+<a class="fixit-banner" id="banner-home" href="{{ site.baseurl }}/?product=home&amp;stage=install" hidden>
+  <div class="fixit-banner-text">
+    <div class="fixit-banner-eyebrow">New Duo?</div>
+    <h2>Set up your Duo</h2>
+    <p>Follow the steps to mount and connect your Duo.</p>
+  </div>
+  <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
+</a>
+{% else %}
 <section class="hero">
   <h1>Focal Support</h1>
   <p>How to prepare for, install, and use Focal heaters.</p>
@@ -15,6 +55,7 @@ title: null
   </div>
   <span class="fixit-banner-arrow" aria-hidden="true">&rarr;</span>
 </a>
+{% endif %}
 
 <div class="stage-tabs" role="tablist" aria-label="Filter by stage">
   <button class="stage-tab" role="tab" data-stage="all" aria-selected="true">All</button>
@@ -25,16 +66,22 @@ title: null
 
 <div class="guide-list" id="guide-list" role="tabpanel">
   {% assign listed = site.guides | where_exp: "g", "g.unlisted != true" %}
-  {% assign only_restaurant = listed | where: "product", "restaurant" %}
-  {% assign both_products = listed | where: "product", "both" %}
-  {% assign guides = only_restaurant | concat: both_products | sort: "order" %}
+  {% if site.product_choice %}
+  {% assign guides = listed | sort: "order" %}
+  {% else %}
+  {% assign guides = listed | where_exp: "g", "g.product != 'home'" | sort: "order" %}
+  {% endif %}
   {% for g in guides %}
   <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"
      data-stages="{{ g.stage | join: ',' }}"
+     data-products="{% if g.product == 'both' %}restaurant,home{% elsif g.product == 'home' %}home{% else %}restaurant{% endif %}"
      data-order-all="{{ g.order }}"
      data-order-install="{{ g.install_order.restaurant | default: g.order }}"
      data-order-operate="{{ g.operate_order.restaurant | default: g.order }}"
      data-order-service="{{ g.service_order.restaurant | default: g.order }}"
+     data-order-install-home="{{ g.install_order.home | default: g.order }}"
+     data-order-operate-home="{{ g.operate_order.home | default: g.order }}"
+     data-order-service-home="{{ g.service_order.home | default: g.order }}"
      data-lead="{% if g.lead %}true{% else %}false{% endif %}">
     <span class="guide-row-text">
       <span class="lead-eyebrow">Start here</span>
@@ -46,6 +93,7 @@ title: null
   {% endfor %}
 </div>
 <p class="empty" id="empty" hidden>No guides match that.</p>
+{% if site.product_choice %}</div>{% endif %}
 
 <script>
 (function () {
@@ -55,6 +103,36 @@ title: null
   var empty = document.getElementById('empty');
   var STAGES = ['install', 'operate', 'service'];
   var stage = 'all';
+
+  // Product choice (site.product_choice). Off: Restaurant only, as before.
+  var CHOICE = document.body.classList.contains('product-choice');
+  var PRODUCTS = {
+    restaurant: { name: 'Focal for Restaurants', subtitle: 'Install, operate and service your Focal system.' },
+    home: { name: 'Focal for Homes', subtitle: 'Install, operate and service your Focal system.' }
+  };
+  var product = 'restaurant';
+  if (CHOICE) {
+    document.body.setAttribute('data-landing', '');
+    product = window.FocalProduct.get();
+    var chooser = document.getElementById('choose');
+    var view = document.getElementById('product-view');
+    chooser.hidden = !!product;
+    view.hidden = !product;
+    if (!product) {
+      // First visit: only the choice shows; the Stage tabs and list stay hidden.
+      product = 'restaurant';
+    } else {
+      document.getElementById('product-name').textContent = PRODUCTS[product].name;
+      document.getElementById('product-subtitle').textContent = PRODUCTS[product].subtitle;
+      document.getElementById('banner-restaurant').hidden = product !== 'restaurant';
+      document.getElementById('banner-home').hidden = product !== 'home';
+      rows.forEach(function (r) {
+        if (r.dataset.products.split(',').indexOf(product) === -1) { r.remove(); }
+      });
+      rows = rows.filter(function (r) { return r.isConnected; });
+    }
+    document.title = (product && !view.hidden ? PRODUCTS[product].name + ' · ' : '') + document.title;
+  }
 
   // Old ?a= links (printed packet QR, shared URLs) map onto Stages.
   var LEGACY = { installer: 'install', electrician: 'install', customer: 'operate' };
@@ -85,12 +163,14 @@ title: null
   // shares that tab rather than the full list.
   function syncUrl() {
     if (!window.history || !history.replaceState) return;
-    history.replaceState(null, '',
-      stage === 'all' ? window.location.pathname : window.location.pathname + '?stage=' + stage);
+    var q = [];
+    if (CHOICE && !document.getElementById('product-view').hidden) q.push('product=' + product);
+    if (stage !== 'all') q.push('stage=' + stage);
+    history.replaceState(null, '', window.location.pathname + (q.length ? '?' + q.join('&') : ''));
   }
 
   function orderFor(row) {
-    var key = stage.charAt(0).toUpperCase() + stage.slice(1);
+    var key = stage.charAt(0).toUpperCase() + stage.slice(1) + (product === 'home' ? 'Home' : '');
     return parseInt(row.dataset['order' + key], 10);
   }
 

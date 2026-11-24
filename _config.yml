@@ -9,6 +9,10 @@ url: "https://support.focalheat.co"
 # repo name. If you rename the repo or use a custom domain, update this.
 baseurl: "/"
 
+# Product choice (Restaurant / Home). Off: the site is Restaurant only, with no
+# Home tab and no first-visit choice. The launch ticket under #136 turns it on.
+product_choice: false
+
 # Home Product setting. Off, the site is Restaurant only: Guides show no Product
 # tag or note, and Home-only content stays hidden. The Product choice ticket
 # (#154) builds on this flag; the launch ticket (#172) turns it on.
