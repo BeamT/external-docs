@@ -13,13 +13,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css?v={{ site.time | date: '%s' }}">
 </head>
-<body>
+<body{% if site.product_choice %} class="product-choice"{% if page.url == "/" %} data-landing-page{% endif %} data-page-product="{% if page.layout == 'guide' and page.product == nil %}restaurant{% else %}{{ page.product }}{% endif %}"{% endif %}>
+  {%- if site.product_choice %}
+  <script>
+  // Saved Product choice. Kept in localStorage, then a cookie, then memory, so
+  // it still works when storage is blocked. ?product= sets it.
+  window.FocalProduct = (function () {
+    var KEY = 'focal-product', ok = { home: 1, restaurant: 1 }, mem = null;
+    function read() {
+      var v = null;
+      try { v = localStorage.getItem(KEY); } catch (e) {}
+      if (!ok[v]) { var m = /(?:^|; )focal-product=(\w+)/.exec(document.cookie || ''); v = m && m[1]; }
+      return ok[v] ? v : mem;
+    }
+    function write(v) {
+      if (!ok[v]) return;
+      mem = v;
+      try { localStorage.setItem(KEY, v); } catch (e) {}
+      try { document.cookie = KEY + '=' + v + '; path=/; max-age=31536000; SameSite=Lax'; } catch (e) {}
+    }
+    // ?product= is for the landing page only; opening a Guide never changes the choice.
+    var q = document.body.hasAttribute('data-landing-page') ? new URLSearchParams(window.location.search).get('product') : null;
+    if (ok[q]) write(q);
+    return { get: read, set: write };
+  })();
+  </script>
+  {%- endif %}
   <header class="topbar">
     <div class="topbar-inner">
       <a href="{{ site.baseurl }}/" class="brand" aria-label="Focal">
-        <img src="{{ site.baseurl }}/assets/wordmark.png" alt="Focal" height="24" style="height:24px;width:auto;display:block"
+        <img src="{{ site.baseurl }}/assets/wordmark.png" alt="Focal" height="24" class="brand-logo"
              onerror="this.style.display='none';this.insertAdjacentHTML('afterend','Focal<span class=&quot;dot&quot;>.</span>')">
       </a>
+      {%- if site.product_choice %}
+      <nav class="product-tabs" aria-label="Product">
+        <a class="product-tab" href="{{ site.baseurl }}/?product=restaurant" data-product="restaurant">Restaurant</a>
+        <a class="product-tab" href="{{ site.baseurl }}/?product=home" data-product="home">Home</a>
+      </nav>
+      {%- endif %}
       <button class="search-icon" type="button" data-open-search aria-label="Search guides" aria-haspopup="dialog">
         {% include searchicon.html size=20 %}
       </button>
@@ -41,6 +72,25 @@
       </div>
     </div>
   </div>
+  {%- if site.product_choice %}
+  <script>
+  // Underline the Product tab: a Guide's own Product, else the saved choice
+  // (also for a Guide tagged both). Opening a Guide never changes the choice.
+  window.FocalProduct.paint = function () {
+    var own = document.body.getAttribute('data-page-product');
+    var shown = (own === 'home' || own === 'restaurant') ? own : window.FocalProduct.get();
+    document.querySelectorAll('.product-tab').forEach(function (a) {
+      if (a.dataset.product === shown) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  document.querySelectorAll('.product-tab').forEach(function (a) {
+    // Each tab links to that Product's landing page and saves the choice.
+    a.addEventListener('click', function () { window.FocalProduct.set(a.dataset.product); });
+  });
+  window.FocalProduct.paint();
+  </script>
+  {%- endif %}
   <main class="wrap">
     {{ content }}
   </main>

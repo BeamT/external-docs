@@ -53,18 +53,40 @@ Every guide carries `product` and `stage` front matter. The terms are defined in
   number for each Product; a guide with a single Product needs only that one.
   Leave a key out when the guide isn't in that Product's order. Service has no
   required order. Electrical & Power has an Install number but stays out of the
-  "Next" chain and the print packet for now.
+  "Next" chain and the print packet for now (`next_chain: false`).
 - **Mount**: the way a rail attaches (Overhead, and later Freestanding, Wall
   and Self-mount). Mount is not front matter. Mount-specific steps live in one
   clearly headed section of the guide, for example "Overhead mount" in
   Install Rails, so a new Mount means moving a section, not rewriting a guide.
 
-`stage`, `install_order` and `operate_order` are data only for now: nothing
-reads them yet (only `product` is read, by the guide layout, see below), so the "Next" chain and print packet still follow the
-old fields. `audience` and `audience_order` are those old per-role fields. The
-landing page, search index, "Next" link and print packet read them until the
+The "Next" link at the end of a guide and the Restaurant print packet read
+`install_order` (`_includes/nextguide.html`, `print-installer.html`). "Next"
+considers only guides visible to the page's Product and follows that Product's
+Install order; on a guide tagged `both` it shows the link for the saved Product
+choice, Restaurant when none. A guide with `next_chain: false` is skipped.
+Troubleshooting carries `install_order: {restaurant: 65}` so the Restaurant
+path still ends there. `stage` and `operate_order` are data only for now:
+the search index still reads `audience` and `audience_order` until the
 Stage tabs replace them; keep them on existing guides and leave them off new
-ones.
+ones. The landing page reads `product`, `stage`, `install_order` and
+`operate_order`.
+
+## Product choice setting
+
+`product_choice` in `_config.yml` is `false` until the launch ticket under #136
+turns it on. Off, the site is Restaurant only: no Home tab, no first-visit
+choice, and `?product=` is ignored. On, the top bar shows **Restaurant · Home**
+tabs and a search icon, the landing page asks "Select your product" on a
+first visit, and the choice is saved in the browser (`?product=home` or
+`?product=restaurant` sets it; opening a Guide never changes it).
+
+`tests/product-choice.spec.js` covers both settings. Build the site twice
+before running it:
+
+```
+bundle exec jekyll build --baseurl ""
+bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
+```
 
 ## Product-only content and the Guide Product tag
 
@@ -245,6 +267,10 @@ description-required and a heater-ID-required endpoint, and asserts the email
 button is genuinely clickable (not just visually enabled) once its required
 field is filled. Run it after touching `refreshEmailHref`, `buildEmailBody`,
 `buildSubject`, or the `support`/`resolved` endpoint rendering in `render()`.
+
+The other specs read built output, not the source: `landing.spec.js` and
+`search.spec.js` read `_site/`, and `product-choice.spec.js` reads both `_site/`
+and `_site_choice/` (see "Product choice setting"). Build before running them.
 
 ## Roadmap
 
