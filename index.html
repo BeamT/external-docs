@@ -15,7 +15,10 @@ title: null
       <span class="choice-desc">For your home. Controlled in the Focal Home app.</span>
     </a>
   </div>
-  <input type="search" class="landing-search" data-search-open placeholder="Search all guides" aria-label="Search all guides" autocomplete="off" readonly>
+  <button class="search-field" type="button" data-open-search aria-haspopup="dialog">
+  {% include searchicon.html size=20 %}
+  <span>Search all guides</span><kbd>/</kbd>
+</button>
 </section>
 
 <div id="product-view" hidden>
@@ -23,7 +26,10 @@ title: null
   <h1 id="product-name">Focal for Restaurants</h1>
   <p id="product-subtitle">Install, operate and service your Focal system.</p>
 </section>
-<input type="search" class="landing-search" data-search-open placeholder="Search guides" aria-label="Search guides" autocomplete="off" readonly>
+<button class="search-field" type="button" data-open-search aria-haspopup="dialog">
+  {% include searchicon.html size=20 %}
+  <span>Search guides</span><kbd>/</kbd>
+</button>
 
 <a class="fixit-banner" id="banner-restaurant" href="{{ site.baseurl }}/fixit/">
   <div class="fixit-banner-text">
@@ -46,6 +52,11 @@ title: null
   <h1>Focal Support</h1>
   <p>How to prepare for, install, and use Focal heaters.</p>
 </section>
+
+<button class="search-field" type="button" data-open-search aria-haspopup="dialog">
+  {% include searchicon.html size=20 %}
+  <span>Search guides</span><kbd>/</kbd>
+</button>
 
 <a class="fixit-banner" href="{{ site.baseurl }}/fixit/">
   <div class="fixit-banner-text">

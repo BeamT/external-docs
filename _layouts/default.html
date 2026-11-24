@@ -50,18 +50,28 @@
         <a class="product-tab" href="{{ site.baseurl }}/?product=restaurant" data-product="restaurant">Restaurant</a>
         <a class="product-tab" href="{{ site.baseurl }}/?product=home" data-product="home">Home</a>
       </nav>
-      <button type="button" class="search-toggle" id="search-toggle" aria-label="Search guides" aria-expanded="false" aria-controls="searchbox">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
       {%- endif %}
-      <div class="searchbox" id="searchbox"{% if site.product_choice %} hidden{% endif %}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="search" id="search" placeholder="Search guides" aria-label="Search documentation"
-               autocomplete="off" spellcheck="false"
-               data-index="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
-      </div>
+      <button class="search-icon" type="button" data-open-search aria-label="Search guides" aria-haspopup="dialog">
+        {% include searchicon.html size=20 %}
+      </button>
     </div>
   </header>
+  <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="Search guides" hidden>
+    <div class="search-sheet">
+      <div class="search-sheet-inner">
+        <div class="search-row">
+          <div class="searchbox">
+            {% include searchicon.html size=18 %}
+            <input type="search" id="search" placeholder="Search guides" aria-label="Search documentation"
+                   autocomplete="off" spellcheck="false"
+                   data-index="{{ '/search.json' | relative_url }}?v={{ site.time | date: '%s' }}">
+          </div>
+          <button class="search-cancel" type="button" data-close-search>Cancel</button>
+        </div>
+        <p class="search-scope" id="search-scope">Searching <b>all guides</b></p>
+      </div>
+    </div>
+  </div>
   {%- if site.product_choice %}
   <script>
   // Underline the Product tab: a Guide's own Product, else the saved choice

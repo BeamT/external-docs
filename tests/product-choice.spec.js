@@ -48,7 +48,7 @@ test.describe('setting on', () => {
     await page.goto(on.url + '/');
     await expect(page.getByRole('heading', { name: 'Select your product' })).toBeVisible();
     await expect(page.locator('.choice')).toHaveText([/Focal for Restaurants/, /Focal for Homes/]);
-    await expect(page.getByPlaceholder('Search all guides')).toBeVisible();
+    await expect(page.locator('.search-field:visible')).toHaveText(/Search all guides/);
     await expect(page.locator('.guide-row:visible')).toHaveCount(0);
     await expect(page.locator('.stage-tabs')).toBeHidden();
     await expect(page.locator('.product-tab[aria-current]')).toHaveCount(0);
@@ -57,8 +57,8 @@ test.describe('setting on', () => {
   test('top bar has the Product tabs and a search icon, no search box', async ({ page }) => {
     await page.goto(on.url + '/');
     await expect(page.locator('.product-tab')).toHaveText(['Restaurant', 'Home']);
-    await expect(page.locator('#search-toggle')).toBeVisible();
-    await expect(page.locator('#searchbox')).toBeHidden();
+    await expect(page.locator('.search-icon')).toBeVisible();
+    await expect(page.locator('#search-panel')).toBeHidden();
     const logo = await page.locator('.brand-logo').boundingBox();
     expect(Math.round(logo.height)).toBe(28);
   });
@@ -131,12 +131,12 @@ test.describe('setting on', () => {
 
   test('the search icon and the landing field open search', async ({ page }) => {
     await page.goto(on.url + '/?product=restaurant');
-    await page.locator('#search-toggle').click();
+    await page.locator('.search-icon').click();
     await expect(page.locator('#search')).toBeFocused();
     await page.keyboard.press('Escape');
-    await expect(page.locator('#searchbox')).toBeHidden();
-    await expect(page.locator('#search-toggle')).toBeFocused();
-    await page.getByPlaceholder('Search guides', { exact: true }).last().click();
+    await expect(page.locator('#search-panel')).toBeHidden();
+    await expect(page.locator('.search-icon')).toBeFocused();
+    await page.locator('.search-field:visible').click();
     await expect(page.locator('#search')).toBeFocused();
   });
 
@@ -149,7 +149,7 @@ test.describe('setting on', () => {
       expect(bar.height).toBeLessThan(70);
       const logo = await page.locator('.brand-logo').boundingBox();
       expect(Math.round(logo.height)).toBe(24);
-      const icon = await page.locator('#search-toggle').boundingBox();
+      const icon = await page.locator('.search-icon').boundingBox();
       expect(icon.x + icon.width).toBeLessThanOrEqual(360);
     }
   });
@@ -161,8 +161,7 @@ test.describe('setting off', () => {
     await expect(page.getByRole('heading', { name: 'Focal Support' })).toBeVisible();
     await expect(page.getByText('Select your product')).toHaveCount(0);
     await expect(page.locator('.product-tab')).toHaveCount(0);
-    await expect(page.locator('#search-toggle')).toHaveCount(0);
-    await expect(page.locator('#searchbox')).toBeVisible();
+    await expect(page.locator('.search-icon')).toBeVisible();
     expect(await titles(page)).toContain('Troubleshooting');
   });
 

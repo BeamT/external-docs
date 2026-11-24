@@ -56,6 +56,7 @@ test('index is valid and has one record per guide section', async () => {
 
 test('finds body text from a guide page and navigates to the section', async ({ page }) => {
   await page.goto(base + '/install-hub/');
+  await page.locator('.search-icon').click();
   const input = page.locator('#search');
   await input.fill('breaker');
   const first = page.locator('#search-results .search-hit').first();
@@ -84,6 +85,100 @@ test('tolerates typos, supports keyboard nav and Escape on the homepage', async 
 
 test('shows an empty state for nonsense', async ({ page }) => {
   await page.goto(base + '/');
+  await page.keyboard.press('/');
   await page.locator('#search').fill('zzqxv');
   await expect(page.locator('#search-results .search-empty')).toHaveText(/No results/);
+});
+
+test('icon, landing field and "/" each open the panel with the input focused', async ({ page }) => {
+  await page.goto(base + '/');
+  const panel = page.locator('#search-panel');
+  await expect(panel).toBeHidden();
+  await expect(page.locator('#search-scope')).toHaveText('Searching all guides');
+
+  for (const open of [
+    () => page.locator('.search-icon').click(),
+    () => page.locator('.search-field').click(),
+    () => page.keyboard.press('/'),
+  ]) {
+    await open();
+    await expect(panel).toBeVisible();
+    await expect(page.locator('#search')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(panel).toBeHidden();
+  }
+});
+
+test('Escape, Cancel and clicking outside close it and return focus to the opener', async ({ page }) => {
+  await page.goto(base + '/');
+  const icon = page.locator('.search-icon');
+  const panel = page.locator('#search-panel');
+
+  await icon.click();
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(icon).toBeFocused();
+
+  await icon.click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await expect(panel).toBeHidden();
+  await expect(icon).toBeFocused();
+
+  const field = page.locator('.search-field');
+  await field.click();
+  const vh = page.viewportSize().height;
+  await page.mouse.click(5, vh - 5); // dimmed backdrop below the sheet
+  await expect(panel).toBeHidden();
+  await expect(field).toBeFocused();
+});
+
+test('is usable at 360px and results scroll inside the panel', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await page.goto(base + '/');
+  await page.locator('.search-icon').click();
+  await page.locator('#search').fill('heater');
+  await expect(page.locator('#search-results .search-hit').first()).toBeVisible();
+
+  const noHScroll = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  expect(noHScroll).toBe(true);
+  const box = await page.locator('.search-sheet').boundingBox();
+  expect(box.height).toBeGreaterThanOrEqual(page.viewportSize().height - 1);
+  const r = await page.locator('#search-results').evaluate((el) => ({
+    scrolls: el.scrollHeight > el.clientHeight, overflowY: getComputedStyle(el).overflowY }));
+  expect(r.overflowY).toBe('auto');
+  expect(r.scrolls).toBe(true);
+});
+
+test('Escape closes the results, then clears the input, then closes the panel', async ({ page }) => {
+  await page.goto(base + '/');
+  await page.keyboard.press('/');
+  await page.keyboard.type('breaker');
+  await expect(page.locator('#search-results .search-hit').first()).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search-results')).toBeHidden();
+  await expect(page.locator('#search-panel')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search')).toHaveValue('');
+  await expect(page.locator('#search-panel')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#search-panel')).toBeHidden();
+});
+
+test('on desktop the panel sits below the top bar and the icon is a 44px target', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto(base + '/');
+  const icon = await page.locator('.search-icon').boundingBox();
+  expect(icon.width).toBeGreaterThanOrEqual(44);
+  expect(icon.height).toBeGreaterThanOrEqual(44);
+  await page.locator('.search-icon').click();
+  const bar = await page.locator('.topbar').boundingBox();
+  const sheet = await page.locator('.search-sheet').boundingBox();
+  expect(sheet.y).toBeGreaterThanOrEqual(bar.y + bar.height - 1);
+});
+
+test('the search input shows a focus indicator', async ({ page }) => {
+  await page.goto(base + '/');
+  await page.keyboard.press('/');
+  const shadow = await page.locator('.searchbox').evaluate((el) => getComputedStyle(el).boxShadow);
+  expect(shadow).not.toBe('none');
 });
