@@ -65,10 +65,11 @@ title: null
 </div>
 
 <div class="guide-list" id="guide-list" role="tabpanel">
+  {% assign listed = site.guides | where_exp: "g", "g.unlisted != true" %}
   {% if site.product_choice %}
-  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | sort: "order" %}
+  {% assign guides = listed | sort: "order" %}
   {% else %}
-  {% assign guides = site.guides | where_exp: "g", "g.unlisted != true" | where_exp: "g", "g.product != 'home'" | sort: "order" %}
+  {% assign guides = listed | where_exp: "g", "g.product != 'home'" | sort: "order" %}
   {% endif %}
   {% for g in guides %}
   <a class="guide-row" href="{{ g.url | prepend: site.baseurl }}"
