@@ -67,6 +67,9 @@ Watch the full video once before you start. Refer to the step-by-step written in
 
 ## Final checks
 
+{% capture final_checks %}
 {% include checklist.html items="Every heater is seated in a slot and LEDs lit | There is a spacer between each pair of heaters | Bumper back on the Rail, end cap screwed on, and bumper screw tightened" %}
 
 {% include warn.html text="You're not done yet. Staff can't control these heaters until each one is assigned to its slot in the Focal Control app. Assign them now, before you leave the site." %}
+{% endcapture %}
+{% include productonly.html for="restaurant" content=final_checks %}

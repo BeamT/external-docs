@@ -171,9 +171,9 @@ Search opens in one panel from the top-bar icon, the landing-page search
 field, or the `/` key (on every page except `/fixit/`). On desktop it drops
 below the top bar; on phones it fills the screen. Escape, Cancel or a click
 outside closes it and returns focus to whatever opened it. A scope line under
-the input says what is searched ("Searching all guides" for now; it is static
-text in `_layouts/default.html`). It does full-text search over every guide, in the browser,
-with no external service:
+the input says what is searched ("Searching **Home guides** · Search all guides");
+its link switches the scope for that search only. It does full-text search over
+every guide, in the browser, with no external service:
 
 - `search.json` is a Liquid template. Jekyll builds it into a
   pre-computed index on every Pages build. It holds one record per `##`
@@ -186,11 +186,22 @@ with no external service:
   which is vendored at `assets/vendor/minisearch.min.js` (MIT, ~6 KB gzipped).
   Search matches prefixes and tolerates typos ("clearence" finds
   "clearance"). Headings rank above body text.
+- Search is scoped to a Product when `product_choice` is on. Every record
+  carries `product` (`restaurant`, `home` or `both`): the section's `only` mark
+  when it has one, else the Guide's tag. The scope is the saved choice, else the
+  Guide page's own Product, else all guides. With a Product: its results first
+  (`both` counts for either), the other Product's results collapsed into one
+  last line that expands in place, or listed under "No Home guides match. From
+  Restaurant guides:" when the Product has none. The Fix it record (`fixit: true`)
+  is never shown in Home scope. With no Product, every result is tagged. At most
+  the best two matches per Guide show. With the setting off, search is
+  unscoped and untagged and skips Home-only records.
 - To upgrade MiniSearch: `npm pack minisearch@<version>`, minify
   `dist/umd/index.js` (e.g. `npx terser -c -m`), and replace the vendored
   file, keeping the version/license header comment.
-- `tests/search.spec.js` covers it. Run `jekyll build --baseurl ""` first,
-  because the test reads `_site/` (it skips if `_site/` is missing).
+- `tests/search.spec.js` covers it, and `tests/search-product.spec.js` covers the
+  Product rules. Build both sites first (see Tests below), because they read
+  `_site/` and `_site_choice/` (they skip if missing).
 
 ## The homepage and the troubleshooting tool
 

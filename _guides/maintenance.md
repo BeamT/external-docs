@@ -19,11 +19,14 @@ updated: "2026-07-29"
 
 ## Daily power check for staff
 
+{% capture power_check %}
 A quick routine each shift keeps false offline reports down:
 
 {% include checklist.html items="Rail switch is on | Each heater's power LEDs are lit" %}
 
 {% include dodont.html do="Leave heaters seated overnight so they stay online." dont="Unplug heaters overnight. It causes false offline reports the next day." %}
+{% endcapture %}
+{% include productonly.html for="restaurant" content=power_check %}
 
 ## How often to clean
 
