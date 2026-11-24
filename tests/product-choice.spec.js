@@ -48,7 +48,7 @@ test.describe('setting on', () => {
     await page.goto(on.url + '/');
     await expect(page.getByRole('heading', { name: 'Select your product' })).toBeVisible();
     await expect(page.locator('.choice')).toHaveText([/Focal for Restaurants/, /Focal for Homes/]);
-    await expect(page.getByPlaceholder('Search all guides')).toBeVisible();
+    await expect(page.locator('.search-field:visible')).toHaveText(/Search all guides/);
     await expect(page.locator('.guide-row:visible')).toHaveCount(0);
     await expect(page.locator('.stage-tabs')).toBeHidden();
     await expect(page.locator('.product-tab[aria-current]')).toHaveCount(0);
