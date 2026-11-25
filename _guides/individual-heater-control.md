@@ -11,6 +11,8 @@ version: "1.0"
 updated: "2026-08-07"
 ---
 
+Before you use the heaters, read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) for burn hazards and when to stop and call Focal.
+
 Everything here controls one heater at a time. If you're setting up the app, building your schedule, or running the whole space at once, start with [System Setup & Control]({{ site.baseurl }}/system-setup-control/).
 
 A quick reminder before you dive in: the system runs in either Schedule Mode or Manual Mode. In Schedule Mode the heaters only come on inside your open hours, so some of the controls below won't turn on heat outside those hours. 
