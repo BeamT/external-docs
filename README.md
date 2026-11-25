@@ -71,6 +71,13 @@ Stage tabs replace them; keep them on existing guides and leave them off new
 ones. The landing page reads `product`, `stage`, `install_order` and
 `operate_order`.
 
+## Writing for Home
+
+Homeowners buy from a store, so they have no Focal representative. In any Guide
+a Home reader can see, point to Focal Support and give the email address
+(`support@focalheat.co`) instead of "your Focal representative". Keep the
+representative wording inside Restaurant-only content.
+
 ## Product choice setting
 
 `product_choice` in `_config.yml` is `false` until the launch ticket under #136
