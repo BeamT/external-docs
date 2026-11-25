@@ -18,6 +18,7 @@ updated: "2026-11-25"
 - [Rail configurations](#rail-configurations)
 - [Outlet and circuit by plug type](#outlet-and-circuit-by-plug-type)
 - [Placement and cabling](#placement-and-cabling)
+- [Hub outlet](#hub-outlet)
 - [Final checks](#final-checks)
 
 ## Overview
@@ -52,6 +53,8 @@ If you need a new outlet and circuit, expect to pay roughly $250–$500 to have 
 ## Placement and cabling
 
 Position each outlet in line with the cord-exit end of its Rail, where the Rail's 8-foot built-in cable exits, and account for features like pillars or posts. If the cable can't reach, use an extension cord. Any extension cord, and all other cabling connected to a Rail, should be 12AWG or heavier and rated for 20A. Don't use a power strip.
+
+## Hub outlet
 
 {% capture hubnote %}  
 The Focal Hub (a small box that connects the heaters to WiFi) needs a standard outlet at the location marked on the site plan. Don't use an outlet on a light switch.  
