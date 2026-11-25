@@ -8,8 +8,8 @@ install_order: {restaurant: 10, home: 10}
 operate_order: {restaurant: 5, home: 5}
 order: 10
 summary: Required clearances and safety guidelines for every install.
-version: "1.5"
-updated: "2026-11-23"
+version: "1.6"
+updated: "2026-11-25"
 ---
 
 ## On this page
@@ -47,9 +47,9 @@ Focal heaters are for covered outdoor areas only, protected from direct rain, wa
 
 ## Electrical safety
 
-- The heater runs on 120VAC, 60 Hz. Connect only to a properly installed, GFCI-protected outlet on its own circuit.
+- The heater runs on 120VAC, 60 Hz. Connect only to a properly installed, GFCI-protected outlet. Each Rail needs its own circuit; Rails can't share a circuit.
 - Do not use the heater if the power cord or plug is damaged.
-- Do not use a power strip. Plug into an outdoor outlet on the Rail's own circuit, or into an extension cord rated 12 AWG or heavier if the Rail's cable can't reach.
+- Do not use a power strip. Plug into an outdoor outlet, or into an extension cord rated 12 AWG or heavier and rated for 20A if the Rail's cable can't reach.
 - Do not run the cord under flooring, decking, or coverings where it can be pinched or damaged.
 - Outdoors, always use a weather-protected outlet with an in-use weatherproof cover.
 - Unplug the heater before relocating it, or before any cleaning or maintenance, or when not in use long-term.
