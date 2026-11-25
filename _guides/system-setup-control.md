@@ -11,6 +11,8 @@ version: "1.1"
 updated: "2026-10-21"
 ---
 
+Before you use the heaters, read [Safety & Clearances]({{ site.baseurl }}/safety-and-clearances/) for burn hazards and when to stop and call Focal.
+
 ## On this page
 
 - [Logging in](#logging-in)
