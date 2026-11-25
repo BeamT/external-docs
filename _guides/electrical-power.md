@@ -7,9 +7,9 @@ stage: [install]
 install_order: {restaurant: 15, home: 20}
 next_chain: false
 order: 6
-summary: Circuit, outlet, and plug requirements for electricians.
-version: "1.4"
-updated: "2026-11-17"
+summary: Circuit, outlet, and plug requirements for Focal Rails.
+version: "1.5"
+updated: "2026-11-25"
 ---
 
 ## On this page
@@ -17,14 +17,12 @@ updated: "2026-11-17"
 - [System basics](#system-basics)
 - [Rail configurations](#rail-configurations)
 - [Outlet and circuit by plug type](#outlet-and-circuit-by-plug-type)
-- [Notes for electricians](#notes-for-electricians)
-- [Placement](#placement)
+- [Placement and cabling](#placement-and-cabling)
+- [Final checks](#final-checks)
 
 ## Overview
 
-Each Focal Rail ships with a factory-installed plug — either 15A or 20A depending on how many heaters it carries. For each Rail, make sure to provide a matching outdoor-rated, GFCI-protected outlet. Each Rail needs its own circuit.
-
-{% include dodont.html do="Give every Rail its own circuit with a correctly sized breaker." dont="Put more than one Rail on the same circuit." %}
+Each Focal Rail ships with a factory-installed plug, either 15A or 20A depending on how many heaters it carries. For each Rail, provide a matching outdoor-rated, GFCI-protected outlet. Each Rail needs its own circuit, and Rails can't share a circuit.
 
 ## System basics
 
@@ -38,7 +36,7 @@ Each Rail is limited to a maximum number of heaters. The Rail model determines t
 
 {% include railtable.html %}
 
-{% include warn.html text="Never load a Rail with more heaters than its row allows. If more heat is needed, add another Rail on its own circuit." %}
+{% include warn.html text="Never load a Rail with more heaters than allowed. If more heat is needed, add another Rail on its own circuit." %}
 
 ## Outlet and circuit by plug type
 
@@ -49,25 +47,23 @@ Match the outlet and circuit to whichever plug the Rail arrived with.
 | NEMA 5-15P | NEMA 5-15R, outdoor-rated, GFCI protected | Its own 15A circuit, appropriately sized breaker |
 | NEMA 5-20P | NEMA 5-20R, outdoor-rated, GFCI protected | Its own 20A circuit, appropriately sized breaker |
 
-## Notes for electricians
+If you need a new outlet and circuit, expect to pay roughly $250–$500 to have it installed.
 
-All cabling connected to a Rail should be 12AWG rated for 20A.
+## Placement and cabling
 
-Verify at every outlet:
+Position each outlet in line with the cord-exit end of its Rail, where the Rail's 8-foot built-in cable exits, and account for features like pillars or posts. If the cable can't reach, use an extension cord. Any extension cord, and all other cabling connected to a Rail, should be 12AWG or heavier and rated for 20A. Don't use a power strip.
 
-{% include checklist.html items="Outdoor-rated receptacle with an in-use weatherproof cover | GFCI protection | Proper grounding | No exposed conductors or loose connections | Rail on its own circuit, breaker sized to the plug" %}
+{% capture hubnote %}  
+The Focal Hub (a small box that connects the heaters to WiFi) needs a standard outlet at the location marked on the site plan. Don't use an outlet on a light switch.  
+{% endcapture %}  
+{% include productonly.html for="restaurant" content=hubnote %}
 
-## Placement
-
-{% capture placement %}
-Position outlets in line with the cord-exit end of each Rail, where the Rail's 8-foot built-in cable exits. If the cable can't reach, use an extension cord rated 12 AWG or heavier. Account for features like pillars or posts when siting the outlet.
-
-{% include dodont.html do="Site the outlet in line with the cord-exit end of the Rail, within reach of its 8-foot cable." dont="Use a power strip, or an extension cord lighter than 12 AWG." %}
-
-The Focal Hub also needs a standard outlet at the Hub Location marked on the site plan. Don't use an outlet on a light switch.
+## Final checks
 
 {% include warn.html text="Do not energize the outlet or operate a heater until mounting and clearance checks are complete." %}
 
+Then verify at every outlet:
+
+{% include checklist.html items="Outdoor-rated receptacle with an in-use weatherproof cover | GFCI protection | Proper grounding | No exposed conductors or loose connections | Rail on its own circuit, breaker sized to the plug" %}
+
 For anything not covered here, contact Focal.
-{% endcapture %}
-{% include productonly.html for="restaurant" content=placement %}
