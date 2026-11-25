@@ -115,7 +115,7 @@ test.describe('rule 2 and 3: a Product chosen', () => {
 test.describe('Restaurant-only sections are left out of Home results', () => {
   // [Guide path, section anchor, a query only that section matches well]
   const sections = [
-    ['/electrical-power/', 'placement', 'Hub Location'],
+    ['/electrical-power/', 'hub-outlet', 'outlet on a light switch'],
     ['/install-heaters/', 'final-checks', 'assigned to its slot'],
     ['/maintenance/', 'daily-power-check-for-staff', 'Rail switch is on'],
   ];
