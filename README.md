@@ -91,7 +91,7 @@ first visit, and the choice is saved in the browser (`?product=home` or
 before running it:
 
 ```
-bundle exec jekyll build --baseurl ""
+bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-off.yml
 bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-choice.yml -d _site_choice
 ```
 

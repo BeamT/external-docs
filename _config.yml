@@ -10,13 +10,13 @@ url: "https://support.focalheat.co"
 baseurl: "/"
 
 # Product choice (Restaurant / Home). Off: the site is Restaurant only, with no
-# Home tab and no first-visit choice. The launch ticket under #136 turns it on.
-product_choice: false
+# Home tab and no first-visit choice. On since the launch (#172).
+product_choice: true
 
 # Home Product setting. Off, the site is Restaurant only: Guides show no Product
 # tag or note, and Home-only content stays hidden. The Product choice ticket
-# (#154) builds on this flag; the launch ticket (#172) turns it on.
-home_enabled: false
+# (#154) builds on this flag. On since the launch (#172).
+home_enabled: true
 
 collections:
   guides:

@@ -23,7 +23,7 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
       - name: Build site
-        run: bundle exec jekyll build --baseurl ""
+        run: bundle exec jekyll build --baseurl "" --config _config.yml,tests/product-off.yml
       # Second build with the Product choice setting on, for
       # tests/product-choice.spec.js.
       - name: Build site with Product choice on
