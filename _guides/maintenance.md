@@ -6,18 +6,25 @@ product: both
 stage: [service]
 order: 90
 summary: Maintenance and care for your Focal system.
-version: "1.1"
-updated: "2026-07-29"
+version: "1.2"
+updated: "2026-11-25"
 ---
 
 ## On this page
+{% capture toc_power %}
 - [Daily power check for staff](#daily-power-check-for-staff)
+{% endcapture %}
+{% include productonly.html for="restaurant" content=toc_power %}
+
 - [How often to clean](#how-often-to-clean)
 - [Cleaning procedure](#cleaning-procedure)
 - [Damage & malfunction](#damage--malfunction)
 - [Service & support](#service--support)
 
+{% capture power_heading %}
 ## Daily power check for staff
+{% endcapture %}
+{% include productonly.html for="restaurant" content=power_heading %}
 
 {% capture power_check %}
 A quick routine each shift keeps false offline reports down:
@@ -52,14 +59,32 @@ Stop using the heater and contact Focal Support right away if you see any of the
 
 {% include warn.html text="Do not operate a heater that shows any sign of damage. Doing so may result in electrical hazards or fire." %}
 
+{% capture damage_restaurant %}
 If a heater won't turn on or won't respond to the app but shows none of the damage above, start with [Troubleshooting]({{ site.baseurl }}/troubleshooting/). Most cases come down to a heater that needs re-seating.
+{% endcapture %}
+{% include productonly.html for="restaurant" content=damage_restaurant %}
+
+{% capture damage_home %}
+If a heater won't turn on or won't respond to the app but shows none of the damage above, contact Focal Support.
+{% endcapture %}
+{% include productonly.html for="home" content=damage_home %}
 
 ## Service & support
 
 {% include service.html %}
 
+{% capture report_restaurant %}
 To report a malfunction, contact Focal Support with a photo of the heater's QR code or serial number and a description of the problem.
 
-{% comment %}{% include serial.html %}{% endcomment %}
+{% include serial.html %}
+{% endcapture %}
+{% include productonly.html for="restaurant" content=report_restaurant %}
+
+{% capture report_home %}
+To report a malfunction, contact Focal Support with the heater's serial number and a description of the problem.
+
+{% include serial.html style="home" %}
+{% endcapture %}
+{% include productonly.html for="home" content=report_home %}
 
 {% include contact.html %}
