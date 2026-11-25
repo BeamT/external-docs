@@ -21,9 +21,12 @@ updated: "2026-11-25"
 - [Damage & malfunction](#damage--malfunction)
 - [Service & support](#service--support)
 
-{% capture power_check %}
+{% capture power_heading %}
 ## Daily power check for staff
+{% endcapture %}
+{% include productonly.html for="restaurant" content=power_heading %}
 
+{% capture power_check %}
 A quick routine each shift keeps false offline reports down:
 
 {% include checklist.html items="Rail switch is on | Each heater's power LEDs are lit" %}
