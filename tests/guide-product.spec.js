@@ -92,7 +92,7 @@ test.beforeAll(async () => {
   fs.writeFileSync(path.join(src, '_guides/fixture-restaurant-guide.md'), RESTAURANT_GUIDE);
   fs.writeFileSync(path.join(src, 'on.yml'), 'home_enabled: true\n');
   build(src, path.join(tmp, 'on'), ['on.yml']);
-  build(src, path.join(tmp, 'off'));
+  build(src, path.join(tmp, 'off'), ['tests/product-off.yml']);
 
   servers = [];
   const serve = async (root) => {

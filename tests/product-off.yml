@@ -1,0 +1,6 @@
+# Build override for the tests that check the Restaurant-only site (setting off):
+#   jekyll build --baseurl "" --config _config.yml,tests/product-off.yml
+# The live _config.yml has the Home Product on, so these tests build with this
+# file to keep covering the off state.
+product_choice: false
+home_enabled: false
