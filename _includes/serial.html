@@ -1,6 +1,11 @@
 {%- comment -%}
 Single source of truth for where to find a heater's serial number or QR code.
 Used anywhere a reader is asked to supply one.
-  {% include serial.html %}
+  {% include serial.html %}                  Restaurant (default)
+  {% include serial.html style="home" %}     Home
 {%- endcomment -%}
+{%- if include.style == "home" -%}
+<p>To find a heater's serial number, open the app, tap the heater, then tap the more information button (the three dots). The serial number is also on the top lid of the unit, but it is hard to reach once the heater is mounted, so the app is easier.</p>
+{%- else -%}
 <p>The QR code is the one guests scan to control the heater. The serial number is engraved on top — hard to see once it's mounted — and also shows up in the Focal Control app when you tap that heater's slot.</p>
+{%- endif -%}
